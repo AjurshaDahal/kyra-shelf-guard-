@@ -2,10 +2,11 @@
 
 ## Current truth
 
-The current foundation suite contains 35 tests across contracts, manifests,
-RGB-D input, track-annotation access, baseline persistence, and MiDaS anchor
-alignment. On 2026-08-21 all 35 passed in the pinned Python 3.12.7 environment;
-Ruff and byte-compilation also passed.
+The current suite contains 39 tests: 35 product-foundation tests across contracts,
+manifests, RGB-D input, track-annotation access, baseline persistence, and MiDaS
+anchor alignment, plus four repository-governance tests. On 2026-08-24 all 39
+passed in the pinned Python 3.12.7 environment; Ruff, byte-compilation,
+repository consistency, and change-impact validation also passed.
 
 ## Test layers
 
@@ -108,9 +109,14 @@ Local commands completed successfully on Python 3.12.7 on 2026-08-24:
 .\.venv\Scripts\python.exe -m compileall -q src tests
 ```
 
-Result: 35 tests passed; lint and byte-compilation passed. This closes the local
+Result: 39 tests passed; lint and byte-compilation passed. This closes the local
 Python 3.12 foundation proof, but it does not replace later golden-pack, target
 T4, or independent handoff evidence.
+
+For dependency-security changes, reinstall `requirements.lock`, reinstall the
+editable package, run the complete local checks, and require both Python CI jobs.
+An optional Torch pin may be verified as published and advisory-fixed without
+being treated as an installed GPU or target-T4 acceptance result.
 
 ## Repository governance checks
 

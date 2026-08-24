@@ -42,5 +42,6 @@ Gate exit criteria are authoritative in [Integration Gates](INTEGRATION_GATES.md
 - P-005: unapproved manifest object-mask/shape-family proposal.
 - Person 1–4 GitHub handles and reviewer assignments are not yet known.
 - The current GitHub plan does not support protected branches on this private repository; required checks and reviews are documented and automated but cannot yet be made server-enforced.
+- WI-001 is refreshing vulnerable build/test and optional Torch pins reported by the first GitHub dependency scan; target-T4 validation remains separate and open.
 
 See [Decisions](DECISIONS.md) for full text. Do not implement around a pending decision by creating a second informal interface.

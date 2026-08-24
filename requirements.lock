@@ -3,12 +3,11 @@
 numpy==2.2.6
 opencv-python-headless==4.13.0.92
 pydantic==2.12.3
-pytest==8.4.2
+pytest==9.0.3
 pytest-cov==7.0.0
 ruff==0.13.1
-setuptools==80.9.0
-wheel==0.45.1
+setuptools==83.0.0
+wheel==0.46.2
 
 # GPU/simulation dependencies are intentionally kept in separate lock files so
 # a normal replay installation does not download CUDA, Open3D, or Blender.
-

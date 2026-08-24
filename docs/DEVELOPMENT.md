@@ -27,6 +27,10 @@ Install only one heavy path when a task requires it:
 
 Do not add heavy packages to `requirements.lock`. Core replay and tests must stay lightweight.
 
+## Dependency security updates
+
+Treat a dependency pin as a synchronized change: update `pyproject.toml` and every affected `requirements*.lock`, record the advisory and owner impact in a work item, update testing/status documentation, and rerun the applicable clean install. Core build/test dependencies must pass Python 3.11 and 3.12 CI. Optional GPU dependency changes additionally require a target-T4 smoke run before Gate 7; updating a pin or resolving a repository alert is not T4 compatibility evidence.
+
 ## Repository layout
 
 ```text

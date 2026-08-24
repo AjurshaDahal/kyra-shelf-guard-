@@ -38,6 +38,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
 ### Changed
 
 - GitHub workflow actions now use current immutable release commits instead of deprecated Node 20 action versions.
+- Security-patched pins for Wheel 0.46.2, Setuptools 83.0.0, pytest 9.0.3,
+  and optional Torch 2.13.0 in response to the first GitHub dependency scan.
 
 ### Known gaps
 
