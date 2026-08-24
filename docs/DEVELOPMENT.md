@@ -32,21 +32,24 @@ Do not add heavy packages to `requirements.lock`. Core replay and tests must sta
 ```text
 src/kyra/                 Python package
 tests/                    Planned unit, contract, integration, and acceptance tests
-scripts/                  Planned generation, conversion, and verification entry points
+scripts/                  Governance checks plus planned generation/conversion tools
 scenario-fixtures/golden/ Planned tiny frozen scenarios
 data-sources/             Planned provenance records, not bulk data
-docs/                     Specifications and operating guides
+docs/                     Authority, status, work items, specifications, and evidence
+.github/                  Issue/PR templates, ownership, CI, and dependency updates
 ```
 
 Large datasets and render caches belong outside `D:\Code\Kyra`. See [DATASETS.md](DATASETS.md).
 
 ## Normal checks
 
-After the test files exist:
+Normal code and governance checks:
 
 ```powershell
 .\.venv\Scripts\python.exe -m pytest
 .\.venv\Scripts\python.exe -m ruff check .
+.\.venv\Scripts\python.exe -m compileall -q src tests scripts
+.\.venv\Scripts\python.exe scripts\check_repo_consistency.py
 ```
 
 Useful focused checks after implementation:
@@ -57,7 +60,22 @@ Useful focused checks after implementation:
 .\.venv\Scripts\python.exe scripts\verify_person1.py
 ```
 
-The last three commands describe planned files and will fail until their implementation tasks are complete.
+`verify_person1.py` remains planned and will fail until its implementation task
+is complete. The focused pytest commands work today.
+
+## Git workflow
+
+Fetch `origin`, branch from current `main`, and name the branch
+`<owner>/<issue>-<slug>`. Run `AGENTS.md` preflight before editing. Before a
+pull request, compare the branch with `origin/main`:
+
+```powershell
+git fetch origin
+.\.venv\Scripts\python.exe scripts\check_change_impact.py --base origin/main
+```
+
+Code and governance changes must carry the status, work-item, changelog, and
+documentation companions defined in [DOCUMENTATION_POLICY.md](DOCUMENTATION_POLICY.md).
 
 ## Current command warning
 

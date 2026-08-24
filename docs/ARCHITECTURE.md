@@ -2,79 +2,75 @@
 
 ## Purpose
 
-Person 1 turns raw or generated shelf scenes into two stable things the rest of the team can trust:
-
-1. A replayable stream of RGB-D frames.
-2. A saved opening baseline of the shelf.
+Kyra separates replay/calibration, physical geometry, human context, and integration so each owner can test independently. Versioned contracts and Person 4-owned mocks connect the modules; the pipeline does not reach into private owner logic.
 
 ## System flow
 
 ```text
-procedural generator ─┐
-BlenderProc adapter ──┼─> scenario folder ─> ScenarioFrameSource ─> FramePacket
-OCID converter ───────┘          │                                      │
-                                 │                                      ├─> Person 2: geometry change
-                                 │                                      ├─> Person 3: human context
-                                 └─> first 30 clear frames ─> BaselineBuilder
-                                                              │
-                                                              └─> BaselineArtifact
-                                                                      │
-                                                                      ├─> Person 2
-                                                                      └─> Person 4 pipeline
+P1: scenario/data -> FramePacket + BaselineArtifact
+                         |                |
+                         v                v
+                 P3: tracks/masks    P2: registered,
+                         |            occlusion-safe 3D change
+                         |                |
+                         |                v
+                         +-------> VolumeChangeEvent
+                                      |
+                                      v
+                         P3: proximity + authorization + rule
+                                      |
+                                      v
+                                  AlertEvent
+                                      |
+                                      v
+                         P4: bounded pipeline, CLI, evaluation
 ```
 
-MiDaS is an isolated fallback. It may supply aligned approximate depth only after shelf anchors pass calibration. It must never silently replace metric RGB-D data.
+Person 2 consumes Person 3 masks for occlusion safety; Person 3 consumes Person 2 geometry events for association. Those two paths must use frozen timestamps, frame IDs, shelf coordinates, masks, and event contracts to avoid a circular implementation dependency.
 
-## Current modules
+## Owner modules
 
-| Module | Current responsibility | Important public surface |
+| Owner | Current/future package surfaces | Boundary output |
 |---|---|---|
-| `kyra.contracts` | Shared types and array validation | `FramePacket`, `BaselineArtifact`, `ShelfConfig`, enums and team events |
-| `kyra.manifest` | Strict scenario JSON models | `ScenarioManifest`, `load_manifest`, `write_manifest`, `manifest_checksum` |
-| `kyra.io` | Scenario replay | `ScenarioFrameSource`, alias `FrameSource` |
-| `kyra.baseline` | Baseline building and persistence | `BaselineBuilder`, `save_baseline`, `load_baseline`, `MidasAnchorAligner` |
+| P1 | `kyra.io`, `kyra.baseline`, future data/simulation/calibration/converter modules | `FramePacket`, `BaselineArtifact`, replay fixtures/provenance |
+| P2 | future `kyra.geometry`, `kyra.differencing`, `kyra.occlusion` | `VolumeChangeEvent` |
+| P3 | future `kyra.tracking`, `kyra.proximity`, `kyra.rules` | `PersonTrack`, aligned masks, `AlertEvent` |
+| P4 | `kyra.contracts`, `kyra.manifest`, future pipeline/evaluation/CLI/config | versioned interfaces, integrated outputs, reports |
 
-## Planned Person 1 additions
+P-001 still controls whether future modules are packages or single files. Do not reorganize working imports until Person 4 records the approved layout and migration.
 
-The assignment describes ownership by responsibility. This repository already keeps reading and calibration behavior in `io.py` and `baseline.py`, so the implementation plan extends those tested modules instead of moving working code merely to match assignment folder labels:
+## Current implemented foundation
 
-```text
-src/kyra/
-├── simulation.py           # lightweight deterministic generator
-├── ocid.py                 # pure OCID conversion logic
-└── cli.py                  # future shared command routing, coordinated with Person 4
+| Module | Implemented responsibility | Important public surface |
+|---|---|---|
+| `kyra.contracts` | Shared array/event foundations | `FramePacket`, `BaselineArtifact`, `ShelfConfig`, `VolumeChangeEvent`, `PersonTrack`, `AlertEvent` |
+| `kyra.manifest` | Strict scenario JSON and canonical checksum | `ScenarioManifest`, load/write/checksum functions |
+| `kyra.io` | Replayable scenario input | `ScenarioFrameSource` / `FrameSource` |
+| `kyra.baseline` | Baseline build/persistence and anchor alignment | `BaselineBuilder`, save/load, `MidasAnchorAligner` |
 
-scripts/
-├── generate_golden_pack.py
-├── convert_ocid.py
-└── verify_person1.py
+No P2/P3 algorithm, integrated pipeline, evaluation harness, or CLI exists yet.
 
-scenario-fixtures/
-└── golden/                 # ten tiny deterministic scenarios
-```
+## Parallel-development seam
 
-Existing `io.py`, `manifest.py`, and `baseline.py` receive only test-driven changes. Before adding or moving package files, confirm that Person 4 agrees with keeping the single-package layout. The shared contract shapes must not change merely to match the folder names shown in the assignment.
+For every frozen contract, Person 4 supplies a tiny deterministic mock/replay fixture. Owners develop against that fixture and publish conformance tests. The real producer replaces the mock only at the relevant integration gate. This supports parallel work without duplicating producer behavior.
 
-## Boundary rules
+The pipeline uses bounded queues/timeouts and explicit failure states. It passes versioned objects between owner adapters and records configuration/provenance; it never hides missing evidence by manufacturing defaults.
 
-- Person 1 produces `FramePacket` and `BaselineArtifact` values.
-- Person 2 consumes them and produces `VolumeChangeEvent`.
-- Person 3 produces `PersonTrack` and applies human context.
-- Person 4 owns shared contract changes, orchestration, CLI integration, evaluation, and final reporting.
-
-## Data rules at module boundaries
+## Data rules at boundaries
 
 - RGB: lossless PNG on disk; `uint8` RGB array in memory.
-- Depth: `uint16` millimetres on disk; `float32` metres in memory.
-- Invalid depth: zero or masked on disk; always marked unknown in memory.
-- Masks: lossless PNG and boolean arrays in memory.
-- Timestamps: integer nanoseconds, monotonically increasing.
-- Camera intrinsics: 3 × 3 matrix.
-- Camera-to-shelf transform: 4 × 4 matrix.
-- Baseline: compressed NPZ arrays plus JSON metadata.
+- Depth: `uint16` millimetres on disk; two-dimensional `float32` metres in memory.
+- Invalid/occluded depth: unknown and excluded from removal evidence.
+- Masks: lossless PNG or boolean arrays aligned to a named frame.
+- Timestamps: monotonic integer nanoseconds.
+- Camera intrinsics: 3 × 3; camera-to-shelf transform: 4 × 4.
+- Volumes: cubic metres with explicit threshold/configuration provenance.
+- Baseline: compressed NPZ arrays plus readable JSON metadata and checksum.
 
-## Design trade-offs
+## Trust and evidence boundaries
 
-The core generator uses simple procedural shapes instead of depending on BlenderProc. This makes unit tests fast and repeatable on Windows and the T4 environment, but the scenes look less realistic. BlenderProc and scanned assets remain extended evidence for visual and geometry diversity.
-
-Large data stays outside Git. This keeps the repository usable, but it means every external dataset needs a reproducible download/location record, checksum, conversion command, and provenance manifest.
+- MiDaS is approximate and accepted only after metric shelf anchors pass; it never silently replaces metric depth.
+- Optional pretrained tracking provides observations, not intent or guilt.
+- Person-correlated removal is a suspicious event requiring review, not theft proof.
+- Synthetic fixtures test deterministic behavior; public data expands coverage; only a complete frozen run is end-to-end evidence.
+- Large artifacts remain outside Git with checksums, commands, provenance, and durable locations recorded.

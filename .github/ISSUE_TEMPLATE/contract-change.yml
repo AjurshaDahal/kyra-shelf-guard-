@@ -1,0 +1,53 @@
+name: Shared contract change
+description: Propose a versioned shared interface change before implementation.
+title: "[Contract] "
+labels: ["contract-change", "needs-owner-approval"]
+body:
+  - type: input
+    id: contract
+    attributes:
+      label: Contract and current/proposed version
+      placeholder: "C-003 VolumeChangeEvent 1.0 -> 1.1"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and non-goals
+      description: Explain why the current frozen contract cannot satisfy the traced requirement.
+    validations:
+      required: true
+  - type: textarea
+    id: examples
+    attributes:
+      label: Current and proposed examples
+      description: Include fields, types, shapes, units, coordinate frames, timestamps, optional/invalid behavior, and serialization.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Producer, consumer, fixture, and gate impact
+      description: Name every affected owner and surface.
+    validations:
+      required: true
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility, migration, rollback, and merge order
+    validations:
+      required: true
+  - type: textarea
+    id: approvals
+    attributes:
+      label: Required approvals
+      description: Person 4 and every affected owner; silence is not approval.
+    validations:
+      required: true
+  - type: checkboxes
+    id: gate
+    attributes:
+      label: Proposal gate
+      options:
+        - label: No implementation will begin until the proposal record is approved and Person 4 assigns a version/merge order.
+          required: true

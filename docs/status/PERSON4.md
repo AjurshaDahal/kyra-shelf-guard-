@@ -1,0 +1,28 @@
+# Person 4 Status — Integration and Evaluation
+
+- **Status:** In progress
+- **Last updated:** 2026-08-24
+
+## Implemented
+
+- Foundation shared Python contracts and scenario schema exist.
+- Repository charter, ownership, contract/change control, per-owner status, work-item records, integration gates, agent instructions, GitHub templates, CI, and governance validation are established.
+
+## Active
+
+- Private GitHub repository creation and remote settings verification for work item WI-000.
+
+## Blocked or pending
+
+- Person 1–4 GitHub handles are not assigned; `@DontHash` is temporary steward/CODEOWNER.
+- P-001 package layout and P-005 manifest proposal are unresolved.
+- Contract mocks, versioned runtime configuration, pipeline, five CLI commands, evaluation, T4 validation, and release process remain unimplemented.
+
+## Next
+
+Finish remote verification, configure enforceable `main` protection if the GitHub plan permits it, assign team handles, then open Gate 1 contract/mocks work items.
+
+## Evidence
+
+- Work item `../work-items/WI-000-repository-foundation.md`.
+- Local foundation verification: 39 tests passed; Ruff, compileall, repository consistency, change-impact, and staged-diff checks passed on 2026-08-24.

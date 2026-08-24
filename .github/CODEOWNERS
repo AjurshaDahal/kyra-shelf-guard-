@@ -1,0 +1,13 @@
+# @DontHash is the temporary repository steward until Persons 1-4 provide
+# GitHub handles. Update this file and docs/TEAM_OWNERSHIP.md together.
+* @DontHash
+
+# Shared/integration surfaces remain Person 4-owned. Add the real Person 4
+# handle and affected owner handles when the team roster is assigned.
+/src/kyra/contracts.py @DontHash
+/src/kyra/manifest.py @DontHash
+/.github/ @DontHash
+/scripts/ @DontHash
+/docs/CONTRACTS.md @DontHash
+/docs/CONTRACT_CHANGE_PROCESS.md @DontHash
+/docs/INTEGRATION_GATES.md @DontHash

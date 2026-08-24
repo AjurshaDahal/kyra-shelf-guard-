@@ -1,0 +1,43 @@
+name: Bug report
+description: Report reproducible behavior that violates a contract, decision, or requirement.
+title: "[Bug] "
+labels: ["bug", "triage"]
+body:
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed behavior
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior and authority
+      description: Link the contract, decision, requirement, or test.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal deterministic reproduction
+      description: Include environment, exact command, fixture/checksum, and output. Remove secrets/private data.
+    validations:
+      required: true
+  - type: dropdown
+    id: owner
+    attributes:
+      label: Suspected owner
+      options:
+        - Person 1
+        - Person 2
+        - Person 3
+        - Person 4 / shared
+        - Unknown — requires triage
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Safety, evidence, contract, and downstream impact
+    validations:
+      required: true

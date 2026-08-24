@@ -8,6 +8,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
 
 ### Added
 
+- Private-repository collaboration foundation with a four-owner charter, path
+  boundaries, contract registry and approval process, integration gates,
+  per-owner status files, work-item and handoff templates, and AI-agent preflight.
+- GitHub issue and pull-request templates, CODEOWNERS, Dependabot, core CI, and
+  change-impact governance checks.
+- Repository consistency validation for required control documents, status
+  records, and relative documentation links.
 - P1-01 foundation tests for shared contracts, strict manifests, RGB-D replay,
   baseline build/save/load, and MiDaS anchor alignment.
 - P1-02 shared-manifest change proposal covering object masks, shape families,
@@ -30,7 +37,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
 
 ### Known gaps
 
-- No release tag or release history is available because this folder is not yet connected to a Git repository.
+- No release tag exists; release ownership and frozen release evidence begin at
+  Integration Gate 7.
+- GitHub handles for Persons 1–4 still need to be recorded in the team roster;
+  `@DontHash` is the temporary repository steward and CODEOWNER.
 - The deterministic generator, golden scenario pack, OCID converter, and CLI remain unimplemented.
 - Manifest version 1.1 object-mask and shape-family fields remain pending Person
   4 approval.

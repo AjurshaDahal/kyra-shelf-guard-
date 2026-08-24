@@ -1,35 +1,47 @@
 # Kyra Shelf Guard
 
-> A Python university project for SKU-independent suspicious shelf-removal detection from replayable RGB-D scenarios. Person 1 owns data, deterministic simulation, calibration, baseline artifacts, dataset conversion, and provenance.
+> Four-workstream Python project for SKU-independent suspicious shelf-removal alerts from replayable RGB-D input. The repository is an early foundation, not a completed end-to-end system.
 
-The controlling assignment wins over repository summaries. Current code is an early foundation: contracts, manifest, reader, foundation tests, baseline persistence, and MiDaS alignment exist, while the generator, golden pack, OCID converter, and CLI are still planned.
+The controlling assignment wins over summaries. Shared contracts are proposal-first and Person 4-owned; all affected owners must approve. Agents must read `AGENTS.md` and run repository consistency checks before editing.
 
-## Start Here
+## Mandatory Start
 
-- [README](README.md): Human overview, current status, laptop feasibility, and documentation map.
-- [Person 1 Specification](docs/PERSON1_SPEC.md): Requirement IDs, scope, interfaces, and acceptance criteria.
-- [Person 1 Implementation Plan](docs/PERSON1_IMPLEMENTATION_PLAN.md): Ordered implementation tasks and completion evidence.
-- [P1-02 Contract Change Proposal](docs/P1-02_CONTRACT_CHANGE_PROPOSAL.md): Approval-ready manifest version 1.1 fields and compatibility rules.
-- [Agent Instructions](AGENTS.md): Commands, project boundaries, safety rules, and verification expectations.
+- [Agent Instructions](AGENTS.md): Mandatory preflight, source precedence, ownership, checks, and handoff rules.
+- [Project Charter](docs/PROJECT_CHARTER.md): Mission, boundaries, evidence language, and definition of done.
+- [Team Ownership](docs/TEAM_OWNERSHIP.md): Person 1–4 responsibilities and path-level touch/no-touch rules.
+- [Project Status](docs/PROJECT_STATUS.md): Current workstreams, blockers, and gate state.
+- [Decisions](docs/DECISIONS.md): Locked and pending durable choices.
+- [Contract Registry](docs/CONTRACTS.md): Shared producers, consumers, versions, and freeze state.
 
-## Reference
+## Collaboration and Change Control
 
+- [Collaboration Workflow](docs/COLLABORATION_WORKFLOW.md): Issue, branch, implementation, review, merge, and handoff process.
+- [Contract Change Process](docs/CONTRACT_CHANGE_PROCESS.md): Proposal and unanimous affected-owner approval protocol.
+- [Integration Gates](docs/INTEGRATION_GATES.md): Seven ordered gates and required evidence.
+- [Documentation Policy](docs/DOCUMENTATION_POLICY.md): Source precedence and changed-file impact matrix.
+- [Contributing](CONTRIBUTING.md): Human-facing contribution and review rules.
+
+## Engineering Reference
+
+- [README](README.md): Current truth, setup, four workstreams, and documentation map.
 - [Architecture](docs/ARCHITECTURE.md): Current and target module flow.
-- [System Requirements](docs/SYSTEM_REQUIREMENTS.md): Local laptop and target T4 requirements.
-- [Development Guide](docs/DEVELOPMENT.md): Windows setup and dependency groups.
-- [Testing Guide](docs/TESTING.md): Test layers and golden scenario matrix.
-- [Person 1 Test Report Template](docs/PERSON1_TEST_REPORT_TEMPLATE.md): Evidence form for Windows, T4, and independent handoff runs.
-- [Dataset Rules](docs/DATASETS.md): OCID, provenance, checksums, licences, and external storage.
-- [Project Skills](SKILLS.md): Person 1 capability and evidence map.
-- [Decisions](docs/DECISIONS.md): Locked and pending design choices.
+- [Development](docs/DEVELOPMENT.md): Windows setup and dependency groups.
+- [Testing](docs/TESTING.md): Test layers, evidence rules, and owner proof summary.
+- [Dataset Rules](docs/DATASETS.md): Provenance, checksums, licences, and external storage.
+- [System Requirements](docs/SYSTEM_REQUIREMENTS.md): Local laptop and target T4 boundaries.
 
-## Project Process
+## Person 1 Authority
 
-- [Contributing](CONTRIBUTING.md): Change, review, and evidence workflow.
-- [Changelog](CHANGELOG.md): Notable changes, with unreleased work kept separate from releases.
-- [Licence](LICENSE): GNU Affero General Public License version 3 text matching package metadata.
-- [Assignment](Four-Person_Physics-Based_Shelf_Removal_Detection_Plan.docx): Original four-person project plan and controlling requirements.
+- [Person 1 Specification](docs/PERSON1_SPEC.md): Requirement IDs and acceptance criteria.
+- [Person 1 Implementation Plan](docs/PERSON1_IMPLEMENTATION_PLAN.md): Ordered tasks and proof.
+- [Pending P1-02 Contract Proposal](docs/P1-02_CONTRACT_CHANGE_PROPOSAL.md): Unapproved manifest 1.1 proposal; not implemented authority.
+- [Person 1 Test Report Template](docs/PERSON1_TEST_REPORT_TEMPLATE.md): Windows, T4, and handoff evidence form.
 
-## Optional
+## Audit and History
 
-- [Python Project Metadata](pyproject.toml): Package metadata, dependencies, test settings, and planned console entry.
+- [Changelog](CHANGELOG.md): Notable unreleased changes.
+- [Work Item Records](docs/work-items/README.md): Durable per-change records.
+- [Status Files](docs/status/README.md): Per-owner progress and evidence.
+- [Project Skills](SKILLS.md): Capability and evidence map.
+- [Licence](LICENSE): AGPL-3.0-only code licence.
+- [Controlling Assignment](Four-Person_Physics-Based_Shelf_Removal_Detection_Plan.docx): Original four-person requirements.

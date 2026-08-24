@@ -1,0 +1,73 @@
+name: Work item
+description: Claim one owner-scoped implementation, documentation, or governance outcome.
+title: "[P?] "
+labels: ["work-item"]
+body:
+  - type: dropdown
+    id: owner
+    attributes:
+      label: Accountable owner
+      options:
+        - Person 1 — data and baseline
+        - Person 2 — geometry and change
+        - Person 3 — tracking and rules
+        - Person 4 — integration and evaluation
+    validations:
+      required: true
+  - type: input
+    id: requirements
+    attributes:
+      label: Requirement IDs and integration gate
+      placeholder: "P1-03; Gate 2"
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: One testable outcome
+      description: State the behavior that will exist after merge.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope and non-scope
+      description: List owned files/behavior and explicit exclusions.
+    validations:
+      required: true
+  - type: textarea
+    id: contracts
+    attributes:
+      label: Inputs, outputs, and shared contracts
+      description: Include versions, units, coordinate frames, producers, and consumers; write None only after checking.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance checks and evidence
+      description: Exact tests/commands, environment, fixtures, thresholds, and saved evidence expected.
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies, blockers, and affected owners
+    validations:
+      required: true
+  - type: textarea
+    id: docs
+    attributes:
+      label: Documentation impact
+      description: Use docs/DOCUMENTATION_POLICY.md and list every companion document.
+    validations:
+      required: true
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Preflight
+      options:
+        - label: I read AGENTS.md, current status/decisions/contracts, and the ownership boundary.
+          required: true
+        - label: I searched for an existing active work item owning this outcome.
+          required: true

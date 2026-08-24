@@ -1,14 +1,15 @@
 # Contributing
 
-Kyra is a four-person assignment with shared contracts. Keep changes small, traceable, and easy for another owner to test.
+Kyra uses four parallel owner workstreams with shared contracts and gated integration. Contributions are welcome only when they remain traceable, reviewable, and honest about evidence.
 
-## Before changing code
+## Before work starts
 
-1. Read `README.md`, `AGENTS.md`, and the relevant specification.
-2. Find the requirement ID in `docs/PERSON1_SPEC.md`.
-3. Read the implementation and nearby tests before editing.
-4. Confirm that the file is inside your ownership boundary.
-5. Ask before changing a shared contract, schema meaning, public API, or dataset licence decision.
+1. Read `AGENTS.md` and complete its preflight.
+2. Claim one issue with an owner (`P1`, `P2`, `P3`, or `P4`), requirement IDs, scope, non-scope, and acceptance evidence.
+3. Check `docs/TEAM_OWNERSHIP.md` and `docs/CONTRACTS.md` before selecting files.
+4. Branch from current `main` using `<owner>/<issue>-<slug>`.
+
+Parallel work is coordinated by stable interfaces, not by copying logic between owner modules. If another workstream is not ready, use a versioned mock or replay fixture owned by Person 4.
 
 ## Local setup
 
@@ -18,45 +19,58 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -e .
 ```
 
-Install a heavy optional lock file only when the task needs it.
+Install `requirements-simulation.lock` or `requirements-gpu.lock` only for work that needs it. Core tests must remain credential-free, offline, and CPU-compatible.
 
-## Change workflow
+## Pull-request contents
 
-1. Add or update a failing test that expresses the requirement.
-2. Make the smallest implementation change that passes it.
-3. Run the focused test.
-4. Run all Person 1 tests and Ruff.
-5. Update the implementation-plan status and evidence.
-6. Add a short entry under `CHANGELOG.md` → `Unreleased` for notable changes.
-7. Record any durable design choice in `docs/DECISIONS.md`.
+Every implementation pull request must include:
 
-## Required checks
+- tests for success, failure, invalid input, and compatibility as applicable;
+- commands actually run and their results;
+- an updated owner status file under `docs/status/`;
+- a work-item record under `docs/work-items/` based on `docs/templates/WORK_ITEM.md`;
+- a changelog entry for notable behavior;
+- all documentation selected by the matrix in `docs/DOCUMENTATION_POLICY.md`;
+- contract proposal and approvals when a shared interface changes.
+
+CI checks code, links, repository consistency, and whether changed files have the required documentation companions. Passing CI does not replace owner review or gate-specific evidence.
+
+## Shared-contract changes
+
+Do not edit `src/kyra/contracts.py`, the public manifest schema, units, coordinate frames, event meanings, or compatibility policy as an implementation shortcut.
+
+Follow `docs/CONTRACT_CHANGE_PROCESS.md`: propose first, identify all consumers, define compatibility/migration and tests, obtain every affected owner approval, and have Person 4 merge the synchronized contract, mocks, docs, and tests. Unapproved proposals remain documents only.
+
+## Review expectations
+
+Reviewers verify:
+
+- ownership and requirement traceability;
+- smallest reasonable scope and no duplicated owner logic;
+- units, timestamps, coordinate frames, and invalid-depth behavior;
+- deterministic and offline behavior where required;
+- success/failure/compatibility tests;
+- documentation and status truth;
+- provenance and licence obligations;
+- evidence language that does not overclaim.
+
+At least one non-author reviewer should approve normal code. Shared contracts require Person 4 plus every affected owner. Release evidence requires the relevant gate owners listed in `docs/INTEGRATION_GATES.md`.
+
+## Required local checks
 
 ```powershell
 .\.venv\Scripts\python.exe -m pytest
 .\.venv\Scripts\python.exe -m ruff check .
+.\.venv\Scripts\python.exe -m compileall -q src tests scripts
+.\.venv\Scripts\python.exe scripts\check_repo_consistency.py
+.\.venv\Scripts\python.exe scripts\check_change_impact.py --base origin/main
 ```
 
-For a Person 1 handoff, also run the golden-pack and baseline acceptance commands defined in `docs/TESTING.md`. Record the operating system, Python version, dependency lock, command, exit code, and result.
+Additional owner and gate checks are defined in `docs/TESTING.md` and the relevant plan.
 
-## Data rules
+## Merge and release policy
 
-- Never commit full OCID, Google Scanned Objects, generated render batches, model weights, or converted bulk data.
-- Put only tiny deterministic fixtures in `scenario-fixtures/`.
-- Check hashes before conversion.
-- Commit provenance and conversion instructions, not the bulk source data.
-- Do not use a dataset until its licence and intended use have been reviewed.
-
-## Review checklist
-
-- The change names one or more requirement IDs.
-- Units, coordinate systems, timestamps, and invalid-depth behavior are explicit.
-- Tests cover success and failure paths.
-- Core tests do not need network, CUDA, Blender, or external datasets.
-- Generated output is repeatable where required.
-- Documentation describes only behavior that exists or clearly labels planned behavior.
-- No benchmark or evaluation result is claimed without saved evidence.
-
-## Releases
-
-There is no confirmed release process yet. Do not create release entries from the package version alone. Add changelog comparison links only after the real Git host and release process are known.
+- Pull requests target `main` and should be squash-merged after required checks and approvals.
+- Delete merged branches; do not commit directly to protected `main`.
+- A package version is not a release by itself. Person 4 owns release notes, frozen commands, evaluation evidence, and tags after Gate 7.
+- External data and generated bulk output are never merged.

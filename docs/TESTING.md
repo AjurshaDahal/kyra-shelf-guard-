@@ -1,4 +1,4 @@
-# Person 1 Testing Guide
+# Testing and Evidence Guide
 
 ## Current truth
 
@@ -100,7 +100,7 @@ Do not use coverage percentage as a substitute for the explicit acceptance limit
 
 ## Latest foundation evidence
 
-Local commands completed successfully on Python 3.12.7 on 2026-08-21:
+Local commands completed successfully on Python 3.12.7 on 2026-08-24:
 
 ```powershell
 .\.venv\Scripts\python.exe -m pytest -q
@@ -111,6 +111,32 @@ Local commands completed successfully on Python 3.12.7 on 2026-08-21:
 Result: 35 tests passed; lint and byte-compilation passed. This closes the local
 Python 3.12 foundation proof, but it does not replace later golden-pack, target
 T4, or independent handoff evidence.
+
+## Repository governance checks
+
+Run these before every pull request:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\check_repo_consistency.py
+.\.venv\Scripts\python.exe scripts\check_change_impact.py --base origin/main
+```
+
+The first command checks required control documents, status structure, and
+relative Markdown links. The second checks the changed-file set: code requires
+an owner-status update, work-item record, and changelog; contracts and
+dependencies require their additional synchronized documentation. These checks
+validate repository consistency, not algorithm correctness.
+
+## Owner proof summary
+
+| Owner | Minimum independent proof before integration |
+|---|---|
+| Person 1 | Malformed/valid replay; deterministic bytes; 30-frame baseline; persistence/checksum; MiDaS anchor failures; converter provenance; ten-pack loading |
+| Person 2 | Registration tolerance; signed addition/removal; unknown-depth and occlusion suppression; cluster persistence; known-volume error |
+| Person 3 | Replay-track determinism; lazy optional model loading; mask alignment; proximity window; authorization suppression; deterministic alert rule |
+| Person 4 | Contract/mocks compatibility; bounded pipeline behavior; five CLI commands; frozen evaluation split; comparison report; clean-environment run |
+
+Exact gate evidence and owners are listed in `docs/INTEGRATION_GATES.md`.
 
 ## Windows and T4 evidence
 

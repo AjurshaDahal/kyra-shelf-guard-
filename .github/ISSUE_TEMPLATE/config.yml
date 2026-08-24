@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Collaboration and ownership rules
+    url: https://github.com/DontHash/kyra-shelf-guard/blob/main/docs/TEAM_OWNERSHIP.md
+    about: Read the owner boundaries before filing implementation work.

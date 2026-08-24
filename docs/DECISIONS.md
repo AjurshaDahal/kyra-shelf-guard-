@@ -61,15 +61,39 @@ This log records durable choices. It is not a work diary. Change a locked decisi
 - **Trade-off:** The second removal case is a planning interpretation and must be confirmed with the team before the golden pack is frozen.
 - **Status:** Provisional until team confirmation.
 
+### D-010 — Private GitHub collaboration repository
+
+- **Decision:** Keep the canonical repository private on GitHub with `main` as
+  the default integration branch, issue-scoped feature branches, pull-request
+  review, squash merge, and automated code/documentation governance checks.
+- **Why:** The team needs one controlled source of truth before implementation
+  expands across four parallel workstreams.
+- **Owner:** Person 4/repository steward.
+- **Status:** Locked by the project owner on 2026-08-24.
+
+### D-011 — Versioned contracts coordinate parallel work
+
+- **Decision:** Parallel owners integrate through versioned contracts and
+  Person 4-owned mocks/replay fixtures. Shared changes are proposal-first and
+  require Person 4 plus every affected owner before implementation/merge.
+- **Why:** This prevents one owner from silently breaking another owner while
+  still allowing independent development.
+- **Source:** Controlling four-person assignment.
+
+### D-012 — Progress is durable and merge-enforced
+
+- **Decision:** Every implementation pull request updates its owner status,
+  adds a work-item record, and updates the changelog and affected authoritative
+  docs in the same change. CI checks these companions from the diff.
+- **Why:** Agent context must be reconstructed from the repository without
+  relying on chat history or manual recollection.
+- **Trade-off:** Contributors must resolve documentation conflicts before merge.
+
 ## Pending decisions
 
 ### P-001 — Final package layout
 
 The assignment names `src/data`, `src/simulation`, `src/calibration`, and `src/baseline`, while the current repository uses `src/kyra/*.py`. Person 4 must confirm whether the team will keep one package or create top-level packages. The implementation plan assumes one `kyra` package to minimize disruption.
-
-### P-002 — Git hosting and release links
-
-This folder is not connected to Git. The team must decide the repository host, default branch, review process, and release owner before changelog comparison links or CI instructions can be finalized.
 
 ### P-003 — Public distribution licence confirmation
 

@@ -1,0 +1,22 @@
+name: Pull Request Governance
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+
+jobs:
+  change-impact:
+    name: Documentation change impact
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Require synchronized status and documentation
+        run: python scripts/check_change_impact.py --base "${{ github.event.pull_request.base.sha }}"
