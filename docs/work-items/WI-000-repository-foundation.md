@@ -1,8 +1,9 @@
 # WI-000 — Repository Collaboration Foundation
 
 - **Owner:** Person 4 / repository steward
-- **Status:** In progress
+- **Status:** Complete
 - **Started:** 2026-08-24
+- **Completed:** 2026-08-24
 - **Integration gate:** Gate 1 foundation
 
 ## Objective
@@ -43,8 +44,18 @@ Local foundation verification completed on 2026-08-24 with Python 3.12.7:
 - `python scripts/check_change_impact.py --base HEAD`: passed for 43 changed files.
 - `git diff --cached --check`: passed.
 
-Local/remote SHA, GitHub visibility/default branch, and hosted workflow results remain pending until the private remote is created.
+Hosted verification completed on 2026-08-24:
+
+- Repository: [DontHash/kyra-shelf-guard](https://github.com/DontHash/kyra-shelf-guard).
+- Visibility: `PRIVATE`; default branch: `main`.
+- Local and `origin/main` matched at foundation commit `87888dbe629ea7b481986e448f08ac1a2b6f65e2` after the initial push.
+- Core CI [run 32758461898](https://github.com/DontHash/kyra-shelf-guard/actions/runs/32758461898): passed on Python 3.11 and 3.12.
+- Issues and Projects enabled; wiki disabled; squash-only merges and automatic source-branch deletion enabled.
+- Dependency alerts, automated security fixes, and read-only default workflow permissions enabled.
+- Official GitHub actions updated to current immutable release commits after the first hosted run exposed Node-runtime deprecation warnings.
 
 ## Limitations and next action
 
-Team reviewer handles remain unassigned. After remote creation, add Persons 1–4 to the roster/CODEOWNERS and configure required reviews/checks using those real handles.
+Team reviewer handles remain unassigned; `@DontHash` is the temporary steward and CODEOWNER. GitHub returned HTTP 403 when branch protection was configured because protected branches for a private repository require upgrading the current account plan. Until that changes, agents must follow the documented PR workflow and CI, but GitHub cannot prevent an administrator from bypassing it.
+
+Next: add Persons 1–4 to the roster/CODEOWNERS. After a GitHub plan upgrade, enforce the documented review and required-check policy on `main`.

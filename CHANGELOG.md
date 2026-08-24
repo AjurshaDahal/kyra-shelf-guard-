@@ -35,12 +35,18 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
 - RGB, valid-depth-mask, and occlusion-mask size mismatches now fail with clear errors.
 - Scenario asset paths can no longer escape the scenario folder.
 
+### Changed
+
+- GitHub workflow actions now use current immutable release commits instead of deprecated Node 20 action versions.
+
 ### Known gaps
 
 - No release tag exists; release ownership and frozen release evidence begin at
   Integration Gate 7.
 - GitHub handles for Persons 1–4 still need to be recorded in the team roster;
   `@DontHash` is the temporary repository steward and CODEOWNER.
+- Server-enforced branch protection for the private repository requires a GitHub
+  plan upgrade; CI and review policy are present but not platform-enforced.
 - The deterministic generator, golden scenario pack, OCID converter, and CLI remain unimplemented.
 - Manifest version 1.1 object-mask and shape-family fields remain pending Person
   4 approval.

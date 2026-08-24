@@ -71,6 +71,6 @@ Additional owner and gate checks are defined in `docs/TESTING.md` and the releva
 ## Merge and release policy
 
 - Pull requests target `main` and should be squash-merged after required checks and approvals.
-- Delete merged branches; do not commit directly to protected `main`.
+- Delete merged branches and do not commit directly to `main`. The current GitHub plan cannot server-enforce protected branches on a private repository, so every human and agent must follow this rule until protection is available; the limitation is tracked in WI-000.
 - A package version is not a release by itself. Person 4 owns release notes, frozen commands, evaluation evidence, and tags after Gate 7.
 - External data and generated bulk output are never merged.
