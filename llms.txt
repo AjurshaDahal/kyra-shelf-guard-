@@ -1,0 +1,35 @@
+# Kyra Shelf Guard
+
+> A Python university project for SKU-independent suspicious shelf-removal detection from replayable RGB-D scenarios. Person 1 owns data, deterministic simulation, calibration, baseline artifacts, dataset conversion, and provenance.
+
+The controlling assignment wins over repository summaries. Current code is an early foundation: contracts, manifest, reader, foundation tests, baseline persistence, and MiDaS alignment exist, while the generator, golden pack, OCID converter, and CLI are still planned.
+
+## Start Here
+
+- [README](README.md): Human overview, current status, laptop feasibility, and documentation map.
+- [Person 1 Specification](docs/PERSON1_SPEC.md): Requirement IDs, scope, interfaces, and acceptance criteria.
+- [Person 1 Implementation Plan](docs/PERSON1_IMPLEMENTATION_PLAN.md): Ordered implementation tasks and completion evidence.
+- [P1-02 Contract Change Proposal](docs/P1-02_CONTRACT_CHANGE_PROPOSAL.md): Approval-ready manifest version 1.1 fields and compatibility rules.
+- [Agent Instructions](AGENTS.md): Commands, project boundaries, safety rules, and verification expectations.
+
+## Reference
+
+- [Architecture](docs/ARCHITECTURE.md): Current and target module flow.
+- [System Requirements](docs/SYSTEM_REQUIREMENTS.md): Local laptop and target T4 requirements.
+- [Development Guide](docs/DEVELOPMENT.md): Windows setup and dependency groups.
+- [Testing Guide](docs/TESTING.md): Test layers and golden scenario matrix.
+- [Person 1 Test Report Template](docs/PERSON1_TEST_REPORT_TEMPLATE.md): Evidence form for Windows, T4, and independent handoff runs.
+- [Dataset Rules](docs/DATASETS.md): OCID, provenance, checksums, licences, and external storage.
+- [Project Skills](SKILLS.md): Person 1 capability and evidence map.
+- [Decisions](docs/DECISIONS.md): Locked and pending design choices.
+
+## Project Process
+
+- [Contributing](CONTRIBUTING.md): Change, review, and evidence workflow.
+- [Changelog](CHANGELOG.md): Notable changes, with unreleased work kept separate from releases.
+- [Licence](LICENSE): GNU Affero General Public License version 3 text matching package metadata.
+- [Assignment](Four-Person_Physics-Based_Shelf_Removal_Detection_Plan.docx): Original four-person project plan and controlling requirements.
+
+## Optional
+
+- [Python Project Metadata](pyproject.toml): Package metadata, dependencies, test settings, and planned console entry.

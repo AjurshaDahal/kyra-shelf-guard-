@@ -1,0 +1,75 @@
+# Dataset and Provenance Rules
+
+## Rule in one sentence
+
+Keep large data outside Git, verify what was downloaded, convert only approved records, and leave enough information for another person to reproduce the choice.
+
+## Planned sources
+
+| Source | Use | Core requirement? | Authority to check before use |
+|---|---|---|---|
+| Procedural Kyra fixtures | Fast deterministic golden pack | Yes | This repository and assignment |
+| [OCID](https://www.acin.tuwien.ac.at/en/vision-for-robotics/software-tools/object-clutter-indoor-dataset/) | Public RGB-D clutter examples and reversed removal cases | Selected conversion required | Official TU Wien dataset page and its terms |
+| [BlenderProc](https://github.com/DLR-RM/BlenderProc) | Optional realistic rendering | No | Official DLR repository |
+| [Google Scanned Objects](https://research.google/resources/datasets/scanned-objects-google-research/) | Optional object geometry | No | Official Google Research dataset page and terms |
+| [MiDaS](https://github.com/isl-org/MiDaS) | Optional relative-depth fallback | No | Official project repository and model-specific terms |
+| [Open3D](https://www.open3d.org/) | Optional geometry checks | No | Official project documentation |
+
+A source appearing in this table is not automatic permission to download, redistribute, or combine it with the project. Review the exact terms and selected files first.
+
+## Storage
+
+The official OCID page describes an archive of roughly 6.4 GiB. Allow 15–20 GB for the archive, extraction, selected conversion, and temporary output.
+
+```text
+D:\KyraData\
+├── downloads\
+├── ocid\
+├── converted\
+├── blenderproc-cache\
+└── reports\
+```
+
+Do not commit those folders. Only tiny deterministic fixtures intended for automated tests belong in `scenario-fixtures/` or `tests/fixtures/`.
+
+## Provenance record
+
+The planned `data-sources/provenance.json` must record, for every source or selected subset:
+
+- Stable source ID and name.
+- Official source URL and terms/licence URL.
+- Retrieval date and source version, release, or snapshot when available.
+- Downloaded filename and byte size.
+- Published checksum when available and locally computed SHA-256.
+- Exact selected scenes, objects, frames, and split.
+- Excluded records and the reason: licence, corruption, missing depth, calibration, duplication, or out of scope.
+- Conversion command and converter version.
+- Output schema version and output checksum list.
+- Required attribution text.
+
+Do not store a private absolute home path. Use an environment-neutral path hint such as `<KYRA_DATA_ROOT>/ocid`.
+
+## Checksum workflow on Windows
+
+Before extraction or conversion:
+
+```powershell
+Get-FileHash -Algorithm SHA256 D:\KyraData\downloads\<archive-name>
+```
+
+Compare the result with the publisher’s checksum when one exists. If no publisher checksum is available, record that fact and treat the locally computed hash as an identity record, not proof that the download is authentic.
+
+## OCID conversion rules
+
+- Validate the source checksum before reading it.
+- Preserve source frame order, calibration, depth units, and masks.
+- Convert depth into the scenario contract without inventing missing values.
+- Record the exact source sequence and frame range.
+- Reverse an addition sequence only when the physical order remains valid as a removal example.
+- When reversing, create new monotonically increasing timestamps and update expected change direction and time.
+- Keep original provenance even when the converted sequence direction changes.
+- Reject unclear calibration, corrupted files, unsupported encoding, or licence uncertainty and record the reason.
+
+## Licence review gate
+
+The repository code is AGPL-3.0-only, but datasets, object assets, model weights, and generated output may have different conditions. Before public distribution, record whether each source permits the planned research use, derivative conversion, redistribution of tiny fixtures, and publication of examples. If the answer is unclear, exclude the source until the team receives clarification.

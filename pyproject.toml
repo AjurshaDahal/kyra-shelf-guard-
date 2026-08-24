@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools==80.9.0", "wheel==0.45.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kyra-shelf-guard"
+version = "0.1.0"
+description = "SKU-independent suspicious shelf-removal detection from replayable RGB-D data"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "AGPL-3.0-only" }
+authors = [{ name = "Kyra project team" }]
+dependencies = [
+  "numpy==2.2.6",
+  "opencv-python-headless==4.13.0.92",
+  "pydantic==2.12.3",
+]
+
+[project.optional-dependencies]
+geometry = ["open3d==0.19.0"]
+tracking = [
+  "torch==2.8.0",
+  "ultralytics==8.4.123",
+]
+midas = ["torch==2.8.0", "timm==1.0.19"]
+simulation = ["blenderproc==2.8.0"]
+dev = [
+  "pytest==8.4.2",
+  "pytest-cov==7.0.0",
+  "ruff==0.13.1",
+]
+
+[project.scripts]
+kyra = "kyra.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = [".doc-build", "graphify-out"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

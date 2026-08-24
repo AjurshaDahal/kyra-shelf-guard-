@@ -1,0 +1,45 @@
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+build/
+dist/
+
+# Local agent and analysis output
+.codex-tmp/
+.doc-build/
+graphify-out/
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Large or generated project data (tiny reviewed fixtures remain allowed)
+data/
+datasets/
+weights/
+checkpoints/
+runs/
+outputs/
+artifacts/
+*.bag
+*.pcd
+*.ply
+*.onnx
+*.pt
+*.pth
+
