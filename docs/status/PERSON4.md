@@ -11,7 +11,6 @@
 
 ## Active
 
-- WI-001 dependency-security refresh prompted by the first GitHub dependency scan.
 - Gate 1 contract compatibility and mocks planning after completion of WI-000.
 
 ## Blocked or pending
@@ -32,3 +31,4 @@ Assign team handles, upgrade the GitHub plan if server-enforced private-branch p
 - Hosted Core CI run `32758461898`: Python 3.11 and 3.12 jobs passed on 2026-08-24.
 - Work item `../work-items/WI-001-dependency-security-refresh.md` tracks the six initial dependency alerts and validation boundary.
 - WI-001 local core environment: dependency reinstall and `pip check` passed; 39 tests, Ruff, compileall, and repository consistency passed on Python 3.12.7.
+- WI-001 hosted evidence: Core CI run `32759093372` passed on Python 3.11/3.12; dependency-graph run `32759097196` completed; all six GitHub alerts are fixed with zero open.

@@ -1,8 +1,9 @@
 # WI-001 — Dependency Security Refresh
 
 - **Owner:** Person 4 / repository steward
-- **Status:** In progress
+- **Status:** Complete
 - **Started:** 2026-08-24
+- **Completed:** 2026-08-24
 - **Integration gate:** Repository foundation; target-T4 proof remains Gate 7
 
 ## Objective
@@ -38,7 +39,10 @@ Local verification completed on Windows with Python 3.12.7:
 - `python -m pytest`: 39 passed;
 - Ruff, compileall, and repository consistency checks passed.
 
-Pending: change-impact validation on the staged change, hosted Python 3.11/3.12 CI, and the GitHub dependency-alert rescan.
+- `python scripts/check_change_impact.py --base HEAD`: passed for nine changed files before commit.
+- Hosted Core CI [run 32759093372](https://github.com/DontHash/kyra-shelf-guard/actions/runs/32759093372): Python 3.11 and 3.12 jobs passed.
+- Dependency-graph [run 32759097196](https://github.com/DontHash/kyra-shelf-guard/actions/runs/32759097196): passed.
+- GitHub rescan: six alerts fixed; zero open dependency alerts.
 
 PyPI index and GitHub advisory metadata confirmed that each selected exact version exists and meets the first patched version. Optional Torch 2.13.0 is not installed or target-T4 validated by this work item.
 

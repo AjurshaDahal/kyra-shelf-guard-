@@ -2,10 +2,10 @@
 
 - **Snapshot date:** 2026-08-24
 - **Verified baseline commit:** `2b4dbba`
-- **Verified collaboration foundation commit:** `87888db`
+- **Verified collaboration foundation commit:** `dd9885f`
 - **Latest verified local environment:** Windows, Python 3.12.7
 - **Latest verified foundation checks:** 39 tests passed; Ruff, compileall, repository consistency, and change-impact checks passed
-- **Latest verified hosted checks:** Core CI passed on Python 3.11 and 3.12 ([run 32758461898](https://github.com/DontHash/kyra-shelf-guard/actions/runs/32758461898))
+- **Latest verified hosted checks:** Core CI passed on Python 3.11 and 3.12 ([run 32759093372](https://github.com/DontHash/kyra-shelf-guard/actions/runs/32759093372)); dependency graph reports zero open alerts
 - **End-to-end status:** Not demonstrated
 - **Target T4 status:** Not run
 
@@ -42,6 +42,6 @@ Gate exit criteria are authoritative in [Integration Gates](INTEGRATION_GATES.md
 - P-005: unapproved manifest object-mask/shape-family proposal.
 - Person 1–4 GitHub handles and reviewer assignments are not yet known.
 - The current GitHub plan does not support protected branches on this private repository; required checks and reviews are documented and automated but cannot yet be made server-enforced.
-- WI-001 is refreshing vulnerable build/test and optional Torch pins reported by the first GitHub dependency scan; target-T4 validation remains separate and open.
+- WI-001 closed all six alerts from the first GitHub dependency scan. Optional Torch target-T4 validation remains separate and open for Gate 7.
 
 See [Decisions](DECISIONS.md) for full text. Do not implement around a pending decision by creating a second informal interface.
