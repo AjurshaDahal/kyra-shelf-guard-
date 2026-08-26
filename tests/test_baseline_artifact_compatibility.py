@@ -5,7 +5,7 @@ from pathlib import Path
 import numpy as np
 
 from kyra.baseline import load_baseline, save_baseline
-from kyra.contracts import BaselineArtifact, PortableComponent, SCHEMA_VERSION
+from kyra.contracts import SCHEMA_VERSION, BaselineArtifact, PortableComponent
 
 
 def make_baseline_artifact() -> BaselineArtifact:
