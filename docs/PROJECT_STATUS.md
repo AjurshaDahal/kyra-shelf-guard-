@@ -24,7 +24,7 @@ This is the integration snapshot. Detailed owner progress and next actions live 
 
 | Gate | Status | Current evidence or blocker |
 |---|---|---|
-| G1 — Contract compatibility | In progress | Foundation objects exist; package layout and manifest 1.1 proposal remain unresolved |
+| G1 — Contract compatibility | In progress | Foundation objects exist; the single `kyra` package layout is confirmed; manifest 1.1 proposal remains unresolved |
 | G2 — Data and baseline | In progress | 35 local foundation tests; generator, golden pack, conversion, Windows/T4 handoff remain open |
 | G3 — Geometry | Not started | Person 2 implementation and known-volume evidence absent |
 | G4 — Tracking and rules | Not started | Person 3 implementation and deterministic rule evidence absent |
@@ -36,7 +36,6 @@ Gate exit criteria are authoritative in [Integration Gates](INTEGRATION_GATES.md
 
 ## Active cross-team decisions/blockers
 
-- P-001: final package layout.
 - P-003: dataset/asset/model licence compatibility for eventual distribution.
 - P-004: target-T4 execution owner and evidence location.
 - P-005: unapproved manifest object-mask/shape-family proposal.

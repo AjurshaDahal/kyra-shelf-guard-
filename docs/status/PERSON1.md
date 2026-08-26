@@ -15,7 +15,6 @@
 
 ## Blocked or pending
 
-- P-001 package layout decision.
 - P-005 manifest object-mask and shape-family proposal approval.
 - Deterministic generator, ten-scenario golden pack, OCID converter/provenance, target-T4 check, and independent handoff remain unimplemented.
 

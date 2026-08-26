@@ -37,7 +37,10 @@ Person 2 consumes Person 3 masks for occlusion safety; Person 3 consumes Person 
 | P3 | future `kyra.tracking`, `kyra.proximity`, `kyra.rules` | `PersonTrack`, aligned masks, `AlertEvent` |
 | P4 | `kyra.contracts`, `kyra.manifest`, future pipeline/evaluation/CLI/config | versioned interfaces, integrated outputs, reports |
 
-P-001 still controls whether future modules are packages or single files. Do not reorganize working imports until Person 4 records the approved layout and migration.
+The approved P-001 layout keeps one distributable `kyra` package rooted at
+`src/kyra`. Future modules live under `kyra` or appropriate `kyra/<area>/`
+subpackages; assignment-named top-level packages are not created, and existing
+`kyra.*` public imports remain stable.
 
 ## Current implemented foundation
 

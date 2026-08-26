@@ -30,7 +30,7 @@ Person 4 owns this registry and shared implementation surfaces. Producers and co
 - Existing foundation tests protect current array normalization, invalid-depth handling, schema validation, canonical manifest checksum, replay ordering, and persistence behavior.
 - C-003 through C-005 have no real owner producer yet; downstream code must use explicit mocks and must not claim integrated validation.
 - Manifest 1.1 object-mask and shape-family fields are proposed in `P1-02_CONTRACT_CHANGE_PROPOSAL.md` but remain unapproved and unimplemented.
-- P-001 package layout remains pending; paths may be reorganized only through an approved decision that preserves public imports or defines migration.
+- P-001 is approved: the repository keeps one distributable `kyra` package rooted at `src/kyra`; future modules use `kyra` or appropriate `kyra/<area>/` subpackages, and existing `kyra.*` public imports remain stable.
 
 ## Compatibility evidence required
 

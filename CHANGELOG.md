@@ -15,6 +15,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
   change-impact governance checks.
 - Repository consistency validation for required control documents, status
   records, and relative documentation links.
+- Person 4 C-001 FramePacket compatibility fixture and focused contract tests.
+- Person 4 C-002 BaselineArtifact compatibility fixture and focused persistence tests.
+- Person 4 C-004 PersonTrack compatibility fixture and focused contract tests.
+- Person 4 C-005 AlertEvent compatibility fixture and focused contract tests.
+- Person 4 C-003 VolumeChangeEvent compatibility fixture and focused contract tests.
 - P1-01 foundation tests for shared contracts, strict manifests, RGB-D replay,
   baseline build/save/load, and MiDaS anchor alignment.
 - P1-02 shared-manifest change proposal covering object masks, shape families,

@@ -1,8 +1,8 @@
 # P1-02 Contract Change Proposal
 
-**Status:** Awaiting Person 4 approval  
-**Owners:** Person 1 and Person 4  
-**Scope:** Scenario manifest and replay reader only  
+**Status:** Awaiting Persons 2 and 3 confirmation
+**Owners:** Person 1 and Person 4
+**Scope:** Scenario manifest and replay reader only
 **Requirements:** P1-IO-004 and P1-SIM-004
 
 ## Why this change is needed
@@ -79,17 +79,22 @@ same height and width as depth, matching the current occlusion-mask behavior.
 
 ## Approval checklist
 
-- [ ] Person 4 approves the two fields and their locations.
-- [ ] Person 4 approves the four `ShapeFamily` names.
-- [ ] Person 4 approves backward loading of version 1.0 and generation of
-      version 1.1.
+- [x] Person 4 approves the two fields and their locations.
+- [x] Person 4 approves the four `ShapeFamily` names.
+- [x] Person 4 approves backward loading of version 1.0 and generation of
+  version 1.1.
 - [ ] Persons 2 and 3 confirm that no consumer needs these fields inside
       `FramePacket`.
-- [ ] Approval date and reviewer name are recorded below.
+- [x] Person 4 approval date and reviewer are recorded below.
 
-**Approved by:** Pending  
-**Approval date:** Pending  
+**Approved by:** Person 4
+**Approval date:** 2026-08-26
 **Requested changes:** None recorded yet
+
+**Person 4 versioning decision:** Use `MANIFEST_SCHEMA_VERSION = "1.1"` with
+supported manifest versions `{"1.0", "1.1"}`. Read both versions, write version
+1.1, reject unsupported versions, and leave the shared runtime
+`SCHEMA_VERSION` unchanged. Persons 2 and 3 confirmations remain pending.
 
 ## Implementation after approval
 

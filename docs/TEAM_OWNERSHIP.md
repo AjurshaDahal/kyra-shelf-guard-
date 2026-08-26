@@ -21,7 +21,7 @@ Update this table and `.github/CODEOWNERS` together as soon as handles are known
 **Primary current/future paths:**
 
 - `src/kyra/io.py`, `src/kyra/baseline.py`;
-- future Person 1 modules under `src/kyra/data/`, `src/kyra/simulation/`, and `src/kyra/calibration/` if P-001 approves that layout;
+- future Person 1 modules under `src/kyra/data/`, `src/kyra/simulation/`, and `src/kyra/calibration/` within the approved single `kyra` package layout;
 - `scenario-fixtures/`, dataset conversion scripts, provenance records;
 - `docs/PERSON1_*`, `docs/DATASETS.md`, `docs/status/PERSON1.md`;
 - corresponding Person 1 tests.

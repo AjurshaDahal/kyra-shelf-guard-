@@ -29,7 +29,7 @@ Still not present:
 
 | Gate | Required decision | Owner | Stop condition |
 |---|---|---|---|
-| G0.1 | Confirm the current one-package `src/kyra` layout | Person 4 | Do not move shared modules until confirmed. |
+| G0.1 | Confirm the current one-package `src/kyra` layout | Person 4 | Complete: approved on 2026-08-26; retain the single `kyra` package and stable `kyra.*` imports. |
 | G0.2 | Confirm scenario ten is the second removal shape | Team | Do not mark the golden pack frozen until confirmed. |
 | G0.3 | Approve any manifest fields needed for object masks and shape family | Persons 1 and 4 | Do not hide required metadata in free-text notes. |
 | G0.4 | Assign the target T4 runner and report location | Person 4 | Local success cannot be called T4 success. |

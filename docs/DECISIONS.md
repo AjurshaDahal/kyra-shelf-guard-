@@ -89,11 +89,19 @@ This log records durable choices. It is not a work diary. Change a locked decisi
   relying on chat history or manual recollection.
 - **Trade-off:** Contributors must resolve documentation conflicts before merge.
 
+### D-013 — Keep the single `kyra` package layout
+
+- **Decision:** Keep one distributable package rooted at `src/kyra`. Future
+  modules live under `kyra` or appropriate `kyra/<area>/` subpackages; the
+  assignment-named top-level packages such as `src/data` and `src/geometry`
+  are not created. Existing `kyra.*` public imports remain stable.
+- **Why:** The implemented modules, package discovery configuration, and
+  architecture already use the `kyra` package. Keeping that layout avoids
+  unnecessary import migration while preserving clear owner subpackages.
+- **Owner:** Person 4.
+- **Approved:** 2026-08-26.
+
 ## Pending decisions
-
-### P-001 — Final package layout
-
-The assignment names `src/data`, `src/simulation`, `src/calibration`, and `src/baseline`, while the current repository uses `src/kyra/*.py`. Person 4 must confirm whether the team will keep one package or create top-level packages. The implementation plan assumes one `kyra` package to minimize disruption.
 
 ### P-003 — Public distribution licence confirmation
 
@@ -105,7 +113,12 @@ The assignment requires target T4 validation. Record who provides the environmen
 
 ### P-005 — Manifest object metadata
 
-Person 4 must approve the version 1.1 proposal for an object-mask path and shape
-family before those fields are added to the shared manifest. The exact proposal,
-compatibility rules, and approval checklist are in
+Person 4 approved the version 1.1 proposal on 2026-08-26, including the
+object-mask path, shape-family field and four proposed shape-family values. The
+approved policy keeps version 1.0 readable, writes version 1.1, uses a
+manifest-specific `MANIFEST_SCHEMA_VERSION = "1.1"` with supported versions
+`{"1.0", "1.1"}`, rejects unsupported versions, and leaves the shared runtime
+`SCHEMA_VERSION` unchanged. Persons 2 and 3 must still confirm that these
+fields do not belong inside `FramePacket` or another consumer contract before
+implementation. The exact proposal and approval checklist are in
 `docs/P1-02_CONTRACT_CHANGE_PROPOSAL.md`.
