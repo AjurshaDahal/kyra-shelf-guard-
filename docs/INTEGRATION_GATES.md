@@ -6,7 +6,11 @@ Gates are ordered evidence boundaries, not calendar milestones. A gate is comple
 
 **Owners:** Person 4 accountable; Persons 1–3 approve affected surfaces.
 
-**Exit:** frozen versions for `FramePacket`, `BaselineArtifact`, `VolumeChangeEvent`, `PersonTrack`, `AlertEvent`, scenario manifest, and the five-field shelf/configuration boundary (`shelf_id`, `roi_xyxy`, `bounds_min_m`, `bounds_max_m`, `voxel_size_m`); executable mocks/fixtures for every producer and consumer; units, coordinate frames, timestamps, invalid values, serialization, and compatibility tested; pending proposals either approved or explicitly excluded; C-007 v1 is approved and frozen, but Gate 1 remains not fully closed because the broader contract-compatibility evidence and remaining owner/mocks for all named surfaces still have to be recorded.
+**Exit:** frozen versions for `FramePacket`, `BaselineArtifact`, `VolumeChangeEvent`, `PersonTrack`, `AlertEvent`, scenario manifest, and the five-field shelf/configuration boundary (`shelf_id`, `roi_xyxy`, `bounds_min_m`, `bounds_max_m`, `voxel_size_m`); executable mocks/fixtures for every producer and consumer; units, coordinate frames, timestamps, invalid values, serialization, and compatibility tested; pending proposals either approved or explicitly excluded; C-007 v1 is approved and frozen.
+
+**Current status:** complete for the shared contract-compatibility layer based on the repository’s frozen definitions, compatibility tests, and deterministic Person 4 mocks. This is a compatibility gate only; it does not claim real Person 1/2/3 algorithm completion. Real geometry, tracking, baseline-generation, and end-to-end validation remain in Gates 2–5 and are not represented by these mocks.
+
+**Evidence record:** `docs/gates/GATE-1.md` contains the current reviewed evidence summary for the frozen surfaces and the mock-based compatibility proof.
 
 ## Gate 2 — Data and baseline
 

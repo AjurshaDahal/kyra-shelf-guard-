@@ -24,7 +24,7 @@ This is the integration snapshot. Detailed owner progress and next actions live 
 
 | Gate | Status | Current evidence or blocker |
 |---|---|---|
-| G1 — Contract compatibility | In progress | C-007 v1 shelf boundary is now approved and frozen; the remaining Gate 1 work is broader contract evidence, owner/mocks for unaffected contracts, and completion of the full gate record |
+| G1 — Contract compatibility | Complete | C-001–C-007 are approved/frozen; contract compatibility tests and deterministic Person 4 mocks already satisfy the Gate 1 exit criteria for the shared compatibility layer. Real P1/P2/P3 algorithm outputs remain required for Gates 2–5. |
 | G2 — Data and baseline | In progress | 35 local foundation tests; generator, golden pack, conversion, Windows/T4 handoff remain open |
 | G3 — Geometry | Not started | Person 2 implementation and known-volume evidence absent |
 | G4 — Tracking and rules | Not started | Person 3 implementation and deterministic rule evidence absent |
