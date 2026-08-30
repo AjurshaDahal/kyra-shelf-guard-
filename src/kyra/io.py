@@ -147,6 +147,26 @@ class ScenarioFrameSource:
             )
         return mask > 0
 
+    def object_mask(self, frame_id: str) -> np.ndarray:
+        """Return a boolean object mask, or an all-clear mask."""
+        try:
+            record = self._records[frame_id]
+        except KeyError as error:
+            raise KeyError(f"unknown frame ID {frame_id!r}") from error
+        if record.object_mask_path is None:
+            frame = self.get(frame_id)
+            return np.zeros(frame.depth_m.shape, dtype=bool)
+        mask = _read_required(
+            self._asset_path(record.object_mask_path), cv2.IMREAD_GRAYSCALE
+        )
+        depth_shape = self.get(frame_id).depth_m.shape
+        if mask.shape != depth_shape:
+            raise ValueError(
+                "object mask and depth dimensions differ: "
+                f"{mask.shape} != {depth_shape}"
+            )
+        return mask > 0
+
 
 # Public name used in the architecture document.
 FrameSource = ScenarioFrameSource

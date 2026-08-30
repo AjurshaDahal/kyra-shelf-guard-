@@ -24,6 +24,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
   baseline build/save/load, and MiDaS anchor alignment.
 - P1-02 shared-manifest change proposal covering object masks, shape families,
   backward compatibility, ownership, and approval gates.
+- Approved P-005/C-006 manifest extension implementing versioned object metadata,
+  `FrameRecord.object_mask_path`, `GroundTruthEvent.shape_family`, supported
+  manifest versions 1.0 and 1.1, object-mask reader validation, and the
+  `ScenarioFrameSource.object_mask(frame_id)` API without changing the runtime
+  `FramePacket` contract or shared `SCHEMA_VERSION`.
 - Replay access to saved per-frame track annotations without exposing mutable
   manifest state.
 - Human-facing project README and documentation map.

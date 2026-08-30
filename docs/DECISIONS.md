@@ -122,3 +122,10 @@ manifest-specific `MANIFEST_SCHEMA_VERSION = "1.1"` with supported versions
 "Not affected — confirmed that the proposed P-005 manifest changes do not
 require changes to their runtime/consumer contracts. Proceed." The exact
 proposal and approval checklist are in `docs/P1-02_CONTRACT_CHANGE_PROPOSAL.md`.
+
+The approved manifest extension is now implemented as C-006. The current code
+supports both manifest versions 1.0 and 1.1, writes version 1.1, keeps the
+runtime contract unchanged, adds `FrameRecord.object_mask_path`, adds
+`GroundTruthEvent.shape_family`, and exposes `ScenarioFrameSource.object_mask`.
+The repository still does not implement downstream geometry or tracking logic;
+those owners remain separately scoped and unchanged.

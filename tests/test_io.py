@@ -137,3 +137,66 @@ def test_source_reports_unknown_frame_id(scenario_path: Path) -> None:
         source.get("not-present")
     with pytest.raises(KeyError, match="unknown frame ID"):
         source.track_annotations("not-present")
+
+
+def test_source_object_mask_loads_and_returns_false_when_missing(
+    scenario_path: Path,
+) -> None:
+    object_mask_path = scenario_path.parent / "masks" / "frame-0002-object.png"
+    object_mask = np.full((4, 5), 255, dtype=np.uint8)
+    cv2.imwrite(str(object_mask_path), object_mask)
+
+    payload = load_manifest(scenario_path).model_dump(mode="json")
+    payload["frames"][1]["object_mask_path"] = "masks/frame-0002-object.png"  # type: ignore[index]
+    write_manifest(ScenarioManifest.model_validate(payload), scenario_path)
+
+    source = ScenarioFrameSource(scenario_path)
+    loaded = source.object_mask("frame-0002")
+    assert loaded.dtype == bool
+    assert loaded.shape == (4, 5)
+    assert loaded[0, 0]
+    assert source.object_mask("frame-0001").dtype == bool
+    assert not source.object_mask("frame-0001").any()
+
+
+def test_source_rejects_object_mask_size_mismatch(scenario_path: Path) -> None:
+    object_mask_path = scenario_path.parent / "masks" / "frame-0002-object.png"
+    cv2.imwrite(str(object_mask_path), np.full((3, 5), 255, dtype=np.uint8))
+
+    payload = load_manifest(scenario_path).model_dump(mode="json")
+    payload["frames"][1]["object_mask_path"] = "masks/frame-0002-object.png"  # type: ignore[index]
+    write_manifest(ScenarioManifest.model_validate(payload), scenario_path)
+
+    with pytest.raises(ValueError, match="object mask and depth dimensions differ"):
+        ScenarioFrameSource(scenario_path).object_mask("frame-0002")
+
+
+def test_source_rejects_missing_object_mask_asset(scenario_path: Path) -> None:
+    payload = load_manifest(scenario_path).model_dump(mode="json")
+    payload["frames"][1]["object_mask_path"] = "masks/missing-object.png"  # type: ignore[index]
+    write_manifest(ScenarioManifest.model_validate(payload), scenario_path)
+
+    with pytest.raises(FileNotFoundError, match="could not read scenario asset"):
+        ScenarioFrameSource(scenario_path).object_mask("frame-0002")
+
+
+def test_source_rejects_object_mask_paths_outside_scenario_folder(
+    scenario_path: Path,
+    tmp_path: Path,
+) -> None:
+    outside = tmp_path / "outside.png"
+    cv2.imwrite(str(outside), np.zeros((4, 5), dtype=np.uint8))
+
+    payload = load_manifest(scenario_path).model_dump(mode="json")
+    payload["frames"][1]["object_mask_path"] = "../outside.png"  # type: ignore[index]
+    write_manifest(ScenarioManifest.model_validate(payload), scenario_path)
+
+    with pytest.raises(ValueError, match="escapes scenario folder"):
+        ScenarioFrameSource(scenario_path).object_mask("frame-0002")
+
+
+def test_source_object_mask_unknown_frame_id_preserves_behavior(
+    scenario_path: Path,
+) -> None:
+    with pytest.raises(KeyError, match="unknown frame ID"):
+        ScenarioFrameSource(scenario_path).object_mask("not-present")
