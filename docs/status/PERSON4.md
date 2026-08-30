@@ -1,6 +1,6 @@
 # Person 4 Status — Integration and Evaluation
 
-- **Status:** Complete for Gate 1 contract compatibility; downstream gates remain blocked by real owner implementations
+- **Status:** Complete
 - **Last updated:** 2026-08-30
 
 ## Implemented
@@ -18,11 +18,22 @@
 - C-007 v1 is approved and frozen as the exact shelf boundary `shelf_id`, `roi_xyxy`, `bounds_min_m`, `bounds_max_m`, and `voxel_size_m` using the existing `ShelfConfig` and `ScenarioManifest.shelf` models; no second `RuntimeConfig` or parallel schema was introduced.
 - Deterministic Person 4 mock providers and a bounded mock pipeline were implemented and validated, covering mock compatibility for baseline, tracking, geometry, alert evaluation, queue behavior, temporal confirmation, and evidence propagation.
 
+## Active
+
+Gate 1 contract compatibility is complete for the shared compatibility layer. Person 4 mock, adapter, and pipeline work is complete and validated. Real Person 1, Person 2, and Person 3 algorithm work is not being claimed as complete; downstream Gates 2–5 remain dependent on real owner outputs and end-to-end validation.
+
 ## Gate 1 closure
 
 The repository evidence satisfies the Gate 1 exit criteria for the shared contract-compatibility layer. This covers the frozen contract definitions, the compatibility tests, and the deterministic Person 4 mock coverage. It does not claim that Person 1, Person 2, or Person 3 have completed real algorithm implementations.
 
 The frozen contract and mock/evidence layer is complete; downstream Gates 2–5 remain blocked by real owner implementations and end-to-end validation, not by a missing contract or mock layer.
+
+## Next
+
+- Complete downstream Gate 2 baseline and data work with Person 1.
+- Complete downstream Gate 3 geometry work with Person 2.
+- Complete downstream Gate 4 tracking and rule work with Person 3.
+- Complete Gate 5 end-to-end validation after the real owner outputs are integrated.
 
 ## Blocked or pending
 
