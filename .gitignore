@@ -36,6 +36,7 @@ checkpoints/
 runs/
 outputs/
 artifacts/
+evidence/
 *.bag
 *.pcd
 *.ply
