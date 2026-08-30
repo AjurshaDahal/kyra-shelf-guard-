@@ -10,7 +10,7 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from kyra.contracts import SHELF_CONFIG_C007_FIELDS, SCHEMA_VERSION, ChangeType, SourceType
+from kyra.contracts import SHELF_CONFIG_C007_FIELDS, ChangeType, SourceType
 
 MANIFEST_SCHEMA_VERSION = "1.1"
 SUPPORTED_MANIFEST_VERSIONS = {"1.0", "1.1"}
@@ -135,7 +135,8 @@ class ScenarioManifest(StrictModel):
             event_frames = {
                 frame.frame_id: frame
                 for frame in self.frames
-                if frame.timestamp_ns in {event.first_seen_timestamp_ns for event in self.ground_truth_events}
+                if frame.timestamp_ns
+                in {event.first_seen_timestamp_ns for event in self.ground_truth_events}
             }
             for event in self.ground_truth_events:
                 frame = event_frames.get(next(
