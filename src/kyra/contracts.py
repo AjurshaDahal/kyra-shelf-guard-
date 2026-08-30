@@ -14,6 +14,13 @@ import numpy as np
 import numpy.typing as npt
 
 SCHEMA_VERSION = "1.0"
+SHELF_CONFIG_C007_FIELDS = (
+    "shelf_id",
+    "roi_xyxy",
+    "bounds_min_m",
+    "bounds_max_m",
+    "voxel_size_m",
+)
 
 
 class SourceType(StrEnum):
@@ -61,6 +68,16 @@ class ShelfConfig:
     minimum_visible_fraction: float = 0.70
     minimum_alert_volume_m3: float = 5e-5
     proximity_distance_m: float = 1.0
+
+    @property
+    def c007_fields(self) -> tuple[str, ...]:
+        """Return the exact field names in the approved C-007 v1 shelf boundary."""
+        return SHELF_CONFIG_C007_FIELDS
+
+    @property
+    def c007_values(self) -> dict[str, object]:
+        """Return the approved C-007 v1 shelf boundary values without expanding scope."""
+        return {name: getattr(self, name) for name in SHELF_CONFIG_C007_FIELDS}
 
     def __post_init__(self) -> None:
         x1, y1, x2, y2 = self.roi_xyxy

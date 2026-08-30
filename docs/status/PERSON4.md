@@ -19,17 +19,19 @@
 
 ## Active
 
-- Gate 1 contract compatibility continues with C-007 and C-008; C-001 through C-006 are covered by the completed compatibility and manifest work items.
+- C-007 v1 is approved and frozen as the exact shelf boundary `shelf_id`, `roi_xyxy`, `bounds_min_m`, `bounds_max_m`, and `voxel_size_m` using the existing `ShelfConfig` and `ScenarioManifest.shelf` models; no second `RuntimeConfig` or parallel schema was introduced.
+- Gate 1 contract compatibility is still underway for the broader contract evidence set; C-007 is now recorded as frozen while the remaining gate evidence for other named contracts and fixtures is still being accumulated.
 
 ## Blocked or pending
 
 - Person 1–4 GitHub handles are not assigned; `@DontHash` is temporary steward/CODEOWNER.
 - Server-enforced branch protection is unavailable for this private repository on the current GitHub plan.
-- Contract mocks, versioned runtime configuration, pipeline, five CLI commands, evaluation, T4 validation, and release process remain unimplemented.
+- Gate 1 remains not fully closed because the other named contract surfaces and their mock/evidence records still require completion.
+- Contract mocks, pipeline, five CLI commands, evaluation, T4 validation, and release process remain unimplemented.
 
 ## Next
 
-Assign team handles, upgrade the GitHub plan if server-enforced private-branch protection is required, then continue the remaining Gate 1 contract and mock work items.
+Complete the remaining Gate 1 contract-evidence records and associated owner mocks, while preserving the approved and frozen C-007 shelf boundary.
 
 ## Evidence
 

@@ -129,3 +129,20 @@ runtime contract unchanged, adds `FrameRecord.object_mask_path`, adds
 `GroundTruthEvent.shape_family`, and exposes `ScenarioFrameSource.object_mask`.
 The repository still does not implement downstream geometry or tracking logic;
 those owners remain separately scoped and unchanged.
+
+### P-006 — C-007 formalized shelf boundary
+
+- **Decision:** Formalize the existing shelf boundary as the exact shared C-007 v1
+  field set `shelf_id`, `roi_xyxy`, `bounds_min_m`, `bounds_max_m`, and
+  `voxel_size_m` without creating a second RuntimeConfig model or broadening the
+  contract to unrelated tuning fields.
+- **Why:** The repository already has a working runtime `ShelfConfig` and
+  persisted `ShelfConfigRecord` for that semantic boundary; the gap is explicit
+  contract naming and owner approval, not a new model or a new schema.
+- **Trade-off:** This intentionally excludes `random_seed`, `system_mode`,
+  `intrinsics`, `camera_to_shelf`, and the shelf-threshold tuning values until a
+  distinct approved contract change proves they belong in the frozen boundary.
+- **Status:** Approved and frozen on 2026-08-30 as the exact five-field shelf
+  boundary for C-007. The implementation and tests remain aligned with the
+  approved runtime/persisted contract; no second `RuntimeConfig` or duplicate
+  config schema was introduced.

@@ -10,7 +10,7 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from kyra.contracts import SCHEMA_VERSION, ChangeType, SourceType
+from kyra.contracts import SHELF_CONFIG_C007_FIELDS, SCHEMA_VERSION, ChangeType, SourceType
 
 MANIFEST_SCHEMA_VERSION = "1.1"
 SUPPORTED_MANIFEST_VERSIONS = {"1.0", "1.1"}
@@ -33,6 +33,16 @@ class ShelfConfigRecord(StrictModel):
     bounds_min_m: tuple[float, float, float]
     bounds_max_m: tuple[float, float, float]
     voxel_size_m: float = 0.01
+
+    @property
+    def c007_fields(self) -> tuple[str, ...]:
+        """Return the exact field names in the approved C-007 v1 shelf boundary."""
+        return SHELF_CONFIG_C007_FIELDS
+
+    @property
+    def c007_values(self) -> dict[str, object]:
+        """Return the approved C-007 v1 shelf boundary values without expanding scope."""
+        return {name: getattr(self, name) for name in SHELF_CONFIG_C007_FIELDS}
 
 
 class TrackAnnotation(StrictModel):

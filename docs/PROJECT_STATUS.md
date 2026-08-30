@@ -24,7 +24,7 @@ This is the integration snapshot. Detailed owner progress and next actions live 
 
 | Gate | Status | Current evidence or blocker |
 |---|---|---|
-| G1 — Contract compatibility | In progress | Foundation objects exist; the single `kyra` package layout is confirmed; manifest 1.1 proposal remains unresolved |
+| G1 — Contract compatibility | In progress | C-007 v1 shelf boundary is now approved and frozen; the remaining Gate 1 work is broader contract evidence, owner/mocks for unaffected contracts, and completion of the full gate record |
 | G2 — Data and baseline | In progress | 35 local foundation tests; generator, golden pack, conversion, Windows/T4 handoff remain open |
 | G3 — Geometry | Not started | Person 2 implementation and known-volume evidence absent |
 | G4 — Tracking and rules | Not started | Person 3 implementation and deterministic rule evidence absent |

@@ -22,7 +22,7 @@ Person 4 owns this registry and shared implementation surfaces. Producers and co
 | C-004 | Person track | `src/kyra/contracts.py::PersonTrack` | Person 3 | Persons 2, 3, 4 | Type foundation only; producer absent |
 | C-005 | Alert event | `src/kyra/contracts.py::AlertEvent` | Person 3 | Person 4 | Type foundation only; producer absent |
 | C-006 | Scenario manifest | `src/kyra/manifest.py::ScenarioManifest` | Person 1 data, Person 4 schema | Persons 1–4 | Manifest 1.1 implementation; runtime `SCHEMA_VERSION` remains 1.0 |
-| C-007 | Shelf/runtime config | Planned versioned schema | Person 4 with owner input | Persons 1–4 | Not defined |
+| C-007 | Shelf configuration boundary | `src/kyra/contracts.py::ShelfConfig`, `src/kyra/manifest.py::ShelfConfigRecord`, `ScenarioManifest.shelf` | Person 4 with owner input | Persons 1–4 | Approved and frozen v1: `shelf_id`, `roi_xyxy`, `bounds_min_m`, `bounds_max_m`, `voxel_size_m`; no duplicate `RuntimeConfig` |
 | C-008 | Pipeline/evaluation result | Planned | Person 4 | Reporting/evaluation | Not defined |
 
 ## Current freeze notes
