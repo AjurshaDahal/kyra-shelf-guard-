@@ -118,7 +118,7 @@ object-mask path, shape-family field and four proposed shape-family values. The
 approved policy keeps version 1.0 readable, writes version 1.1, uses a
 manifest-specific `MANIFEST_SCHEMA_VERSION = "1.1"` with supported versions
 `{"1.0", "1.1"}`, rejects unsupported versions, and leaves the shared runtime
-`SCHEMA_VERSION` unchanged. Persons 2 and 3 must still confirm that these
-fields do not belong inside `FramePacket` or another consumer contract before
-implementation. The exact proposal and approval checklist are in
-`docs/P1-02_CONTRACT_CHANGE_PROPOSAL.md`.
+`SCHEMA_VERSION` unchanged. Person 2 and Person 3 each confirmed on 2026-08-30:
+"Not affected — confirmed that the proposed P-005 manifest changes do not
+require changes to their runtime/consumer contracts. Proceed." The exact
+proposal and approval checklist are in `docs/P1-02_CONTRACT_CHANGE_PROPOSAL.md`.

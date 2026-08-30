@@ -14,7 +14,7 @@
 - C-004 `PersonTrack` compatibility fixture and focused tests cover field preservation, pose-keypoint normalization, near-shelf timestamp behavior, and invalid keypoint shapes without changing the production contract.
 - C-005 `AlertEvent` compatibility fixture and focused tests cover field preservation, evidence-frame defaults, and frozen-instance behavior without changing the production contract.
 - C-003 `VolumeChangeEvent` compatibility fixture and focused tests cover event fields, shelf-frame geometry, timestamps, quality values, and default metadata without changing the production contract.
-- Person 4 approved the P-005 manifest design and versioning policy on 2026-08-26; implementation remains pending Persons 2 and 3 confirmations.
+- Person 4 approved the P-005 manifest design and versioning policy on 2026-08-26; Person 2 and Person 3 both confirmed on 2026-08-30: "Not affected — confirmed that the proposed P-005 manifest changes do not require changes to their runtime/consumer contracts. Proceed."
 
 ## Active
 
@@ -24,7 +24,7 @@
 
 - Person 1–4 GitHub handles are not assigned; `@DontHash` is temporary steward/CODEOWNER.
 - Server-enforced branch protection is unavailable for this private repository on the current GitHub plan.
-- P-005 manifest proposal is approved by Person 4 but remains pending Persons 2 and 3 confirmations.
+- P-005 manifest proposal is approved by Person 4 and confirmed "Not affected" by Persons 2 and 3 on 2026-08-30: the proposed P-005 manifest changes do not require changes to their runtime/consumer contracts.
 - Contract mocks, versioned runtime configuration, pipeline, five CLI commands, evaluation, T4 validation, and release process remain unimplemented.
 
 ## Next

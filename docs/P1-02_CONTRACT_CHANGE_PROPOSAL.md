@@ -83,18 +83,31 @@ same height and width as depth, matching the current occlusion-mask behavior.
 - [x] Person 4 approves the four `ShapeFamily` names.
 - [x] Person 4 approves backward loading of version 1.0 and generation of
   version 1.1.
-- [ ] Persons 2 and 3 confirm that no consumer needs these fields inside
-      `FramePacket`.
+- [x] Person 2 — Not affected — 2026-08-30. Confirmed that the proposed
+  P-005 manifest changes do not require changes to their runtime/consumer
+  contracts. Proceed.
+- [x] Person 3 — Not affected — 2026-08-30. Confirmed that the proposed
+  P-005 manifest changes do not require changes to their runtime/consumer
+  contracts. Proceed.
 - [x] Person 4 approval date and reviewer are recorded below.
 
 **Approved by:** Person 4
 **Approval date:** 2026-08-26
 **Requested changes:** None recorded yet
 
+**Person 2 confirmation:** Not affected — 2026-08-30. Confirmed that the
+proposed P-005 manifest changes do not require changes to their
+runtime/consumer contracts. Proceed.
+
+**Person 3 confirmation:** Not affected — 2026-08-30. Confirmed that the
+proposed P-005 manifest changes do not require changes to their
+runtime/consumer contracts. Proceed.
+
 **Person 4 versioning decision:** Use `MANIFEST_SCHEMA_VERSION = "1.1"` with
 supported manifest versions `{"1.0", "1.1"}`. Read both versions, write version
 1.1, reject unsupported versions, and leave the shared runtime
-`SCHEMA_VERSION` unchanged. Persons 2 and 3 confirmations remain pending.
+`SCHEMA_VERSION` unchanged. Persons 2 and 3 have both confirmed "Not affected"
+on 2026-08-30 for the current P-005 proposal.
 
 ## Implementation after approval
 
