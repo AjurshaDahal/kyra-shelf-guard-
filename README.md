@@ -1,78 +1,65 @@
 # Kyra Shelf Guard
 
-Kyra is a four-workstream university project for detecting suspicious shelf removals from replayable RGB-D input. It measures persistent physical shelf change and associates that evidence with nearby, non-authorized person tracks. It does **not** identify theft, infer intent, or require a product-specific model for every SKU.
+Kyra is a university team project that studies whether a camera can notice when
+something may have been removed from a shelf. It can raise a suspicious
+shelf-removal alert for a person to review. It does not prove theft or decide
+what someone intended to do.
 
-The repository is the shared source of truth for code, frozen contracts, decisions, work status, evidence, and handoffs. Development is intentionally split into parallel owner modules with explicit integration gates.
+## Where the project stands
 
-## Current truth
+Kyra is still in the foundation stage. Some building blocks work and 52 automated
+checks pass on the current shared version, but the parts have not yet been joined
+into a complete system. There is no finished app or usable command-line tool yet,
+and the full project has not been tested on the target T4 computer.
 
-The Person 1 foundation is the only implemented product workstream today: shared data objects, strict scenario manifests, RGB-D replay, baseline construction and persistence, and MiDaS anchor alignment exist. The deterministic generator, golden pack, dataset converter, geometry path, tracking/rules path, integration pipeline, evaluation harness, and CLI remain planned or unimplemented.
+For a simple progress summary, read [Project Guide for Team Members](docs/people/README.md).
 
-The verified local foundation result is 35 passing tests plus Ruff on Python 3.12.7. This is not an end-to-end or target-T4 result. See [Project Status](docs/PROJECT_STATUS.md) for the live workstream and gate ledger.
+## Choose your starting point
 
-## Four workstreams
+- **Need the documentation map:** start with the
+  [documentation hub](docs/README.md), which separates plain-English, agent,
+  and authoritative technical paths.
+- **Team member, student, or reviewer:** start with the
+  [plain-English project guide](docs/people/README.md).
+- **Ready to work on the project:** follow the
+  [team getting-started guide](docs/people/GETTING_STARTED.md).
+- **Coding agent:** start with the
+  [agent documentation route](docs/agents/README.md), then follow
+  [AGENTS.md](AGENTS.md).
+- **Need the detailed technical record:** use
+  [Project Status](docs/PROJECT_STATUS.md), [Team Ownership](docs/TEAM_OWNERSHIP.md),
+  and [Contracts](docs/CONTRACTS.md).
 
-| Owner | Owns | Produces | Does not own |
-|---|---|---|---|
-| Person 1 — Data and baseline | Replay input, deterministic simulation, calibration, baseline, dataset conversion, provenance | `FramePacket`, `BaselineArtifact`, scenarios | Geometry differencing, tracking, alert policy, orchestration |
-| Person 2 — Geometry | Registration, signed depth change, occlusion-safe clustering, volume and temporal geometry state | `VolumeChangeEvent` | Person identity/tracking, authorization, final alert policy |
-| Person 3 — Tracking and rules | Replay tracks, optional YOLO/ByteTrack adapter, proximity, authorization, deterministic alert rule | `PersonTrack`, masks, `AlertEvent` | Geometry volume estimation, shared-contract ownership, evaluation |
-| Person 4 — Integration | Shared contracts, bounded pipeline, CLI, configuration, evaluation, CI, release evidence | Integrated runs, reports, frozen interfaces | Reimplementing owner algorithms inside orchestration |
+## What the four people are building
 
-The detailed touch/no-touch matrix is in [Team Ownership](docs/TEAM_OWNERSHIP.md). Shared contracts may be merged only by Person 4 after every affected owner approves the proposal.
+| Person | Plain-English responsibility | Current state |
+|---|---|---|
+| Person 1 | Prepare camera recordings and a reliable picture of a normal shelf | In progress |
+| Person 2 | Measure whether the shelf has physically changed | Not started |
+| Person 3 | Connect a shelf change to nearby people and apply the alert rules | Not started |
+| Person 4 | Join the parts, provide shared rules and tools, test the whole system, and maintain the project documents | In progress |
 
-## Collaboration contract
+The exact ownership rules live in [Team Ownership](docs/TEAM_OWNERSHIP.md).
 
-Every human or AI contributor must:
+## Quick setup for developers
 
-1. Read [AGENTS.md](AGENTS.md), [Project Status](docs/PROJECT_STATUS.md), [Decisions](docs/DECISIONS.md), and the relevant owner specification before editing.
-2. Start from current `main`, work from one issue/work-item ID, and stay inside the named owner boundary.
-3. Propose shared-contract changes before implementing them.
-4. Add tests and truthful evidence for the changed behavior.
-5. Update the owner status file, work-item record, changelog, and any affected authoritative documentation in the same pull request.
-6. Pass code, documentation-link, repository-consistency, and change-impact checks before merge.
-
-The full process is in [Collaboration Workflow](docs/COLLABORATION_WORKFLOW.md). CI enforces the documentation impact rules; it does not treat a plan, build, or synthetic run as proof of an end-to-end result.
-
-## Quick setup on Windows
-
-```powershell
+~~~powershell
 py -3.12 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install --upgrade pip
-.\.venv\Scripts\python.exe -m pip install -r requirements.lock
-.\.venv\Scripts\python.exe -m pip install -e .
-.\.venv\Scripts\python.exe -m pytest
-.\.venv\Scripts\python.exe -m ruff check .
-.\.venv\Scripts\python.exe scripts\check_repo_consistency.py
-```
+.\\.venv\\Scripts\\python.exe -m pip install --upgrade pip
+.\\.venv\\Scripts\\python.exe -m pip install -r requirements.lock
+.\\.venv\\Scripts\\python.exe -m pip install -e .
+.\\.venv\\Scripts\\python.exe -m pytest
+~~~
 
-Do not run `kyra` yet: `pyproject.toml` declares the future entry point, but `src/kyra/cli.py` is not implemented.
+Do not run the kyra command yet. The future command is listed in the project
+settings, but the command itself has not been built.
 
-## Documentation map
+## Important limits
 
-### Project control
+- This repository does not contain a finished end-to-end result.
+- Passing automated checks proves only the tested building blocks.
+- Large datasets, generated recordings, model files, and run output stay outside Git.
+- The original assignment remains the controlling source when a summary conflicts with it.
 
-- [Project Charter](docs/PROJECT_CHARTER.md) — mission, non-goals, evidence language, and definition of done.
-- [Team Ownership](docs/TEAM_OWNERSHIP.md) — four roles, file boundaries, reviewers, and handoff obligations.
-- [Collaboration Workflow](docs/COLLABORATION_WORKFLOW.md) — issue-to-merge workflow for humans and agents.
-- [Project Status](docs/PROJECT_STATUS.md) — current workstream and integration-gate snapshot.
-- [Integration Gates](docs/INTEGRATION_GATES.md) — entry, exit, and evidence required for Gates 1–7.
-
-### Contracts and change control
-
-- [Contract Registry](docs/CONTRACTS.md) — current producers, consumers, schemas, and freeze state.
-- [Contract Change Process](docs/CONTRACT_CHANGE_PROCESS.md) — proposal, approval, compatibility, and rollout protocol.
-- [Documentation Policy](docs/DOCUMENTATION_POLICY.md) — source precedence and change-impact matrix.
-- [Decisions](docs/DECISIONS.md) — locked and pending durable choices.
-
-### Engineering and Person 1
-
-- [Architecture](docs/ARCHITECTURE.md), [Development](docs/DEVELOPMENT.md), [Testing](docs/TESTING.md), and [Dataset Rules](docs/DATASETS.md).
-- [Person 1 Specification](docs/PERSON1_SPEC.md) and [Implementation Plan](docs/PERSON1_IMPLEMENTATION_PLAN.md).
-- [Contributing](CONTRIBUTING.md), [Changelog](CHANGELOG.md), [AI index](llms.txt), and [Project Skills](SKILLS.md).
-
-## Assignment and licence
-
-The controlling source is [Four-Person Physics-Based Shelf Removal Detection Plan](Four-Person_Physics-Based_Shelf_Removal_Detection_Plan.docx). If a repository summary conflicts with it, stop, record the conflict, and correct the summary through review.
-
-Code is licensed `AGPL-3.0-only`; see [LICENSE](LICENSE). Dataset, asset, and model licences are reviewed separately, and bulk datasets, generated runs, weights, and point clouds must stay outside Git.
+Code is licensed under AGPL-3.0-only; see [LICENSE](LICENSE). Dataset, asset,
+and model licences are reviewed separately.

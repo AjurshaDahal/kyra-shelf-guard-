@@ -1,10 +1,11 @@
 # Project Status
 
-- **Snapshot date:** 2026-08-24
+- **Snapshot date:** 2026-08-30
 - **Verified baseline commit:** `2b4dbba`
 - **Verified collaboration foundation commit:** `dd9885f`
+- **Latest shared commit:** `a59efba`
 - **Latest verified local environment:** Windows, Python 3.12.7
-- **Latest verified foundation checks:** 39 tests passed; Ruff, compileall, repository consistency, and change-impact checks passed
+- **Latest verified local checks:** 52 tests passed on Python 3.12.7; this documentation branch's post-edit checks are recorded in WI-010
 - **Latest verified hosted checks:** Core CI passed on Python 3.11 and 3.12 ([run 32759093372](https://github.com/DontHash/kyra-shelf-guard/actions/runs/32759093372)); dependency graph reports zero open alerts
 - **End-to-end status:** Not demonstrated
 - **Target T4 status:** Not run
@@ -38,7 +39,7 @@ Gate exit criteria are authoritative in [Integration Gates](INTEGRATION_GATES.md
 
 - P-003: dataset/asset/model licence compatibility for eventual distribution.
 - P-004: target-T4 execution owner and evidence location.
-- P-005: unapproved manifest object-mask/shape-family proposal.
+- P-005 is approved and confirmed as not affecting Person 2 or Person 3 runtime contracts; implementation remains open.
 - Person 1–4 GitHub handles and reviewer assignments are not yet known.
 - The current GitHub plan does not support protected branches on this private repository; required checks and reviews are documented and automated but cannot yet be made server-enforced.
 - WI-001 closed all six alerts from the first GitHub dependency scan. Optional Torch target-T4 validation remains separate and open for Gate 7.

@@ -8,6 +8,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
 
 ### Added
 
+- Separate docs/people/ plain-English guides and a docs/agents/ technical
+  routing page so teammates and coding agents have distinct starting paths.
+- Add a documentation hub that maps audience routes, technical authority, and
+  status/work-item/contract/gate folders without breaking stable paths.
+- Add one authoritative, command-level routine for safely creating or
+  synchronizing an issue branch, reviewing and staging a coherent diff,
+  committing it, and pushing it without rewriting shared history.
 - Private-repository collaboration foundation with a four-owner charter, path
   boundaries, contract registry and approval process, integration gates,
   per-owner status files, work-item and handoff templates, and AI-agent preflight.
@@ -47,6 +54,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
 
 ### Changed
 
+- The repository README now leads with a short, honest project explanation and
+  routes readers by audience instead of presenting the full governance map first.
+- Documentation policy and repository validation now preserve the people/agent
+  split and require affected summaries to follow authoritative technical truth.
+- Correct P-005 links and registry wording so the approved design is clearly
+  distinguished from its still-pending implementation.
 - GitHub workflow actions now use current immutable release commits instead of deprecated Node 20 action versions.
 - Security-patched pins for Wheel 0.46.2, Setuptools 83.0.0, pytest 9.0.3,
   and optional Torch 2.13.0 in response to the first GitHub dependency scan.
@@ -60,5 +73,3 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
 - Server-enforced branch protection for the private repository requires a GitHub
   plan upgrade; CI and review policy are present but not platform-enforced.
 - The deterministic generator, golden scenario pack, OCID converter, and CLI remain unimplemented.
-- Manifest version 1.1 object-mask and shape-family fields remain pending Person
-  4 approval.

@@ -80,6 +80,10 @@ git fetch origin
 
 Code and governance changes must carry the status, work-item, changelog, and
 documentation companions defined in [DOCUMENTATION_POLICY.md](DOCUMENTATION_POLICY.md).
+The authoritative command sequence for creating or synchronizing a branch,
+reviewing and staging a diff, committing, and pushing is in
+[COLLABORATION_WORKFLOW.md](COLLABORATION_WORKFLOW.md). This development guide
+does not define a separate Git policy.
 
 ## Current command warning
 

@@ -4,6 +4,14 @@
 
 The controlling assignment wins over summaries. Shared contracts are proposal-first and Person 4-owned; all affected owners must approve. Agents must read `AGENTS.md` and run repository consistency checks before editing.
 
+## Audience Start
+
+- [Documentation Hub](docs/README.md): map of audience paths and authoritative
+  technical documents.
+- [Plain-English Team Guide](docs/people/README.md): Purpose, honest progress, roles, limits, and a short glossary.
+- [Team Getting Started](docs/people/GETTING_STARTED.md): Simple joining and contribution path.
+- [Agent Documentation Route](docs/agents/README.md): Task-based route to technical authority.
+
 ## Mandatory Start
 
 - [Agent Instructions](AGENTS.md): Mandatory preflight, source precedence, ownership, checks, and handoff rules.
@@ -15,7 +23,7 @@ The controlling assignment wins over summaries. Shared contracts are proposal-fi
 
 ## Collaboration and Change Control
 
-- [Collaboration Workflow](docs/COLLABORATION_WORKFLOW.md): Issue, branch, implementation, review, merge, and handoff process.
+- [Collaboration Workflow](docs/COLLABORATION_WORKFLOW.md): Authoritative issue, branch, verified commit, push, review, merge, and handoff process.
 - [Contract Change Process](docs/CONTRACT_CHANGE_PROCESS.md): Proposal and unanimous affected-owner approval protocol.
 - [Integration Gates](docs/INTEGRATION_GATES.md): Seven ordered gates and required evidence.
 - [Documentation Policy](docs/DOCUMENTATION_POLICY.md): Source precedence and changed-file impact matrix.
@@ -34,7 +42,9 @@ The controlling assignment wins over summaries. Shared contracts are proposal-fi
 
 - [Person 1 Specification](docs/PERSON1_SPEC.md): Requirement IDs and acceptance criteria.
 - [Person 1 Implementation Plan](docs/PERSON1_IMPLEMENTATION_PLAN.md): Ordered tasks and proof.
-- [Pending P1-02 Contract Proposal](docs/P1-02_CONTRACT_CHANGE_PROPOSAL.md): Unapproved manifest 1.1 proposal; not implemented authority.
+- [P1-02 Contract Proposal](docs/P1-02_CONTRACT_CHANGE_PROPOSAL.md): Approved
+  manifest 1.1 design; implementation and compatibility evidence are still
+  pending, so runtime behavior remains version 1.0.
 - [Person 1 Test Report Template](docs/PERSON1_TEST_REPORT_TEMPLATE.md): Windows, T4, and handoff evidence form.
 
 ## Audit and History

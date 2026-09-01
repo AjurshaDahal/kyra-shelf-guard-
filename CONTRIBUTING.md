@@ -9,6 +9,11 @@ Kyra uses four parallel owner workstreams with shared contracts and gated integr
 3. Check `docs/TEAM_OWNERSHIP.md` and `docs/CONTRACTS.md` before selecting files.
 4. Branch from current `main` using `<owner>/<issue>-<slug>`.
 
+Follow the command-level [Collaboration
+Workflow](docs/COLLABORATION_WORKFLOW.md), including its normal branch, verified
+commit, and push routine. Do not substitute a generic Git flow for the
+repository's ownership, evidence, and history-safety rules.
+
 Parallel work is coordinated by stable interfaces, not by copying logic between owner modules. If another workstream is not ready, use a versioned mock or replay fixture owned by Person 4.
 
 ## Local setup

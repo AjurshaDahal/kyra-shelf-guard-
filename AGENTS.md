@@ -2,6 +2,13 @@
 
 This is the mandatory operating contract for every coding agent in this repository. Do not implement first and reconcile documentation later.
 
+## Documentation route
+
+Start with docs/agents/README.md to find the smallest relevant technical document
+set for the task. Files under docs/people/ are plain-English teammate summaries;
+they do not replace approved decisions, contracts, specifications, tests, or
+evidence records.
+
 ## Mandatory preflight
 
 Before editing, an agent must:
@@ -53,6 +60,10 @@ Only Person 4 may merge a shared-contract change after approval from every affec
 - Never report synthetic, mocked, tracker-only, local-only, or build-only evidence as real end-to-end evidence.
 
 ## Change workflow
+
+Use the exact branch, commit, and push routine in
+`docs/COLLABORATION_WORKFLOW.md`; repository policy overrides an agent's generic
+Git habits.
 
 1. Create or claim an issue using the work-item template.
 2. Use a branch named `<owner>/<issue>-<slug>` such as `p2/41-occlusion-mask`.

@@ -1,7 +1,7 @@
 # Person 4 Status — Integration and Evaluation
 
 - **Status:** Complete
-- **Last updated:** 2026-08-30
+- **Last updated:** 2026-09-01
 
 ## Implemented
 
@@ -17,10 +17,16 @@
 - C-006 manifest implementation is complete: `ScenarioManifest` supports manifest versions 1.0 and 1.1, `FrameRecord.object_mask_path`, `GroundTruthEvent.shape_family`, and the new `ScenarioFrameSource.object_mask(frame_id)` access path without changing the runtime `SCHEMA_VERSION` or `FramePacket` contract.
 - C-007 v1 is approved and frozen as the exact shelf boundary `shelf_id`, `roi_xyxy`, `bounds_min_m`, `bounds_max_m`, and `voxel_size_m` using the existing `ShelfConfig` and `ScenarioManifest.shelf` models; no second `RuntimeConfig` or parallel schema was introduced.
 - Deterministic Person 4 mock providers and a bounded mock pipeline were implemented and validated, covering mock compatibility for baseline, tracking, geometry, alert evaluation, queue behavior, temporal confirmation, and evidence propagation.
+- Issue #10 adds separate plain-English teammate documentation and an agent-facing technical route without changing runtime contracts or product evidence.
+- The documentation hub now maps audience paths, authority by purpose, and the durable status/work-item/contract/gate folders without moving authoritative files.
+- The collaboration guide now defines the repository's normal branch, verified
+  commit, and push commands, with direct routes for agents and teammates.
 
 ## Active
 
 Gate 1 contract compatibility is complete for the shared compatibility layer. Person 4 mock, adapter, and pipeline work is complete and validated. Real Person 1, Person 2, and Person 3 algorithm work is not being claimed as complete; downstream Gates 2–5 remain dependent on real owner outputs and end-to-end validation.
+
+WI-010 is in review for the audience-specific documentation split and repository navigation cleanup.
 
 ## Gate 1 closure
 
@@ -50,3 +56,6 @@ The frozen contract and mock/evidence layer is complete; downstream Gates 2–5 
 - Current verification on 2026-08-30: `python -m ruff check .` — passed.
 - Current verification on 2026-08-30: `python -m compileall -q src tests scripts` — passed.
 - Current verification on 2026-08-30: `python scripts/check_repo_consistency.py` — passed.
+- Work item `../work-items/WI-010-audience-documentation.md` tracks the audience-specific documentation route.
+- WI-010 verification on 2026-09-01: 83 tests passed; Ruff, compileall,
+  repository consistency, change-impact, and diff checks passed on Python 3.12.7.

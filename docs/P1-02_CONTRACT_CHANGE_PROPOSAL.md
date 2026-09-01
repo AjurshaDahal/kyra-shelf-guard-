@@ -1,6 +1,6 @@
 # P1-02 Contract Change Proposal
 
-**Status:** Awaiting Persons 2 and 3 confirmation
+**Status:** Approved; implementation pending
 **Owners:** Person 1 and Person 4
 **Scope:** Scenario manifest and replay reader only
 **Requirements:** P1-IO-004 and P1-SIM-004

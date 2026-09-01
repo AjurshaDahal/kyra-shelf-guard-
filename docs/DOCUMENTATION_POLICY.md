@@ -6,6 +6,20 @@ Use the source order in `AGENTS.md`. When two sources disagree, create a work it
 
 Plans describe intended work. Status files describe the latest evidence-backed state. Tests describe verified behavior. A completed status or changelog line without evidence is drift.
 
+## Audience separation
+
+- README.md and docs/people/ explain purpose, progress, limits, and joining
+  instructions in plain English. They are summaries, not technical authority.
+- docs/agents/README.md routes coding agents to the smallest relevant set of
+  authoritative technical documents. It does not duplicate those documents.
+- The existing project-control, contract, owner, testing, status, and work-item
+  documents retain their authority under the source order in AGENTS.md.
+
+When technical truth changes, update the authoritative source first and update
+every affected plain-English statement in the same pull request. Translate the
+meaning and limitation; do not copy detailed schemas, version policies, or test
+logs into the people pages.
+
 ## Required change companions
 
 | Changed area | Must change in the same pull request |
@@ -21,6 +35,8 @@ Plans describe intended work. Status files describe the latest evidence-backed s
 | Dataset, asset, model, or licence | `DATASETS.md`/provenance, licence decision, tests, changelog, and relevant owner status |
 | Integration gate completion | `PROJECT_STATUS.md`, a `docs/gates/GATE-<n>.md` evidence record, all named owner statuses, and changelog |
 | New authoritative document | `README.md` documentation map when user-facing, and always `llms.txt` plus repository consistency requirements when mandatory |
+| Plain-English purpose, progress, role, or joining guidance | Applicable file under `docs/people/`, its authoritative source, and `README.md` when the starting route changes |
+| Agent documentation route | `docs/agents/README.md`, `AGENTS.md` when mandatory reading changes, and `llms.txt` |
 
 `scripts/check_change_impact.py` enforces the mechanically detectable subset. Reviewers remain responsible for semantic impact.
 
