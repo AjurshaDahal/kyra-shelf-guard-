@@ -38,6 +38,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
   `FramePacket` contract or shared `SCHEMA_VERSION`.
 - Replay access to saved per-frame track annotations without exposing mutable
   manifest state.
+- Person 3 replay tracking, shelf proximity, occlusion masking, deterministic
+  removal-alert association, edge-case tests, and integration tests.
 - Human-facing project README and documentation map.
 - Person 1 specification, implementation plan, system requirements, architecture, data, development, testing, and decision documents.
 - Repository instructions for coding agents in `AGENTS.md`.
@@ -51,6 +53,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
 - Manifest write checksums now describe the exact bytes saved to disk.
 - RGB, valid-depth-mask, and occlusion-mask size mismatches now fail with clear errors.
 - Scenario asset paths can no longer escape the scenario folder.
+- Person 3 replay now represents absent pose annotations as an empty `(0, 3)`
+  keypoint array instead of failing while constructing `PersonTrack`.
 
 ### Changed
 
