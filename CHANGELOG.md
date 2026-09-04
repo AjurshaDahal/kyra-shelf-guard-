@@ -8,6 +8,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
 
 ### Added
 
+- Person 1 lightweight deterministic RGB-D scenario generation with seeded
+  object placement, all four approved shape families, lossless manifest 1.1
+  assets, and offline same-seed byte/hash stability checks.
 - Separate docs/people/ plain-English guides and a docs/agents/ technical
   routing page so teammates and coding agents have distinct starting paths.
 - Add a documentation hub that maps audience routes, technical authority, and

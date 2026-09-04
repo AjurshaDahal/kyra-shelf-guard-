@@ -1,6 +1,6 @@
 # Person 1 Implementation Plan
 
-**Status:** In progress; P1-01 is complete and P1-02 is partially implemented  
+**Status:** In progress; P1-01 and P1-02 are complete, and P1-03 is in review
 **Owner:** Person 1  
 **Estimated effort:** 9–14 focused working days, plus access time for the target T4 check  
 **Requirements:** [PERSON1_SPEC.md](PERSON1_SPEC.md)
@@ -18,9 +18,9 @@ Present before P1-01:
 - RGB-D replay in `src/kyra/io.py`.
 - Baseline building, persistence, and MiDaS alignment in `src/kyra/baseline.py`.
 
-Still not present:
+Still not present after P1-03:
 
-- Deterministic generator and golden pack.
+- Frozen golden pack.
 - OCID converter and provenance file.
 - Verification scripts and independent test report.
 - `src/kyra/cli.py`, although `pyproject.toml` already names it as a future command.
@@ -59,9 +59,9 @@ The waves are ordered. Tasks within the same wave may be completed together, but
 
 #### P1-02: Resolve contract gaps with Person 4
 
-- **Status:** Partially implemented on 2026-08-21. The track-annotation reader
-  and contract test pass; manifest version 1.1 is documented for review and
-  remains approval-gated.
+- **Status:** Complete. The track-annotation reader landed first; the approved
+  manifest 1.1 object-mask and shape-family extension was implemented and
+  validated on 2026-08-30 as C-006.
 - **Requirements:** P1-IO-004, P1-SIM-004.
 - **Change proposal:** Add explicit shape-family and object-mask information to the manifest, plus a reader method for track annotations. Keep `FramePacket` unchanged unless Person 4 approves otherwise.
 - **Review document:** `docs/P1-02_CONTRACT_CHANGE_PROPOSAL.md` defines the
@@ -69,24 +69,29 @@ The waves are ordered. Tasks within the same wave may be completed together, but
 - **Files after approval:** `src/kyra/manifest.py`, `src/kyra/io.py`, matching tests, and this specification.
 - **Proof:** Old valid fixtures still load, new required metadata validates, unknown fields still reject, and Person 4 records approval.
 - **Current evidence:** `ScenarioFrameSource.track_annotations(frame_id)` returns
-  defensive copies, preserves `FramePacket`, and reports unknown frame IDs. All
-  35 tests pass; Ruff and byte-compilation pass. The object-mask and shape-family
-  proof remains pending approval and implementation.
+  defensive copies, while manifest versions 1.0 and 1.1 load, 1.1 object events
+  validate `shape_family` and `object_mask_path`, and
+  `ScenarioFrameSource.object_mask(frame_id)` preserves `FramePacket`. The C-006
+  record reports 26 focused and 62 full tests passing on 2026-08-30.
 - **Estimate:** 0.5–1 day, excluding review wait.
 
-**Wave 1 exit:** Existing code has passing success and failure tests; shared schema
-decisions are recorded. The Python 3.12 proof is complete. This remains open only
-until the P1-02 contract decision and approved implementation are complete.
+**Wave 1 exit:** Complete. Existing code has passing success and failure tests;
+the shared manifest decision and approved C-006 implementation are recorded.
 
 ### Wave 2 — Build deterministic scenarios
 
 #### P1-03: Implement the lightweight generator
 
+- **Status:** In review under GitHub issue #14 and pull request #16 on 2026-09-04.
 - **Requirements:** P1-SIM-001, P1-SIM-002, P1-SIM-004, P1-SIM-005.
 - **Create:** `src/kyra/simulation.py`, `tests/test_simulation.py`.
 - **Do:** Generate low-resolution RGB, 16-bit metric depth, valid masks, object masks, occlusion masks, timestamps, calibration, and ground truth from a single seeded random generator. Sort all output and use forward-slash relative paths in manifests.
 - **Shape helpers:** Thin box/tray, cylinder, irregular shoe-like union, and handled or hanging object.
 - **Proof:** Two runs with the same seed have identical manifest bytes and identical asset SHA-256 maps; a different seed changes the intended randomized fields.
+- **Current evidence:** Eight focused offline tests generate and replay removal
+  and addition scenarios, cover all four approved shape families, compare
+  same-seed bytes and complete file SHA-256 maps, confirm different-seed object
+  assets, reject non-empty output folders, and keep manifest paths portable.
 - **Estimate:** 2–3 days.
 
 #### P1-04: Create and audit the golden pack
@@ -210,9 +215,10 @@ Person 1 is complete only when all of these are true:
 - All Person 1 tests pass offline.
 - An independent teammate signs the handoff report.
 
-## First implementation session
+## Current implementation checkpoint
 
-P1-01 created the test floor and exposed four input-boundary defects, which are now
-fixed. P1-02 is now split into a completed track-annotation reader change and an
-approval-gated manifest version 1.1 proposal. The pinned Python 3.12.7 environment
-is installed and all 35 current tests pass there.
+P1-01 created the test floor and corrected four input-boundary defects. P1-02
+completed the approved manifest 1.1 contract and replay accessors. P1-03 now has
+a reviewable core generator that uses only locked runtime dependencies and emits
+synthetic evidence; it does not yet constitute the ten-scenario frozen pack,
+target-T4 proof, or complete Gate 2 evidence.
