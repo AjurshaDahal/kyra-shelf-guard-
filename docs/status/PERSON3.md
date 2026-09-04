@@ -1,6 +1,6 @@
 # Person 3 Status — Tracking, Proximity, and Alert Logic
 
-- **Status:** In review
+- **Status:** In progress
 - **Last updated:** 2026-09-05
 
 ## Implemented
@@ -25,18 +25,17 @@
 - Windows/Python 3.12.7 clean-integration full suite: `105 passed`.
 - Ruff, byte-compilation, repository-consistency, and change-impact checks
   passed; the impact validator accepted all 17 changed files.
-- Pull request #12 Core CI passed on Python 3.11 and 3.12, and Pull Request
-  Governance passed for the contributor branch. Fresh hosted checks remain
-  required for the clean integration branch.
+- Clean integration pull request #19 passed Core CI on Python 3.11 and 3.12
+  plus Pull Request Governance before merge.
 
 ## Active
 
-- Clean integration pull request #19 review.
+- Live detector/tracker adapter and shared-runtime integration planning.
 
 ## Blocked or pending
 
-- Fresh hosted checks and integration review.
 - Live integration with the detector/tracker and upstream depth/volume stages.
+- Full Gate 4 matrix and serialized evidence.
 
 ## Risks / assumptions
 
@@ -54,10 +53,9 @@ and 4 on the shared runtime pipeline.
 
 - Person 3 implementation commit: `bd44222`.
 - Ruff fix commit: `5e384b8`.
-- Contributor pull request: `#12`; a clean integration pull request replaces
-  it for merge.
-- Clean integration pull request: `#19`.
-- Issue: `#13` tracks branch synchronization and the empty-pose regression fix.
+- Contributor pull request: `#12`, superseded by the clean integration.
+- Merged clean integration pull request: `#19`; squash commit `5876649`.
+- Issue: `#13` records branch synchronization and the empty-pose regression fix.
 - Clean integration is based on `origin/main` at `eacb4cc` and contains no
   shared-contract diff.
 - Windows/Python 3.12.7 focused suite: 22 passed; full suite: 105 passed.

@@ -1,9 +1,9 @@
 # WI-007 — Person 3 Proximity, Occlusion, and Alert Logic
 
 - **Owner:** P3
-- **Status:** In review
+- **Status:** Complete
 - **Started:** 2026-08-30
-- **Completed:** N/A
+- **Completed:** 2026-09-05
 - **Requirements:** Person 3 proximity, occlusion masking, replay tracking, and removal-alert association
 - **Integration gate:** Gate 4
 
@@ -64,8 +64,8 @@ The implementation:
 ## Documentation impact
 
 - `CHANGELOG.md` records the Person 3 behavior and empty-pose fix.
-- `docs/status/PERSON3.md` records the in-review implementation truth and
-  evidence boundary.
+- `docs/status/PERSON3.md` records the implemented subset and the remaining
+  workstream boundary.
 - WI-013 records the clean current-main integration and empty-pose repair that
   supersede pull request #12 for merge.
 
@@ -81,6 +81,7 @@ The implementation:
 | GitHub CI | Python 3.12 | Passed | Pull-request Core CI |
 | Windows, Python 3.12.7 | `python -m pytest tests/test_tracking_replay.py tests/test_tracking_mask.py tests/test_person_proximity.py tests/test_alert_engine.py tests/test_alert_edge_cases.py tests/test_alert_pipeline.py -q` | 22 passed | Clean integration branch |
 | Windows, Python 3.12.7 | `python -m pytest` | 105 passed | Clean integration branch |
+| GitHub CI, PR #19 | Python 3.11 and 3.12 Core CI; Pull Request Governance | Passed | Final reviewed pull-request head |
 
 ## Risks, limitations, and assumptions
 
@@ -97,16 +98,18 @@ volume-differencing, and integration stages.
 
 ## Handoff
 
-Person 3 implementation is ready for integration review.
-Integration with the live person detector/tracker and upstream depth/volume
-stages remains a team-level integration task.
+The deterministic Person 3 subset was merged through pull request #19 at
+`5876649`. Integration with the live person detector/tracker and upstream
+depth/volume stages remains a separate team-level integration task; Gate 4
+remains open.
 
 ## Final links
 
 - Issue: [#13](https://github.com/DontHash/kyra-shelf-guard/issues/13) tracks the
   synchronization and empty-pose follow-up.
 - Contributor pull request: [#12](https://github.com/DontHash/kyra-shelf-guard/pull/12),
-  superseded for merge by the clean integration branch.
-- Clean integration pull request: [#19](https://github.com/DontHash/kyra-shelf-guard/pull/19).
+  superseded for merge by pull request #19.
+- Merged clean integration pull request: [#19](https://github.com/DontHash/kyra-shelf-guard/pull/19),
+  squash commit `5876649`.
 - Commits: `bd44222`, `5e384b8`, `7471202`; synchronization and verified
   follow-up commits remain available from the contributor branch.

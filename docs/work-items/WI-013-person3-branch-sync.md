@@ -1,9 +1,9 @@
 # WI-013 — Person 3 Branch Synchronization and Empty-Pose Replay
 
 - **Owner:** P3
-- **Status:** In review
+- **Status:** Complete
 - **Started:** 2026-09-01
-- **Completed:** N/A
+- **Completed:** 2026-09-05
 - **Requirements:** PR #12 governance repair and replay robustness
 - **Integration gate:** Gate 4
 
@@ -51,7 +51,8 @@ compatibility policy. No contract-change record is required.
 ## Documentation impact
 
 - `CHANGELOG.md` records the replay robustness fix.
-- `docs/status/PERSON3.md` records current in-review status and evidence.
+- `docs/status/PERSON3.md` records the merged subset, remaining work, and
+  evidence boundary.
 - WI-007 retains the feature handoff; this record covers the synchronization
   and regression repair requested in issue #13.
 
@@ -65,6 +66,7 @@ compatibility policy. No contract-change record is required.
 | Windows, Python 3.12.7 | `python -m compileall -q src tests scripts` | Passed | Byte-compilation |
 | Windows, Python 3.12.7 | `python scripts/check_repo_consistency.py` | Passed | Repository consistency |
 | Windows, Python 3.12.7 | `python scripts/check_change_impact.py --base origin/main` | Passed for 17 changed files | Ownership/documentation impact |
+| GitHub CI, PR #19 | Python 3.11 and 3.12 Core CI; Pull Request Governance | Passed | Final reviewed pull-request head |
 
 ## Risks, limitations, and failures
 
@@ -73,18 +75,19 @@ compatibility policy. No contract-change record is required.
   contract edits.
 - Removing the shared fixture pose values exposed the empty-pose replay failure;
   the focused regression test now covers that valid input.
-- Hosted CI is required on every pushed pull-request head before merge.
+- Fresh hosted CI passed on the final pull-request head before merge.
 
 ## Handoff
 
-Review clean integration pull request #19, require fresh Core CI and governance
-checks, and keep Gate 4 open until its full exit evidence exists. Pull request
-#12 remains the contributor provenance but is superseded for merge.
+Pull request #19 merged the clean integration as `5876649`; pull request #12
+remains contributor provenance and is superseded for merge. Keep Gate 4 open
+until its full exit evidence exists.
 
 ## Final links
 
 - Issue: [#13](https://github.com/DontHash/kyra-shelf-guard/issues/13)
 - Contributor pull request: [#12](https://github.com/DontHash/kyra-shelf-guard/pull/12)
-- Clean integration pull request: [#19](https://github.com/DontHash/kyra-shelf-guard/pull/19)
+- Merged clean integration pull request: [#19](https://github.com/DontHash/kyra-shelf-guard/pull/19),
+  squash commit `5876649`
 - Contributor commits: implementation `bd44222`, Ruff fix `5e384b8`,
   documentation `7471202`, and verified follow-ups through `6bdbd01`.
