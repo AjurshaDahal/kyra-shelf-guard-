@@ -28,6 +28,17 @@ Gate 1 contract compatibility is complete for the shared compatibility layer. Pe
 
 WI-010 is in review for the audience-specific documentation split and repository navigation cleanup.
 
+## Issue #18 — change-impact ownership alignment
+
+Implemented on 2026-09-06: the change-impact classifier now classifies the
+named Person 1 generation, conversion, and verification scripts
+(`generate_golden_pack.py`, `convert_ocid.py`, `verify_person1.py`) and the
+Person 1 test names (`golden`, `midas`, `provenance`) as Person 1, excluding
+them from the governance requirement. All other `scripts/` and `.github/`
+changes remain Person 4 governance. Focused governance tests were added in
+`tests/test_repo_governance.py`, and `CONTRIBUTING.md` documents the rule.
+This unblocks the pushes of PRs #27 (golden pack) and #28 (verify script).
+
 ## Gate 1 closure
 
 The repository evidence satisfies the Gate 1 exit criteria for the shared contract-compatibility layer. This covers the frozen contract definitions, the compatibility tests, and the deterministic Person 4 mock coverage. It does not claim that Person 1, Person 2, or Person 3 have completed real algorithm implementations.

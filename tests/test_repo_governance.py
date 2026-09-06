@@ -42,3 +42,40 @@ def test_shared_contract_change_requires_approval_record_and_registry() -> None:
     assert "shared-contract changes require docs/CONTRACTS.md" in errors
     assert "shared-contract changes require docs/DECISIONS.md" in errors
     assert any("contract-changes" in error for error in errors)
+
+
+def test_person1_named_scripts_do_not_require_person4_governance() -> None:
+    for script in ("generate_golden_pack.py", "convert_ocid.py", "verify_person1.py"):
+        changed = {
+            f"scripts/{script}",
+            "docs/status/PERSON1.md",
+            "docs/work-items/WI-18-p1-script.md",
+            "CHANGELOG.md",
+        }
+
+        assert assess_changes(changed) == []
+
+
+def test_other_scripts_still_require_person4_and_governance_docs() -> None:
+    changed = {"scripts/ci_governance_tool.py", "CHANGELOG.md"}
+
+    errors = assess_changes(changed)
+
+    assert "PERSON4 changes require docs/status/PERSON4.md" in errors
+    assert "governance changes require AGENTS.md or CONTRIBUTING.md" in errors
+
+
+def test_person1_named_test_files_classify_as_person1() -> None:
+    for test_path in (
+        "tests/test_golden_pack.py",
+        "tests/test_midas_alignment.py",
+        "tests/test_provenance.py",
+    ):
+        changed = {
+            test_path,
+            "docs/status/PERSON1.md",
+            "docs/work-items/WI-18-p1-test.md",
+            "CHANGELOG.md",
+        }
+
+        assert assess_changes(changed) == []

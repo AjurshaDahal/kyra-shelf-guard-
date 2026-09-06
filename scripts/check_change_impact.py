@@ -12,6 +12,15 @@ def _is_under(path: str, prefixes: tuple[str, ...]) -> bool:
     return any(path == prefix or path.startswith(f"{prefix}/") for prefix in prefixes)
 
 
+PERSON1_SCRIPTS = frozenset(
+    {
+        "generate_golden_pack.py",
+        "convert_ocid.py",
+        "verify_person1.py",
+    }
+)
+
+
 def _owner_for(path: str) -> str | None:
     p1_exact = {"src/kyra/io.py", "src/kyra/baseline.py"}
     p4_exact = {"src/kyra/contracts.py", "src/kyra/manifest.py", "src/kyra/cli.py"}
@@ -27,14 +36,28 @@ def _owner_for(path: str) -> str | None:
         return "PERSON4"
     if path.startswith("tests/"):
         name = Path(path).name.lower()
-        if any(token in name for token in ("baseline", "io", "simulation", "dataset", "ocid")):
+        if any(
+            token in name
+            for token in (
+                "baseline",
+                "io",
+                "simulation",
+                "dataset",
+                "ocid",
+                "golden",
+                "midas",
+                "provenance",
+            )
+        ):
             return "PERSON1"
         if any(token in name for token in ("geometry", "differencing", "occlusion", "volume")):
             return "PERSON2"
         if any(token in name for token in ("tracking", "proximity", "rules", "alert")):
             return "PERSON3"
         return "PERSON4"
-    if path.startswith(("scripts/", ".github/")):
+    if path.startswith("scripts/"):
+        return "PERSON1" if Path(path).name in PERSON1_SCRIPTS else "PERSON4"
+    if path.startswith(".github/"):
         return "PERSON4"
     return None
 
@@ -48,7 +71,12 @@ def assess_changes(changed: set[str]) -> list[str]:
         for path in changed
         if path.startswith(("src/", "tests/", "scripts/")) and path.endswith(".py")
     }
-    governance = {path for path in changed if path.startswith((".github/", "scripts/"))}
+    governance = {
+        path
+        for path in changed
+        if path.startswith(".github/")
+        or (path.startswith("scripts/") and Path(path).name not in PERSON1_SCRIPTS)
+    }
     owners = {owner for path in implementation | governance if (owner := _owner_for(path))}
 
     if implementation or governance:

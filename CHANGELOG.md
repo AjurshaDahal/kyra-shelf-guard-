@@ -104,6 +104,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
   `@DontHash` is the temporary repository steward and CODEOWNER.
 - Server-enforced branch protection for the private repository requires a GitHub
   plan upgrade; CI and review policy are present but not platform-enforced.
+- The change-impact classifier now recognizes the named Person 1
+  generation/conversion/verification scripts and the Person 1 test names
+  (`golden`, `midas`, `provenance`) instead of classifying them as Person 4
+  governance, with focused classifier tests and an updated governing rule in
+  `CONTRIBUTING.md`.
 - The deterministic scenario generator is implemented and merged; the golden
   scenario pack remains a candidate awaiting team confirmation of D-009 and
   the change-impact alignment in issue #18. `scripts/convert_ocid.py` is

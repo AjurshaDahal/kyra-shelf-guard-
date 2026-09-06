@@ -40,6 +40,17 @@ Every implementation pull request must include:
 
 CI checks code, links, repository consistency, and whether changed files have the required documentation companions. Passing CI does not replace owner review or gate-specific evidence.
 
+### Change-impact ownership
+
+The `check_change_impact.py` classifier maps changed paths to owner status
+requirements. The named Person 1 generation, conversion, and verification
+scripts (`generate_golden_pack.py`, `convert_ocid.py`, `verify_person1.py`)
+and the corresponding test names (`golden`, `midas`, `provenance`) classify as
+Person 1 and do not count as governance changes. Every other `scripts/` and
+`.github/` change remains Person 4 governance and requires the governance
+companions. To add a future Person 1 script, extend `PERSON1_SCRIPTS` in
+`scripts/check_change_impact.py` through a Person 4-reviewed change.
+
 ## Shared-contract changes
 
 Do not edit `src/kyra/contracts.py`, the public manifest schema, units, coordinate frames, event meanings, or compatibility policy as an implementation shortcut.
