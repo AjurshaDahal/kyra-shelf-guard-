@@ -1,9 +1,9 @@
 # WI-021 — Harden baseline calibration, known-volume acceptance, and MiDaS policy
 
 - **Owner:** P1
-- **Status:** In review (local implementation complete; pending push/review)
+- **Status:** Complete (merged via PR #22 as `ca8715c`)
 - **Started:** 2026-09-06
-- **Completed:** N/A
+- **Completed:** 2026-09-06
 - **Requirements:** P1-06, P1-07, P1-08; P1-CAL-001..005, P1-MIDAS-001..002
 - **Integration gate:** Gate 2
 
@@ -122,4 +122,4 @@ deviation for later reconciliation when the classifier fix lands.
 
 - Issue: https://github.com/DontHash/kyra-shelf-guard/issues/21
 - Pull request: https://github.com/DontHash/kyra-shelf-guard/pull/22
-- Commit: `67ef2d7` (branch `p1/21-calibration-baseline-acceptance`)
+- Commit: `ca8715c` (squash merge of `67ef2d7` + `1282a79` on `main`)

@@ -1,6 +1,6 @@
 # Person 1 Implementation Plan
 
-**Status:** In progress; P1-01/P1-02/P1-03 are merged, P1-04 is a locally implemented candidate blocked by issue #18, P1-06/P1-07/P1-08 are locally implemented under issue #21, and P1-09/P1-10 are locally implemented under issue #23
+**Status:** In progress; P1-01/P1-02/P1-03 are merged, P1-04 is a locally implemented candidate blocked by issue #18, P1-06..P1-08 are merged via PR #22 (`ca8715c`), and P1-09/P1-10 are merged via PR #24 (`c7de178`); P1-11 is locally implemented under issue #25 (push blocked by issue #18)
 **Owner:** Person 1  
 **Estimated effort:** 9–14 focused working days, plus access time for the target T4 check  
 **Requirements:** [PERSON1_SPEC.md](PERSON1_SPEC.md)
@@ -118,6 +118,9 @@ the shared manifest decision and approved C-006 implementation are recorded.
 
 #### P1-06: Harden calibration and persistence
 
+- **Status:** Complete; implemented under GitHub issue #21 on 2026-09-06 and
+  merged via PR #22 as `ca8715c`. No real gap in `src/kyra/baseline.py` was
+  observed; the module landed unchanged.
 - **Requirements:** P1-CAL-001, P1-CAL-002, P1-CAL-003, P1-CAL-004.
 - **Modify:** `src/kyra/baseline.py`; add focused fixtures in `tests/test_baseline.py`.
 - **Do:** Test and correct only observed gaps in 30-frame fusion, noise handling, fixed/portable separation, occupancy bounds, checksum, schema rejection, and save/load equality. Avoid a module move unless G0.1 requires it.
@@ -126,6 +129,8 @@ the shared manifest decision and approved C-006 implementation are recorded.
 
 #### P1-07: Add known-volume acceptance tests
 
+- **Status:** Complete; implemented under GitHub issue #21 on 2026-09-06 and
+  merged via PR #22 as `ca8715c`.
 - **Requirements:** P1-CAL-005.
 - **Create:** `tests/acceptance/test_baseline_volume.py`.
 - **Do:** Use synthetic objects with known volumes at or above 0.5 L, varied position and supported shape families. Compare baseline component volume with ground truth.
@@ -134,19 +139,27 @@ the shared manifest decision and approved C-006 implementation are recorded.
 
 #### P1-08: Isolate and test MiDaS alignment policy
 
+- **Status:** Complete; implemented under GitHub issue #21 on 2026-09-06 and
+  merged via PR #22 as `ca8715c`. Plan deviation recorded: the policy tests
+  live in `tests/test_baseline.py` because the issue #18 classifier would
+  misclassify the plan-named `tests/test_midas_alignment.py` as Person 4.
 - **Requirements:** P1-MIDAS-001, P1-MIDAS-002.
 - **Modify only if tests reveal a gap:** `src/kyra/baseline.py`; create `tests/test_midas_alignment.py`.
 - **Do:** Cover two or more distinct anchors, empty masks, non-positive metric depth, repeated predictions, large residual, align-before-fit, approximate flag, and metric-evaluation exclusion.
 - **Proof:** Bad calibration always rejects; accepted output has finite positive depth only where valid and is labelled approximate.
 - **Estimate:** 0.5 day.
 
-**Wave 3 exit:** The saved baseline is repeatable and the assignment’s volume and classification limits pass.
+**Wave 3 exit:** Complete — the saved baseline is repeatable, and the
+assignment’s volume and classification limits pass with the 2026-09-06
+evidence under issue #21; handled/hanging overhang cases remain a documented
+Person 2 scope limitation.
 
 ### Wave 4 — Convert approved public data
 
 #### P1-09: Define and validate provenance
 
-- **Status:** Complete; implemented under GitHub issue #23 on 2026-09-06.
+- **Status:** Complete; implemented under GitHub issue #23 on 2026-09-06 and
+  merged via PR #24 as `c7de178`.
 - **Requirements:** P1-DATA-001, P1-DATA-003.
 - **Create:** `data-sources/provenance.json`, `data-sources/README.md`, `tests/test_provenance.py`.
 - **Do:** Record source name, official URL, retrieval date, original and computed checksum, licence/terms URL, local external path hint, selected records, exclusions, conversion command, and output schema version. Paths must not expose a developer’s private home folder.

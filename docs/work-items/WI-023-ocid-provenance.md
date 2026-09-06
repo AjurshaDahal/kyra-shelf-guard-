@@ -1,9 +1,9 @@
 # WI-023 — Provenance record and OCID conversion path
 
 - **Owner:** P1
-- **Status:** In review (local implementation complete; pending push/review)
+- **Status:** Complete (merged via PR #24 as `c7de178`)
 - **Started:** 2026-09-06
-- **Completed:** N/A
+- **Completed:** 2026-09-06
 - **Requirements:** P1-09, P1-10; P1-DATA-001, P1-DATA-002, P1-DATA-003
 - **Integration gate:** Gate 2
 
@@ -125,4 +125,4 @@ frame and the initial-state frame is misread as an addition.
 
 - Issue: https://github.com/DontHash/kyra-shelf-guard/issues/23
 - Pull request: https://github.com/DontHash/kyra-shelf-guard/pull/24
-- Commit: `0e4b619` (branch `p1/23-ocid-provenance`)
+- Commit: `c7de178` (squash merge of `0e4b619` + `5273c4d` + `e802a76` on `main`)

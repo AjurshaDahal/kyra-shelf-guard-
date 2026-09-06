@@ -46,11 +46,10 @@
   `p1/17-golden-scenario-pack`, now integrated with the P1-03 merge on current
   `origin/main`. The candidate uses the D-009 provisional irregular-item
   removal as G03 and remains unfrozen.
-- P1-06/P1-07/P1-08 are implemented under issue #21 on branch
-  `p1/21-calibration-baseline-acceptance`; pull request #22 merged as `ca8715c`.
-- P1-09/P1-10 are implemented under issue #23 on branch
-  `p1/23-ocid-provenance`; pull request #24 is open for review.
-  `scripts/convert_ocid.py` is
+- P1-06/P1-07/P1-08 are implemented under issue #21; pull request #22 merged
+  as `ca8715c`.
+- P1-09/P1-10 are implemented under issue #23; pull request #24 merged as
+  `c7de178`. `scripts/convert_ocid.py` is
   implemented locally but stays out of the push while issue #18 keeps every
   `scripts/*.py` change classified as Person 4/governance; the plan-named
   `tests/test_provenance.py` is delivered as `tests/test_dataset_provenance.py`
@@ -74,8 +73,8 @@
 
 - Let Person 4 resolve issue #18, then merge that governance fix into the
   clean `p1/17` issue branch and push the golden-pack candidate for review.
-- Review and merge the WI-023 pull request, push `p1/17` and `p1/25` once
-  issue #18 lands, then proceed to P1-12/P1-13 validation and handoff.
+- Push `p1/17` and `p1/25` once issue #18 lands, then proceed to P1-12/P1-13
+  validation and handoff.
 
 ## Evidence
 
