@@ -1,9 +1,9 @@
 # WI-031 — Push OCID conversion CLI entry point
 
 - **Owner:** P1
-- **Status:** In review
+- **Status:** Complete (merged via PR #32 as `e37e729`)
 - **Started:** 2026-09-06
-- **Completed:** N/A
+- **Completed:** 2026-09-06
 - **Requirements:** P1-10; P1-DATA-002
 - **Integration gate:** Gate 2 (partial input only; gate remains open)
 
@@ -67,5 +67,5 @@ the manifest SHA-256.
 ## Final links
 
 - Issue: https://github.com/DontHash/kyra-shelf-guard/issues/31
-- Pull request: pending
-- Commit: pending
+- Pull request: https://github.com/DontHash/kyra-shelf-guard/pull/32
+- Commit: `e37e729` (squash merge on `main`)

@@ -124,6 +124,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
   (`golden`, `midas`, `provenance`) instead of classifying them as Person 4
   governance, with focused classifier tests and an updated governing rule in
   `CONTRIBUTING.md`.
+- Shared project summaries now use dated test totals with evidence pointers
+  instead of everlasting "current" totals, so a stale number cannot be
+  restated as current truth (issue #15).
 - The deterministic scenario generator is implemented and merged; the golden
   scenario pack remains a candidate awaiting team confirmation of D-009 and
   the change-impact alignment in issue #18 (now resolved by PR #29).

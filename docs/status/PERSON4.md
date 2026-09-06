@@ -28,6 +28,15 @@ Gate 1 contract compatibility is complete for the shared compatibility layer. Pe
 
 WI-010 is in review for the audience-specific documentation split and repository navigation cleanup.
 
+## Issue #15 — stale shared test-count summaries
+
+Resolved on 2026-09-06: shared summaries no longer present everlasting
+"current" test totals. The decision is dated totals plus evidence pointers:
+`README.md`, `docs/people/README.md`, and `docs/PROJECT_STATUS.md` now carry
+"161 tests … 2026-09-06" wording, `docs/TESTING.md` documents the dated-total
+rule, and the G2 gate row reflects the merged Person 1 work. A stale count
+must not be restated as a current total.
+
 ## Issue #18 — change-impact ownership alignment
 
 Implemented and merged on 2026-09-06 as `0b034c0` (PR #29): the

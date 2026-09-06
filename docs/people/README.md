@@ -29,9 +29,9 @@ This summary was checked against the detailed project record on 2026-08-30:
 - **Not proven yet:** a complete run from camera input to alert, real-world
   performance, and testing on the target T4 computer.
 
-The current shared version passes 52 automated checks on Windows with Python
-3.12.7. This is evidence for the existing building blocks only, not proof that
-the complete system works.
+The current shared version passes 161 automated tests on Windows with Python
+3.12.7 (dated total, 2026-09-06). This is evidence for the existing building
+blocks only, not proof that the complete system works.
 
 For exact evidence and blockers, use the technical [Project Status](../PROJECT_STATUS.md).
 

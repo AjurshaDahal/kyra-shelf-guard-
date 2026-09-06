@@ -121,9 +121,11 @@ Local commands completed successfully on Python 3.12.7 on 2026-08-24:
 .\.venv\Scripts\python.exe -m compileall -q src tests
 ```
 
-Result: 39 tests passed; lint and byte-compilation passed. This closes the local
-Python 3.12 foundation proof, but it does not replace later golden-pack, target
-T4, or independent handoff evidence.
+Result (2026-09-06): 161 tests passed; lint and byte-compilation passed. This
+closes the local Python 3.12 foundation proof, but it does not replace later
+golden-pack, target T4, or independent handoff evidence. Test totals are
+dated in every summary; a dated total must never be restated as a current
+total.
 
 For dependency-security changes, reinstall `requirements.lock`, reinstall the
 editable package, run the complete local checks, and require both Python CI jobs.

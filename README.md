@@ -7,9 +7,10 @@ what someone intended to do.
 
 ## Where the project stands
 
-Kyra is still in the foundation stage. Some building blocks work and 52 automated
-checks pass on the current shared version, but the parts have not yet been joined
-into a complete system. There is no finished app or usable command-line tool yet,
+Kyra is still in the foundation stage. Some building blocks work and the
+automated checks pass on the current shared version (161 tests on Windows with
+Python 3.12 on 2026-09-06), but the parts have not yet been joined into a
+complete system. There is no finished app or usable command-line tool yet,
 and the full project has not been tested on the target T4 computer.
 
 For a simple progress summary, read [Project Guide for Team Members](docs/people/README.md).
