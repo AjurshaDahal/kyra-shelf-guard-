@@ -34,6 +34,7 @@ Treat a dependency pin as a synchronized change: update `pyproject.toml` and eve
 ### Dependency refresh log
 
 - 2026-09-06: numpy refreshed to 2.4.6 (Dependabot PR #3); full suite 161 passed on Python 3.11/3.12 CI and locally.
+- 2026-09-06: pydantic refreshed to 2.13.4 (Dependabot PR #4); full suite 161 passed on Python 3.11/3.12 CI and locally.
 
 ## Repository layout
 

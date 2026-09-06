@@ -140,6 +140,8 @@ being treated as an installed GPU or target-T4 acceptance result.
 
 - 2026-09-06: numpy refreshed to 2.4.6 (Dependabot PR #3); 161 local tests
   passed on Python 3.12.7 and CI passed on Python 3.11/3.12 with the new pin.
+- 2026-09-06: pydantic refreshed to 2.13.4 (Dependabot PR #4); 161 local
+  tests passed on Python 3.12.7 and CI passed on Python 3.11/3.12 with the new pin.
 
 ## Repository governance checks
 

@@ -13,7 +13,7 @@ authors = [{ name = "Kyra project team" }]
 dependencies = [
   "numpy==2.4.6",
   "opencv-python-headless==4.13.0.92",
-  "pydantic==2.12.3",
+  "pydantic==2.13.4",
 ]
 
 [project.optional-dependencies]
