@@ -25,6 +25,13 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
   `data-sources/README.md`) covering licence, checksum, selection, exclusion,
   conversion, attribution, and environment-neutral path rules with honest
   pending-download status.
+- Person 1 single verification entry point (`scripts/verify_person1.py`):
+  schema, golden-checksum (with line-ending-canonical hashing so Windows CRLF
+  and T4 LF trees verify identically), reader replay, baseline build, MiDaS
+  policy, and provenance checks, collecting all failures with clear messages
+  and exiting 0 only when every Person 1 acceptance check passes offline. It
+  fails loudly with an explicit message when the golden pack or provenance
+  record is absent rather than passing vacuously.
 - Separate docs/people/ plain-English guides and a docs/agents/ technical
   routing page so teammates and coding agents have distinct starting paths.
 - Add a documentation hub that maps audience routes, technical authority, and
@@ -115,7 +122,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
   `CONTRIBUTING.md`.
 - The deterministic scenario generator is implemented and merged; the golden
   scenario pack remains a candidate awaiting team confirmation of D-009 and
-  the change-impact alignment in issue #18. `scripts/convert_ocid.py` is
-  implemented locally but joins the push with that classifier fix; the OCID
-  archive itself has not been downloaded. The verification script and CLI
-  remain unimplemented.
+  the change-impact alignment in issue #18. `scripts/convert_ocid.py` and
+  `scripts/verify_person1.py` are implemented locally but join the push with
+  that classifier fix; the OCID archive itself has not been downloaded. The
+  CLI remains unimplemented. The candidate pack's audit test now uses a
+  line-ending-canonical inventory comparison (applied on the `p1/17` branch)
+  so a Windows checkout under `core.autocrlf=true` verifies identically.

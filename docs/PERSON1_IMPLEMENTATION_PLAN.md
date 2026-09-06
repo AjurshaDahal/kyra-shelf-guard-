@@ -18,7 +18,7 @@ Present before P1-01:
 - RGB-D replay in `src/kyra/io.py`.
 - Baseline building, persistence, and MiDaS alignment in `src/kyra/baseline.py`.
 
-Still not present after P1-03/P1-04 candidate and P1-06..P1-10:
+Still not present after P1-03/P1-04 candidate and P1-06..P1-11:
 
 - Team-confirmed frozen golden pack; the ten-scenario candidate is implemented
   locally on `p1/17-golden-scenario-pack` but unmerged and unfrozen.
@@ -215,6 +215,16 @@ issue #18; the real-data smoke test remains pending retrieval.
 
 #### P1-11: Add a single verification entry point
 
+- **Status:** Implemented under GitHub issue #25 on 2026-09-06; blocked from
+  pushing by the issue #18 classifier (every `scripts/*.py` change classifies
+  as Person 4/governance).
+- **Current evidence:** Seven named checks collect all failures and exit 1 on
+  any; absent pack/provenance produces explicit skipped failures instead of a
+  vacuous pass. Text assets are hashed with canonical LF so Windows CRLF and
+  T4 LF trees verify identically (P1-QA-001 portability), verified green on
+  the LF regeneration of the candidate pack, on a CRLF-mangled copy, and later
+  against the in-repo pack on the merged `p1/17` tree, with a tamper negative
+  control; the script exits 0 only when all checks pass.
 - **Requirements:** P1-QA-002.
 - **Create:** `scripts/verify_person1.py`.
 - **Do:** Run schema, golden checksum, reader, baseline, MiDaS-policy, and provenance checks with clear failure messages. It may call Python functions, but must not download anything.
@@ -286,5 +296,9 @@ hanging-plate bias explicitly recorded as Person 2 scope), and the complete
 MiDaS policy matrix. P1-09/P1-10 closed Wave 4's reproducible-pipeline scope:
 a validated provenance record and the OCID conversion mapping with a tiny
 replayed fixture; the real-data smoke test and the `scripts/convert_ocid.py`
-push remain pending issue #18. The next unblocked Person 1 work is P1-11
-verification script, then P1-12/P1-13 environment validation and handoff.
+push remain pending issue #18. P1-11 delivers the single verification entry
+point locally; it is verified green on LF and CRLF pack trees and on the
+merged in-repo pack, and blocked from pushing by issue #18. Remaining Person 1
+work: P1-12 environment validation (Windows + target T4), P1-13 independent
+teammate handoff, plus D-009/G0.2, the real OCID smoke test, and the
+classifier fix to unblock all local-only script pushes.

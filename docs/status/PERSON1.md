@@ -55,18 +55,15 @@
 
 ## Active
 
-- P1-04 is locally implemented under issue #17 on branch
-  `p1/17-golden-scenario-pack`, now integrated with the P1-03 merge on current
-  `origin/main`. The candidate uses the D-009 provisional irregular-item
-  removal as G03 and remains unfrozen.
+- P1-04 candidate golden pack merged via pull request #27 as `327a905`. The
+  candidate uses the D-009 provisional irregular-item removal as G03 and
+  remains unfrozen until the team confirms scenario ten.
 - P1-06/P1-07/P1-08 are implemented under issue #21; pull request #22 merged
   as `ca8715c`.
 - P1-09/P1-10 are implemented under issue #23; pull request #24 merged as
-  `c7de178`. `scripts/convert_ocid.py` is
-  implemented locally but stays out of the push while issue #18 keeps every
-  `scripts/*.py` change classified as Person 4/governance; the plan-named
-  `tests/test_provenance.py` is delivered as `tests/test_dataset_provenance.py`
-  for the same reason (both deviations recorded in WI-023 and the plan).
+  `c7de178`. `scripts/convert_ocid.py` was implemented locally and excluded
+  from that push; the issue #18 classifier fix (`0b034c0`) now allows it, so
+  it awaits its own reviewed push.
 - Handled/hanging overhang objects remain a documented known-bias case: the
   baseline estimator integrates the void column under a hanging object, so
   those cases exceed the 10% acceptance bound by design and belong to Person
@@ -78,16 +75,12 @@
   check, and independent handoff remain unimplemented.
 - The golden pack cannot be called frozen until the team confirms the
   provisional second-removal interpretation for scenario ten (D-009).
-- Issue #18 blocks pushing P1-04's golden-pack script/tests and
-  `scripts/convert_ocid.py`: the change-impact classifier assigns those paths
-  to Person 4. Person 4 must approve and land the narrow classifier fix.
 
 ## Next
 
-- Let Person 4 resolve issue #18, then merge that governance fix into the
-  clean `p1/17` issue branch and push the golden-pack candidate for review.
-- Push `p1/17` and `p1/25` once issue #18 lands, then proceed to P1-12/P1-13
-  validation and handoff.
+- Merge pull request #28 (verify script) once its rebuild is green, then
+  proceed to the P1-12 target-T4 leg, P1-13 independent handoff, the D-009
+  freeze decision, and a reviewed push of `scripts/convert_ocid.py`.
 
 ## Evidence
 
