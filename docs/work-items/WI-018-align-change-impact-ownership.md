@@ -63,5 +63,5 @@ the rule.
 ## Final links
 
 - Issue: https://github.com/DontHash/kyra-shelf-guard/issues/18
-- Pull request: pending
-- Commit: pending
+- Pull request: https://github.com/DontHash/kyra-shelf-guard/pull/29
+- Commit: `0b034c0` (squash merge on `main`)

@@ -1,9 +1,9 @@
 # WI-017 — Candidate golden scenario pack
 
 - **Owner:** P1
-- **Status:** Blocked
+- **Status:** Complete (candidate merged via PR #27 as `327a905`; pack remains unfrozen pending D-009)
 - **Started:** 2026-09-04
-- **Completed:** N/A
+- **Completed:** 2026-09-06
 - **Requirements:** P1-04; P1-SIM-003, P1-SIM-005, P1-QA-001
 - **Integration gate:** Gate 2
 
@@ -103,5 +103,5 @@ confirmation before Person 1 changes the pack from candidate to frozen.
 ## Final links
 
 - Issue: https://github.com/DontHash/kyra-shelf-guard/issues/17
-- Pull request: Pending
-- Commit: Pending
+- Pull request: https://github.com/DontHash/kyra-shelf-guard/pull/27
+- Commit: `327a905` (squash merge on `main`)

@@ -1,9 +1,9 @@
 # WI-025 — Single Person 1 verification entry point
 
 - **Owner:** P1
-- **Status:** Blocked (implemented and verified locally; push deferred to issue #18, plus golden-pack merge dependency)
+- **Status:** Complete (merged via PR #28 as `7f2fd84`)
 - **Started:** 2026-09-06
-- **Completed:** N/A
+- **Completed:** 2026-09-06
 - **Requirements:** P1-11; P1-QA-002
 - **Integration gate:** Gate 2
 
@@ -122,5 +122,5 @@ Two pack-layout facts were discovered and handled:
 ## Final links
 
 - Issue: https://github.com/DontHash/kyra-shelf-guard/issues/25
-- Pull request: pending (push deferred to issue #18)
-- Commit: pending push
+- Pull request: https://github.com/DontHash/kyra-shelf-guard/pull/28
+- Commit: `7f2fd84` (squash merge on `main`)

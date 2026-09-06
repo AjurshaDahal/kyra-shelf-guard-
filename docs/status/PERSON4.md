@@ -30,14 +30,16 @@ WI-010 is in review for the audience-specific documentation split and repository
 
 ## Issue #18 — change-impact ownership alignment
 
-Implemented on 2026-09-06: the change-impact classifier now classifies the
-named Person 1 generation, conversion, and verification scripts
-(`generate_golden_pack.py`, `convert_ocid.py`, `verify_person1.py`) and the
-Person 1 test names (`golden`, `midas`, `provenance`) as Person 1, excluding
-them from the governance requirement. All other `scripts/` and `.github/`
-changes remain Person 4 governance. Focused governance tests were added in
+Implemented and merged on 2026-09-06 as `0b034c0` (PR #29): the
+change-impact classifier now classifies the named Person 1 generation,
+conversion, and verification scripts (`generate_golden_pack.py`,
+`convert_ocid.py`, `verify_person1.py`) and the Person 1 test names (`golden`,
+`midas`, `provenance`) as Person 1, excluding them from the governance
+requirement. All other `scripts/` and `.github/` changes remain Person 4
+governance. Focused governance tests were added in
 `tests/test_repo_governance.py`, and `CONTRIBUTING.md` documents the rule.
-This unblocks the pushes of PRs #27 (golden pack) and #28 (verify script).
+This unblocked and merged PRs #27 (golden pack, `327a905`) and #28 (verify
+script, `7f2fd84`).
 
 ## Gate 1 closure
 

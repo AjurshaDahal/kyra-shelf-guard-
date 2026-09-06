@@ -58,6 +58,7 @@
 - P1-04 candidate golden pack merged via pull request #27 as `327a905`. The
   candidate uses the D-009 provisional irregular-item removal as G03 and
   remains unfrozen until the team confirms scenario ten.
+- P1-11 verification entry point merged via pull request #28 as `7f2fd84`.
 - P1-06/P1-07/P1-08 are implemented under issue #21; pull request #22 merged
   as `ca8715c`.
 - P1-09/P1-10 are implemented under issue #23; pull request #24 merged as
@@ -78,8 +79,7 @@
 
 ## Next
 
-- Merge pull request #28 (verify script) once its rebuild is green, then
-  proceed to the P1-12 target-T4 leg, P1-13 independent handoff, the D-009
+- Proceed to the P1-12 target-T4 leg, P1-13 independent handoff, the D-009
   freeze decision, and a reviewed push of `scripts/convert_ocid.py`.
 
 ## Evidence
