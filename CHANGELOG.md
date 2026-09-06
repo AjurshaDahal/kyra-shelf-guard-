@@ -143,6 +143,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
   `pack_status: frozen` and `decision_status: D-009-confirmed-2026-09-06` after
   the scenario-ten confirmation (D-009), with the regeneration inventory and
   audit updated accordingly.
+- OCID licence research recorded for P-003 (CC-BY 4.0 on the official TU Wien
+  Research Data record; published archive md5 `aa0eff01…`), the provenance
+  record completed with the researched fields, and the G0.4 target-T4
+  assignment proposal recorded with its exact command set and report path
+  (issue #44). Research only — download still requires team confirmation.
 - The deterministic scenario generator is implemented and merged; the golden
   scenario pack remains a candidate awaiting team confirmation of D-009 and
   the change-impact alignment in issue #18 (now resolved by PR #29).

@@ -33,7 +33,7 @@ Still not present after P1-03..P1-11 and the frozen golden pack:
 | G0.1 | Confirm the current one-package `src/kyra` layout | Person 4 | Complete: approved on 2026-08-26; retain the single `kyra` package and stable `kyra.*` imports. |
 | G0.2 | Confirm scenario ten is the second removal shape | Team | Complete: D-009 confirmed on 2026-09-06; the golden pack is frozen. |
 | G0.3 | Approve any manifest fields needed for object masks and shape family | Persons 1 and 4 | Do not hide required metadata in free-text notes. |
-| G0.4 | Assign the target T4 runner and report location | Person 4 | Local success cannot be called T4 success. |
+| G0.4 | Assign the target T4 runner and report location | Person 4 | Proposal recorded 2026-09-06: runner = the team member with T4 access; commands = `docs/PERSON1_HANDOFF.md` steps 1-2; report = `docs/PERSON1_TEST_REPORT_T4_<date>.md`. Local success is not T4 success. |
 | G0.5 | Review licences for selected public data, assets, and models | Person 1 plus team | Do not download or redistribute an unapproved source. |
 
 ## Work order

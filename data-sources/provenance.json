@@ -5,15 +5,17 @@
       "source_id": "ocid-tuwien",
       "name": "OCID — Object Clutter Indoor Dataset (TU Wien ACIN)",
       "official_url": "https://www.acin.tuwien.ac.at/en/vision-for-robotics/software-tools/object-clutter-indoor-dataset/",
-      "terms_url": "https://www.acin.tuwien.ac.at/en/vision-for-robotics/software-tools/object-clutter-indoor-dataset/",
+      "terms_url": "https://doi.org/10.48436/pcbjd-4wa12",
+      "terms_notes": "CC-BY 4.0 International declared on the official TU Wien Research Data record; repository Terms of Use at https://researchdata.tuwien.at/tuw/terms-of-use still require team review (P-003)",
       "retrieval_date": null,
       "source_version": "pending official release check at retrieval time",
       "downloaded_filename": null,
       "downloaded_bytes": null,
-      "published_checksum": null,
+      "published_checksum": "aa0eff01f75104c40e4243e6f892a757",
+      "published_checksum_algorithm": "md5",
       "computed_sha256": null,
       "status": "pending_download",
-      "licence_review_status": "pending — P-003 licence compatibility review before download and redistribution",
+      "licence_review_status": "research-complete-pending-team-approval — CC-BY 4.0 detected; team must confirm repository terms, selected subset, and AGPL-repo compatibility before download (P-003)",
       "selected_subset": "planned: a small set of tabletop sequences with stable camera calibration and clean object changes; exact scenes recorded here at retrieval time",
       "exclusions": [
         {
@@ -22,7 +24,7 @@
         },
         {
           "reason": "licence review pending",
-          "detail": "the team must confirm the academic-use terms allow research conversion and publication of tiny converted examples (P-003) before use"
+          "detail": "CC-BY 4.0 (official record) permits research conversion and example publication with attribution, but the team must still confirm the repository terms of use and the YCB/ARID object provenance for the selected subset (P-003)"
         }
       ],
       "conversion_command": "python scripts/convert_ocid.py <KYRA_DATA_ROOT>/ocid <converted-output> --shelf <shelf.json> --checksum <expected-sha256> [--reverse]",
