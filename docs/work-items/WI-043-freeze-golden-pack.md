@@ -1,9 +1,9 @@
 # WI-043 — Freeze the golden scenario pack (D-009 confirmed)
 
 - **Owner:** P1
-- **Status:** In review
+- **Status:** Complete (merged via PR #43 as `9f637f7`)
 - **Started:** 2026-09-06
-- **Completed:** N/A
+- **Completed:** 2026-09-06
 - **Requirements:** P1-04; P1-SIM-003, D-009, P1-QA-001 (freeze prerequisite)
 - **Integration gate:** Gate 2 enabler
 
@@ -59,5 +59,5 @@ Windows (CRLF) and T4 (LF) checkouts.
 ## Final links
 
 - Issue: https://github.com/DontHash/kyra-shelf-guard/issues/40 (decision)
-- Pull request: pending
-- Commit: pending
+- Pull request: https://github.com/DontHash/kyra-shelf-guard/pull/43
+- Commit: `9f637f7` (squash merge on `main`)

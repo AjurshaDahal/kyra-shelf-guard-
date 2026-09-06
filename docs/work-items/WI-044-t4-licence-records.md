@@ -1,9 +1,9 @@
 # WI-044 — Record OCID licence research and G0.4 T4 proposal
 
 - **Owner:** P4 (recording) with P1 research input
-- **Status:** In review
+- **Status:** Complete (merged via PR #45 as `a15bbf7`)
 - **Started:** 2026-09-06
-- **Completed:** N/A
+- **Completed:** 2026-09-06
 - **Requirements:** P-003, G0.4
 - **Integration gate:** Gate 2 enabler
 
@@ -55,5 +55,5 @@ handoff guide, report path `docs/PERSON1_TEST_REPORT_T4_<date>.md`).
 ## Final links
 
 - Issue: https://github.com/DontHash/kyra-shelf-guard/issues/44
-- Pull request: pending
-- Commit: pending
+- Pull request: https://github.com/DontHash/kyra-shelf-guard/pull/45
+- Commit: `a15bbf7` (squash merge on `main`)
