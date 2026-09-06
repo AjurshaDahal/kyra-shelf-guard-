@@ -33,9 +33,12 @@ Treat a dependency pin as a synchronized change: update `pyproject.toml` and eve
 
 ### Dependency refresh log
 
-- 2026-09-06: numpy refreshed to 2.4.6 (Dependabot PR #3); full suite 161 passed on Python 3.11/3.12 CI and locally.
-- 2026-09-06: pydantic refreshed to 2.13.4 (Dependabot PR #4); full suite 161 passed on Python 3.11/3.12 CI and locally.
-- 2026-09-06: opencv-python-headless refreshed to 5.0.0.93 (Dependabot PR #5); full suite 161 passed on Python 3.11/3.12 CI and locally, including the byte-identical golden-pack regeneration audit.
+- 2026-09-06: numpy 2.4.6, pydantic 2.13.4, opencv-python-headless 5.0.0.93
+  pins merged (Dependabot PRs #3/#4/#5). CI installs `requirements.lock`, so
+  true pin validation is the 2026-09-06 `requirements.lock` synchronization
+  (issue #36): after `pip install -r requirements.lock && pip install -e .`,
+  the full suite of 161 tests passed locally with those pins, including the
+  byte-identical golden-pack regeneration audit under OpenCV 5.
 
 ## Repository layout
 

@@ -38,6 +38,15 @@ Resolved on 2026-09-06: shared summaries no longer present everlasting
 rule, and the G2 gate row reflects the merged Person 1 work. A stale count
 must not be restated as a current total.
 
+## Issue #36 — dependency lock synchronization
+
+Resolved on 2026-09-06: `requirements.lock` pins synchronized with the merged
+pyproject pins (numpy 2.4.6, opencv-python-headless 5.0.0.93, pydantic
+2.13.4); 161 tests passed with the synced lock installed, including the
+byte-identical golden-pack regeneration audit under OpenCV 5. The dependency
+refresh log in `docs/DEVELOPMENT.md`/`docs/TESTING.md` now reflects the true
+validated pin run.
+
 ## Issue #18 — change-impact ownership alignment
 
 Implemented and merged on 2026-09-06 as `0b034c0` (PR #29): the

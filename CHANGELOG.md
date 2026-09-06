@@ -131,6 +131,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
   owner status files: Person 3 shows its merged tracking/rules work and Person
   4 its completed shared layer, and the testing guide's "Current truth" block
   states the dated 161-test total (issue #34).
+- `requirements.lock` synchronized with the merged dependency pins (numpy
+  2.4.6, opencv-python-headless 5.0.0.93, pydantic 2.13.4); the full 161-test
+  suite passes with the synced lock installed, including the byte-identical
+  golden-pack regeneration audit under OpenCV 5 (issue #36).
 - The deterministic scenario generator is implemented and merged; the golden
   scenario pack remains a candidate awaiting team confirmation of D-009 and
   the change-impact alignment in issue #18 (now resolved by PR #29).

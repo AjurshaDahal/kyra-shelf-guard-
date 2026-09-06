@@ -138,13 +138,11 @@ being treated as an installed GPU or target-T4 acceptance result.
 
 ### Dependency refresh log
 
-- 2026-09-06: numpy refreshed to 2.4.6 (Dependabot PR #3); 161 local tests
-  passed on Python 3.12.7 and CI passed on Python 3.11/3.12 with the new pin.
-- 2026-09-06: pydantic refreshed to 2.13.4 (Dependabot PR #4); 161 local
-  tests passed on Python 3.12.7 and CI passed on Python 3.11/3.12 with the new pin.
-- 2026-09-06: opencv-python-headless refreshed to 5.0.0.93 (Dependabot PR #5);
-  161 local tests passed on Python 3.12.7 and CI passed on Python 3.11/3.12,
-  including the byte-identical golden-pack regeneration audit under OpenCV 5.
+- 2026-09-06: numpy 2.4.6, pydantic 2.13.4, and opencv-python-headless
+  5.0.0.93 pins merged (Dependabot PRs #3/#4/#5) and `requirements.lock`
+  synchronized (issue #36). With the synced lock installed and the editable
+  package, 161 tests passed on 2026-09-06 on Python 3.12.7, including the
+  byte-identical golden-pack regeneration audit under OpenCV 5.
 
 ## Repository governance checks
 
