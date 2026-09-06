@@ -233,11 +233,12 @@ real-data smoke test remains pending retrieval.
 #### P1-12: Validate Windows and target T4
 
 - **Status:** In progress. Windows candidate-leg report drafted on 2026-09-06
-  (`docs/PERSON1_TEST_REPORT_WINDOWS_CANDIDATE.md`, commit `422a841` territory):
-  158 tests passed, the seven-check verifier exited 0 against the in-repo
-  candidate pack, and the change-impact failure was the known issue #18 one.
-  The target-T4 leg is blocked on G0.4 (runner and report location assigned by
-  Person 4) and on the pack freeze decision (D-009).
+  (`docs/PERSON1_TEST_REPORT_WINDOWS_CANDIDATE.md`): 158 tests passed, the
+  seven-check verifier exited 0 against the in-repo candidate pack, and the
+  change-impact failure was the known issue #18 one (now resolved). The exact
+  T4 playbook is prepared in `docs/PERSON1_HANDOFF.md`; the target-T4 leg is
+  blocked on G0.4 (runner and report location assigned by Person 4) and on the
+  pack freeze decision (D-009), both collected under issue #40.
 
 - **Requirements:** P1-QA-001, P1-QA-002.
 - **Use:** Frozen lock files, golden pack, and `docs/PERSON1_TEST_REPORT_TEMPLATE.md`.
@@ -247,6 +248,12 @@ real-data smoke test remains pending retrieval.
 
 #### P1-13: Independent teammate handoff
 
+- **Status:** In progress. The handoff package
+  (`docs/PERSON1_HANDOFF.md`) is prepared on 2026-09-06 with exact, recorded
+  commands and their real outputs (setup, 161-test suite, seven-check
+  verifier, golden regeneration, OCID smoke, baseline/volume, lint and
+  consistency gates). The independent-teammate execution and signed report
+  remain required; the three blocking decisions are collected under issue #40.
 - **Requirements:** P1-QA-003.
 - **Do:** Give the reader/generator, golden pack, baseline, converter, MiDaS adapter, provenance, commands, and report template to a teammate who did not implement them.
 - **Proof:** The teammate can install, load, run, and explain failures without private instructions; open problems are listed rather than hidden.

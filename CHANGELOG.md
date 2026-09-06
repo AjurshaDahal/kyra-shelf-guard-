@@ -135,6 +135,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
   2.4.6, opencv-python-headless 5.0.0.93, pydantic 2.13.4); the full 161-test
   suite passes with the synced lock installed, including the byte-identical
   golden-pack regeneration audit under OpenCV 5 (issue #36).
+- Person 1 handoff package (`docs/PERSON1_HANDOFF.md`): reproducible install,
+  playbook, recorded 2026-09-06 outputs, limitations, and an independent
+  sign-off block, with the remaining completion decisions (D-009, P-003,
+  G0.4) consolidated under issue #40.
 - The deterministic scenario generator is implemented and merged; the golden
   scenario pack remains a candidate awaiting team confirmation of D-009 and
   the change-impact alignment in issue #18 (now resolved by PR #29).

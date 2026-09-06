@@ -52,6 +52,12 @@
   passed; the seven-check verifier exited 0). The target-T4 leg remains
   blocked on G0.4 and the D-009 freeze decision; the local RTX 2050 machine is
   not target-T4 evidence.
+- P1-13 handoff package prepared on 2026-09-06 (`docs/PERSON1_HANDOFF.md`):
+  exact reproducible commands with their recorded outputs (setup, 161 tests,
+  seven-check verifier, golden regeneration byte-identity, OCID smoke with
+  tamper gate, baseline/volume, lint and consistency), a limitations section,
+  and an independent-teammate sign-off block. The three blocking decisions
+  (D-009, P-003, G0.4) are consolidated under issue #40.
 
 ## Active
 
@@ -72,15 +78,19 @@
 
 ## Blocked or pending
 
-- Team-confirmed frozen checksums, real OCID download/conversion, target-T4
-  check, and independent handoff remain unimplemented.
-- The golden pack cannot be called frozen until the team confirms the
-  provisional second-removal interpretation for scenario ten (D-009).
+- D-009 team confirmation (issue #40) is required before the pack checksums
+  can be frozen; only then can the target-T4 leg use frozen checksums and the
+  independent handoff be completed.
+- Real OCID download/conversion remains blocked on the P-003 licence review
+  (issue #40).
+- Target-T4 check and independent handoff are prepared but not yet executed
+  (G0.4 assignment and an independent teammate respectively).
 
 ## Next
 
-- Proceed to the P1-12 target-T4 leg, P1-13 independent handoff, and the D-009
-  freeze decision.
+- The team resolves issue #40 (D-009, P-003, G0.4) so the pack can be frozen,
+  the T4 leg run, and the P1-13 handoff guide executed by an independent
+  teammate.
 
 ## Evidence
 
