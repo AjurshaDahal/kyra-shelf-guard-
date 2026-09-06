@@ -12,7 +12,7 @@ license = { text = "AGPL-3.0-only" }
 authors = [{ name = "Kyra project team" }]
 dependencies = [
   "numpy==2.4.6",
-  "opencv-python-headless==4.13.0.92",
+  "opencv-python-headless==5.0.0.93",
   "pydantic==2.13.4",
 ]
 

@@ -35,6 +35,7 @@ Treat a dependency pin as a synchronized change: update `pyproject.toml` and eve
 
 - 2026-09-06: numpy refreshed to 2.4.6 (Dependabot PR #3); full suite 161 passed on Python 3.11/3.12 CI and locally.
 - 2026-09-06: pydantic refreshed to 2.13.4 (Dependabot PR #4); full suite 161 passed on Python 3.11/3.12 CI and locally.
+- 2026-09-06: opencv-python-headless refreshed to 5.0.0.93 (Dependabot PR #5); full suite 161 passed on Python 3.11/3.12 CI and locally, including the byte-identical golden-pack regeneration audit.
 
 ## Repository layout
 

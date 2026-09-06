@@ -142,6 +142,9 @@ being treated as an installed GPU or target-T4 acceptance result.
   passed on Python 3.12.7 and CI passed on Python 3.11/3.12 with the new pin.
 - 2026-09-06: pydantic refreshed to 2.13.4 (Dependabot PR #4); 161 local
   tests passed on Python 3.12.7 and CI passed on Python 3.11/3.12 with the new pin.
+- 2026-09-06: opencv-python-headless refreshed to 5.0.0.93 (Dependabot PR #5);
+  161 local tests passed on Python 3.12.7 and CI passed on Python 3.11/3.12,
+  including the byte-identical golden-pack regeneration audit under OpenCV 5.
 
 ## Repository governance checks
 
