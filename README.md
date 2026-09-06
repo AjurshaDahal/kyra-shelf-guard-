@@ -37,8 +37,8 @@ For a simple progress summary, read [Project Guide for Team Members](docs/people
 |---|---|---|
 | Person 1 | Prepare camera recordings and a reliable picture of a normal shelf | In progress |
 | Person 2 | Measure whether the shelf has physically changed | Not started |
-| Person 3 | Connect a shelf change to nearby people and apply the alert rules | Not started |
-| Person 4 | Join the parts, provide shared rules and tools, test the whole system, and maintain the project documents | In progress |
+| Person 3 | Connect a shelf change to nearby people and apply the alert rules | In progress |
+| Person 4 | Join the parts, provide shared rules and tools, test the whole system, and maintain the project documents | Complete for the shared layer; end-to-end validation remains open |
 
 The exact ownership rules live in [Team Ownership](docs/TEAM_OWNERSHIP.md).
 

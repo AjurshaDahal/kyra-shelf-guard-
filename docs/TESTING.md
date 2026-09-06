@@ -2,11 +2,15 @@
 
 ## Current truth
 
-The current suite contains 39 tests: 35 product-foundation tests across contracts,
-manifests, RGB-D input, track-annotation access, baseline persistence, and MiDaS
-anchor alignment, plus four repository-governance tests. On 2026-08-24 all 39
-passed in the pinned Python 3.12.7 environment; Ruff, byte-compilation,
-repository consistency, and change-impact validation also passed.
+The current suite contains 161 tests (dated total, 2026-09-06): the Person 1
+product tests across contracts, manifests, RGB-D input, simulation, golden
+pack, baseline persistence and volume, MiDaS policy, OCID conversion, and
+provenance; the Person 3 tracking/proximity/rules tests; the Person 4
+compatibility, mock, and pipeline tests; and the repository-governance tests.
+On 2026-09-06 all 161 passed in the pinned Python 3.12.7 environment; Ruff,
+byte-compilation, repository consistency, and change-impact validation also
+passed. Test totals are dated in every summary and must never be restated as a
+current total.
 
 ## Test layers
 

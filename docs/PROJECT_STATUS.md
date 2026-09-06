@@ -16,10 +16,10 @@ This is the integration snapshot. Detailed owner progress and next actions live 
 
 | ID | Owner | Status | Implemented truth | Next gate-bound outcome | Detail |
 |---|---|---|---|---|---|
-| P1 | Person 1 | In progress | Contracts foundation, strict manifest, replay reader, baseline build/persistence, MiDaS anchor alignment | Deterministic generator, golden pack, provenance converter, full P1 acceptance | [P1 status](status/PERSON1.md) |
+| P1 | Person 1 | In progress | Contracts foundation, strict manifest, replay reader, baseline build/persistence, MiDaS anchor alignment, deterministic generator, candidate golden pack, OCID conversion path, verification entry point | Full P1 acceptance, D-009 freeze, Windows/T4 handoff | [P1 status](status/PERSON1.md) |
 | P2 | Person 2 | Not started | Shared `VolumeChangeEvent` type exists; no owned geometry implementation | Registration, signed change, occlusion-safe volume path | [P2 status](status/PERSON2.md) |
-| P3 | Person 3 | Not started | Shared track/alert types exist; no owned tracking/rules implementation | Deterministic replay tracking and rule path | [P3 status](status/PERSON3.md) |
-| P4 | Person 4 | In progress | Shared contract foundation, private GitHub remote, and machine-checked collaboration controls | Frozen contracts/mocks, pipeline, CLI, evaluation | [P4 status](status/PERSON4.md) |
+| P3 | Person 3 | In progress | Deterministic replay tracking, proximity, occlusion masking, and removal-alert rules implemented and merged | Downstream validation against the shared golden/baseline evidence | [P3 status](status/PERSON3.md) |
+| P4 | Person 4 | Complete | Gate 1 contract compatibility, mock providers, bounded pipeline, classifier fix (#18), and documentation reconciliation completed | Frozen pipeline/CLI/evaluation integration for Gates 5-7 | [P4 status](status/PERSON4.md) |
 
 ## Integration gates
 

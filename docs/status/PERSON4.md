@@ -1,7 +1,7 @@
 # Person 4 Status — Integration and Evaluation
 
 - **Status:** Complete
-- **Last updated:** 2026-09-01
+- **Last updated:** 2026-09-06
 
 ## Implemented
 
@@ -26,7 +26,8 @@
 
 Gate 1 contract compatibility is complete for the shared compatibility layer. Person 4 mock, adapter, and pipeline work is complete and validated. Real Person 1, Person 2, and Person 3 algorithm work is not being claimed as complete; downstream Gates 2–5 remain dependent on real owner outputs and end-to-end validation.
 
-WI-010 is in review for the audience-specific documentation split and repository navigation cleanup.
+WI-010 (audience-specific documentation split) and the documentation
+reconciliation issues #15 and #18 are merged and closed.
 
 ## Issue #15 — stale shared test-count summaries
 
