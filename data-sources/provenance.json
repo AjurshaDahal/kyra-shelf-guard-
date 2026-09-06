@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "sources": [
+    {
+      "source_id": "ocid-tuwien",
+      "name": "OCID — Object Clutter Indoor Dataset (TU Wien ACIN)",
+      "official_url": "https://www.acin.tuwien.ac.at/en/vision-for-robotics/software-tools/object-clutter-indoor-dataset/",
+      "terms_url": "https://www.acin.tuwien.ac.at/en/vision-for-robotics/software-tools/object-clutter-indoor-dataset/",
+      "retrieval_date": null,
+      "source_version": "pending official release check at retrieval time",
+      "downloaded_filename": null,
+      "downloaded_bytes": null,
+      "published_checksum": null,
+      "computed_sha256": null,
+      "status": "pending_download",
+      "licence_review_status": "pending — P-003 licence compatibility review before download and redistribution",
+      "selected_subset": "planned: a small set of tabletop sequences with stable camera calibration and clean object changes; exact scenes recorded here at retrieval time",
+      "exclusions": [
+        {
+          "reason": "not yet retrieved",
+          "detail": "no download has been performed; selection and exclusions are finalized when the official archive is reviewed"
+        },
+        {
+          "reason": "licence review pending",
+          "detail": "the team must confirm the academic-use terms allow research conversion and publication of tiny converted examples (P-003) before use"
+        }
+      ],
+      "conversion_command": "python scripts/convert_ocid.py <KYRA_DATA_ROOT>/ocid <converted-output> --shelf <shelf.json> --checksum <expected-sha256> [--reverse]",
+      "converter_version": "kyra.ocid (in-repo module)",
+      "output_schema_version": "1.1",
+      "local_path_hint": "<KYRA_DATA_ROOT>/ocid",
+      "attribution": "OCID, Object Clutter Indoor Dataset, TU Wien ACIN. Verify and record the exact requested citation from the official dataset page at retrieval time."
+    }
+  ]
+}

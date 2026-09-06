@@ -16,20 +16,29 @@
 - P1-04 candidate composition of ten tiny deterministic scenarios covering the
   reviewed behavior matrix and all four shape families, with portable manifest
   paths, SHA-256 inventory, and byte-identical regeneration checks.
-- P1-06 baseline calibration hardening on 2026-09-06 (WI-021): mixed-resolution
-  and changed-intrinsics batches reject, unsafe occupancy-grid dimensions
-  reject, empty-shelf all-fixed geometry with zero portable components, noise
-  sigma tracking under injected jitter, checksum stability/sensitivity and
-  documented single-frame-outlier absorption, and fixed/portable pixel
-  separation evidence.
-- P1-07 known-volume acceptance suite on 2026-09-06 (WI-021): seven
-  parametrized cases (boxes, cylinders, irregular L union; 0.55-1.72 litres;
-  varied positions and top depths) all within the 10% volume bound, plus a
-  hanging-plate guard case recording the expected void-column overestimate.
-- P1-08 MiDaS alignment policy matrix on 2026-09-06 (WI-021): approximate-flag
-  labeling for MIDAS_ALIGNED sources, round-trip persistence of the flag,
-  valid-only (zero-for-unknown) aligned output, and an explicit, enforceable
-  residual limit.
+- P1-06 baseline calibration hardening (WI-021): mixed-resolution and
+  changed-intrinsics batches reject, unsafe occupancy-grid dimensions reject,
+  empty-shelf all-fixed geometry with zero portable components, noise sigma
+  tracking under injected jitter, checksum stability/sensitivity and documented
+  single-frame-outlier absorption, and fixed/portable pixel separation evidence.
+- P1-07 known-volume acceptance suite (WI-021): seven parametrized cases (boxes,
+  cylinders, irregular L union; 0.55-1.72 litres; varied positions and top
+  depths) all within the 10% volume bound, plus a hanging-plate guard case
+  recording the expected void-column overestimate.
+- P1-08 MiDaS alignment policy matrix (WI-021): approximate-flag labeling for
+  MIDAS_ALIGNED sources, round-trip persistence of the flag, valid-only
+  (zero-for-unknown) aligned output, and an explicit, enforceable residual
+  limit.
+- P1-09 provenance record on 2026-09-06 (WI-023): `data-sources/provenance.json`
+  and `data-sources/README.md` with the `docs/DATASETS.md` field set, a schema
+  test that rejects missing licence, checksum, selection, or exclusion
+  information, and honest `pending_download` status for OCID.
+- P1-10 OCID conversion mapping on 2026-09-06 (WI-023): `src/kyra/ocid.py`
+  parses OCID-style metadata strictly, maps depth to uint16 millimetres while
+  keeping zero unknown, derives windowed addition/removal events, reverses a
+  valid addition into a removal with re-created monotonic timestamps and
+  last-seen object-mask semantics, gates the source by SHA-256, and is replayed
+  through the manifest 1.1 reader on the tiny committed `tests/fixtures/ocid-mini/`.
 
 ## Active
 
@@ -38,12 +47,14 @@
   `origin/main`. The candidate uses the D-009 provisional irregular-item
   removal as G03 and remains unfrozen.
 - P1-06/P1-07/P1-08 are implemented under issue #21 on branch
-  `p1/21-calibration-baseline-acceptance`; pull request #22 is open for review.
-  The
-  MiDaS policy tests stay in `tests/test_baseline.py` because the current
-  change-impact classifier (issue #18) would misclassify the plan-named
-  `tests/test_midas_alignment.py` as Person 4; the deviation is recorded in
-  the plan and in WI-021.
+  `p1/21-calibration-baseline-acceptance`; pull request #22 merged as `ca8715c`.
+- P1-09/P1-10 are implemented under issue #23 on branch
+  `p1/23-ocid-provenance`; pull request #24 is open for review.
+  `scripts/convert_ocid.py` is
+  implemented locally but stays out of the push while issue #18 keeps every
+  `scripts/*.py` change classified as Person 4/governance; the plan-named
+  `tests/test_provenance.py` is delivered as `tests/test_dataset_provenance.py`
+  for the same reason (both deviations recorded in WI-023 and the plan).
 - Handled/hanging overhang objects remain a documented known-bias case: the
   baseline estimator integrates the void column under a hanging object, so
   those cases exceed the 10% acceptance bound by design and belong to Person
@@ -51,23 +62,20 @@
 
 ## Blocked or pending
 
-- Team-confirmed frozen checksums, OCID converter/provenance, target-T4 check,
-  and independent handoff remain unimplemented.
+- Team-confirmed frozen checksums, real OCID download/conversion, target-T4
+  check, and independent handoff remain unimplemented.
 - The golden pack cannot be called frozen until the team confirms the
   provisional second-removal interpretation for scenario ten (D-009).
-- Issue #18 blocks pushing P1-04: the authoritative P1 plan and ownership matrix
-  assign the named golden-pack script and test to Person 1, but the current
-  change-impact classifier assigns both paths to Person 4 and treats the script
-  as governance. Person 4 must approve and land the narrow classifier fix.
+- Issue #18 blocks pushing P1-04's golden-pack script/tests and
+  `scripts/convert_ocid.py`: the change-impact classifier assigns those paths
+  to Person 4. Person 4 must approve and land the narrow classifier fix.
 
 ## Next
 
 - Let Person 4 resolve issue #18, then merge that governance fix into the
-  clean `p1/17` issue branch, rerun every gate, push the candidate for review,
-  and record the team's D-009 choice before changing its status or treating
-  its checksums as frozen evidence.
-- Review and merge `p1/21-calibration-baseline-acceptance` (WI-021), then
-  proceed to P1-09 provenance and P1-10 OCID converter.
+  clean `p1/17` issue branch and push the golden-pack candidate for review.
+- Review and merge the WI-023 pull request, push `p1/17` and `p1/25` once
+  issue #18 lands, then proceed to P1-12/P1-13 validation and handoff.
 
 ## Evidence
 
@@ -99,6 +107,13 @@
   134 tests passed in 3.25s; Ruff, byte-compilation, repository consistency,
   and change-impact validation against `origin/main` passed on a clean
   `p1/21` branch with the required companions.
-- The P1-03/P1-04/P1-06/P1-07/P1-08 evidence is synthetic and local. It does
-  not freeze D-009, prove target T4 portability, run downstream detection,
-  close Gate 2, or establish real end-to-end behavior.
+- P1-09/P1-10 focused validation on 2026-09-06:
+  `python -m pytest tests/test_ocid.py tests/test_dataset_provenance.py -q`
+  — 21 passed in 0.41s.
+- P1-09/P1-10 script smoke check on 2026-09-06:
+  `python scripts/convert_ocid.py ... --reverse` (local, not pushed) exited 0,
+  replayed the reversed removal through `ScenarioFrameSource`, and a tampered
+  checksum was rejected with exit 2.
+- The P1-03/P1-04/P1-06/P1-07/P1-08/P1-09/P1-10 evidence is synthetic and
+  local. It does not freeze D-009, prove target T4 portability, run downstream
+  detection, close Gate 2, or establish real end-to-end behavior.

@@ -11,6 +11,16 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
 - Person 1 lightweight deterministic RGB-D scenario generation with seeded
   object placement, all four approved shape families, lossless manifest 1.1
   assets, and offline same-seed byte/hash stability checks.
+- Person 1 OCID conversion mapping (`src/kyra/ocid.py`) with strict metadata
+  parsing, millimetre depth mapping that keeps zero depth unknown, valid and
+  object masks, windowed addition/removal event derivation, addition-to-removal
+  reversal with re-created monotonic timestamps, last-seen object-mask
+  semantics on removal frames, and a SHA-256 source gate, all replayed through
+  the manifest 1.1 reader on a tiny committed OCID fixture.
+- Person 1 provenance record and schema (`data-sources/provenance.json`,
+  `data-sources/README.md`) covering licence, checksum, selection, exclusion,
+  conversion, attribution, and environment-neutral path rules with honest
+  pending-download status.
 - Separate docs/people/ plain-English guides and a docs/agents/ technical
   routing page so teammates and coding agents have distinct starting paths.
 - Add a documentation hub that maps audience routes, technical authority, and
@@ -96,5 +106,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
   plan upgrade; CI and review policy are present but not platform-enforced.
 - The deterministic scenario generator is implemented and merged; the golden
   scenario pack remains a candidate awaiting team confirmation of D-009 and
-  the change-impact alignment in issue #18. OCID converter, provenance record,
-  verification script, and CLI remain unimplemented.
+  the change-impact alignment in issue #18. `scripts/convert_ocid.py` is
+  implemented locally but joins the push with that classifier fix; the OCID
+  archive itself has not been downloaded. The verification script and CLI
+  remain unimplemented.
