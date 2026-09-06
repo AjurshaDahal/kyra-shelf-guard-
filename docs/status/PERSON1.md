@@ -62,9 +62,9 @@
 - P1-06/P1-07/P1-08 are implemented under issue #21; pull request #22 merged
   as `ca8715c`.
 - P1-09/P1-10 are implemented under issue #23; pull request #24 merged as
-  `c7de178`. `scripts/convert_ocid.py` was implemented locally and excluded
-  from that push; the issue #18 classifier fix (`0b034c0`) now allows it, so
-  it awaits its own reviewed push.
+  `c7de178`, and the OCID conversion CLI `scripts/convert_ocid.py` merged via
+  pull request as part of WI-031 (the issue #18 classifier fix, `0b034c0`,
+  unblocked its push).
 - Handled/hanging overhang objects remain a documented known-bias case: the
   baseline estimator integrates the void column under a hanging object, so
   those cases exceed the 10% acceptance bound by design and belong to Person
@@ -79,8 +79,8 @@
 
 ## Next
 
-- Proceed to the P1-12 target-T4 leg, P1-13 independent handoff, the D-009
-  freeze decision, and a reviewed push of `scripts/convert_ocid.py`.
+- Proceed to the P1-12 target-T4 leg, P1-13 independent handoff, and the D-009
+  freeze decision.
 
 ## Evidence
 

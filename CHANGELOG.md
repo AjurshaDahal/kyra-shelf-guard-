@@ -25,6 +25,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
   `data-sources/README.md`) covering licence, checksum, selection, exclusion,
   conversion, attribution, and environment-neutral path rules with honest
   pending-download status.
+- Person 1 OCID conversion CLI entry point (`scripts/convert_ocid.py`):
+  discovery, SHA-256 source gate, and `--reverse` addition-to-removal
+  conversion around the merged `kyra.ocid` mapping, verified against the mini
+  fixture and replayed through `ScenarioFrameSource`.
 - Person 1 single verification entry point (`scripts/verify_person1.py`):
   schema, golden-checksum (with line-ending-canonical hashing so Windows CRLF
   and T4 LF trees verify identically), reader replay, baseline build, MiDaS
@@ -122,9 +126,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
   `CONTRIBUTING.md`.
 - The deterministic scenario generator is implemented and merged; the golden
   scenario pack remains a candidate awaiting team confirmation of D-009 and
-  the change-impact alignment in issue #18. `scripts/convert_ocid.py` and
-  `scripts/verify_person1.py` are implemented locally but join the push with
+  the change-impact alignment in issue #18 (now resolved by PR #29).
+  `scripts/convert_ocid.py` and `scripts/verify_person1.py` are unblocked by
   that classifier fix; the OCID archive itself has not been downloaded. The
-  CLI remains unimplemented. The candidate pack's audit test now uses a
-  line-ending-canonical inventory comparison (applied on the `p1/17` branch)
-  so a Windows checkout under `core.autocrlf=true` verifies identically.
+  CLI remains unimplemented. The candidate pack's audit test uses a
+  line-ending-canonical inventory comparison so a Windows checkout under
+  `core.autocrlf=true` verifies identically.

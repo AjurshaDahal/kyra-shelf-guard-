@@ -188,8 +188,7 @@ Person 2 scope limitation.
 #### P1-10: Implement the OCID converter
 
 - **Status:** Complete (module, fixture, and tests under issue #23 on
-  2026-09-06); `scripts/convert_ocid.py` is implemented locally but not pushed
-  until issue #18's classifier fix lands.
+  2026-09-06; CLI entry point published under issue #31 as WI-031).
 - **Requirements:** P1-DATA-001, P1-DATA-002.
 - **Create:** `src/kyra/ocid.py`, `scripts/convert_ocid.py`, `tests/fixtures/ocid-mini/`, `tests/test_ocid.py`.
 - **Do:** Keep filesystem discovery in the script and pure mapping logic in the module. Validate the source checksum first. Preserve frame order, calibration, depth units, and masks. For a valid addition sequence, reverse frame order and update timestamps and expected event to create a removal.
@@ -208,8 +207,8 @@ Person 2 scope limitation.
 
 **Wave 4 exit:** Complete for the reproducible-pipeline scope — public data
 can be reproduced from a reviewed source without committing bulk data once the
-source is downloaded and the `scripts/convert_ocid.py` push is unblocked by
-issue #18; the real-data smoke test remains pending retrieval.
+source is downloaded; `scripts/convert_ocid.py` is published (WI-031) and the
+real-data smoke test remains pending retrieval.
 
 ### Wave 5 — Package, verify, and hand off
 
