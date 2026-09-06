@@ -61,9 +61,9 @@
 
 ## Active
 
-- P1-04 candidate golden pack merged via pull request #27 as `327a905`. The
-  candidate uses the D-009 provisional irregular-item removal as G03 and
-  remains unfrozen until the team confirms scenario ten.
+- P1-04 candidate golden pack merged via pull request #27 as `327a905`, and
+  frozen on 2026-09-06 after the D-009 confirmation: `golden-pack.json`
+  records `pack_status: frozen` and `decision_status: D-009-confirmed-2026-09-06`.
 - P1-11 verification entry point merged via pull request #28 as `7f2fd84`.
 - P1-06/P1-07/P1-08 are implemented under issue #21; pull request #22 merged
   as `ca8715c`.
@@ -78,19 +78,15 @@
 
 ## Blocked or pending
 
-- D-009 team confirmation (issue #40) is required before the pack checksums
-  can be frozen; only then can the target-T4 leg use frozen checksums and the
-  independent handoff be completed.
+- Target-T4 execution and the independent teammate handoff sign-off remain
+  open (G0.4 runner assignment and an independent teammate).
 - Real OCID download/conversion remains blocked on the P-003 licence review
   (issue #40).
-- Target-T4 check and independent handoff are prepared but not yet executed
-  (G0.4 assignment and an independent teammate respectively).
 
 ## Next
 
-- The team resolves issue #40 (D-009, P-003, G0.4) so the pack can be frozen,
-  the T4 leg run, and the P1-13 handoff guide executed by an independent
-  teammate.
+- Execute the target-T4 leg (G0.4) with the frozen pack checksums, and have
+  an independent teammate run the handoff guide and sign it.
 
 ## Evidence
 

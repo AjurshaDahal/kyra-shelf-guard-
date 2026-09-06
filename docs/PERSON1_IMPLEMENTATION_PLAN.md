@@ -1,6 +1,6 @@
 # Person 1 Implementation Plan
 
-**Status:** In progress; P1-01/P1-02/P1-03 are merged, P1-04 is a locally implemented candidate blocked by issue #18, P1-06..P1-08 are merged via PR #22 (`ca8715c`), and P1-09/P1-10 are merged via PR #24 (`c7de178`); P1-11 is locally implemented under issue #25 (push blocked by issue #18)
+**Status:** In progress; P1-01/P1-02/P1-03/P1-04..P1-11 are merged, the golden pack is frozen on 2026-09-06 (D-009 confirmed), and P1-12/P1-13 are prepared pending T4 access and independent handoff
 **Owner:** Person 1  
 **Estimated effort:** 9–14 focused working days, plus access time for the target T4 check  
 **Requirements:** [PERSON1_SPEC.md](PERSON1_SPEC.md)
@@ -18,13 +18,12 @@ Present before P1-01:
 - RGB-D replay in `src/kyra/io.py`.
 - Baseline building, persistence, and MiDaS alignment in `src/kyra/baseline.py`.
 
-Still not present after P1-03/P1-04 candidate and P1-06..P1-11:
+Still not present after P1-03..P1-11 and the frozen golden pack:
 
-- Team-confirmed frozen golden pack; the ten-scenario candidate is implemented
-  locally on `p1/17-golden-scenario-pack` but unmerged and unfrozen.
+- Target-T4 execution evidence (P1-12 T4 leg) and the independent handoff
+  sign-off (P1-13).
 - Real OCID download and the recorded smoke test on an approved external
   sample.
-- Verification scripts (P1-11) and independent test report (P1-13).
 - `src/kyra/cli.py`, although `pyproject.toml` already names it as a future command.
 
 ## Gates before code changes
@@ -32,7 +31,7 @@ Still not present after P1-03/P1-04 candidate and P1-06..P1-11:
 | Gate | Required decision | Owner | Stop condition |
 |---|---|---|---|
 | G0.1 | Confirm the current one-package `src/kyra` layout | Person 4 | Complete: approved on 2026-08-26; retain the single `kyra` package and stable `kyra.*` imports. |
-| G0.2 | Confirm scenario ten is the second removal shape | Team | Do not mark the golden pack frozen until confirmed. |
+| G0.2 | Confirm scenario ten is the second removal shape | Team | Complete: D-009 confirmed on 2026-09-06; the golden pack is frozen. |
 | G0.3 | Approve any manifest fields needed for object masks and shape family | Persons 1 and 4 | Do not hide required metadata in free-text notes. |
 | G0.4 | Assign the target T4 runner and report location | Person 4 | Local success cannot be called T4 success. |
 | G0.5 | Review licences for selected public data, assets, and models | Person 1 plus team | Do not download or redistribute an unapproved source. |
@@ -98,17 +97,16 @@ the shared manifest decision and approved C-006 implementation are recorded.
 
 #### P1-04: Create and audit the golden pack
 
-- **Status:** Locally implemented and integrated with current `origin/main` on
-  2026-09-05 under GitHub issue #17, but blocked before push/review by the
-  change-impact ownership conflict in issue #18. The artifact is a candidate,
-  not a frozen pack, until G0.2 is confirmed. WI-025 additionally recorded
-  that the pack's audit test needs a line-ending-canonical inventory
-  comparison to survive a Windows checkout under `core.autocrlf=true`.
+- **Status:** Merged via pull request #27 as `327a905` and frozen on
+  2026-09-06 after the D-009 confirmation (frozen status recorded in
+  `golden-pack.json`; the canonical-LF audit from WI-025 keeps the inventory
+  portable across Windows CRLF and T4 LF checkouts).
 - **Current evidence:** Three focused golden-pack tests, plus the eight P1-03
   generator tests, pass offline; they audit ten manifest 1.1 scenarios, all
   four shape families, behavior-specific source evidence, 117 committed files,
-  recorded SHA-256 values, and byte-identical regeneration. This is local
-  synthetic evidence and does not close G0.2, Gate 2, or the target-T4 check.
+  recorded SHA-256 values, and byte-identical regeneration of the frozen pack.
+  This is local synthetic evidence and does not close Gate 2 or the target-T4
+  check by itself.
 - **Requirements:** P1-SIM-003, P1-SIM-005, P1-QA-001.
 - **Create:** `scripts/generate_golden_pack.py`, `scenario-fixtures/golden/`, `scenario-fixtures/golden/checksums.sha256`, `tests/test_golden_pack.py`.
 - **Do:** Generate the ten scenarios in the specification. Keep fixtures tiny. Freeze seeds, schema version, expected result, and checksums only after G0.2 and G0.3 pass.
@@ -123,7 +121,9 @@ the shared manifest decision and approved C-006 implementation are recorded.
 - **Proof:** Core tests still pass when BlenderProc is absent; the optional smoke test passes when installed.
 - **Estimate:** 1–2 days. This task is not allowed to block the core golden pack.
 
-**Wave 2 exit:** The ten-scenario pack is deterministic, reviewable, small, and independent of heavy tools.
+**Wave 2 exit:** Complete — the ten-scenario pack is deterministic,
+reviewable, small, and independent of heavy tools, and was frozen on
+2026-09-06 after the D-009 confirmation.
 
 ### Wave 3 — Prove calibration and baseline behavior
 

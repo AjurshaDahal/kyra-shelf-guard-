@@ -58,8 +58,8 @@ This log records durable choices. It is not a work diary. Change a locked decisi
 
 - **Decision:** Cover the assignment’s nine named behaviours and use a second removal shape family as the tenth scenario.
 - **Why:** The assignment asks for ten scenarios but names nine behaviour groups.
-- **Trade-off:** The second removal case is a planning interpretation and must be confirmed with the team before the golden pack is frozen.
-- **Status:** Provisional until team confirmation.
+- **Trade-off:** The second removal case is a planning interpretation and was confirmed with the team-owner direction on 2026-09-06 before the golden pack was frozen.
+- **Status:** Confirmed on 2026-09-06 (decision recorded under issue #40; the frozen pack marks G10 as the second removal shape family).
 
 ### D-010 — Private GitHub collaboration repository
 

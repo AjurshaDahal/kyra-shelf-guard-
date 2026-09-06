@@ -16,7 +16,7 @@ i5-12450H, NVIDIA RTX 2050 (unused for core checks), Python 3.12.7,
 | Deliverable | Location | Notes |
 |---|---|---|
 | Deterministic scenario generator | `src/kyra/simulation.py` | Offline, seeded, four shape families |
-| Candidate golden pack (ten scenarios) | `scenario-fixtures/golden/` | 117 files, 62,614 canonical-LF bytes; **candidate, not frozen** (D-009) |
+| Frozen golden pack (ten scenarios) | `scenario-fixtures/golden/` | 117 files, 62,614 canonical-LF bytes; frozen 2026-09-06 after D-009 confirmation |
 | Baseline builder and persistence | `src/kyra/baseline.py` | 30-frame fusion, save/load, MiDaS policy |
 | Known-volume acceptance suite | `tests/acceptance/test_baseline_volume.py` | ≤10% error for ≥0.5 L cases |
 | OCID conversion | `src/kyra/ocid.py`, `scripts/convert_ocid.py` | Addition-to-removal reversal included |
@@ -114,23 +114,21 @@ Recorded result: all pass (2026-09-06).
 
 ## What is not claimed
 
-- The golden pack is **not frozen**: it needs the D-009 team confirmation, and
-  its checksums must not be treated as frozen evidence.
-- Target-T4 performance and portability are **not proven**: only the Windows
-  laptop leg exists (`docs/PERSON1_TEST_REPORT_WINDOWS_CANDIDATE.md`).
+- The golden pack is **frozen** (D-009 confirmed 2026-09-06), but frozen
+  checksum agreement on the target-T4 machine is **not yet proven**: only the
+  Windows laptop leg exists (`docs/PERSON1_TEST_REPORT_WINDOWS_CANDIDATE.md`,
+  named for its candidate-era snapshot).
 - The real OCID archive has **not been downloaded** or converted: the
   provenance record is honest `pending_download`, and P-003 licence review is
   required first.
 - There is **no end-to-end** camera-to-alert system; Gates 3-7 and Person 2/3
   downstream integration remain open.
 
-## Decision packets (one approval each, tracked under issue #40)
+## Decision packets (tracked under issue #40)
 
-1. **D-009 — confirm the tenth golden scenario.** The pack uses the
-   D-009-provisional irregular-item removal as G03 + scenario ten = second
-   removal shape family. Confirming D-009 permits the pack's checksums to be
-   frozen and the P1-12 T4 leg to run with them. Ask: does the team accept the
-   second-removal interpretation as scenario ten?
+1. **D-009 — CONFIRMED 2026-09-06.** The tenth scenario is the second removal
+   shape family; the pack checksums are frozen and may be used for the T4
+   leg.
 2. **P-003 — licence review for public data.** The sole planned source, OCID
    (official page:
    https://www.acin.tuwien.ac.at/en/vision-for-robotics/software-tools/object-clutter-indoor-dataset/),

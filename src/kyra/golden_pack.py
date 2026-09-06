@@ -16,8 +16,8 @@ from kyra.manifest import ShapeFamily, load_manifest
 from kyra.simulation import ScenarioCondition, ScenarioSettings, generate_scenario
 
 GOLDEN_PACK_SCHEMA_VERSION = "1.0"
-GOLDEN_PACK_STATUS = "candidate"
-GOLDEN_PACK_DECISION_STATUS = "D-009-provisional-team-confirmation-required"
+GOLDEN_PACK_STATUS = "frozen"
+GOLDEN_PACK_DECISION_STATUS = "D-009-confirmed-2026-09-06"
 
 
 @dataclass(frozen=True, slots=True)
@@ -251,7 +251,7 @@ def _object_volume_m3(manifest_path: Path) -> float:
 
 
 def generate_golden_pack(destination: str | Path) -> Path:
-    """Write the deterministic candidate pack and return its root directory."""
+    """Write the deterministic frozen pack and return its root directory."""
 
     root = Path(destination)
     if root.exists():

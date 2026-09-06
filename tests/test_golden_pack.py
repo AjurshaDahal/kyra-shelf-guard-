@@ -55,8 +55,8 @@ def test_candidate_pack_covers_the_reviewed_matrix_and_replays() -> None:
     definitions = {definition.scenario_id: definition for definition in GOLDEN_SCENARIOS}
 
     assert index["schema_version"] == "1.0"
-    assert index["pack_status"] == GOLDEN_PACK_STATUS == "candidate"
-    assert index["decision_status"] == "D-009-provisional-team-confirmation-required"
+    assert index["pack_status"] == GOLDEN_PACK_STATUS == "frozen"
+    assert index["decision_status"] == "D-009-confirmed-2026-09-06"
     assert index["scenario_count"] == 10
     assert len(index["scenarios"]) == 10
     assert [entry["scenario_id"] for entry in index["scenarios"]] == list(definitions)

@@ -26,7 +26,7 @@ This is the integration snapshot. Detailed owner progress and next actions live 
 | Gate | Status | Current evidence or blocker |
 |---|---|---|
 | G1 — Contract compatibility | Complete | C-001–C-007 are approved/frozen; contract compatibility tests and deterministic Person 4 mocks already satisfy the Gate 1 exit criteria for the shared compatibility layer. Real P1/P2/P3 algorithm outputs remain required for Gates 2–5. |
-| G2 — Data and baseline | In progress | 161 dated local tests; deterministic generator, candidate golden pack, OCID conversion path, and verification entry point are merged; the D-009 freeze decision, Windows/T4 handoff, and the real-data OCID smoke test remain open |
+| G2 — Data and baseline | In progress | 161 dated local tests; deterministic generator, frozen golden pack (D-009 confirmed 2026-09-06), OCID conversion path, and verification entry point are merged; Windows/T4 handoff and the real-data OCID smoke test remain open |
 | G3 — Geometry | Not started | Person 2 implementation and known-volume evidence absent |
 | G4 — Tracking and rules | Not started | Person 3 implementation and deterministic rule evidence absent |
 | G5 — Complete vertical pipeline | Blocked | Requires Gates 1–4 and Person 4 pipeline/CLI |

@@ -139,6 +139,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
   playbook, recorded 2026-09-06 outputs, limitations, and an independent
   sign-off block, with the remaining completion decisions (D-009, P-003,
   G0.4) consolidated under issue #40.
+- The golden scenario pack is frozen: `golden-pack.json` records
+  `pack_status: frozen` and `decision_status: D-009-confirmed-2026-09-06` after
+  the scenario-ten confirmation (D-009), with the regeneration inventory and
+  audit updated accordingly.
 - The deterministic scenario generator is implemented and merged; the golden
   scenario pack remains a candidate awaiting team confirmation of D-009 and
   the change-impact alignment in issue #18 (now resolved by PR #29).
