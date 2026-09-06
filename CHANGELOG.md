@@ -43,6 +43,21 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
   manifest state.
 - Person 3 replay tracking, shelf proximity, occlusion masking, deterministic
   removal-alert association, edge-case tests, and integration tests.
+- Person 1 baseline calibration hardening tests: mixed-resolution and
+  changed-intrinsics frame batches reject, unsafe occupancy-grid dimensions
+  reject, an empty shelf is entirely fixed geometry, injected per-pixel jitter
+  raises the noise sigma above the 1 mm floor, and the calibration checksum is
+  stable across repetitions, sensitive to median-affecting changes, and
+  documented as absorbing single-frame outlier pixels.
+- Person 1 known-volume acceptance suite with box, cylinder, and irregular
+  union shapes at varied positions (0.55-1.72 litres, 0.94-0.97 m tops on a
+  1.0 m plane) all within the 10% volume limit, plus a hanging-plate guard
+  case that records the expected void-column overestimate for Person 2's
+  occlusion-safe geometry scope.
+- Person 1 MiDaS policy tests: MIDAS_ALIGNED frames label artifacts
+  approximate, the flag survives save/load round trips, negative and NaN
+  relative inverses stay unknown in aligned output, and the residual limit is
+  explicit and enforceable.
 - Human-facing project README and documentation map.
 - Person 1 specification, implementation plan, system requirements, architecture, data, development, testing, and decision documents.
 - Repository instructions for coding agents in `AGENTS.md`.
@@ -79,4 +94,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
   `@DontHash` is the temporary repository steward and CODEOWNER.
 - Server-enforced branch protection for the private repository requires a GitHub
   plan upgrade; CI and review policy are present but not platform-enforced.
-- The deterministic generator, golden scenario pack, OCID converter, and CLI remain unimplemented.
+- The deterministic scenario generator is implemented and merged; the golden
+  scenario pack remains a candidate awaiting team confirmation of D-009 and
+  the change-impact alignment in issue #18. OCID converter, provenance record,
+  verification script, and CLI remain unimplemented.

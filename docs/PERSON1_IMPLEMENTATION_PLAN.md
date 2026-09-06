@@ -1,6 +1,6 @@
 # Person 1 Implementation Plan
 
-**Status:** In progress; P1-01 and P1-02 are complete, and P1-03 is in review
+**Status:** In progress; P1-01/P1-02/P1-03 are merged, P1-04 is a locally implemented candidate blocked by issue #18, and P1-06/P1-07/P1-08 are locally implemented under issue #21
 **Owner:** Person 1  
 **Estimated effort:** 9–14 focused working days, plus access time for the target T4 check  
 **Requirements:** [PERSON1_SPEC.md](PERSON1_SPEC.md)
@@ -18,9 +18,10 @@ Present before P1-01:
 - RGB-D replay in `src/kyra/io.py`.
 - Baseline building, persistence, and MiDaS alignment in `src/kyra/baseline.py`.
 
-Still not present after P1-03:
+Still not present after P1-03/P1-04 candidate:
 
-- Frozen golden pack.
+- Team-confirmed frozen golden pack; the ten-scenario candidate is implemented
+  locally on `p1/17-golden-scenario-pack` but unmerged and unfrozen.
 - OCID converter and provenance file.
 - Verification scripts and independent test report.
 - `src/kyra/cli.py`, although `pyproject.toml` already names it as a future command.
@@ -82,7 +83,7 @@ the shared manifest decision and approved C-006 implementation are recorded.
 
 #### P1-03: Implement the lightweight generator
 
-- **Status:** In review under GitHub issue #14 and pull request #16 on 2026-09-04.
+- **Status:** Complete; merged through GitHub issue #14 and pull request #16 on 2026-09-05 as commit `71c1416`.
 - **Requirements:** P1-SIM-001, P1-SIM-002, P1-SIM-004, P1-SIM-005.
 - **Create:** `src/kyra/simulation.py`, `tests/test_simulation.py`.
 - **Do:** Generate low-resolution RGB, 16-bit metric depth, valid masks, object masks, occlusion masks, timestamps, calibration, and ground truth from a single seeded random generator. Sort all output and use forward-slash relative paths in manifests.
@@ -96,10 +97,20 @@ the shared manifest decision and approved C-006 implementation are recorded.
 
 #### P1-04: Create and audit the golden pack
 
+- **Status:** Locally implemented and integrated with current `origin/main` under
+  GitHub issue #17 on 2026-09-05, but blocked before push/review by the
+  change-impact ownership conflict in issue #18. The artifact is a candidate,
+  not a frozen pack, until G0.2 is confirmed.
 - **Requirements:** P1-SIM-003, P1-SIM-005, P1-QA-001.
 - **Create:** `scripts/generate_golden_pack.py`, `scenario-fixtures/golden/`, `scenario-fixtures/golden/checksums.sha256`, `tests/test_golden_pack.py`.
 - **Do:** Generate the ten scenarios in the specification. Keep fixtures tiny. Freeze seeds, schema version, expected result, and checksums only after G0.2 and G0.3 pass.
 - **Proof:** Every manifest validates; every asset exists; all ten expected behaviors and required shape families appear exactly as documented; regeneration is clean.
+- **Current evidence:** Three focused golden-pack tests, plus the eight P1-03
+  generator tests, pass offline on current `origin/main`; the full suite has 116
+  passing tests. They audit ten manifest 1.1 scenarios, all four shape families,
+  behavior-specific source evidence, 117 committed files, recorded SHA-256
+  values, and byte-identical regeneration. This is local synthetic evidence and
+  does not close G0.2, Gate 2, or the target-T4 check.
 - **Estimate:** 1–1.5 days.
 
 #### P1-05: Add optional BlenderProc realism checks
@@ -116,29 +127,61 @@ the shared manifest decision and approved C-006 implementation are recorded.
 
 #### P1-06: Harden calibration and persistence
 
+- **Status:** Complete; implemented under GitHub issue #21 on 2026-09-06.
 - **Requirements:** P1-CAL-001, P1-CAL-002, P1-CAL-003, P1-CAL-004.
 - **Modify:** `src/kyra/baseline.py`; add focused fixtures in `tests/test_baseline.py`.
 - **Do:** Test and correct only observed gaps in 30-frame fusion, noise handling, fixed/portable separation, occupancy bounds, checksum, schema rejection, and save/load equality. Avoid a module move unless G0.1 requires it.
 - **Proof:** Fixed shelf pixels never appear in portable components; known sub-0.5 m³ items do; unsafe grids reject; loading does not call `BaselineBuilder.fit`.
+- **Current evidence:** No real gap was observed in `src/kyra/baseline.py`; the
+  module landed unchanged. Added tests: mixed-resolution and
+  changed-intrinsics batches reject; unsafe occupancy-grid dimensions reject;
+  an empty shelf is entirely fixed geometry with zero portable components;
+  injected per-pixel jitter raises the noise sigma above the 1 mm floor; the
+  calibration checksum changes with shelf configuration and median-affecting
+  depth content, stays identical across repetitions, and absorbs a
+  single-frame outlier pixel (documented robustness property).
 - **Estimate:** 1–1.5 days.
 
 #### P1-07: Add known-volume acceptance tests
 
+- **Status:** Complete; implemented under GitHub issue #21 on 2026-09-06.
 - **Requirements:** P1-CAL-005.
 - **Create:** `tests/acceptance/test_baseline_volume.py`.
 - **Do:** Use synthetic objects with known volumes at or above 0.5 L, varied position and supported shape families. Compare baseline component volume with ground truth.
 - **Proof:** Each accepted case is within 10%; failures print expected volume, measured volume, relative error, and seed.
+- **Current evidence:** Seven parametrized cases (12x12, 14x14, 16x10, and
+  18x18 boxes; radius-7 and radius-9 cylinders; an 8-px-arm irregular L union;
+  top depths 0.94-0.97 m on a 1.0 m plane; 0.55-1.72 litres; seeds 101-107)
+  pass with exact-model errors of 1.9-6.5%. A hanging-plate guard case (seed
+  201) records the expected >10% void-column overestimate as Person 2 scope.
+  Failure messages include seed, expected volume, measured volume, and
+  relative error.
 - **Estimate:** 0.5–1 day.
 
 #### P1-08: Isolate and test MiDaS alignment policy
 
+- **Status:** Complete; implemented under GitHub issue #21 on 2026-09-06.
 - **Requirements:** P1-MIDAS-001, P1-MIDAS-002.
 - **Modify only if tests reveal a gap:** `src/kyra/baseline.py`; create `tests/test_midas_alignment.py`.
 - **Do:** Cover two or more distinct anchors, empty masks, non-positive metric depth, repeated predictions, large residual, align-before-fit, approximate flag, and metric-evaluation exclusion.
 - **Proof:** Bad calibration always rejects; accepted output has finite positive depth only where valid and is labelled approximate.
+- **Current evidence:** No `baseline.py` gap observed; module unchanged. Added
+  policy tests: `MIDAS_ALIGNED` frames label the artifact
+  `approximate_metric=True` and synthetic frames label it False; the flag
+  survives a save/load round trip in the artifact and metadata JSON; `align`
+  maps negative and NaN relative inverses to zero while preserving finite
+  positive depth; and the `maximum_residual_m` limit is explicit and
+  enforceable (same anchors reject at 0.001 m, accept at 0.5 m).
+- **Plan deviation:** the tests live in `tests/test_baseline.py` instead of the
+  named `tests/test_midas_alignment.py` because the change-impact classifier
+  (issue #18) would misclassify that filename as Person 4. Reconcile when the
+  classifier fix lands.
 - **Estimate:** 0.5 day.
 
-**Wave 3 exit:** The saved baseline is repeatable and the assignment’s volume and classification limits pass.
+**Wave 3 exit:** Complete the saved baseline is repeatable, and the
+assignment's volume and classification limits pass with the 2026-09-06
+evidence under issue #21; handled/hanging overhang cases remain a documented
+Person 2 scope limitation.
 
 ### Wave 4 — Convert approved public data
 
@@ -218,7 +261,12 @@ Person 1 is complete only when all of these are true:
 ## Current implementation checkpoint
 
 P1-01 created the test floor and corrected four input-boundary defects. P1-02
-completed the approved manifest 1.1 contract and replay accessors. P1-03 now has
-a reviewable core generator that uses only locked runtime dependencies and emits
-synthetic evidence; it does not yet constitute the ten-scenario frozen pack,
-target-T4 proof, or complete Gate 2 evidence.
+completed the approved manifest 1.1 contract and replay accessors. P1-03 landed
+a core generator that uses only locked runtime dependencies and emits synthetic
+evidence. P1-04 adds the candidate ten-scenario pack, but that pack remains
+unfrozen pending D-009 and does not establish target-T4 or complete Gate 2
+evidence. P1-06/P1-07/P1-08 closed Wave 3 on 2026-09-06 with a hardened
+calibration/noise/checksum matrix, a within-10% known-volume acceptance suite
+(with the hanging-plate bias explicitly recorded as Person 2 scope), and the
+complete MiDaS policy matrix; no `baseline.py` defect was observed. The next
+unblocked Person 1 work is P1-09 provenance and P1-10 OCID conversion.
