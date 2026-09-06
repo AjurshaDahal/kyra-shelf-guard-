@@ -1,7 +1,7 @@
 # WI-036 — Synchronize dependency lock with merged pins
 
 - **Owner:** P4
-- **Status:** Complete
+- **Status:** Complete (merged via PR #37 as `68e3b65`)
 - **Started:** 2026-09-06
 - **Completed:** 2026-09-06
 - **Requirements:** documentation/dependency governance
@@ -56,5 +56,5 @@ regeneration audit under OpenCV 5.
 ## Final links
 
 - Issue: https://github.com/DontHash/kyra-shelf-guard/issues/36
-- Pull request: pending
-- Commit: pending
+- Pull request: https://github.com/DontHash/kyra-shelf-guard/pull/37
+- Commit: `68e3b65` (squash merge on `main`)
