@@ -1,9 +1,9 @@
 # WI-014 — Deterministic scenario generator
 
 - **Owner:** P1
-- **Status:** In review
+- **Status:** Complete
 - **Started:** 2026-09-04
-- **Completed:** N/A
+- **Completed:** 2026-09-05
 - **Requirements:** P1-03; P1-SIM-001, P1-SIM-002, P1-SIM-004, P1-SIM-005
 - **Integration gate:** Gate 2
 
@@ -90,13 +90,14 @@ ground truth in either direction.
 
 ## Handoff
 
-Person 1 should address review on issue #14, then claim P1-04. That work composes
-the approved behavior matrix from this generator and must record the team
-decision for scenario ten before calling the pack frozen. Person 4 validates
-consumption at Gate 2 after the remaining Person 1 exit evidence exists.
+P1-03 merged through pull request #16. Person 1 is continuing with P1-04, which
+composes the approved behavior matrix from this generator and must record the
+team decision for scenario ten before calling the pack frozen. Person 4
+validates consumption at Gate 2 after the remaining Person 1 exit evidence
+exists.
 
 ## Final links
 
 - Issue: https://github.com/DontHash/kyra-shelf-guard/issues/14
 - Pull request: https://github.com/DontHash/kyra-shelf-guard/pull/16
-- Implementation commit: `696e92e`
+- Merge commit: `71c1416`

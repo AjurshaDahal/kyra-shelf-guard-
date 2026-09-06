@@ -8,6 +8,7 @@ dependencies.  It produces inspectable PNG assets and the approved manifest
 from __future__ import annotations
 
 from dataclasses import dataclass
+from enum import StrEnum
 from pathlib import Path
 from typing import Literal
 
@@ -21,6 +22,7 @@ from kyra.manifest import (
     ScenarioManifest,
     ShapeFamily,
     ShelfConfigRecord,
+    TrackAnnotation,
     write_manifest,
 )
 
@@ -29,6 +31,16 @@ _BACKGROUND_DEPTH_MM = 1_400
 _PNG_WRITE_OPTIONS = [cv2.IMWRITE_PNG_COMPRESSION, 9]
 
 
+class ScenarioCondition(StrEnum):
+    """Synthetic condition applied after the opening baseline."""
+
+    OBJECT_CHANGE = "object_change"
+    NO_CHANGE = "no_change"
+    PERSON_ONLY_OCCLUSION = "person_only_occlusion"
+    REMOVAL_THEN_OCCLUSION = "removal_then_occlusion"
+    LIGHTING_VARIATION = "lighting_variation"
+    INVALID_DEPTH = "invalid_depth"
+    CAMERA_DRIFT = "camera_drift"
 @dataclass(frozen=True, slots=True)
 class ScenarioSettings:
     """Inputs that fully determine one lightweight scenario."""
@@ -37,10 +49,12 @@ class ScenarioSettings:
     random_seed: int
     category: str
     shape_family: ShapeFamily
-    change_type: ChangeType
+    change_type: ChangeType | None
     should_alert: bool
+    condition: ScenarioCondition = ScenarioCondition.OBJECT_CHANGE
     system_mode: Literal["NORMAL", "RESTOCK_MODE"] = "NORMAL"
     held_out_category: bool = False
+    split: Literal["development", "frozen_test", "golden"] = "development"
     width: int = 64
     height: int = 48
     baseline_frame_count: int = 30
@@ -55,8 +69,27 @@ class ScenarioSettings:
             raise ValueError("category must not be empty")
         if self.random_seed < 0:
             raise ValueError("random_seed must be non-negative")
-        if self.change_type not in (ChangeType.REMOVAL, ChangeType.ADDITION):
-            raise ValueError("lightweight object scenarios must be removal or addition")
+        object_change_conditions = {
+            ScenarioCondition.OBJECT_CHANGE,
+            ScenarioCondition.REMOVAL_THEN_OCCLUSION,
+        }
+        if self.condition in object_change_conditions:
+            if self.change_type not in (ChangeType.REMOVAL, ChangeType.ADDITION):
+                raise ValueError("object-change scenarios must be removal or addition")
+        elif self.change_type is not None:
+            raise ValueError("non-change conditions must not declare an object change")
+        if (
+            self.condition is ScenarioCondition.REMOVAL_THEN_OCCLUSION
+            and self.change_type is not ChangeType.REMOVAL
+        ):
+            raise ValueError("removal-then-occlusion requires a removal change")
+        if (
+            self.condition is ScenarioCondition.REMOVAL_THEN_OCCLUSION
+            and self.event_frame_count < 2
+        ):
+            raise ValueError("removal-then-occlusion requires at least two event frames")
+        if self.change_type is None and self.should_alert:
+            raise ValueError("a scenario without an object change cannot expect an alert")
         if self.width < 32 or self.height < 24:
             raise ValueError("scenario dimensions must be at least 32 by 24 pixels")
         if self.baseline_frame_count < 1:
@@ -194,6 +227,73 @@ def _frame_assets(
     return rgb_bgr, depth_mm, valid_mask, occlusion_mask
 
 
+def _occluder_mask(object_mask: np.ndarray) -> np.ndarray:
+    kernel = np.ones((7, 7), dtype=np.uint8)
+    return cv2.dilate(object_mask, kernel, iterations=1)
+
+
+def _track_for_mask(mask: np.ndarray, *, authorized: bool) -> TrackAnnotation:
+    rows, columns = np.nonzero(mask)
+    if rows.size == 0:
+        raise ValueError("person mask must not be empty")
+    return TrackAnnotation(
+        track_id=1,
+        box_xyxy=(
+            float(columns.min()),
+            float(rows.min()),
+            float(columns.max() + 1),
+            float(rows.max() + 1),
+        ),
+        position_m=(0.0, 0.0, 1.0),
+        near_shelf=True,
+        authorized=authorized,
+    )
+
+
+def _apply_camera_drift(
+    rgb_bgr: np.ndarray,
+    depth_mm: np.ndarray,
+    valid_mask: np.ndarray,
+    object_mask: np.ndarray,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    shift_x = max(2, rgb_bgr.shape[1] // 16)
+    transform = np.float32(((1.0, 0.0, shift_x), (0.0, 1.0, 0.0)))
+    size = (rgb_bgr.shape[1], rgb_bgr.shape[0])
+    shifted_rgb = cv2.warpAffine(
+        rgb_bgr,
+        transform,
+        size,
+        flags=cv2.INTER_NEAREST,
+        borderMode=cv2.BORDER_CONSTANT,
+        borderValue=(0, 0, 0),
+    )
+    shifted_depth = cv2.warpAffine(
+        depth_mm,
+        transform,
+        size,
+        flags=cv2.INTER_NEAREST,
+        borderMode=cv2.BORDER_CONSTANT,
+        borderValue=0,
+    )
+    shifted_valid = cv2.warpAffine(
+        valid_mask,
+        transform,
+        size,
+        flags=cv2.INTER_NEAREST,
+        borderMode=cv2.BORDER_CONSTANT,
+        borderValue=0,
+    )
+    shifted_object = cv2.warpAffine(
+        object_mask,
+        transform,
+        size,
+        flags=cv2.INTER_NEAREST,
+        borderMode=cv2.BORDER_CONSTANT,
+        borderValue=0,
+    )
+    return shifted_rgb, shifted_depth, shifted_valid, shifted_object
+
+
 def generate_scenario(
     destination: str | Path,
     settings: ScenarioSettings,
@@ -243,11 +343,14 @@ def generate_scenario(
     for index in range(frame_count):
         frame_id = f"frame-{index:04d}"
         is_baseline = index < settings.baseline_frame_count
-        object_present = (
-            is_baseline
-            if settings.change_type is ChangeType.REMOVAL
-            else not is_baseline
-        )
+        is_event = not is_baseline
+        event_index = index - settings.baseline_frame_count
+        if settings.change_type is ChangeType.REMOVAL:
+            object_present = is_baseline
+        elif settings.change_type is ChangeType.ADDITION:
+            object_present = is_event
+        else:
+            object_present = True
         rgb_bgr, depth_mm, valid_mask, occlusion_mask = _frame_assets(
             background_bgr=background_bgr,
             object_mask=object_mask,
@@ -255,6 +358,35 @@ def generate_scenario(
             object_depth_mm=object_depth_mm,
             object_present=object_present,
         )
+        frame_object_mask = object_mask.copy()
+        tracks: list[TrackAnnotation] = []
+
+        if is_event and settings.condition is ScenarioCondition.PERSON_ONLY_OCCLUSION:
+            occlusion_mask = _occluder_mask(object_mask)
+            tracks.append(_track_for_mask(occlusion_mask, authorized=False))
+        elif (
+            is_event
+            and settings.condition is ScenarioCondition.REMOVAL_THEN_OCCLUSION
+            and event_index >= 1
+        ):
+            occlusion_mask = _occluder_mask(object_mask)
+            tracks.append(_track_for_mask(occlusion_mask, authorized=False))
+        elif is_event and settings.condition is ScenarioCondition.LIGHTING_VARIATION:
+            rgb_bgr = np.clip(rgb_bgr.astype(np.uint16) + 35, 0, 255).astype(np.uint8)
+        elif is_event and settings.condition is ScenarioCondition.INVALID_DEPTH:
+            selected = object_mask > 0
+            depth_mm[selected] = 0
+            valid_mask[selected] = 0
+        elif is_event and settings.condition is ScenarioCondition.CAMERA_DRIFT:
+            rgb_bgr, depth_mm, valid_mask, frame_object_mask = _apply_camera_drift(
+                rgb_bgr,
+                depth_mm,
+                valid_mask,
+                frame_object_mask,
+            )
+
+        if is_event and settings.system_mode == "RESTOCK_MODE" and not tracks:
+            tracks.append(_track_for_mask(frame_object_mask, authorized=True))
 
         rgb_path = f"rgb/{frame_id}.png"
         depth_path = f"depth/{frame_id}.png"
@@ -265,7 +397,7 @@ def generate_scenario(
         _write_png(root / depth_path, depth_mm)
         _write_png(root / valid_path, valid_mask)
         _write_png(root / occlusion_path, occlusion_mask)
-        _write_png(root / object_path, object_mask)
+        _write_png(root / object_path, frame_object_mask)
 
         frames.append(
             FrameRecord(
@@ -278,6 +410,7 @@ def generate_scenario(
                 valid_mask_path=valid_path,
                 occlusion_mask_path=occlusion_path,
                 object_mask_path=object_path,
+                tracks=tracks,
             )
         )
 
@@ -294,7 +427,7 @@ def generate_scenario(
         evidence_source="synthetic",
         category=settings.category,
         held_out_category=settings.held_out_category,
-        split="development",
+        split=settings.split,
         intrinsics=intrinsics,
         camera_to_shelf=(
             (1.0, 0.0, 0.0, 0.0),
@@ -311,19 +444,26 @@ def generate_scenario(
         ),
         baseline_frame_ids=baseline_ids,
         frames=frames,
-        ground_truth_events=[
-            GroundTruthEvent(
-                change_type=settings.change_type,
-                first_seen_timestamp_ns=first_event_timestamp_ns,
-                volume_m3=volume_m3,
-                bounds_min_m=bounds_min_m,
-                bounds_max_m=bounds_max_m,
-                shape_family=settings.shape_family,
-                should_alert=settings.should_alert,
-            )
-        ],
+        ground_truth_events=(
+            [
+                GroundTruthEvent(
+                    change_type=settings.change_type,
+                    first_seen_timestamp_ns=first_event_timestamp_ns,
+                    volume_m3=volume_m3,
+                    bounds_min_m=bounds_min_m,
+                    bounds_max_m=bounds_max_m,
+                    shape_family=settings.shape_family,
+                    should_alert=settings.should_alert,
+                )
+            ]
+            if settings.change_type is not None
+            else []
+        ),
         system_mode=settings.system_mode,
-        notes=[f"generator=kyra-lightweight-{GENERATOR_VERSION}"],
+        notes=[
+            f"generator=kyra-lightweight-{GENERATOR_VERSION}",
+            f"condition={settings.condition.value}",
+        ],
     )
     manifest_path = root / "scenario.json"
     write_manifest(manifest, manifest_path)

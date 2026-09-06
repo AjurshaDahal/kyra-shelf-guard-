@@ -11,6 +11,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
 - Person 1 lightweight deterministic RGB-D scenario generation with seeded
   object placement, all four approved shape families, lossless manifest 1.1
   assets, and offline same-seed byte/hash stability checks.
+- Person 1 candidate golden scenario pack with ten deterministic, replayable
+  synthetic behaviors, portable manifests, a reviewed seed/shape matrix,
+  checksum inventory, and byte-identical regeneration checks. The pack remains
+  explicitly unfrozen pending the D-009 team confirmation.
 - Person 1 OCID conversion mapping (`src/kyra/ocid.py`) with strict metadata
   parsing, millimetre depth mapping that keeps zero depth unknown, valid and
   object masks, windowed addition/removal event derivation, addition-to-removal

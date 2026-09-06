@@ -1,0 +1,141 @@
+{
+  "schema_version": "1.1",
+  "scenario_id": "G07",
+  "random_seed": 1107,
+  "source_type": "synthetic_rgbd",
+  "evidence_source": "synthetic",
+  "category": "restocked-can",
+  "held_out_category": false,
+  "split": "golden",
+  "intrinsics": [
+    [
+      80.0,
+      0.0,
+      15.5
+    ],
+    [
+      0.0,
+      80.0,
+      11.5
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "camera_to_shelf": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "shelf": {
+    "shelf_id": "shelf-01",
+    "roi_xyxy": [
+      0,
+      0,
+      32,
+      24
+    ],
+    "bounds_min_m": [
+      -0.4,
+      -0.25,
+      0.5
+    ],
+    "bounds_max_m": [
+      0.4,
+      0.25,
+      1.5
+    ],
+    "voxel_size_m": 0.01
+  },
+  "baseline_frame_ids": [
+    "frame-0000"
+  ],
+  "frames": [
+    {
+      "frame_id": "frame-0000",
+      "timestamp_ns": 1000000000,
+      "rgb_path": "rgb/frame-0000.png",
+      "depth_path": "depth/frame-0000.png",
+      "valid_mask_path": "masks/frame-0000-valid.png",
+      "occlusion_mask_path": "masks/frame-0000-occlusion.png",
+      "object_mask_path": "masks/frame-0000-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0001",
+      "timestamp_ns": 1100000000,
+      "rgb_path": "rgb/frame-0001.png",
+      "depth_path": "depth/frame-0001.png",
+      "valid_mask_path": "masks/frame-0001-valid.png",
+      "occlusion_mask_path": "masks/frame-0001-occlusion.png",
+      "object_mask_path": "masks/frame-0001-object.png",
+      "tracks": [
+        {
+          "track_id": 1,
+          "box_xyxy": [
+            15.0,
+            8.0,
+            22.0,
+            19.0
+          ],
+          "pose_keypoints_xyc": [],
+          "position_m": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "near_shelf": true,
+          "authorized": true
+        }
+      ]
+    }
+  ],
+  "ground_truth_events": [
+    {
+      "change_type": "ADDITION",
+      "first_seen_timestamp_ns": 1100000000,
+      "volume_m3": 0.0021875,
+      "bounds_min_m": [
+        -0.025000000000000022,
+        -0.08333333333333334,
+        1.3299999999999998
+      ],
+      "bounds_max_m": [
+        0.15000000000000002,
+        0.14583333333333331,
+        1.4
+      ],
+      "associated_track_id": null,
+      "shape_family": "cylinder",
+      "should_alert": false
+    }
+  ],
+  "system_mode": "RESTOCK_MODE",
+  "notes": [
+    "generator=kyra-lightweight-1.0",
+    "condition=object_change"
+  ]
+}

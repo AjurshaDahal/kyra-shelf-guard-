@@ -98,6 +98,17 @@ the shared manifest decision and approved C-006 implementation are recorded.
 
 #### P1-04: Create and audit the golden pack
 
+- **Status:** Locally implemented and integrated with current `origin/main` on
+  2026-09-05 under GitHub issue #17, but blocked before push/review by the
+  change-impact ownership conflict in issue #18. The artifact is a candidate,
+  not a frozen pack, until G0.2 is confirmed. WI-025 additionally recorded
+  that the pack's audit test needs a line-ending-canonical inventory
+  comparison to survive a Windows checkout under `core.autocrlf=true`.
+- **Current evidence:** Three focused golden-pack tests, plus the eight P1-03
+  generator tests, pass offline; they audit ten manifest 1.1 scenarios, all
+  four shape families, behavior-specific source evidence, 117 committed files,
+  recorded SHA-256 values, and byte-identical regeneration. This is local
+  synthetic evidence and does not close G0.2, Gate 2, or the target-T4 check.
 - **Requirements:** P1-SIM-003, P1-SIM-005, P1-QA-001.
 - **Create:** `scripts/generate_golden_pack.py`, `scenario-fixtures/golden/`, `scenario-fixtures/golden/checksums.sha256`, `tests/test_golden_pack.py`.
 - **Do:** Generate the ten scenarios in the specification. Keep fixtures tiny. Freeze seeds, schema version, expected result, and checksums only after G0.2 and G0.3 pass.
@@ -211,6 +222,13 @@ issue #18; the real-data smoke test remains pending retrieval.
 - **Estimate:** 0.5 day.
 
 #### P1-12: Validate Windows and target T4
+
+- **Status:** In progress. Windows candidate-leg report drafted on 2026-09-06
+  (`docs/PERSON1_TEST_REPORT_WINDOWS_CANDIDATE.md`, commit `422a841` territory):
+  158 tests passed, the seven-check verifier exited 0 against the in-repo
+  candidate pack, and the change-impact failure was the known issue #18 one.
+  The target-T4 leg is blocked on G0.4 (runner and report location assigned by
+  Person 4) and on the pack freeze decision (D-009).
 
 - **Requirements:** P1-QA-001, P1-QA-002.
 - **Use:** Frozen lock files, golden pack, and `docs/PERSON1_TEST_REPORT_TEMPLATE.md`.

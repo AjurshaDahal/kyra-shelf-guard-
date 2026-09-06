@@ -1,0 +1,151 @@
+{
+  "schema_version": "1.1",
+  "scenario_id": "G06",
+  "random_seed": 1106,
+  "source_type": "synthetic_rgbd",
+  "evidence_source": "synthetic",
+  "category": "handled-container",
+  "held_out_category": false,
+  "split": "golden",
+  "intrinsics": [
+    [
+      80.0,
+      0.0,
+      15.5
+    ],
+    [
+      0.0,
+      80.0,
+      11.5
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "camera_to_shelf": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "shelf": {
+    "shelf_id": "shelf-01",
+    "roi_xyxy": [
+      0,
+      0,
+      32,
+      24
+    ],
+    "bounds_min_m": [
+      -0.4,
+      -0.25,
+      0.5
+    ],
+    "bounds_max_m": [
+      0.4,
+      0.25,
+      1.5
+    ],
+    "voxel_size_m": 0.01
+  },
+  "baseline_frame_ids": [
+    "frame-0000"
+  ],
+  "frames": [
+    {
+      "frame_id": "frame-0000",
+      "timestamp_ns": 1000000000,
+      "rgb_path": "rgb/frame-0000.png",
+      "depth_path": "depth/frame-0000.png",
+      "valid_mask_path": "masks/frame-0000-valid.png",
+      "occlusion_mask_path": "masks/frame-0000-occlusion.png",
+      "object_mask_path": "masks/frame-0000-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0001",
+      "timestamp_ns": 1100000000,
+      "rgb_path": "rgb/frame-0001.png",
+      "depth_path": "depth/frame-0001.png",
+      "valid_mask_path": "masks/frame-0001-valid.png",
+      "occlusion_mask_path": "masks/frame-0001-occlusion.png",
+      "object_mask_path": "masks/frame-0001-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0002",
+      "timestamp_ns": 1200000000,
+      "rgb_path": "rgb/frame-0002.png",
+      "depth_path": "depth/frame-0002.png",
+      "valid_mask_path": "masks/frame-0002-valid.png",
+      "occlusion_mask_path": "masks/frame-0002-occlusion.png",
+      "object_mask_path": "masks/frame-0002-object.png",
+      "tracks": [
+        {
+          "track_id": 1,
+          "box_xyxy": [
+            6.0,
+            3.0,
+            23.0,
+            21.0
+          ],
+          "pose_keypoints_xyc": [],
+          "position_m": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "near_shelf": true,
+          "authorized": false
+        }
+      ]
+    }
+  ],
+  "ground_truth_events": [
+    {
+      "change_type": "REMOVAL",
+      "first_seen_timestamp_ns": 1100000000,
+      "volume_m3": 0.004803124999999999,
+      "bounds_min_m": [
+        -0.17500000000000002,
+        -0.125,
+        1.313
+      ],
+      "bounds_max_m": [
+        0.09999999999999998,
+        0.125,
+        1.4
+      ],
+      "associated_track_id": null,
+      "shape_family": "handled_or_hanging",
+      "should_alert": true
+    }
+  ],
+  "system_mode": "NORMAL",
+  "notes": [
+    "generator=kyra-lightweight-1.0",
+    "condition=removal_then_occlusion"
+  ]
+}

@@ -15,7 +15,7 @@ repository consistency, and change-impact validation also passed.
 | Unit | Check one conversion, validator, calculation, or rejection | `tests/test_*.py` | None |
 | Contract | Prove saved files and public values match the shared schema | `tests/test_manifest.py`, `tests/test_io.py` | None |
 | Determinism | Compare repeated generated output | `tests/test_simulation.py` | None |
-| Golden pack | Load all frozen scenarios and audit expected metadata | `tests/test_golden_pack.py` | Tiny committed fixtures |
+| Golden pack | Load the candidate or frozen scenarios and audit expected metadata | `tests/test_golden_pack.py` | Tiny committed fixtures |
 | Acceptance | Check volume error and baseline behavior | `tests/acceptance/` | Tiny synthetic fixtures |
 | Conversion | Check OCID mapping | `tests/test_ocid.py` | Tiny mini fixture; real smoke test is separate |
 | Optional integration | Check BlenderProc or full public data path | `tests/integration/` | Explicit optional environment |
@@ -90,6 +90,18 @@ Normal project checks:
 .\.venv\Scripts\python.exe -m pytest --cov=kyra --cov-report=term-missing
 .\.venv\Scripts\python.exe -m ruff check .
 ```
+
+Regenerate the candidate golden pack only into a new or empty directory, then
+run its focused audit with the generator tests:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\generate_golden_pack.py <empty-output-directory>
+.\.venv\Scripts\python.exe -m pytest tests\test_simulation.py tests\test_golden_pack.py -q
+```
+
+The committed pack is intentionally marked `candidate`. Successful local
+regeneration does not make it frozen, close D-009, prove target-T4 portability,
+or establish downstream alert behavior.
 
 Once P1-11 creates the verification script:
 

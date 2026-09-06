@@ -39,6 +39,19 @@
   valid addition into a removal with re-created monotonic timestamps and
   last-seen object-mask semantics, gates the source by SHA-256, and is replayed
   through the manifest 1.1 reader on the tiny committed `tests/fixtures/ocid-mini/`.
+- P1-11 single verification entry point on 2026-09-06 (WI-025):
+  `scripts/verify_person1.py` runs schema, golden-checksum, reader, baseline,
+  MiDaS-policy, and provenance checks with clear collected failure messages,
+  canonical-LF text-asset hashing (Windows CRLF and T4 LF trees verify
+  identically), and honest non-vacuous failure when the pack or provenance
+  record is absent.
+- P1-12 Windows candidate-leg report on 2026-09-06:
+  `docs/PERSON1_TEST_REPORT_WINDOWS_CANDIDATE.md` records environment
+  identity, exact commands with exits and durations, acceptance rows, and all
+  G01-G10 loads for the candidate pack on the merged `p1/17` tree (158 tests
+  passed; the seven-check verifier exited 0). The target-T4 leg remains
+  blocked on G0.4 and the D-009 freeze decision; the local RTX 2050 machine is
+  not target-T4 evidence.
 
 ## Active
 
