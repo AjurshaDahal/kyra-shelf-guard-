@@ -27,6 +27,9 @@ template before changing files.
 - [Decisions](../DECISIONS.md) records choices already made.
 - [Contracts](../CONTRACTS.md) describes information shared between parts.
 - [Testing](../TESTING.md) explains what proof a task needs.
+- [Person 1 Handoff](../PERSON1_HANDOFF.md) shows, for the Person 1 role, the
+  exact reproducible commands and expected results for the current shared
+  version.
 - Coding agents use the separate [agent documentation route](../agents/README.md).
 
 ## 5. Set up on Windows

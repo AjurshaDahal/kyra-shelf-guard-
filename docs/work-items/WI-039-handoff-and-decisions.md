@@ -1,9 +1,9 @@
 # WI-039 — Handoff package and completion decision packets
 
 - **Owner:** P1
-- **Status:** In review
+- **Status:** Complete (merged via PR #41 as `69d29e7`)
 - **Started:** 2026-09-06
-- **Completed:** N/A
+- **Completed:** 2026-09-06
 - **Requirements:** P1-13; P1-QA-003 (package preparation), P1-QA-002 evidence
 - **Integration gate:** Gate 2 enabler
 
@@ -62,5 +62,5 @@ consistency/change-impact all pass. The guide also states what is not claimed
 ## Final links
 
 - Issue: https://github.com/DontHash/kyra-shelf-guard/issues/39
-- Pull request: pending
-- Commit: pending
+- Pull request: https://github.com/DontHash/kyra-shelf-guard/pull/41
+- Commit: `69d29e7` (squash merge on `main`)
