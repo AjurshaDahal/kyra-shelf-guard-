@@ -11,7 +11,7 @@ requires-python = ">=3.11"
 license = { text = "AGPL-3.0-only" }
 authors = [{ name = "Kyra project team" }]
 dependencies = [
-  "numpy==2.2.6",
+  "numpy==2.4.6",
   "opencv-python-headless==4.13.0.92",
   "pydantic==2.12.3",
 ]

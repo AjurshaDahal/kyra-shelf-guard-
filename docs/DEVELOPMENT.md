@@ -31,6 +31,10 @@ Do not add heavy packages to `requirements.lock`. Core replay and tests must sta
 
 Treat a dependency pin as a synchronized change: update `pyproject.toml` and every affected `requirements*.lock`, record the advisory and owner impact in a work item, update testing/status documentation, and rerun the applicable clean install. Core build/test dependencies must pass Python 3.11 and 3.12 CI. Optional GPU dependency changes additionally require a target-T4 smoke run before Gate 7; updating a pin or resolving a repository alert is not T4 compatibility evidence.
 
+### Dependency refresh log
+
+- 2026-09-06: numpy refreshed to 2.4.6 (Dependabot PR #3); full suite 161 passed on Python 3.11/3.12 CI and locally.
+
 ## Repository layout
 
 ```text

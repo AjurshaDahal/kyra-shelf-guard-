@@ -136,6 +136,11 @@ editable package, run the complete local checks, and require both Python CI jobs
 An optional Torch pin may be verified as published and advisory-fixed without
 being treated as an installed GPU or target-T4 acceptance result.
 
+### Dependency refresh log
+
+- 2026-09-06: numpy refreshed to 2.4.6 (Dependabot PR #3); 161 local tests
+  passed on Python 3.12.7 and CI passed on Python 3.11/3.12 with the new pin.
+
 ## Repository governance checks
 
 Run these before every pull request:
