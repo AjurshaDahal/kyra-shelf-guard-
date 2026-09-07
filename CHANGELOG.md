@@ -153,6 +153,12 @@ in `data-sources/provenance.json` updated while `pending_download` stays
   regeneration audit byte-identical (116/116), optional GPU published-pin
   smoke probe exit 0, on the frozen `main` `65d3707` snapshot; independent
   handoff sign-off remains open (issue #59).
+- Person 3 deterministic Gate 4 evidence generator
+  (`scripts/generate_person3_gate4_evidence.py`, issue #69): replay
+  tracking, proximity, authorization suppression, two-second window,
+  minimum-volume threshold, addition-direction guard, serialized
+  `PersonTrack`/`AlertEvent` evidence, SHA-256 manifest, and the formal
+  record `docs/gates/GATE-4.md`; gate decision remains with Person 4.
 
 ### Known gaps
 

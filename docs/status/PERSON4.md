@@ -29,6 +29,15 @@ Gate 1 contract compatibility is complete for the shared compatibility layer. Pe
 WI-010 (audience-specific documentation split) and the documentation
 reconciliation issues #15 and #18 are merged and closed.
 
+## Issue #69 — Person 3 Gate 4 evidence and change-impact classifier update
+
+On 2026-09-09 the Person 3 Gate 4 evidence integration (see
+`docs/gates/GATE-4.md`) extended `scripts/check_change_impact.py` with
+`PERSON3_SCRIPTS = frozenset({"generate_person3_gate4_evidence.py"})`,
+following the WI-018 (Person 1) and WI-067 (Person 2) precedents, with a
+companion governance test and updated `CONTRIBUTING.md`. Gate 4 status
+remains a Person 4 decision after review of the evidence record.
+
 ## WI-067 — Person 2 Gate 3 evidence and change-impact classifier update
 
 Updated `scripts/check_change_impact.py` on 2026-09-07 to recognize

@@ -26,6 +26,12 @@ PERSON2_SCRIPTS = frozenset(
     }
 )
 
+PERSON3_SCRIPTS = frozenset(
+    {
+        "generate_person3_gate4_evidence.py",
+    }
+)
+
 
 def _owner_for(path: str) -> str | None:
     p1_exact = {"src/kyra/io.py", "src/kyra/baseline.py"}
@@ -67,6 +73,8 @@ def _owner_for(path: str) -> str | None:
             return "PERSON1"
         if name in PERSON2_SCRIPTS:
             return "PERSON2"
+        if name in PERSON3_SCRIPTS:
+            return "PERSON3"
         return "PERSON4"
     if path.startswith(".github/"):
         return "PERSON4"
@@ -88,7 +96,7 @@ def assess_changes(changed: set[str]) -> list[str]:
         if path.startswith(".github/")
         or (
             path.startswith("scripts/")
-            and Path(path).name not in (PERSON1_SCRIPTS | PERSON2_SCRIPTS)
+            and Path(path).name not in (PERSON1_SCRIPTS | PERSON2_SCRIPTS | PERSON3_SCRIPTS)
         )
     }
     owners = {owner for path in implementation | governance if (owner := _owner_for(path))}
