@@ -186,12 +186,14 @@ def _make_restock_track_transient(manifest_path: Path) -> None:
     write_manifest(manifest, manifest_path)
 
 
+TEXT_ASSET_SUFFIXES = {".json", ".toml", ".sha256", ".md", ".txt"}
+
+
 def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as stream:
-        for block in iter(lambda: stream.read(1024 * 1024), b""):
-            digest.update(block)
-    return digest.hexdigest()
+    data = path.read_bytes()
+    if path.suffix in TEXT_ASSET_SUFFIXES:
+        data = data.replace(b"\r\n", b"\n")
+    return hashlib.sha256(data).hexdigest()
 
 
 def generate_split(destination: str | Path) -> Path:

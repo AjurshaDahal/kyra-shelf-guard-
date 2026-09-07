@@ -65,12 +65,14 @@ class EvaluationConfig:
         }
 
 
+TEXT_ASSET_SUFFIXES = {".json", ".toml", ".sha256", ".md", ".txt"}
+
+
 def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as stream:
-        for block in iter(lambda: stream.read(1024 * 1024), b""):
-            digest.update(block)
-    return digest.hexdigest()
+    data = path.read_bytes()
+    if path.suffix in TEXT_ASSET_SUFFIXES:
+        data = data.replace(b"\r\n", b"\n")
+    return hashlib.sha256(data).hexdigest()
 
 
 def _inventory(root: Path) -> dict[str, str]:

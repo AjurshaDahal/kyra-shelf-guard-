@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import hashlib
 import json
 import shutil
 from pathlib import Path
@@ -10,7 +9,18 @@ import pytest
 
 from kyra.contracts import ChangeType
 from kyra.evaluation import EvaluationConfig, Gate6EvaluationError, evaluate_split, load_gate6_split
-from kyra.evaluation.gate6 import _classification, _score_scenario
+from kyra.evaluation.comparison import get_paradigm_comparisons
+from kyra.evaluation.dataset import (
+    HELD_OUT_CATEGORIES,
+    generate_evaluation_specs,
+)
+from kyra.evaluation.gate6 import _classification, _score_scenario, _sha256
+from kyra.evaluation.metrics import (
+    ScenarioEvaluationResult,
+    calculate_suite_metrics,
+    wilson_score_interval,
+)
+from kyra.evaluation.runner import evaluate_scenario_spec
 
 SPLIT_ROOT = Path(__file__).parents[1] / "scenario-fixtures" / "gate6"
 
@@ -71,7 +81,7 @@ def _refresh_checksums(root: Path) -> None:
     records = []
     for path in sorted(root.rglob("*")):
         if path.is_file() and path.name != "checksums.sha256":
-            digest = hashlib.sha256(path.read_bytes()).hexdigest()
+            digest = _sha256(path)
             records.append(f"{digest}  {path.relative_to(root).as_posix()}\n")
     (root / "checksums.sha256").write_text("".join(records), encoding="utf-8")
 
@@ -350,17 +360,6 @@ def test_gate6_threshold_configuration_is_explicit() -> None:
     )
 
 
-from kyra.evaluation.comparison import get_paradigm_comparisons
-from kyra.evaluation.dataset import (
-    HELD_OUT_CATEGORIES,
-    generate_evaluation_specs,
-)
-from kyra.evaluation.metrics import (
-    ScenarioEvaluationResult,
-    calculate_suite_metrics,
-    wilson_score_interval,
-)
-from kyra.evaluation.runner import evaluate_scenario_spec
 
 
 def test_wilson_score_interval_bounds() -> None:
