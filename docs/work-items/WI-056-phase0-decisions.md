@@ -85,4 +85,4 @@ and remains open for a human.
 - Pull request: https://github.com/DontHash/kyra-shelf-guard/pull/57
 - Commit: `765aa5f` (squash merge on `main`)
 - Issue #40 closed as resolved (D-009, D-014, D-015); the independent
-  handoff sign-off is tracked separately (issue #58)
+  handoff sign-off is tracked separately (issue #59)
