@@ -1,9 +1,9 @@
 # WI-053 — Integrate Dependabot dependency bumps and synchronize dependency locks
 
 - **Owner:** P4
-- **Status:** In review
+- **Status:** Complete
 - **Started:** 2026-09-07
-- **Completed:** N/A
+- **Completed:** 2026-09-07
 - **Requirements:** dependency-security governance (WI-036 pattern)
 - **Integration gate:** None
 
@@ -75,5 +75,6 @@ required checks including the byte-identical golden-pack regeneration audit.
 ## Final links
 
 - Issue: https://github.com/DontHash/kyra-shelf-guard/issues/53
-- Pull request: pending
-- Commit: pending
+- Pull request: https://github.com/DontHash/kyra-shelf-guard/pull/54
+- Commit: `4146e3b` (squash merge on `main`)
+- Superseded and closed: Dependabot PRs #47, #48, #49
