@@ -16,21 +16,22 @@ stole something or that it knows their intention.
 
 No. Kyra is a set of tested building blocks, not a finished app.
 
-This summary was checked against the detailed project record on 2026-08-30:
+This summary was checked against the detailed project record on 2026-09-07:
 
 - **Working now:** shared information formats, reading saved camera frames,
-  checking input files, building and saving a normal-shelf reference, and tests
-  that keep shared information compatible.
-- **Started but incomplete:** preparing the remaining sample data and shared rules
-  needed to connect the four people's work.
-- **Not built yet:** measuring shelf changes, connecting those changes to nearby
-  people, making the final alert decision, joining all parts into one flow, the
-  five planned commands, and the final evaluation tools.
+  checking input files, building and saving a normal-shelf reference, tests
+  that keep shared information compatible, measuring shelf changes (what was
+  added or removed and roughly how much), and connecting those changes to
+  nearby people with the alert rules.
+- **Started but incomplete:** joining all parts into one flow, preparing the
+  remaining sample data, and the shared rules that connect the four people's
+  work.
+- **Not built yet:** the five planned commands and the final evaluation tools.
 - **Not proven yet:** a complete run from camera input to alert, real-world
   performance, and testing on the target T4 computer.
 
-The current shared version passes 161 automated tests on Windows with Python
-3.12.7 (dated total, 2026-09-06). This is evidence for the existing building
+The current shared version passes 189 automated tests on Windows with Python
+3.12.7 (dated total, 2026-09-07). This is evidence for the existing building
 blocks only, not proof that the complete system works.
 
 For exact evidence and blockers, use the technical [Project Status](../PROJECT_STATUS.md).

@@ -8,8 +8,8 @@ what someone intended to do.
 ## Where the project stands
 
 Kyra is still in the foundation stage. Some building blocks work and the
-automated checks pass on the current shared version (161 tests on Windows with
-Python 3.12 on 2026-09-06), but the parts have not yet been joined into a
+automated checks pass on the current shared version (189 tests on Windows with
+Python 3.12 on 2026-09-07), but the parts have not yet been joined into a
 complete system. There is no finished app or usable command-line tool yet,
 and the full project has not been tested on the target T4 computer.
 
@@ -36,7 +36,7 @@ For a simple progress summary, read [Project Guide for Team Members](docs/people
 | Person | Plain-English responsibility | Current state |
 |---|---|---|
 | Person 1 | Prepare camera recordings and a reliable picture of a normal shelf | In progress |
-| Person 2 | Measure whether the shelf has physically changed | Not started |
+| Person 2 | Measure whether the shelf has physically changed | In progress |
 | Person 3 | Connect a shelf change to nearby people and apply the alert rules | In progress |
 | Person 4 | Join the parts, provide shared rules and tools, test the whole system, and maintain the project documents | Complete for the shared layer; end-to-end validation remains open |
 

@@ -1,9 +1,9 @@
 # WI-050 — Person 2 geometry, differencing, occlusion, and volume engine
 
 - **Owner:** P2
-- **Status:** In review
+- **Status:** Complete
 - **Started:** 2026-09-06
-- **Completed:** N/A
+- **Completed:** 2026-09-07
 - **Requirements:** P2-REG-001 to P2-REG-003, P2-DIFF-001 to P2-DIFF-003, P2-OCC-001 to P2-OCC-003, P2-VOL-001 to P2-VOL-004, P2-STATE-001 to P2-STATE-004, P2-QA-001 to P2-QA-003
 - **Integration gate:** Gate 3
 
@@ -82,5 +82,5 @@ Integration-tree evidence (Windows, Python 3.12.7, branch `p2/50-integrate-geome
 ## Final links
 
 - Issue: https://github.com/DontHash/kyra-shelf-guard/issues/50
-- Pull request: pending
-- Commit: pending
+- Pull request: https://github.com/DontHash/kyra-shelf-guard/pull/51
+- Commit: https://github.com/DontHash/kyra-shelf-guard/commit/846af340b5640a87e228dd65cd8d05e500bc0acc

@@ -1,6 +1,6 @@
 # Person 2 Status — Geometry and Change
 
-- **Status:** In review
+- **Status:** In progress
 - **Last updated:** 2026-09-07
 
 ## Implemented
@@ -26,7 +26,7 @@
 
 ## Active
 
-- All four milestones (P2-01..P2-04) implemented; integration pull request under review for issue #50 on branch `p2/50-integrate-geometry-engine`. Work-item record: `docs/work-items/WI-050-person2-geometry-engine.md`.
+- All four milestones (P2-01..P2-04) implemented and merged to `main` via pull request #51 (commit `846af34`, 2026-09-07). Work-item record: `docs/work-items/WI-050-person2-geometry-engine.md`.
 
 ## Blocked or pending
 
@@ -48,4 +48,12 @@
 - Author full suite on the original branch base: 141 passed in 0.86s (Linux, Python 3.13, 2026-09-06).
 - Author benchmark: `test_shelf_geometry_provider_latency_budget` p95 latency of 1.25 ms (< 40 ms target).
 - Author lint/type: `ruff check .` passed; `compileall` passed (Linux, Python 3.13, 2026-09-06).
-- Integration-tree evidence on branch `p2/50-integrate-geometry-engine` based on current `origin/main` (Windows, Python 3.12.7, 2026-09-07): see the rows below, recorded after the checks actually ran.
+- Integration evidence on the merged tree (`846af34`, Windows, Python 3.12.7, 2026-09-07):
+  `python -m pytest tests/test_geometry_*.py -q` — 28 passed.
+- Integration evidence on the merged tree (`846af34`, Windows, Python 3.12.7, 2026-09-07):
+  `python -m pytest -q` — 189 passed in 4.32s (161 existing + 28 Person 2).
+- Integration evidence on the merged tree (`846af34`, Windows, Python 3.12.7, 2026-09-07):
+  `python -m ruff check .` — passed; `python -m compileall -q src tests scripts` — passed.
+- Integration evidence on the merged tree (`846af34`, Windows, Python 3.12.7, 2026-09-07):
+  `python scripts/check_repo_consistency.py` — passed; `python scripts/check_change_impact.py --base origin/main` — passed.
+- CI on pull request #51: Core checks (Python 3.11 and 3.12) and Documentation change impact all passed before merge.

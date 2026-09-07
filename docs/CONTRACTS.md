@@ -18,9 +18,9 @@ Person 4 owns this registry and shared implementation surfaces. Producers and co
 |---|---|---|---|---|---|
 | C-001 | Frame packet | `src/kyra/contracts.py::FramePacket` | Person 1 | Persons 2, 3, 4 | Foundation implemented |
 | C-002 | Baseline artifact | `src/kyra/contracts.py::BaselineArtifact` | Person 1 | Persons 2, 4 | Foundation implemented |
-| C-003 | Volume change event | `src/kyra/contracts.py::VolumeChangeEvent` | Person 2 | Persons 3, 4 | Type foundation only; producer absent |
-| C-004 | Person track | `src/kyra/contracts.py::PersonTrack` | Person 3 | Persons 2, 3, 4 | Type foundation only; producer absent |
-| C-005 | Alert event | `src/kyra/contracts.py::AlertEvent` | Person 3 | Person 4 | Type foundation only; producer absent |
+| C-003 | Volume change event | `src/kyra/contracts.py::VolumeChangeEvent` | Person 2 | Persons 3, 4 | Producer implemented (`ShelfGeometryProvider`, merged #51); consumer integration pending |
+| C-004 | Person track | `src/kyra/contracts.py::PersonTrack` | Person 3 | Persons 2, 3, 4 | Producer implemented (replay tracker, merged #19); full matrix evidence pending |
+| C-005 | Alert event | `src/kyra/contracts.py::AlertEvent` | Person 3 | Person 4 | Producer implemented (alert engine, merged #19); full matrix evidence pending |
 | C-006 | Scenario manifest | `src/kyra/manifest.py::ScenarioManifest` | Person 1 data, Person 4 schema | Persons 1–4 | Manifest 1.1 implementation; runtime `SCHEMA_VERSION` remains 1.0 |
 | C-007 | Shelf configuration boundary | `src/kyra/contracts.py::ShelfConfig`, `src/kyra/manifest.py::ShelfConfigRecord`, `ScenarioManifest.shelf` | Person 4 with owner input | Persons 1–4 | Approved and frozen v1: `shelf_id`, `roi_xyxy`, `bounds_min_m`, `bounds_max_m`, `voxel_size_m`; no duplicate `RuntimeConfig` |
 | C-008 | Pipeline/evaluation result | Planned | Person 4 | Reporting/evaluation | Not defined |
@@ -28,7 +28,7 @@ Person 4 owns this registry and shared implementation surfaces. Producers and co
 ## Current freeze notes
 
 - Existing foundation tests protect current array normalization, invalid-depth handling, schema validation, canonical manifest checksum, replay ordering, and persistence behavior.
-- C-003 through C-005 have no real owner producer yet; downstream code must use explicit mocks and must not claim integrated validation.
+- Real producers now exist for C-003 (Person 2 `ShelfGeometryProvider`, merged #51), C-004 (Person 3 replay tracker, merged #19), and C-005 (Person 3 alert engine, merged #19). Full integrated validation of those producers through the shared chain is still pending; downstream integrated runs must not claim end-to-end validation until Gate 5 evidence exists.
 - P-005 is approved and implemented as C-006: the scenario manifest now supports version 1.0 and 1.1, writes version 1.1, keeps the runtime `SCHEMA_VERSION` unchanged, and adds `object_mask_path` and `shape_family` while preserving the existing `FramePacket` contract.
 - P-001 is approved: the repository keeps one distributable `kyra` package rooted at `src/kyra`; future modules use `kyra` or appropriate `kyra/<area>/` subpackages, and existing `kyra.*` public imports remain stable.
 
