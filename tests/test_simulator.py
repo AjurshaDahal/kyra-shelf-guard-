@@ -24,12 +24,11 @@ def test_suspicious_removal_visual_case_runs_real_pipeline(tmp_path: Path) -> No
     assert result["frames"][0]["depth_png"].startswith("data:image/png;base64,")
 
 
-def test_case_catalog_marks_known_camera_drift_limitation() -> None:
+def test_case_catalog_marks_camera_drift_suppression() -> None:
     catalog = {item["id"]: item for item in CASES}
 
     assert catalog["suspicious-removal"]["expected_status"] == "pass"
-    assert catalog["camera-drift"]["expected_status"] == "known-failure"
-    assert catalog["camera-drift"]["blocker"] == "#79"
+    assert catalog["camera-drift"]["expected_status"] == "pass"
 
 
 def test_local_http_api_serves_catalog_and_runs_one_case(tmp_path: Path) -> None:
