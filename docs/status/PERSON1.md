@@ -78,15 +78,15 @@
 
 ## Blocked or pending
 
-- Target-T4 execution and the independent teammate handoff sign-off remain
-  open (G0.4 runner assignment and an independent teammate).
-- Real OCID download/conversion remains blocked on the P-003 licence review
-  (issue #40).
+- The target-T4 leg is assigned (D-015, 2026-09-07): run `notebooks/kyra_t4_validation.ipynb` on a Kaggle free-T4 GPU notebook and save `docs/PERSON1_TEST_REPORT_T4_<date>.md` in a reviewed PR. The run itself is open; the local RTX 2050 machine and the Windows candidate report are not T4 evidence.
+- The independent teammate handoff sign-off remains open; it requires a human teammate or instructor to run `docs/PERSON1_HANDOFF.md` and sign it (issue #57).
+- Real OCID download/conversion is unblocked (D-014, 2026-09-07) and remains to be performed at retrieval time with the subset and checksum recorded in `data-sources/provenance.json`.
 
 ## Next
 
-- Execute the target-T4 leg (G0.4) with the frozen pack checksums, and have
-  an independent teammate run the handoff guide and sign it.
+- Execute the Kaggle free-T4 leg with the frozen pack checksums and record the dated report.
+- Download and convert the approved OCID subset once the exact scenes and checksum are recorded.
+- Have an independent teammate run the handoff guide and sign it (issue #57).
 
 ## Evidence
 

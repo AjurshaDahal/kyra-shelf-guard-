@@ -132,6 +132,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
   `requirements.lock` and `requirements-gpu.lock` updated to match, and the
   full 189-test suite passes with the synced core lock installed, including
   the byte-identical golden-pack regeneration audit.
+- Phase 0 decisions completed (issue #56): P-003 resolved as D-014 (OCID
+  CC-BY 4.0 research use approved for tiny example publication with
+  attribution), G0.4 resolved as D-015 (target-T4 runner = Kaggle free-T4
+  GPU notebook via `notebooks/kyra_t4_validation.ipynb`); OCID licence state
+  in `data-sources/provenance.json` updated while `pending_download` stays
+  honest.
 
 ### Known gaps
 

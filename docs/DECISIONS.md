@@ -101,49 +101,54 @@ This log records durable choices. It is not a work diary. Change a locked decisi
 - **Owner:** Person 4.
 - **Approved:** 2026-08-26.
 
-## Pending decisions
+### D-014 — OCID licence approved for research use and tiny example publication
 
-### P-003 — Public distribution licence confirmation
-
-`pyproject.toml` declares `AGPL-3.0-only` and the repository now contains the matching full licence text. The compatibility review for datasets, 3D assets, and optional model dependencies is still outstanding.
-
-Research facts recorded on 2026-09-06 (issue #44; official TU Wien Research Data
-landing page https://doi.org/10.48436/pcbjd-4wa12 — research only, not an
-approval):
-
-- The OCID dataset is declared **Creative Commons Attribution 4.0
-  International (CC-BY 4.0)** on the official Research Data record, which
-  permits research use, derivative conversion, redistribution, and example
-  publication with attribution of the dataset (citation: Suchi et al.,
-  ICRA 2019, EasyLabel; creators Weibel, Suchi, Vincze).
-- The published archive is `OCID-dataset.tar.gz`, 6.4 GiB, published md5
-  `aa0eff01f75104c40e4243e6f892a757`; depth is 16-bit PNG in millimetres,
+- **Decision:** The project approves CC-BY 4.0 research use of the official OCID
+  archive (TU Wien Research Data record https://doi.org/10.48436/pcbjd-4wa12)
+  and publication of only tiny converted examples with dataset attribution.
+  The full source archive stays outside Git; distribution of converted examples
+  is limited to the course scope with the dataset citation recorded at
+  retrieval time.
+- **Why:** The official record declares CC-BY 4.0, which permits research use,
+  derivative conversion, redistribution, and example publication with
+  attribution.
+- **Conditions:** (1) repository terms of use
+  (https://researchdata.tuwien.at/tuw/terms-of-use) are accepted by the
+  downloader; (2) the exact scene subset is recorded in
+  `data-sources/provenance.json` at retrieval time; (3) converted examples
+  whose objects originate from the YCB/ARID sets are excluded from
+  redistribution unless their object provenance is verified; (4) the attribution
+  record in `data-sources/provenance.json` is completed with the requested
+  citation.
+- **Owner:** Project owner + Person 4, with all owners informed.
+- **Approved:** 2026-09-07 (issue #56). Download and conversion remain pending.
+- **Research facts recorded 2026-09-06 (issue #44):** the official TU Wien
+  Research Data record declares OCID CC-BY 4.0 (citation: Suchi et al.,
+  ICRA 2019, EasyLabel; creators Weibel, Suchi, Vincze); the published archive
+  is `OCID-dataset.tar.gz`, 6.4 GiB, published md5
+  `aa0eff01f75104c40e4243e6f892a757`; depth is 16-bit PNG in millimetres and
   label masks are 16-bit unique-integer PNGs — matching the Kyra converter's
   assumptions.
-- Platform terms of the repository apply separately: TU Wien Research Data
-  Terms of Use (https://researchdata.tuwien.at/tuw/terms-of-use).
-- Open items for team confirmation before any download: (1) review the
-  repository Terms of Use; (2) select the exact scene subset and confirm that
-  objects originating from the YCB/ARID sets do not block redistribution of
-  the selected tiny converted examples; (3) formally approve the AGPL repo +
-  CC-BY data combination and example publication.
 
-**Status:** research complete (2026-09-06); download and redistribution await
-the team's formal P-003 confirmation. Per the dataset rules, the source stays
-excluded until confirmed.
+### D-015 — Target-T4 runner uses a Kaggle free-T4 GPU notebook
 
-### P-004 — T4 execution owner
+- **Decision:** The target-T4 execution environment for Gate 2/Gate 7 is a
+  Kaggle notebook with the free T4 GPU accelerator, running the repository's
+  frozen checkout; the runner notebook is `notebooks/kyra_t4_validation.ipynb`.
+- **Why:** The team has no physical T4 machine available; Kaggle provisions a
+  free NVIDIA T4 GPU, satisfying the assignment's target-T4 validation
+  requirement with a reproducible, recorded environment.
+- **Evidence contract:** the report is saved as
+  `docs/PERSON1_TEST_REPORT_T4_<date>.md` in a reviewed pull request, and the
+  notebook records environment identity (Kaggle, GPU name, Python version),
+  exact commands with exits, and dated test totals. A local Windows-leg result
+  or a non-T4 GPU is not T4 evidence.
+- **Owner:** Person 4 records; the assigned runner executes.
+- **Approved:** 2026-09-07 (issue #56). The run itself remains open.
 
-The assignment requires target T4 validation. Record who provides the
-environment, who runs the frozen commands, and where the test report is
-stored.
+## Pending decisions
 
-Proposal recorded 2026-09-06 (issue #44, G0.4): the runner is the team
-member with T4 access; the exact command set is steps 1-2 of
-`docs/PERSON1_HANDOFF.md` (161-test suite plus the seven-check verifier,
-using the frozen pack checksums); the report is stored at
-`docs/PERSON1_TEST_REPORT_T4_<date>.md` in a reviewed PR. The Windows-leg
-result (`docs/PERSON1_TEST_REPORT_WINDOWS_CANDIDATE.md`) is not T4 evidence.
+P-003 and P-004 are resolved and recorded as D-014 and D-015 above.
 
 ### P-005 — Manifest object metadata
 

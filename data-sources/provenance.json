@@ -6,7 +6,7 @@
       "name": "OCID — Object Clutter Indoor Dataset (TU Wien ACIN)",
       "official_url": "https://www.acin.tuwien.ac.at/en/vision-for-robotics/software-tools/object-clutter-indoor-dataset/",
       "terms_url": "https://doi.org/10.48436/pcbjd-4wa12",
-      "terms_notes": "CC-BY 4.0 International declared on the official TU Wien Research Data record; repository Terms of Use at https://researchdata.tuwien.at/tuw/terms-of-use still require team review (P-003)",
+      "terms_notes": "CC-BY 4.0 International declared on the official TU Wien Research Data record; repository Terms of Use at https://researchdata.tuwien.at/tuw/terms-of-use accepted by the downloader per D-014",
       "retrieval_date": null,
       "source_version": "pending official release check at retrieval time",
       "downloaded_filename": null,
@@ -15,7 +15,7 @@
       "published_checksum_algorithm": "md5",
       "computed_sha256": null,
       "status": "pending_download",
-      "licence_review_status": "research-complete-pending-team-approval — CC-BY 4.0 detected; team must confirm repository terms, selected subset, and AGPL-repo compatibility before download (P-003)",
+      "licence_review_status": "approved-2026-09-07 (D-014) — CC-BY 4.0 research use approved for tiny example publication with attribution; YCB/ARID-derived objects excluded from redistribution unless verified; archive stays outside Git",
       "selected_subset": "planned: a small set of tabletop sequences with stable camera calibration and clean object changes; exact scenes recorded here at retrieval time",
       "exclusions": [
         {
@@ -23,8 +23,8 @@
           "detail": "no download has been performed; selection and exclusions are finalized when the official archive is reviewed"
         },
         {
-          "reason": "licence review pending",
-          "detail": "CC-BY 4.0 (official record) permits research conversion and example publication with attribution, but the team must still confirm the repository terms of use and the YCB/ARID object provenance for the selected subset (P-003)"
+          "reason": "redistribution guard",
+          "detail": "converted examples whose objects originate from the YCB/ARID sets are excluded from redistribution unless their object provenance is verified (D-014, 2026-09-07)"
         }
       ],
       "conversion_command": "python scripts/convert_ocid.py <KYRA_DATA_ROOT>/ocid <converted-output> --shelf <shelf.json> --checksum <expected-sha256> [--reverse]",

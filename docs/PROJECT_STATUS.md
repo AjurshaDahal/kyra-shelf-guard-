@@ -37,11 +37,16 @@ Gate exit criteria are authoritative in [Integration Gates](INTEGRATION_GATES.md
 
 ## Active cross-team decisions/blockers
 
-- P-003: dataset/asset/model licence compatibility for eventual distribution. Research facts recorded 2026-09-06 (OCID is CC-BY 4.0 on the official TU Wien record; see `docs/DECISIONS.md`); team approval still required before download.
-- P-004: target-T4 execution owner and evidence location. Proposal recorded 2026-09-06 (runner = T4-access member, commands + report path in `docs/DECISIONS.md` and `docs/PERSON1_HANDOFF.md`); assignment still needs the named runner.
-- P-005 is approved and confirmed as not affecting Person 2 or Person 3 runtime contracts; implementation remains open.
+- D-014 (OCID licence, approved 2026-09-07) and D-015 (target-T4 runner =
+  Kaggle free-T4 GPU notebook `notebooks/kyra_t4_validation.ipynb`, approved
+  2026-09-07) resolved P-003 and P-004; OCID download/conversion and the T4
+  run itself remain open actions.
+- The independent Person 1 handoff sign-off remains the only open Phase 0
+  item; it needs a human teammate or instructor, not a decision.
 - Person 1–4 GitHub handles and reviewer assignments are not yet known.
-- The current GitHub plan does not support protected branches on this private repository; required checks and reviews are documented and automated but cannot yet be made server-enforced.
+- The current GitHub plan does not support protected branches on this private
+  repository; required checks and reviews are documented and automated but
+  cannot yet be made server-enforced.
 - WI-001 closed all six alerts from the first GitHub dependency scan. Optional Torch target-T4 validation remains separate and open for Gate 7.
 
 See [Decisions](DECISIONS.md) for full text. Do not implement around a pending decision by creating a second informal interface.

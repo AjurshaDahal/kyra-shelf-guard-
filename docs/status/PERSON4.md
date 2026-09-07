@@ -38,6 +38,17 @@ Resolved on 2026-09-06: shared summaries no longer present everlasting
 rule, and the G2 gate row reflects the merged Person 1 work. A stale count
 must not be restated as a current total.
 
+## Issue #56 — Phase 0 decisions completed (P-003, G0.4)
+
+Resolved on 2026-09-07 with project-owner approval: P-003 (OCID CC-BY 4.0
+research use and tiny-example publication with attribution, recorded as
+D-014) and P-004/G0.4 (target-T4 runner assigned to the Kaggle free-T4 GPU
+notebook, recorded as D-015 with runner notebook
+`notebooks/kyra_t4_validation.ipynb`). `data-sources/provenance.json` now
+records `licence_review_status: approved-2026-09-07 (D-014)` while
+`status: pending_download` stays honest. The only remaining Phase 0 item is
+the independent Person 1 handoff sign-off (issue #57).
+
 ## Issue #53 — dependency pins synchronized with Dependabot bumps
 
 Resolved on 2026-09-07: `pyproject.toml`, `requirements.lock`, and

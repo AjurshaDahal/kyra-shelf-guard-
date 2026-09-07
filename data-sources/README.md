@@ -16,6 +16,7 @@ licences, selections, exclusions, and conversion commands.
 5. Status values are honest: `pending_download`, `retrieved`,
    `converted`, or `excluded`. A blank required field is a schema failure.
 
-Current state: the OCID source is recorded as `pending_download`; nothing has
-been downloaded, and conversion will only start after the licence review
-(P-003) and a team-confirmed subset are recorded here.
+Current state: the OCID source is recorded as `pending_download`; the licence
+review is approved (D-014, 2026-09-07) but nothing has been downloaded yet.
+Conversion will start only after a team-confirmed subset and the source
+checksum are recorded here at retrieval time.
