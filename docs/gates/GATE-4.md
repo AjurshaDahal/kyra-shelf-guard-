@@ -87,13 +87,23 @@ covered by the merged suite).
 | Consistency | `python scripts/check_repo_consistency.py` | 0 | passed |
 | Change impact | `python scripts/check_change_impact.py --base origin/main` | 0 | passed (companions) |
 
+## Addendum (2026-09-09) — lazy optional pretrained adapter
+
+The lazy optional pretrained adapter was implemented and merged after this
+record was first compiled: `LazyUltralyticsTrackingProvider` in
+`src/kyra/adapters.py` (issue #72) loads YOLO + ByteTrack from
+`requirements-gpu.lock` only at the first `track()` call and raises a clear
+error when the tracking extras are absent. Unit tests (3 passed) prove no
+heavy-dependency import at construction and correct `PersonTrack`
+conversion. The adapter is optional per D-002 and is exercised live on the
+target environment at Gates 5/7; the deterministic core remains unaffected.
+
 ## Limitations and open items
 
 - The matrix consumes **synthetic** `VolumeChangeEvent` inputs (frozen C-003);
   the real Person 2 -> Person 3 chain is validated at Gate 5.
-- The lazy optional pretrained detector/tracker adapter is not implemented;
-  it is optional for the deterministic core per D-002 and remains a
-  Gate-4-review decision point for Person 4.
+- The lazy optional pretrained detector/tracker adapter is implemented
+  (issue #72); live on-target use remains a Gate 5/7 exercise.
 - Person masks are bounding-box-based (not instance segmentation); recorded
   as a limitation per Person 3 risk notes.
 - Generated evidence lives under `evidence/` (git-ignored by design); the
@@ -103,7 +113,8 @@ covered by the merged suite).
 
 ## Conclusion
 
-The deterministic Gate 4 exit-criteria evidence (replay tracking, masks,
-proximity, authorization, window, matrix, serialized evidence) is compiled and
-reproducible on the merged tree. Gate 4 is **pending Person 4 review and
-decision**; the integration-level chain items are tracked for Gate 5.
+The deterministic Gate 4 exit-criteria evidence (replay tracking, lazy
+optional adapter, masks, proximity, authorization, window, matrix, serialized
+evidence) is compiled and reproducible on the merged tree. Gate 4 is
+**pending Person 4 review and decision**; the integration-level chain items
+are tracked for Gate 5.

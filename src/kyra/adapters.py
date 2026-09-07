@@ -240,6 +240,102 @@ class MockRuleEvaluator:
         )
 
 
+class LazyUltralyticsTrackingProvider:
+    """Optional YOLO + ByteTrack provider with lazy heavy-dependency loading.
+
+    Importing :mod:`kyra.adapters` does not import Torch or Ultralytics.
+    Those dependencies are loaded only when ``track()`` is first called.
+    """
+
+    def __init__(
+        self,
+        model: str = "yolo11n.pt",
+        *,
+        confidence: float = 0.25,
+        tracker: str = "bytetrack.yaml",
+    ) -> None:
+        self.model_name = model
+        self.confidence = confidence
+        self.tracker = tracker
+        self._model = None
+
+    def _load_model(self):
+        if self._model is None:
+            try:
+                from ultralytics import YOLO
+            except ImportError as exc:
+                raise RuntimeError(
+                    "Optional pretrained tracking requires the tracking "
+                    "dependencies. Install requirements-gpu.lock before use."
+                ) from exc
+
+            self._model = YOLO(self.model_name)
+
+        return self._model
+
+    def track(
+        self,
+        frames: Sequence[FramePacket],
+        shelf_config: ShelfConfig,
+    ) -> tuple[PersonTrack, ...]:
+        del shelf_config
+
+        if not frames:
+            return ()
+
+        model = self._load_model()
+        tracks: list[PersonTrack] = []
+
+        for frame in frames:
+            results = model.track(
+                source=frame.rgb,
+                persist=True,
+                classes=[0],
+                conf=self.confidence,
+                tracker=self.tracker,
+                verbose=False,
+            )
+
+            for result in results:
+                boxes = result.boxes
+                if boxes is None or boxes.xyxy is None:
+                    continue
+
+                xyxy = boxes.xyxy.cpu().numpy()
+                ids = (
+                    boxes.id.cpu().numpy()
+                    if boxes.id is not None
+                    else np.arange(len(xyxy), dtype=np.int64)
+                )
+
+                for box, track_id in zip(xyxy, ids, strict=True):
+                    x1, y1, x2, y2 = (float(value) for value in box)
+
+                    tracks.append(
+                        PersonTrack(
+                            track_id=int(track_id),
+                            timestamp_ns=frame.timestamp_ns,
+                            box_xyxy=(x1, y1, x2, y2),
+                            pose_keypoints_xyc=np.empty((0, 3), dtype=np.float32),
+                            position_m=None,
+                            near_shelf=False,
+                            wrist_in_shelf=False,
+                            authorized=False,
+                        )
+                    )
+
+        return tuple(
+            sorted(
+                tracks,
+                key=lambda track: (
+                    track.timestamp_ns,
+                    track.track_id,
+                    track.box_xyxy,
+                ),
+            )
+        )
+
+
 __all__ = [
     "BaselineProvider",
     "TrackingProvider",
@@ -247,6 +343,7 @@ __all__ = [
     "RuleEvaluator",
     "MockBaselineProvider",
     "MockTrackingProvider",
+    "LazyUltralyticsTrackingProvider",
     "MockGeometryProvider",
     "MockRuleEvaluator",
 ]

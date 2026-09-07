@@ -29,6 +29,14 @@ Gate 1 contract compatibility is complete for the shared compatibility layer. Pe
 WI-010 (audience-specific documentation split) and the documentation
 reconciliation issues #15 and #18 are merged and closed.
 
+## Issue #72 — additive change to `src/kyra/adapters.py`
+
+On 2026-09-09 the Person 3 lazy tracking adapter integration added
+`LazyUltralyticsTrackingProvider` to the Person 4-owned `src/kyra/adapters.py`
+as a purely additive class plus one `__all__` entry (no protocol or mock
+change, no contract impact), coordinated under P4 review per the ownership
+matrix. Recorded here so the shared surface's history stays attributable.
+
 ## Issue #69 — Person 3 Gate 4 evidence and change-impact classifier update
 
 On 2026-09-09 the Person 3 Gate 4 evidence integration (see

@@ -26,6 +26,11 @@ Implemented and verified:
 - serialized `PersonTrack` and `AlertEvent` evidence
 - deterministic synthetic Gate 4 evidence generation (`scripts/generate_person3_gate4_evidence.py`)
 - SHA-256 evidence manifest
+- lazy optional pretrained tracking adapter
+  (`LazyUltralyticsTrackingProvider` in `src/kyra/adapters.py`, issue #72):
+  YOLO + ByteTrack under `requirements-gpu.lock`; heavy dependencies are
+  loaded only at first `track()` call, and a clear error is raised when the
+  tracking extras are absent (deterministic core unaffected, D-001/D-002)
 
 ## Active
 
@@ -37,8 +42,7 @@ The remaining work is integration-level rather than a missing Person 3 component
 
 Gate 4 exit criteria are compiled in `docs/gates/GATE-4.md` (record under Person 4 review). The following integration-level items remain outside the owner's deterministic evidence but are tracked:
 
-- lazy optional pretrained detector/tracking adapter (optional path; not required by the deterministic core per D-002)
-- live detector/tracker integration
+- live detector/tracker integration (the lazy adapter is implemented; end-to-end live use is exercised at Gate 5/7 with `requirements-gpu.lock` on the target environment)
 - upstream depth/3D position integration
 - upstream volume-change integration (real `VolumeChangeEvent` chain from Person 2's `ShelfGeometryProvider`, replacing the synthetic events used in evidence)
 - required cross-owner Gate 4 validation and approvals

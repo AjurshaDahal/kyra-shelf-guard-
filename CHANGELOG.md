@@ -159,6 +159,11 @@ in `data-sources/provenance.json` updated while `pending_download` stays
   minimum-volume threshold, addition-direction guard, serialized
   `PersonTrack`/`AlertEvent` evidence, SHA-256 manifest, and the formal
   record `docs/gates/GATE-4.md`; gate decision remains with Person 4.
+- Person 3 lazy optional tracking adapter (`LazyUltralyticsTrackingProvider`,
+  issue #72): optional YOLO + ByteTrack provider in `src/kyra/adapters.py`
+  that never imports Torch/ultralytics at construction (D-001/D-002) and
+  raises a clear error when the tracking extras are absent; closes the last
+  Gate 4 exit criterion.
 
 ### Known gaps
 
