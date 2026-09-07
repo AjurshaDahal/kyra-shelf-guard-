@@ -54,7 +54,20 @@ py -3.12 -m venv .venv
 .\\.venv\\Scripts\\python.exe -m pytest
 ~~~
 
-Run the deterministic test-scenario workflow after setup:
+Use the visual test-scenario reviewer after setup:
+
+~~~powershell
+.\.venv\Scripts\python.exe -m kyra.simulator
+~~~
+
+That command opens the local **Kyra Scenario Lab** at
+`http://127.0.0.1:8765`. It preloads the suspicious-removal example and lets a
+reviewer play, pause, or step through RGB and depth frames, then run all ten
+cases one at a time. The screen compares saved expectations with actual
+pipeline events and alerts. The camera-drift case is intentionally red while
+issue #79 remains open.
+
+The same path can be exercised one command at a time without the visual interface:
 
 ~~~powershell
 kyra simulate evidence/quick-smoke --case suspicious-removal

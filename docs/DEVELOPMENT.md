@@ -13,6 +13,17 @@ py -3.12 -m venv .venv
 
 The core lock includes development checks. No GPU, Blender, model download, or network access should be needed after installation.
 
+The local visual scenario reviewer is packaged as a static HTML resource and
+uses the Python standard library HTTP server plus existing NumPy/OpenCV core
+dependencies. No dependency pin or lock file changes are required:
+
+```powershell
+.\.venv\Scripts\python.exe -m kyra.simulator
+```
+
+It binds to `127.0.0.1`, opens `http://127.0.0.1:8765`, and removes temporary
+scenario output when stopped.
+
 ## Optional environments
 
 Install only one heavy path when a task requires it:

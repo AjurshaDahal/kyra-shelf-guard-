@@ -23,7 +23,7 @@ P1: scenario/data -> FramePacket + BaselineArtifact
                                   AlertEvent
                                       |
                                       v
-                         P4: bounded pipeline, CLI, evaluation
+                    P4: pipeline, CLI, evaluation, local review UI
 ```
 
 Person 2 consumes Person 3 masks for occlusion safety; Person 3 consumes Person 2 geometry events for association. Those two paths must use frozen timestamps, frame IDs, shelf coordinates, masks, and event contracts to avoid a circular implementation dependency.
@@ -35,7 +35,7 @@ Person 2 consumes Person 3 masks for occlusion safety; Person 3 consumes Person 
 | P1 | `kyra.io`, `kyra.baseline`, future data/simulation/calibration/converter modules | `FramePacket`, `BaselineArtifact`, replay fixtures/provenance |
 | P2 | future `kyra.geometry`, `kyra.differencing`, `kyra.occlusion` | `VolumeChangeEvent` |
 | P3 | future `kyra.tracking`, `kyra.proximity`, `kyra.rules` | `PersonTrack`, aligned masks, `AlertEvent` |
-| P4 | `kyra.contracts`, `kyra.manifest`, future pipeline/evaluation/CLI/config | versioned interfaces, integrated outputs, reports |
+| P4 | `kyra.contracts`, `kyra.manifest`, `kyra.pipeline`, `kyra.cli`, `kyra.simulator` | versioned interfaces, integrated outputs, reports, local visual review |
 
 The approved P-001 layout keeps one distributable `kyra` package rooted at
 `src/kyra`. Future modules live under `kyra` or appropriate `kyra/<area>/`
@@ -50,8 +50,14 @@ subpackages; assignment-named top-level packages are not created, and existing
 | `kyra.manifest` | Strict scenario JSON and canonical checksum | `ScenarioManifest`, load/write/checksum functions |
 | `kyra.io` | Replayable scenario input | `ScenarioFrameSource` / `FrameSource` |
 | `kyra.baseline` | Baseline build/persistence and anchor alignment | `BaselineBuilder`, save/load, `MidasAnchorAligner` |
+| `kyra.pipeline` | Deterministic real-owner scenario orchestration | `run_scenario` |
+| `kyra.cli` | Five assignment commands and reviewed scenario profiles | `kyra` / `main` |
+| `kyra.simulator` | Loopback-only visual replay of synthetic cases | `run_example_case`, local HTTP review UI |
 
-No P2/P3 algorithm, integrated pipeline, evaluation harness, or CLI exists yet.
+The candidate vertical slice now uses the implemented P1/P2/P3 components. The
+visual simulator is a P4 review surface over the same deterministic scenario
+profiles and pipeline; it is not a second detection implementation and does not
+turn synthetic evidence into camera or real-world proof.
 
 ## Parallel-development seam
 

@@ -21,7 +21,7 @@ from kyra.simulation import (
     generate_scenario,
 )
 
-_CASES = (
+SIMULATION_CASES = (
     "suspicious-removal",
     "removal-without-person",
     "no-change",
@@ -202,25 +202,43 @@ def _make_restock_track_transient(manifest_path: Path) -> None:
     write_manifest(manifest, manifest_path)
 
 
-def _simulate(args: argparse.Namespace) -> dict[str, Any]:
-    manifest_path = generate_scenario(args.destination, _settings(args.case, args.seed))
-    if args.case in {"suspicious-removal", "person-without-removal"}:
+def generate_example_scenario(
+    destination: str | Path,
+    case: str = "suspicious-removal",
+    *,
+    seed: int = 42,
+) -> Path:
+    """Generate one reviewed synthetic profile for CLI or visual inspection."""
+
+    if case not in SIMULATION_CASES:
+        raise ValueError(f"unknown simulation case: {case!r}")
+    manifest_path = generate_scenario(destination, _settings(case, seed))
+    if case in {"suspicious-removal", "person-without-removal"}:
         _add_initial_near_track(manifest_path)
-    elif args.case == "authorized-restock":
+    elif case == "authorized-restock":
         _make_restock_track_transient(manifest_path)
-    elif args.case == "occlusion-then-removal":
+    elif case == "occlusion-then-removal":
         _compose_timed_track(
             manifest_path,
             unchanged_event_frames=2,
             profile="temporary_occlusion_then_removal",
             occlude_object_region=True,
         )
-    elif args.case == "outside-association-window":
+    elif case == "outside-association-window":
         _compose_timed_track(
             manifest_path,
             unchanged_event_frames=5,
             profile="removal_after_association_window",
         )
+    return manifest_path
+
+
+def _simulate(args: argparse.Namespace) -> dict[str, Any]:
+    manifest_path = generate_example_scenario(
+        args.destination,
+        args.case,
+        seed=args.seed,
+    )
     manifest = load_manifest(manifest_path)
     return {
         "command": "simulate",
@@ -304,7 +322,7 @@ def _parser() -> argparse.ArgumentParser:
 
     simulate = subcommands.add_parser("simulate", help="generate a deterministic test scenario")
     simulate.add_argument("destination")
-    simulate.add_argument("--case", choices=_CASES, default="suspicious-removal")
+    simulate.add_argument("--case", choices=SIMULATION_CASES, default="suspicious-removal")
     simulate.add_argument("--seed", type=int, default=42)
     simulate.add_argument("--output", dest="report")
     simulate.set_defaults(handler=_simulate)

@@ -19,7 +19,10 @@ real-world validation.
 - `src/kyra/pipeline.py`: P4 orchestration through P1 frame/baseline, P2
   geometry, and P3 replay/proximity/occlusion/rule implementations.
 - `src/kyra/cli.py`: five commands and deterministic integration profiles.
+- `src/kyra/simulator.py` and `src/kyra/simulator.html`: loopback-only visual
+  reviewer over those profiles and the real integrated scenario path.
 - `tests/test_vertical_pipeline.py`: end-to-end synthetic scenario matrix.
+- `tests/test_simulator.py`: visual-review data and local HTTP API checks.
 - P4 documentation/status/evidence corrections. No frozen contract changes and
   no owner algorithm is copied or modified.
 
@@ -34,6 +37,15 @@ isolation, the five commands, and benchmarking.
 The `camera-drift` profile is a deliberately recorded failing evaluation:
 expected no change, actual `REMOVAL`, no alert, exit 1. This is a Person 2
 geometry blocker (#79), not something P4 suppresses after the fact.
+
+The visual reviewer starts with `python -m kyra.simulator`, automatically runs
+the suspicious-removal case, and exposes RGB/depth playback plus expected and
+actual events/alerts for all ten profiles. Focused simulator and pipeline tests
+pass 16 checks; interactive browser verification confirmed the default case
+shows 37 frames, one removal, and one linked alert.
+
+Full branch regression on Windows/Python 3.12.7: 215 tests passed; Ruff,
+byte-compilation, repository consistency, and change-impact validation passed.
 
 ## Candidate smoke environment and commands
 

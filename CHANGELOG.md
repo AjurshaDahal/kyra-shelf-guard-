@@ -12,6 +12,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
 - Working `simulate`, `calibrate`, `run`, `evaluate`, and `benchmark` CLI commands
   plus a 13-test deterministic scenario matrix. Camera drift remains a recorded
   failing evaluation under Person 2 issue #79, so Gates 3 and 5 remain open.
+- Local Kyra Scenario Lab for PR #80 review, with an automatically loaded
+  suspicious-removal replay, frame-by-frame RGB/depth playback, ten selectable
+  synthetic cases, expected-versus-actual results, and visible camera-drift
+  failure evidence. It uses only the core environment and binds to loopback.
 - Corrected Gate 3's OCID-mini evidence boundary: the committed 16x16 input is a
   synthetic converter fixture, not a real-sensor OCID trial.
 - Person 2 single acceptance verifier runner (`scripts/verify_person2.py`) executing

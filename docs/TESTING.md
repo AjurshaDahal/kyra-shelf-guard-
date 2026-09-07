@@ -200,6 +200,27 @@ software-path evidence; it is not camera, real-data, or target-T4 proof.
 
 Exact gate evidence and owners are listed in `docs/INTEGRATION_GATES.md`.
 
+## Local visual scenario review
+
+PR #80 includes a loopback-only browser interface over the same deterministic
+profiles and `run_scenario` path used by the CLI tests:
+
+```powershell
+.\.venv\Scripts\python.exe -m kyra.simulator
+```
+
+The suspicious-removal case loads automatically. A reviewer can play or step
+through all frames, inspect RGB and metric-depth previews, select each of the ten
+cases, and compare expected versus actual change/alert output. Nine profiles are
+expected to pass. `camera-drift` is expected to remain red and show an unexpected
+`REMOVAL` with zero alerts until Person 2 issue #79 is fixed. Run
+`python -m pytest -q tests/test_simulator.py tests/test_vertical_pipeline.py`
+for the corresponding API and pipeline checks.
+
+This interface does not access a camera, public dataset, GPU, or pretrained
+model. A green screen is synthetic software-path evidence, not real-life or
+target-T4 validation.
+
 ## Windows and T4 evidence
 
 Run the same frozen golden pack and core dependency lock in both environments. Complete [PERSON1_TEST_REPORT_TEMPLATE.md](PERSON1_TEST_REPORT_TEMPLATE.md) for each run. Record failures honestly; a Windows RTX 2050 run cannot prove target T4 compatibility.

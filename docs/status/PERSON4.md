@@ -28,7 +28,10 @@ Gate 1 contract compatibility remains complete. WI-077 now provides a candidate
 Gate 5 vertical slice through the real Person 1 baseline/frame source, Person 2
 geometry provider, Person 3 replay/proximity/rules, and Person 4 orchestration.
 The five assignment commands operate in the core environment for deterministic
-test scenarios. This is synthetic scenario evidence, not real-world proof.
+test scenarios. PR #80 also provides a loopback-only visual Scenario Lab over
+that same path: it preloads suspicious removal, exposes all ten profiles, and
+supports frame-by-frame RGB/depth review with expected-versus-actual results.
+This is synthetic scenario evidence, not real-world proof.
 
 Person 4 review also found two Gate 3 evidence problems: the committed
 `ocid-mini` fixture is explicitly synthetic and must not be called real-sensor
@@ -126,7 +129,8 @@ The frozen contract and mock/evidence layer is complete; downstream Gates 2–5 
 
 ## Next
 
-- Land WI-077 after owner review of integrated behavior.
+- Review the ten visual profiles in PR #80, then land WI-077 after owner review
+  of the integrated behavior.
 - Resolve Person 2 camera-drift regression #79 without suppressing it in P4.
 - Re-run the deterministic matrix, collect all-owner approval, and compile a
   Gate 5 record only after its Gate 2/3 entry conditions are complete.
@@ -149,6 +153,13 @@ The frozen contract and mock/evidence layer is complete; downstream Gates 2–5 
 - Current verification on 2026-08-30: `python scripts/check_repo_consistency.py` — passed.
 - WI-077 focused verification on 2026-09-07:
   `python -m pytest -q tests/test_vertical_pipeline.py` — 13 passed.
+- WI-077 visual-review verification on 2026-09-07:
+  `python -m pytest -q tests/test_simulator.py tests/test_vertical_pipeline.py`
+  — 16 passed; the browser-loaded default case matched one expected removal and
+  one expected alert across 37 replay frames.
+- WI-077 branch regression verification on Windows/Python 3.12.7 on 2026-09-07:
+  full suite — 215 passed; Ruff, byte-compilation, repository consistency, and
+  change-impact validation passed.
 - WI-077 five-command smoke on Windows/Python 3.12.7: one synthetic removal,
   one linked alert, evaluation passed, five-run benchmark p50 28.1047 ms.
 - Camera-drift negative evidence: evaluation exited 1 with expected no change
