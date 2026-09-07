@@ -1,9 +1,9 @@
 # WI-064 — Kaggle free-T4 GPU target-T4 leg report
 
 - **Owner:** P1
-- **Status:** In review
+- **Status:** Complete
 - **Started:** 2026-09-07
-- **Completed:** N/A
+- **Completed:** 2026-09-07
 - **Requirements:** G0.4 / decision D-015; Gate 2 evidence; PERSON1 handoff T4 leg
 - **Integration gate:** Gate 2 (evidence component; gate remains open)
 
@@ -60,5 +60,5 @@ byte-identical against the committed `scenario-fixtures/golden/checksums.sha256`
 ## Final links
 
 - Issue: https://github.com/DontHash/kyra-shelf-guard/issues/64
-- Pull request: pending
-- Commit: pending
+- Pull request: https://github.com/DontHash/kyra-shelf-guard/pull/65
+- Commit: `010fcc5` (squash merge on `main`)

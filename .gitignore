@@ -44,3 +44,6 @@ evidence/
 *.pt
 *.pth
 
+# Kaggle runner exports (run outputs stay outside Git)
+notebooks/*.zip
+
