@@ -6,8 +6,17 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
 
 ## [Unreleased]
 
-### Added
-
+- Person 2 single acceptance verifier runner (`scripts/verify_person2.py`) executing
+  all Gate 3 acceptance checks across golden pack G01–G10 replay, known-volume accuracy,
+  failure-path assertions, serialization determinism, and real-sensor OCID sequence evaluation (exit code 0).
+- Person 2 automated Gate 3 test suite (`tests/test_geometry_gate3.py`) asserting
+  G01–G10 invariants, volume $\le 10\%$ error threshold, failure mode suppression,
+  and deterministic `VolumeChangeEvent` hashing.
+- Formal Integration Gate 3 evidence record (`docs/gates/GATE-3.md`) documenting all
+  replay metrics, volume accuracy tables, failure-mode behavior, and real-sensor trials.
+- Change-impact classifier support for Person 2 verification scripts (`PERSON2_SCRIPTS`)
+  in `scripts/check_change_impact.py`, companion test in `tests/test_repo_governance.py`,
+  and documentation in `CONTRIBUTING.md`.
 - Person 2 formal specification (`docs/PERSON2_SPEC.md`) and phased implementation
   plan (`docs/PERSON2_IMPLEMENTATION_PLAN.md`) grounded in research literature for
   retail on-shelf availability, M3C2 error propagation ($3\sigma$), and TSDF occlusion safety.

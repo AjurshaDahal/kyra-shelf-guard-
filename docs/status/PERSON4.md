@@ -29,6 +29,16 @@ Gate 1 contract compatibility is complete for the shared compatibility layer. Pe
 WI-010 (audience-specific documentation split) and the documentation
 reconciliation issues #15 and #18 are merged and closed.
 
+## WI-067 — Person 2 Gate 3 evidence and change-impact classifier update
+
+Updated `scripts/check_change_impact.py` on 2026-09-07 to recognize
+`PERSON2_SCRIPTS = frozenset({"verify_person2.py"})`, classifying Person 2's
+verification runner under Person 2 and excluding it from Person 4 governance
+requirements, following the precedent established for `PERSON1_SCRIPTS` in
+WI-018. Added companion test to `tests/test_repo_governance.py` and updated
+`CONTRIBUTING.md`. Person 2 submitted formal Gate 3 evidence record
+`docs/gates/GATE-3.md` for Person 4 review.
+
 ## Issue #15 — stale shared test-count summaries
 
 Resolved on 2026-09-06: shared summaries no longer present everlasting

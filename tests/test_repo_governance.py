@@ -56,6 +56,18 @@ def test_person1_named_scripts_do_not_require_person4_governance() -> None:
         assert assess_changes(changed) == []
 
 
+def test_person2_named_scripts_classify_as_person2_and_exclude_governance() -> None:
+    for script in ("verify_person2.py",):
+        changed = {
+            f"scripts/{script}",
+            "docs/status/PERSON2.md",
+            "docs/work-items/WI-067-gate3-geometry-evidence.md",
+            "CHANGELOG.md",
+        }
+
+        assert assess_changes(changed) == []
+
+
 def test_other_scripts_still_require_person4_and_governance_docs() -> None:
     changed = {"scripts/ci_governance_tool.py", "CHANGELOG.md"}
 

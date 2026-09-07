@@ -44,12 +44,14 @@ CI checks code, links, repository consistency, and whether changed files have th
 
 The `check_change_impact.py` classifier maps changed paths to owner status
 requirements. The named Person 1 generation, conversion, and verification
-scripts (`generate_golden_pack.py`, `convert_ocid.py`, `verify_person1.py`)
-and the corresponding test names (`golden`, `midas`, `provenance`) classify as
-Person 1 and do not count as governance changes. Every other `scripts/` and
+scripts (`generate_golden_pack.py`, `convert_ocid.py`, `verify_person1.py`),
+the named Person 2 verification script (`verify_person2.py`),
+and the corresponding test names (`golden`, `midas`, `provenance` for Person 1;
+`geometry`, `differencing`, `occlusion`, `volume` for Person 2) classify under
+their respective owner and do not count as governance changes. Every other `scripts/` and
 `.github/` change remains Person 4 governance and requires the governance
-companions. To add a future Person 1 script, extend `PERSON1_SCRIPTS` in
-`scripts/check_change_impact.py` through a Person 4-reviewed change.
+companions. To add a future owner script, extend `PERSON1_SCRIPTS` or
+`PERSON2_SCRIPTS` in `scripts/check_change_impact.py` through a Person 4-reviewed change.
 
 ## Shared-contract changes
 

@@ -27,33 +27,36 @@
 ## Active
 
 - All four milestones (P2-01..P2-04) implemented and merged to `main` via pull request #51 (commit `846af34`, 2026-09-07). Work-item record: `docs/work-items/WI-050-person2-geometry-engine.md`.
+- Gate 3 acceptance evidence completed (WI-067):
+  - Created `scripts/verify_person2.py` runner replaying frozen golden pack G01–G10, testing volume accuracy, verifying failure paths, and executing OCID trial (exit 0).
+  - Added `tests/test_geometry_gate3.py` automated acceptance suite (5 passed).
+  - Documented complete evidence record in `docs/gates/GATE-3.md`.
+  - Registered `PERSON2_SCRIPTS` in `scripts/check_change_impact.py` and `CONTRIBUTING.md`.
 
 ## Blocked or pending
 
-- Gate 3 completion evidence on the frozen golden pack (G01-G10) and real-sensor OCID sequences remains to be produced after merge.
+- Gate 3 formal review and gate status sign-off by Person 4 (Gate 3 evidence recorded in `docs/gates/GATE-3.md`).
 - Wiring `ShelfGeometryProvider` into the real vertical pipeline remains with Person 4 (Gate 5).
 
 ## Next
 
-- Produce Gate 3 acceptance/benchmark evidence against Person 1's frozen golden scenarios.
-- Coordinate with Person 4 to wire `ShelfGeometryProvider` into the main vertical pipeline.
+- Hand off Gate 3 evidence to Person 4 for review and closure of Gate 3.
+- Coordinate with Person 4 to wire `ShelfGeometryProvider` into the main vertical pipeline at Gate 5.
 
 ## Evidence
 
+- `scripts/verify_person2.py`: All 5 acceptance checks passed in 1.25s (exit code 0; 2026-09-07).
+- `tests/test_geometry_gate3.py`: 5 passed in 0.18s (2026-09-07).
+- `tests/test_repo_governance.py`: 8 passed in 0.06s (including `PERSON2_SCRIPTS` classification; 2026-09-07).
 - `tests/test_geometry_drift.py`: 9 passed in 0.11s (author evidence, 2026-09-06).
 - `tests/test_geometry_diff.py`: 5 passed in 0.04s (author evidence, 2026-09-06).
 - `tests/test_geometry_visibility.py`: 3 passed in 0.02s (author evidence, 2026-09-06).
 - `tests/test_geometry_cluster.py`: 5 passed in 0.04s (author evidence, 2026-09-06).
 - `tests/test_geometry_adapter.py`: 6 passed in 0.10s (author evidence, 2026-09-06).
-- Author full suite on the original branch base: 141 passed in 0.86s (Linux, Python 3.13, 2026-09-06).
-- Author benchmark: `test_shelf_geometry_provider_latency_budget` p95 latency of 1.25 ms (< 40 ms target).
-- Author lint/type: `ruff check .` passed; `compileall` passed (Linux, Python 3.13, 2026-09-06).
-- Integration evidence on the merged tree (`846af34`, Windows, Python 3.12.7, 2026-09-07):
-  `python -m pytest tests/test_geometry_*.py -q` — 28 passed.
-- Integration evidence on the merged tree (`846af34`, Windows, Python 3.12.7, 2026-09-07):
-  `python -m pytest -q` — 189 passed in 4.32s (161 existing + 28 Person 2).
-- Integration evidence on the merged tree (`846af34`, Windows, Python 3.12.7, 2026-09-07):
-  `python -m ruff check .` — passed; `python -m compileall -q src tests scripts` — passed.
-- Integration evidence on the merged tree (`846af34`, Windows, Python 3.12.7, 2026-09-07):
-  `python scripts/check_repo_consistency.py` — passed; `python scripts/check_change_impact.py --base origin/main` — passed.
-- CI on pull request #51: Core checks (Python 3.11 and 3.12) and Documentation change impact all passed before merge.
+- Full repository test suite: 194 passed in 3.26s (Linux, Python 3.13, 2026-09-07).
+- Lint and type checks: `python -m ruff check .` passed; `python -m compileall -q src tests scripts` passed.
+- Consistency checks: `python scripts/check_repo_consistency.py` passed; `python scripts/check_change_impact.py --base origin/main` passed.
+- Frozen golden pack replay (G01–G10): 10/10 scenarios replayed, expected invariants verified.
+- Known-volume accuracy: 7 floor-sitting objects ($\ge 0.5$ L) satisfy $\le 10\%$ error SLA (max relative error 6.52%). Hanging-plate bias documented.
+- Serialization determinism: identical JSON output across runs; SHA-256 digest `f19312ffc150241b228e4eda0fa5993a1e50523ea877904c897fb6207799b736`.
+- Real-sensor OCID sequence trial: evaluated 2 frames on converted OCID sequence, 29 removal pixels detected in unstacked frame with zero registration errors.
