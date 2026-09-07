@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
 
 ## [Unreleased]
 
+- Prepared P4 Gate 6 evaluation machinery and a separate checksumed synthetic
+  multi-frame split. The evaluator reports scenario-level event/alert counts,
+  precision, recall, F1, confusion matrices, timing, current-scope Section 10
+  metrics, confidence intervals, and explicit excluded metrics. The Section 10
+  final 120-positive/300-negative acceptance dataset and thresholds remain open.
 - Person 4 Gate 5 vertical scenario pipeline is closed for the reviewed
   deterministic synthetic slice, using the real Person 1
   baseline/frame source, Person 2 geometry provider, and Person 3 replay,

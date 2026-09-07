@@ -194,11 +194,31 @@ Run `python -m pytest -q tests/test_vertical_pipeline.py` for the deterministic
 matrix: suspicious removal, removal without a person, person without removal,
 addition, authorized restocking, temporary occlusion followed by removal,
 outside-two-second association, duplicate suppression, invalid depth, no
-change, and camera drift. The camera-drift evaluation is intentionally asserted
-as a known failure until Person 2 issue #79 is resolved. This suite is synthetic
-software-path evidence; it is not camera, real-data, or target-T4 proof.
+change, and camera drift. Camera drift is asserted as suppression with no event
+or alert. This suite is synthetic software-path evidence; it is not camera,
+real-data, or target-T4 proof.
 
 Exact gate evidence and owners are listed in `docs/INTEGRATION_GATES.md`.
+
+### Gate 6 evaluation preparation
+
+The prepared synthetic Gate 6 split is generated and validated with:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\generate_gate6_split.py scenario-fixtures\gate6
+.\.venv\Scripts\python.exe -m kyra.cli evaluate --split scenario-fixtures\gate6
+```
+
+The split contains ten multi-frame scenario profiles, each with 30 baseline
+frames and at least seven event-observation frames at 100 ms spacing. The
+split index and SHA-256 inventory are prepared for owner review. The evaluator
+reports event/alert counts, precision, recall, F1, confusion matrices, timing,
+current-scope geometry/volume/rule metrics, Wilson 95% binomial intervals,
+latency availability, and excluded metrics. Section 10 final theft-rule and
+false-positive acceptance remains unavailable because the required
+120-positive/300-negative dataset is absent. Gate 6 acceptance thresholds
+remain pending and must be supplied explicitly through configuration; this
+preparation does not close Gate 6.
 
 ## Local visual scenario review
 
@@ -211,9 +231,9 @@ profiles and `run_scenario` path used by the CLI tests:
 
 The suspicious-removal case loads automatically. A reviewer can play or step
 through all frames, inspect RGB and metric-depth previews, select each of the ten
-cases, and compare expected versus actual change/alert output. Nine profiles are
-expected to pass. `camera-drift` is expected to remain red and show an unexpected
-`REMOVAL` with zero alerts until Person 2 issue #79 is fixed. Run
+cases, and compare expected versus actual change/alert output. All profiles are
+expected to pass their current synthetic assertions, including camera-drift
+suppression. Run
 `python -m pytest -q tests/test_simulator.py tests/test_vertical_pipeline.py`
 for the corresponding API and pipeline checks.
 

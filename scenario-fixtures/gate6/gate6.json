@@ -1,0 +1,105 @@
+{
+  "baseline_frame_count": 30,
+  "evidence_source": "synthetic",
+  "frame_interval_ns": 100000000,
+  "generator_version": "gate6-1.0",
+  "minimum_event_frame_count": 7,
+  "scenario_count": 10,
+  "scenarios": [
+    {
+      "case": "suspicious-removal",
+      "expected_alert": true,
+      "expected_event_types": [
+        "REMOVAL"
+      ],
+      "manifest_path": "suspicious-removal/scenario.json",
+      "scenario_id": "gate6-suspicious-removal",
+      "seed": 6101
+    },
+    {
+      "case": "removal-without-person",
+      "expected_alert": false,
+      "expected_event_types": [
+        "REMOVAL"
+      ],
+      "manifest_path": "removal-without-person/scenario.json",
+      "scenario_id": "gate6-removal-without-person",
+      "seed": 6102
+    },
+    {
+      "case": "person-without-removal",
+      "expected_alert": false,
+      "expected_event_types": [],
+      "manifest_path": "person-without-removal/scenario.json",
+      "scenario_id": "gate6-person-without-removal",
+      "seed": 6103
+    },
+    {
+      "case": "addition",
+      "expected_alert": false,
+      "expected_event_types": [
+        "ADDITION"
+      ],
+      "manifest_path": "addition/scenario.json",
+      "scenario_id": "gate6-addition",
+      "seed": 6104
+    },
+    {
+      "case": "authorized-restock",
+      "expected_alert": false,
+      "expected_event_types": [
+        "ADDITION"
+      ],
+      "manifest_path": "authorized-restock/scenario.json",
+      "scenario_id": "gate6-authorized-restock",
+      "seed": 6105
+    },
+    {
+      "case": "occlusion-then-removal",
+      "expected_alert": true,
+      "expected_event_types": [
+        "REMOVAL"
+      ],
+      "manifest_path": "occlusion-then-removal/scenario.json",
+      "scenario_id": "gate6-occlusion-then-removal",
+      "seed": 6106
+    },
+    {
+      "case": "outside-association-window",
+      "expected_alert": false,
+      "expected_event_types": [
+        "REMOVAL"
+      ],
+      "manifest_path": "outside-association-window/scenario.json",
+      "scenario_id": "gate6-outside-association-window",
+      "seed": 6107
+    },
+    {
+      "case": "invalid-depth",
+      "expected_alert": false,
+      "expected_event_types": [],
+      "manifest_path": "invalid-depth/scenario.json",
+      "scenario_id": "gate6-invalid-depth",
+      "seed": 6108
+    },
+    {
+      "case": "no-change",
+      "expected_alert": false,
+      "expected_event_types": [],
+      "manifest_path": "no-change/scenario.json",
+      "scenario_id": "gate6-no-change",
+      "seed": 6109
+    },
+    {
+      "case": "camera-drift",
+      "expected_alert": false,
+      "expected_event_types": [],
+      "manifest_path": "camera-drift/scenario.json",
+      "scenario_id": "gate6-camera-drift",
+      "seed": 6110
+    }
+  ],
+  "schema_version": "1.0",
+  "split_id": "gate6-synthetic-v1",
+  "status": "prepared_pending_owner_freeze"
+}

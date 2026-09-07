@@ -132,7 +132,10 @@ blocked by a missing contract or mock layer.
 
 ## Next
 
-- Define and freeze the Gate 6 evaluation split and reporting requirements.
+- Obtain owner approval for the prepared Gate 6 fixture contents and numeric
+  acceptance thresholds, then record the frozen evaluation configuration. Full
+  Section 10 acceptance also requires the specified 120-positive/300-negative
+  final datasets and their reproducibility evidence.
 - Gather the remaining public-data and live-tracking evidence before Gate 7.
 
 ## Blocked or pending

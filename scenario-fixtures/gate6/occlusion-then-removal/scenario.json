@@ -1,0 +1,540 @@
+{
+  "schema_version": "1.1",
+  "scenario_id": "gate6-occlusion-then-removal",
+  "random_seed": 6106,
+  "source_type": "synthetic_rgbd",
+  "evidence_source": "synthetic",
+  "category": "gate6-occlusion-then-removal",
+  "held_out_category": false,
+  "split": "frozen_test",
+  "intrinsics": [
+    [
+      80.0,
+      0.0,
+      31.5
+    ],
+    [
+      0.0,
+      80.0,
+      23.5
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "camera_to_shelf": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "shelf": {
+    "shelf_id": "shelf-01",
+    "roi_xyxy": [
+      0,
+      0,
+      64,
+      48
+    ],
+    "bounds_min_m": [
+      -0.4,
+      -0.25,
+      0.5
+    ],
+    "bounds_max_m": [
+      0.4,
+      0.25,
+      1.5
+    ],
+    "voxel_size_m": 0.01
+  },
+  "baseline_frame_ids": [
+    "frame-0000",
+    "frame-0001",
+    "frame-0002",
+    "frame-0003",
+    "frame-0004",
+    "frame-0005",
+    "frame-0006",
+    "frame-0007",
+    "frame-0008",
+    "frame-0009",
+    "frame-0010",
+    "frame-0011",
+    "frame-0012",
+    "frame-0013",
+    "frame-0014",
+    "frame-0015",
+    "frame-0016",
+    "frame-0017",
+    "frame-0018",
+    "frame-0019",
+    "frame-0020",
+    "frame-0021",
+    "frame-0022",
+    "frame-0023",
+    "frame-0024",
+    "frame-0025",
+    "frame-0026",
+    "frame-0027",
+    "frame-0028",
+    "frame-0029"
+  ],
+  "frames": [
+    {
+      "frame_id": "frame-0000",
+      "timestamp_ns": 1000000000,
+      "rgb_path": "rgb/frame-0000.png",
+      "depth_path": "depth/frame-0000.png",
+      "valid_mask_path": "masks/frame-0000-valid.png",
+      "occlusion_mask_path": "masks/frame-0000-occlusion.png",
+      "object_mask_path": "masks/frame-0000-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0001",
+      "timestamp_ns": 1100000000,
+      "rgb_path": "rgb/frame-0001.png",
+      "depth_path": "depth/frame-0001.png",
+      "valid_mask_path": "masks/frame-0001-valid.png",
+      "occlusion_mask_path": "masks/frame-0001-occlusion.png",
+      "object_mask_path": "masks/frame-0001-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0002",
+      "timestamp_ns": 1200000000,
+      "rgb_path": "rgb/frame-0002.png",
+      "depth_path": "depth/frame-0002.png",
+      "valid_mask_path": "masks/frame-0002-valid.png",
+      "occlusion_mask_path": "masks/frame-0002-occlusion.png",
+      "object_mask_path": "masks/frame-0002-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0003",
+      "timestamp_ns": 1300000000,
+      "rgb_path": "rgb/frame-0003.png",
+      "depth_path": "depth/frame-0003.png",
+      "valid_mask_path": "masks/frame-0003-valid.png",
+      "occlusion_mask_path": "masks/frame-0003-occlusion.png",
+      "object_mask_path": "masks/frame-0003-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0004",
+      "timestamp_ns": 1400000000,
+      "rgb_path": "rgb/frame-0004.png",
+      "depth_path": "depth/frame-0004.png",
+      "valid_mask_path": "masks/frame-0004-valid.png",
+      "occlusion_mask_path": "masks/frame-0004-occlusion.png",
+      "object_mask_path": "masks/frame-0004-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0005",
+      "timestamp_ns": 1500000000,
+      "rgb_path": "rgb/frame-0005.png",
+      "depth_path": "depth/frame-0005.png",
+      "valid_mask_path": "masks/frame-0005-valid.png",
+      "occlusion_mask_path": "masks/frame-0005-occlusion.png",
+      "object_mask_path": "masks/frame-0005-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0006",
+      "timestamp_ns": 1600000000,
+      "rgb_path": "rgb/frame-0006.png",
+      "depth_path": "depth/frame-0006.png",
+      "valid_mask_path": "masks/frame-0006-valid.png",
+      "occlusion_mask_path": "masks/frame-0006-occlusion.png",
+      "object_mask_path": "masks/frame-0006-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0007",
+      "timestamp_ns": 1700000000,
+      "rgb_path": "rgb/frame-0007.png",
+      "depth_path": "depth/frame-0007.png",
+      "valid_mask_path": "masks/frame-0007-valid.png",
+      "occlusion_mask_path": "masks/frame-0007-occlusion.png",
+      "object_mask_path": "masks/frame-0007-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0008",
+      "timestamp_ns": 1800000000,
+      "rgb_path": "rgb/frame-0008.png",
+      "depth_path": "depth/frame-0008.png",
+      "valid_mask_path": "masks/frame-0008-valid.png",
+      "occlusion_mask_path": "masks/frame-0008-occlusion.png",
+      "object_mask_path": "masks/frame-0008-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0009",
+      "timestamp_ns": 1900000000,
+      "rgb_path": "rgb/frame-0009.png",
+      "depth_path": "depth/frame-0009.png",
+      "valid_mask_path": "masks/frame-0009-valid.png",
+      "occlusion_mask_path": "masks/frame-0009-occlusion.png",
+      "object_mask_path": "masks/frame-0009-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0010",
+      "timestamp_ns": 2000000000,
+      "rgb_path": "rgb/frame-0010.png",
+      "depth_path": "depth/frame-0010.png",
+      "valid_mask_path": "masks/frame-0010-valid.png",
+      "occlusion_mask_path": "masks/frame-0010-occlusion.png",
+      "object_mask_path": "masks/frame-0010-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0011",
+      "timestamp_ns": 2100000000,
+      "rgb_path": "rgb/frame-0011.png",
+      "depth_path": "depth/frame-0011.png",
+      "valid_mask_path": "masks/frame-0011-valid.png",
+      "occlusion_mask_path": "masks/frame-0011-occlusion.png",
+      "object_mask_path": "masks/frame-0011-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0012",
+      "timestamp_ns": 2200000000,
+      "rgb_path": "rgb/frame-0012.png",
+      "depth_path": "depth/frame-0012.png",
+      "valid_mask_path": "masks/frame-0012-valid.png",
+      "occlusion_mask_path": "masks/frame-0012-occlusion.png",
+      "object_mask_path": "masks/frame-0012-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0013",
+      "timestamp_ns": 2300000000,
+      "rgb_path": "rgb/frame-0013.png",
+      "depth_path": "depth/frame-0013.png",
+      "valid_mask_path": "masks/frame-0013-valid.png",
+      "occlusion_mask_path": "masks/frame-0013-occlusion.png",
+      "object_mask_path": "masks/frame-0013-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0014",
+      "timestamp_ns": 2400000000,
+      "rgb_path": "rgb/frame-0014.png",
+      "depth_path": "depth/frame-0014.png",
+      "valid_mask_path": "masks/frame-0014-valid.png",
+      "occlusion_mask_path": "masks/frame-0014-occlusion.png",
+      "object_mask_path": "masks/frame-0014-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0015",
+      "timestamp_ns": 2500000000,
+      "rgb_path": "rgb/frame-0015.png",
+      "depth_path": "depth/frame-0015.png",
+      "valid_mask_path": "masks/frame-0015-valid.png",
+      "occlusion_mask_path": "masks/frame-0015-occlusion.png",
+      "object_mask_path": "masks/frame-0015-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0016",
+      "timestamp_ns": 2600000000,
+      "rgb_path": "rgb/frame-0016.png",
+      "depth_path": "depth/frame-0016.png",
+      "valid_mask_path": "masks/frame-0016-valid.png",
+      "occlusion_mask_path": "masks/frame-0016-occlusion.png",
+      "object_mask_path": "masks/frame-0016-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0017",
+      "timestamp_ns": 2700000000,
+      "rgb_path": "rgb/frame-0017.png",
+      "depth_path": "depth/frame-0017.png",
+      "valid_mask_path": "masks/frame-0017-valid.png",
+      "occlusion_mask_path": "masks/frame-0017-occlusion.png",
+      "object_mask_path": "masks/frame-0017-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0018",
+      "timestamp_ns": 2800000000,
+      "rgb_path": "rgb/frame-0018.png",
+      "depth_path": "depth/frame-0018.png",
+      "valid_mask_path": "masks/frame-0018-valid.png",
+      "occlusion_mask_path": "masks/frame-0018-occlusion.png",
+      "object_mask_path": "masks/frame-0018-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0019",
+      "timestamp_ns": 2900000000,
+      "rgb_path": "rgb/frame-0019.png",
+      "depth_path": "depth/frame-0019.png",
+      "valid_mask_path": "masks/frame-0019-valid.png",
+      "occlusion_mask_path": "masks/frame-0019-occlusion.png",
+      "object_mask_path": "masks/frame-0019-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0020",
+      "timestamp_ns": 3000000000,
+      "rgb_path": "rgb/frame-0020.png",
+      "depth_path": "depth/frame-0020.png",
+      "valid_mask_path": "masks/frame-0020-valid.png",
+      "occlusion_mask_path": "masks/frame-0020-occlusion.png",
+      "object_mask_path": "masks/frame-0020-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0021",
+      "timestamp_ns": 3100000000,
+      "rgb_path": "rgb/frame-0021.png",
+      "depth_path": "depth/frame-0021.png",
+      "valid_mask_path": "masks/frame-0021-valid.png",
+      "occlusion_mask_path": "masks/frame-0021-occlusion.png",
+      "object_mask_path": "masks/frame-0021-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0022",
+      "timestamp_ns": 3200000000,
+      "rgb_path": "rgb/frame-0022.png",
+      "depth_path": "depth/frame-0022.png",
+      "valid_mask_path": "masks/frame-0022-valid.png",
+      "occlusion_mask_path": "masks/frame-0022-occlusion.png",
+      "object_mask_path": "masks/frame-0022-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0023",
+      "timestamp_ns": 3300000000,
+      "rgb_path": "rgb/frame-0023.png",
+      "depth_path": "depth/frame-0023.png",
+      "valid_mask_path": "masks/frame-0023-valid.png",
+      "occlusion_mask_path": "masks/frame-0023-occlusion.png",
+      "object_mask_path": "masks/frame-0023-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0024",
+      "timestamp_ns": 3400000000,
+      "rgb_path": "rgb/frame-0024.png",
+      "depth_path": "depth/frame-0024.png",
+      "valid_mask_path": "masks/frame-0024-valid.png",
+      "occlusion_mask_path": "masks/frame-0024-occlusion.png",
+      "object_mask_path": "masks/frame-0024-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0025",
+      "timestamp_ns": 3500000000,
+      "rgb_path": "rgb/frame-0025.png",
+      "depth_path": "depth/frame-0025.png",
+      "valid_mask_path": "masks/frame-0025-valid.png",
+      "occlusion_mask_path": "masks/frame-0025-occlusion.png",
+      "object_mask_path": "masks/frame-0025-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0026",
+      "timestamp_ns": 3600000000,
+      "rgb_path": "rgb/frame-0026.png",
+      "depth_path": "depth/frame-0026.png",
+      "valid_mask_path": "masks/frame-0026-valid.png",
+      "occlusion_mask_path": "masks/frame-0026-occlusion.png",
+      "object_mask_path": "masks/frame-0026-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0027",
+      "timestamp_ns": 3700000000,
+      "rgb_path": "rgb/frame-0027.png",
+      "depth_path": "depth/frame-0027.png",
+      "valid_mask_path": "masks/frame-0027-valid.png",
+      "occlusion_mask_path": "masks/frame-0027-occlusion.png",
+      "object_mask_path": "masks/frame-0027-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0028",
+      "timestamp_ns": 3800000000,
+      "rgb_path": "rgb/frame-0028.png",
+      "depth_path": "depth/frame-0028.png",
+      "valid_mask_path": "masks/frame-0028-valid.png",
+      "occlusion_mask_path": "masks/frame-0028-occlusion.png",
+      "object_mask_path": "masks/frame-0028-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0029",
+      "timestamp_ns": 3900000000,
+      "rgb_path": "rgb/frame-0029.png",
+      "depth_path": "depth/frame-0029.png",
+      "valid_mask_path": "masks/frame-0029-valid.png",
+      "occlusion_mask_path": "masks/frame-0029-occlusion.png",
+      "object_mask_path": "masks/frame-0029-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0030",
+      "timestamp_ns": 4000000000,
+      "rgb_path": "rgb/frame-0030.png",
+      "depth_path": "depth/frame-0030.png",
+      "valid_mask_path": "masks/frame-0030-valid.png",
+      "occlusion_mask_path": "masks/frame-0030-occlusion.png",
+      "object_mask_path": "masks/frame-0030-object.png",
+      "tracks": [
+        {
+          "track_id": 1,
+          "box_xyxy": [
+            0.0,
+            0.0,
+            4.0,
+            4.0
+          ],
+          "pose_keypoints_xyc": [],
+          "position_m": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "near_shelf": true,
+          "authorized": false
+        }
+      ]
+    },
+    {
+      "frame_id": "frame-0031",
+      "timestamp_ns": 4100000000,
+      "rgb_path": "rgb/frame-0031.png",
+      "depth_path": "depth/frame-0031.png",
+      "valid_mask_path": "masks/frame-0031-valid.png",
+      "occlusion_mask_path": "masks/frame-0031-occlusion.png",
+      "object_mask_path": "masks/frame-0031-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0032",
+      "timestamp_ns": 4200000000,
+      "rgb_path": "rgb/frame-0032.png",
+      "depth_path": "depth/frame-0032.png",
+      "valid_mask_path": "masks/frame-0032-valid.png",
+      "occlusion_mask_path": "masks/frame-0032-occlusion.png",
+      "object_mask_path": "masks/frame-0032-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0033",
+      "timestamp_ns": 4300000000,
+      "rgb_path": "rgb/frame-0033.png",
+      "depth_path": "depth/frame-0033.png",
+      "valid_mask_path": "masks/frame-0033-valid.png",
+      "occlusion_mask_path": "masks/frame-0033-occlusion.png",
+      "object_mask_path": "masks/frame-0033-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0034",
+      "timestamp_ns": 4400000000,
+      "rgb_path": "rgb/frame-0034.png",
+      "depth_path": "depth/frame-0034.png",
+      "valid_mask_path": "masks/frame-0034-valid.png",
+      "occlusion_mask_path": "masks/frame-0034-occlusion.png",
+      "object_mask_path": "masks/frame-0034-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0035",
+      "timestamp_ns": 4500000000,
+      "rgb_path": "rgb/frame-0035.png",
+      "depth_path": "depth/frame-0035.png",
+      "valid_mask_path": "masks/frame-0035-valid.png",
+      "occlusion_mask_path": "masks/frame-0035-occlusion.png",
+      "object_mask_path": "masks/frame-0035-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0036",
+      "timestamp_ns": 4600000000,
+      "rgb_path": "rgb/frame-0036.png",
+      "depth_path": "depth/frame-0036.png",
+      "valid_mask_path": "masks/frame-0036-valid.png",
+      "occlusion_mask_path": "masks/frame-0036-occlusion.png",
+      "object_mask_path": "masks/frame-0036-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0037",
+      "timestamp_ns": 4700000000,
+      "rgb_path": "rgb/frame-0037.png",
+      "depth_path": "depth/frame-0037.png",
+      "valid_mask_path": "masks/frame-0037-valid.png",
+      "occlusion_mask_path": "masks/frame-0037-occlusion.png",
+      "object_mask_path": "masks/frame-0037-object.png",
+      "tracks": []
+    },
+    {
+      "frame_id": "frame-0038",
+      "timestamp_ns": 4800000000,
+      "rgb_path": "rgb/frame-0038.png",
+      "depth_path": "depth/frame-0038.png",
+      "valid_mask_path": "masks/frame-0038-valid.png",
+      "occlusion_mask_path": "masks/frame-0038-occlusion.png",
+      "object_mask_path": "masks/frame-0038-object.png",
+      "tracks": []
+    }
+  ],
+  "ground_truth_events": [
+    {
+      "change_type": "REMOVAL",
+      "first_seen_timestamp_ns": 4000000000,
+      "volume_m3": 0.0020179687500000002,
+      "bounds_min_m": [
+        -0.17500000000000002,
+        0.0,
+        1.3179999999999998
+      ],
+      "bounds_max_m": [
+        0.08750000000000002,
+        0.09375,
+        1.4
+      ],
+      "associated_track_id": null,
+      "shape_family": "thin_box_or_tray",
+      "should_alert": true
+    }
+  ],
+  "system_mode": "NORMAL",
+  "notes": [
+    "generator=kyra-lightweight-1.0",
+    "condition=object_change"
+  ]
+}

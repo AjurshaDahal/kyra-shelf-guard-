@@ -270,6 +270,21 @@ def _run(args: argparse.Namespace) -> dict[str, Any]:
 
 
 def _evaluate(args: argparse.Namespace) -> dict[str, Any]:
+    if args.split is not None:
+        from kyra.evaluation import EvaluationConfig, evaluate_split
+
+        result = evaluate_split(
+            args.split,
+            config=EvaluationConfig(
+                timing_tolerance_ns=args.timing_tolerance_ns,
+                volume_error_threshold=args.volume_error_threshold,
+                bounds_iou_threshold=args.bounds_iou_threshold,
+            ),
+        )
+        result["command"] = "evaluate"
+        return result
+    if args.manifest is None:
+        raise ValueError("evaluate requires a manifest or --split")
     result = run_scenario(args.manifest, baseline_path=args.baseline)
     manifest = load_manifest(args.manifest)
     expected_types = sorted(event.change_type.value for event in manifest.ground_truth_events)
@@ -353,8 +368,12 @@ def _parser() -> argparse.ArgumentParser:
     run.set_defaults(handler=_run)
 
     evaluate = subcommands.add_parser("evaluate", help="compare inference with saved labels")
-    evaluate.add_argument("manifest")
+    evaluate.add_argument("manifest", nargs="?")
+    evaluate.add_argument("--split", help="evaluate a frozen Gate 6 scenario split")
     evaluate.add_argument("--baseline")
+    evaluate.add_argument("--timing-tolerance-ns", type=int)
+    evaluate.add_argument("--volume-error-threshold", type=float)
+    evaluate.add_argument("--bounds-iou-threshold", type=float)
     evaluate.add_argument("--output", dest="report")
     evaluate.set_defaults(handler=_evaluate)
 

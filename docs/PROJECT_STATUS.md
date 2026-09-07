@@ -30,7 +30,7 @@ This is the integration snapshot. Detailed owner progress and next actions live 
 | G3 — Geometry | In progress | Person 2 engine and fixture evidence exist; real-sensor OCID evidence and formal review remain open |
 | G4 — Tracking and rules | Complete | Deterministic matrix + serialized `PersonTrack`/`AlertEvent` evidence (`docs/gates/GATE-4.md`, #70) and the lazy optional pretrained adapter (#73) merged; live T4 adapter smoke remains a Gate 7 exercise |
 | G5 — Complete vertical pipeline | Complete | Reviewed synthetic P1→P2→P3→P4 scenario pipeline, five CLI commands, loopback visual reviewer, and camera-drift suppression are recorded in `docs/gates/GATE-5.md`; public-data/live-tracking validation remains outside this gate. |
-| G6 — Frozen evaluation | Blocked | Requires a frozen evaluation split and configuration after the closed synthetic Gate 5 slice |
+| G6 — Frozen evaluation | In progress | P4 evaluator and deterministic synthetic vertical validation are complete; Section 10 final acceptance remains pending the specified 120-positive/300-negative datasets, thresholds, and evidence |
 | G7 — Performance and release | Blocked | Requires Gate 6, target-T4 evidence, report, and release review |
 
 Gate exit criteria are authoritative in [Integration Gates](INTEGRATION_GATES.md). Only Person 4 changes a gate to `Complete`, and only with linked evidence from every named owner.
