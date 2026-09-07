@@ -1,9 +1,9 @@
 # WI-056 — Complete Phase 0 decisions (P-003 approval and G0.4 Kaggle free-T4 runner)
 
 - **Owner:** P4 (recorded with project-owner approval)
-- **Status:** In review
+- **Status:** Complete
 - **Started:** 2026-09-07
-- **Completed:** N/A
+- **Completed:** 2026-09-07
 - **Requirements:** P-003 (licence), G0.4 (T4 runner), issue #40 closure
 - **Integration gate:** None directly; unblocks Gate 2/Gate 7 T4 evidence and the OCID smoke test
 
@@ -82,5 +82,7 @@ and remains open for a human.
 ## Final links
 
 - Issue: https://github.com/DontHash/kyra-shelf-guard/issues/56
-- Pull request: pending
-- Commit: pending
+- Pull request: https://github.com/DontHash/kyra-shelf-guard/pull/57
+- Commit: `765aa5f` (squash merge on `main`)
+- Issue #40 closed as resolved (D-009, D-014, D-015); the independent
+  handoff sign-off is tracked separately (issue #58)
