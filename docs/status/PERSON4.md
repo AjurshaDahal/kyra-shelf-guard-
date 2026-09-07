@@ -24,9 +24,10 @@
 
 ## Active
 
-Gate 1 contract compatibility remains complete. WI-077 provided a candidate
-Gate 5 vertical slice through the real Person 1 baseline/frame source, Person 2
-geometry provider, Person 3 replay/proximity/rules, and Person 4 orchestration.
+Gate 1 contract compatibility remains complete. WI-077 provided the reviewed
+Gate 5 synthetic vertical slice through the real Person 1 baseline/frame source,
+Person 2 geometry provider, Person 3 replay/proximity/rules, and Person 4
+orchestration. Gate 5 is now closed for this deterministic scenario scope.
 
 The critical blocking regression (Issue #79 - Camera Drift) has been resolved
 by Person 2. The multi-frame `camera-drift` scenario correctly evaluates with
@@ -134,13 +135,18 @@ script, `7f2fd84`).
 
 The repository evidence satisfies the Gate 1 exit criteria for the shared contract-compatibility layer. This covers the frozen contract definitions, the compatibility tests, and the deterministic Person 4 mock coverage. It does not claim that Person 1, Person 2, or Person 3 have completed real algorithm implementations.
 
-The frozen contract and mock/evidence layer is complete; downstream Gates 2–5 remain blocked by real owner implementations and end-to-end validation, not by a missing contract or mock layer.
+The frozen contract and mock/evidence layer is complete, and the reviewed
+synthetic vertical slice is closed by Gate 5. Public-data validation, live
+tracking, frozen evaluation, and release validation remain open; none is
+blocked by a missing contract or mock layer.
 
 ## Next
 
-- Review the ten visual profiles in PR #80, then land WI-077 after owner review
-  of the integrated behavior.
-- Formally compile the Gate 5 record and gather all-owner approval now that Gate 2/3 entry conditions are met.
+- Obtain owner approval for the prepared Gate 6 fixture contents and numeric
+  acceptance thresholds, then record the frozen evaluation configuration. Full
+  Section 10 acceptance also requires the specified 120-positive/300-negative
+  final datasets and their reproducibility evidence.
+- Gather the remaining public-data and live-tracking evidence before Gate 7.
 
 ## Blocked or pending
 

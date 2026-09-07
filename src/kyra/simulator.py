@@ -78,12 +78,9 @@ CASES: tuple[dict[str, str], ...] = (
     },
     {
         "id": "camera-drift",
-        "name": "Camera drift (known failure)",
-        "description": (
-            "The current geometry path wrongly reports a removal; this exposes blocker #79."
-        ),
-        "expected_status": "known-failure",
-        "blocker": "#79",
+        "name": "Camera drift",
+        "description": "Camera drift is suppressed without producing a removal or alert.",
+        "expected_status": "pass",
     },
 )
 

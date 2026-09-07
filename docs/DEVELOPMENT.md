@@ -114,9 +114,13 @@ reviewing and staging a diff, committing, and pushing is in
 [COLLABORATION_WORKFLOW.md](COLLABORATION_WORKFLOW.md). This development guide
 does not define a separate Git policy.
 
-## Current command warning
+## Current command status
 
-`pyproject.toml` declares a `kyra` command, but `src/kyra/cli.py` does not exist. Do not use or document the command as working yet. Person 4 should coordinate the final shared CLI.
+The five planned `kyra` commands (`simulate`, `calibrate`, `run`, `evaluate`,
+and `benchmark`) are available for the reviewed deterministic synthetic Gate 5
+scenario slice. The additional `demo` command produces a local annotated video.
+These commands do not constitute public-data validation, live-tracking
+validation, Gate 6 evaluation, or Gate 7 release evidence.
 
 ## Change rules
 

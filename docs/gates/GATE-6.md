@@ -1,10 +1,11 @@
-# Gate 6 Evidence — Frozen Evaluation and Baseline Comparison
+﻿# Gate 6 Evidence — Frozen Evaluation and Baseline Comparison
 
 - **Gate:** Gate 6 (Frozen Evaluation)
 - **Accountable owner:** Person 4 (Integration and Evaluation)
 - **Reviewers:** Person 1 (data split), Person 2 (geometry accuracy), Person 3 (theft rules)
 - **Date recorded:** 2026-09-08
 - **Status:** Approved / Closed
+- **Contracts:** C-001 through C-007 unchanged; C-008 not created
 
 ## Scope
 
@@ -12,8 +13,23 @@ This gate covers the frozen evaluation of the complete Kyra physics-based shelf-
 
 Testing was executed on the frozen dataset split without test-set tuning.
 
-## Dataset Split (Section 10.1)
+## Evaluation Datasets and Splits
 
+### 1. Multi-Frame Deterministic Synthetic Split (Scaffolding & Vertical Validation)
+The 10-scenario checksummed synthetic split is located at:
+- `src/kyra/evaluation/gate6.py`
+- `scenario-fixtures/gate6/gate6.json`
+- `scenario-fixtures/gate6/checksums.sha256`
+- `scripts/generate_gate6_split.py`
+
+Run the split evaluator via:
+```powershell
+.\.venv\Scripts\python.exe -m kyra.cli evaluate --split scenario-fixtures\gate6
+```
+This suite validates event-type matching, alert confusion matrices, Wilson confidence intervals, and strict timing/volume/bounds thresholds.
+
+### 2. Full Section 10 Frozen Evaluation Suite (420 Trials)
+To satisfy the full Section 10 quantitative acceptance boundary, the 420-scenario frozen suite was executed:
 - **Total Trials:** 420
 - **Frozen Positive Set (120 trials):**
   - 60 synthetic/BlenderProc scenarios across 20 held-out categories (3 variants each) covering flat/thin, cylindrical, irregular/shoes, and handled/hanging kitchenware.
@@ -23,6 +39,11 @@ Testing was executed on the frozen dataset split without test-set tuning.
   - 75 nearby-person / no-removal scenarios.
   - 75 addition or authorized-restocking scenarios.
   - 75 camera-drift, lighting variation, invalid-depth, or static no-change scenarios.
+
+Run the full frozen suite via:
+```powershell
+.\.venv\Scripts\python.exe scripts\evaluate_frozen_suite.py
+```
 
 ## Quantitative Results Against Assignment Targets (Section 10.2)
 

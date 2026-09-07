@@ -10,21 +10,22 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
 - Verified clean-clone execution of all six CLI subcommands (`simulate`, `calibrate`, `run`, `evaluate`, `benchmark`, `demo`) with exit code 0.
 - Audited licence compliance (AGPL-3.0-only, OCID CC-BY 4.0 research approval), repository security (zero credentials or binary leaks), and honest claims ("suspicious shelf-removal alert", zero SKU-specific training).
 - Executed Gate 6 frozen evaluation across 420 trials (120 positive removals across 20 held-out categories and reversed transitions; 300 negative controls) achieving 100% recall, 0% FPR, 100% geometry accuracy, and 0% volume error on >= 0.5L objects; recorded Gate 6 evidence in `docs/gates/GATE-6.md` (WI-084).
-- Added `src/kyra/evaluation/` package and `scripts/evaluate_frozen_suite.py` evaluation runner with Wilson score binomial confidence intervals and class-based YOLO comparison framework (WI-084).
+- Added `src/kyra/evaluation/` package, `scripts/evaluate_frozen_suite.py` evaluation runner, multi-frame synthetic split evaluation in `kyra evaluate --split`, with Wilson score binomial confidence intervals and class-based YOLO comparison framework (WI-082, WI-084).
 - Formally closed Integration Gate 2 (`docs/gates/GATE-2.md`), Gate 3 (`docs/gates/GATE-3.md`), and Gate 5 (`docs/gates/GATE-5.md`) after full regression verification and Issue #79 resolution (WI-083).
 - Enhanced `kyra demo` CLI subcommand to accept existing scenario directories and direct `scenario.json` paths in addition to generated cases (WI-082).
 - Refined `ShelfGeometryProvider` to gracefully fall back to raw uncorrected depth when evaluating uncalibrated/tabletop sequences without fixed shelf geometry, and compare dominant volume when removal and addition candidate masks are both present (WI-082).
 - Restored UTF-8 compliance in `docs/gates/GATE-5.md` to pass repository consistency and governance checks.
-- Candidate Person 4 Gate 5 vertical scenario pipeline using the real Person 1
+- Person 4 Gate 5 vertical scenario pipeline is closed for the reviewed deterministic synthetic slice, using the real Person 1
   baseline/frame source, Person 2 geometry provider, and Person 3 replay,
   proximity, occlusion, and alert rules without duplicating owner algorithms.
 - Working `simulate`, `calibrate`, `run`, `evaluate`, and `benchmark` CLI commands
-  plus a 13-test deterministic scenario matrix. Camera drift remains a recorded
-  failing evaluation under Person 2 issue #79, so Gates 3 and 5 remain open.
+  plus a deterministic scenario matrix, with camera drift suppression covered by
+  the integrated pipeline. Public-data validation, live tracking, Gate 6
+  evaluation, and Gate 7 release validation remain open.
 - Local Kyra Scenario Lab for PR #80 review, with an automatically loaded
   suspicious-removal replay, frame-by-frame RGB/depth playback, ten selectable
-  synthetic cases, expected-versus-actual results, and visible camera-drift
-  failure evidence. It uses only the core environment and binds to loopback.
+  synthetic cases, expected-versus-actual results, and camera-drift suppression
+  evidence. It uses only the core environment and binds to loopback.
 - Corrected Gate 3's OCID-mini evidence boundary: the committed 16x16 input is a
   synthetic converter fixture, not a real-sensor OCID trial.
 - Person 2 single acceptance verifier runner (`scripts/verify_person2.py`) executing
