@@ -5,7 +5,7 @@
 - **Reviewers:** Person 1 (input baseline/intrinsics), Person 3 (occlusion masks), Person 4 (output contracts & pipeline)
 - **Date recorded:** 2026-09-07
 - **Base commit:** `29b1c85` (origin/main)
-- **Status:** Complete (pending Person 4 review)
+- **Status:** In progress (Person 4 review found blockers; issue #79)
 
 ## Scope
 
@@ -14,7 +14,8 @@ This gate covers the Person 2 production shelf geometry, differencing, occlusion
 2. Known-volume accuracy on $\ge 0.5$ L object fixtures satisfies the $\le 10\%$ relative error SLA.
 3. Failure paths (drift exceedance, residual exceedance, sparse fixed points, severe occlusion, and unknown depth) safely suppress change detection and never produce false removal alerts.
 4. Deterministic `VolumeChangeEvent` serialization produces bit-for-bit identical JSON and stable SHA-256 hash.
-5. Real-sensor RGB-D sequence evaluation on converted OCID fixture detects object removal without registration errors.
+5. The tiny synthetic OCID-format converter fixture detects a removal without
+   registration errors. It does not provide real-sensor evidence.
 
 ## Gate definition
 
@@ -154,9 +155,12 @@ Serialization stability was verified by serializing identical `VolumeChangeEvent
 
 ---
 
-## P2-5: Real-sensor OCID sequence trial
+## P2-5: Synthetic OCID-format converter-fixture trial
 
-Trial executed on the real-world converted RGB-D sequence (`tests/fixtures/ocid-mini/ocid/sequence-01`), reversing the sequence to model an object removal event:
+Trial executed on `tests/fixtures/ocid-mini/ocid/sequence-01`, reversing the
+two-frame sequence to model a removal. Its own `metadata.toml` identifies it as
+a deterministic 16x16 synthetic fixture. It proves converter/replay plumbing,
+not OCID real-data behavior:
 
 | Frame ID | Timestamp (ns) | Registration Residual (m) | Occluded Flag | Removal Pixels Detected | Addition Pixels Detected | Verdict |
 |---|---|---|---|---|---|---|
@@ -164,18 +168,30 @@ Trial executed on the real-world converted RGB-D sequence (`tests/fixtures/ocid-
 | `frame-000000` | 2,000,000,000 | 0.0000 | `False` | 29 | 0 | Clean removal detected |
 
 **Observations:**
-- Real-sensor sensor noise (Intel RealSense D435) was cleanly suppressed by M3C2-EP $3\sigma$ thresholding on the background shelf.
-- The unstacked object in `frame-000000` produced 29 distinct removal candidate pixels without registration drift or spurious addition artifacts.
+- The fixture's background stayed stable through the conversion/replay path.
+- The synthetic unstacked object in `frame-000000` produced 29 removal
+  candidate pixels without registration errors or addition artifacts.
+
+## Person 4 review addendum — 2026-09-07
+
+Person 4 reran `scripts/verify_person2.py` and
+`pytest -q tests/test_geometry_gate3.py` on Windows/Python 3.12.7; both passed
+(five verifier checks and five tests). Review did not accept Gate 3 closure:
+
+1. The verifier and earlier text called `ocid-mini` real-sensor evidence even
+   though its metadata explicitly labels it synthetic.
+2. The production provider emits a false `REMOVAL` when the deterministic
+   camera-drift scenario is replayed across its full seven-frame event window.
+   The old G10 method repeats one selected frame and therefore does not exercise
+   that persistent multi-frame failure. Reproduction and acceptance checks are
+   in Person 2 issue #79.
 
 ---
 
-## Gate 3 completion conclusion
+## Gate 3 review conclusion
 
-The Person 2 shelf geometry engine satisfies all Gate 3 exit criteria:
-1. Deterministic frozen golden pack replay (G01–G10) operates without regression.
-2. Volume accuracy on $\ge 0.5$ L objects satisfies the $\le 10\%$ error SLA.
-3. Degraded and uncalibrated failure modes are non-alerting.
-4. Output events strictly adhere to the frozen C-003 `VolumeChangeEvent` contract.
-5. Real-sensor OCID sequence trial succeeds without algorithmic failure.
-
-Gate 3 is **ready for Person 4 sign-off and vertical pipeline integration (Gate 5)**.
+The volume, serialization, unknown-depth, and fixture-based paths remain useful
+candidate evidence, but the multi-frame drift regression fails the Gate 3
+failure-path criterion. Gate 3 remains **In progress** until issue #79 is fixed,
+the full scenario replay passes, and the evidence record is regenerated with
+truthful source labels. A real-data OCID run is not claimed here.

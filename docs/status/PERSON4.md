@@ -1,6 +1,6 @@
 # Person 4 Status — Integration and Evaluation
 
-- **Status:** Complete
+- **Status:** In progress
 - **Last updated:** 2026-09-07
 
 ## Implemented
@@ -24,7 +24,16 @@
 
 ## Active
 
-Gate 1 contract compatibility is complete for the shared compatibility layer. Person 4 mock, adapter, and pipeline work is complete and validated. Real Person 1, Person 2, and Person 3 algorithm work is not being claimed as complete; downstream Gates 2–5 remain dependent on real owner outputs and end-to-end validation.
+Gate 1 contract compatibility remains complete. WI-077 now provides a candidate
+Gate 5 vertical slice through the real Person 1 baseline/frame source, Person 2
+geometry provider, Person 3 replay/proximity/rules, and Person 4 orchestration.
+The five assignment commands operate in the core environment for deterministic
+test scenarios. This is synthetic scenario evidence, not real-world proof.
+
+Person 4 review also found two Gate 3 evidence problems: the committed
+`ocid-mini` fixture is explicitly synthetic and must not be called real-sensor
+evidence, and the multi-frame `camera-drift` scenario produces a false internal
+`REMOVAL`. Issue #79 is assigned to Person 2. Gate 3 and Gate 5 remain open.
 
 WI-010 (audience-specific documentation split) and the documentation
 reconciliation issues #15 and #18 are merged and closed.
@@ -117,16 +126,17 @@ The frozen contract and mock/evidence layer is complete; downstream Gates 2–5 
 
 ## Next
 
-- Complete downstream Gate 2 baseline and data work with Person 1.
-- Complete downstream Gate 3 geometry work with Person 2.
-- Complete downstream Gate 4 tracking and rule work with Person 3.
-- Complete Gate 5 end-to-end validation after the real owner outputs are integrated.
+- Land WI-077 after owner review of integrated behavior.
+- Resolve Person 2 camera-drift regression #79 without suppressing it in P4.
+- Re-run the deterministic matrix, collect all-owner approval, and compile a
+  Gate 5 record only after its Gate 2/3 entry conditions are complete.
 
 ## Blocked or pending
 
 - Person 1–4 GitHub handles are not assigned; `@DontHash` is temporary steward/CODEOWNER.
 - Server-enforced branch protection is unavailable for this private repository on the current GitHub plan.
-- Gates 2–5 remain blocked by real Person 1/2/3 algorithm outputs and end-to-end chain validation.
+- Gate 5 has a synthetic candidate chain but is blocked from closure by Gate 2/3
+  entry conditions, camera-drift regression #79, and missing owner approvals.
 - Contract mocks, pipeline, evaluation, T4 validation, and release process remain separate from the frozen contract compatibility proof and must not be mistaken for real owner algorithm completion.
 
 ## Evidence
@@ -137,6 +147,12 @@ The frozen contract and mock/evidence layer is complete; downstream Gates 2–5 
 - Current verification on 2026-08-30: `python -m ruff check .` — passed.
 - Current verification on 2026-08-30: `python -m compileall -q src tests scripts` — passed.
 - Current verification on 2026-08-30: `python scripts/check_repo_consistency.py` — passed.
+- WI-077 focused verification on 2026-09-07:
+  `python -m pytest -q tests/test_vertical_pipeline.py` — 13 passed.
+- WI-077 five-command smoke on Windows/Python 3.12.7: one synthetic removal,
+  one linked alert, evaluation passed, five-run benchmark p50 28.1047 ms.
+- Camera-drift negative evidence: evaluation exited 1 with expected no change
+  but actual `REMOVAL`; zero alert events; tracked as #79.
 - Work item `../work-items/WI-010-audience-documentation.md` tracks the audience-specific documentation route.
 - WI-010 verification on 2026-09-01: 83 tests passed; Ruff, compileall,
   repository consistency, change-impact, and diff checks passed on Python 3.12.7.

@@ -7,10 +7,9 @@ what someone intended to do.
 
 ## Where the project stands
 
-Kyra is still in the foundation stage. Some building blocks work and the
-automated checks pass on the current shared version (189 tests on Windows with
-Python 3.12 on 2026-09-07), but the parts have not yet been joined into a
-complete system. There is no finished app or usable command-line tool yet.
+Kyra now has a candidate command-line vertical slice for deterministic test
+scenarios. It joins the real baseline, replay tracking, shelf geometry, and
+alert-rule components; it is not yet a finished or real-world-validated app.
 The committed suite, verifier, and golden-pack audit have been run on a Kaggle
 free-T4 GPU notebook (report: `docs/PERSON1_TEST_REPORT_T4_2026-09-07.md`), but
 the full project has not been run end-to-end anywhere, and the independent
@@ -55,12 +54,24 @@ py -3.12 -m venv .venv
 .\\.venv\\Scripts\\python.exe -m pytest
 ~~~
 
-Do not run the kyra command yet. The future command is listed in the project
-settings, but the command itself has not been built.
+Run the deterministic test-scenario workflow after setup:
+
+~~~powershell
+kyra simulate evidence/quick-smoke --case suspicious-removal
+kyra calibrate evidence/quick-smoke/scenario.json --output evidence/baseline.npz
+kyra run evidence/quick-smoke/scenario.json --baseline evidence/baseline.npz
+kyra evaluate evidence/quick-smoke/scenario.json --baseline evidence/baseline.npz
+kyra benchmark evidence/quick-smoke/scenario.json --baseline evidence/baseline.npz
+~~~
+
+Generated evidence stays outside Git. The `camera-drift` profile currently
+fails evaluation because the geometry stage emits a false removal; issue #79
+tracks that Gate 3/5 blocker.
 
 ## Important limits
 
-- This repository does not contain a finished end-to-end result.
+- This repository contains a synthetic test-scenario vertical slice, not a
+  finished real-world end-to-end result.
 - Passing automated checks proves only the tested building blocks.
 - Large datasets, generated recordings, model files, and run output stay outside Git.
 - The original assignment remains the controlling source when a summary conflicts with it.

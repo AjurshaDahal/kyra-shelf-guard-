@@ -19,7 +19,7 @@ This is the integration snapshot. Detailed owner progress and next actions live 
 | P1 | Person 1 | In progress | Contracts foundation, strict manifest, replay reader, baseline build/persistence, MiDaS anchor alignment, deterministic generator, candidate golden pack, OCID conversion path, verification entry point | Full P1 acceptance, D-009 freeze, Windows/T4 handoff | [P1 status](status/PERSON1.md) |
 | P2 | Person 2 | In progress | Registration, signed diff (3σ), occlusion safety, 3D clustering, ray volume, temporal engine, and ShelfGeometryProvider implemented and merged (#51) | Gate 3 golden-pack evidence and real pipeline wiring | [P2 status](status/PERSON2.md) |
 | P3 | Person 3 | Complete | Deterministic replay tracking, proximity, occlusion masking, removal-alert rules, and the Gate 4 evidence generator/record merged (#19, #70); evidence record `docs/gates/GATE-4.md` | Real P2→P3 chain validation and integration-level items (live adapter optional) at Gates 4–5 | [P3 status](status/PERSON3.md) |
-| P4 | Person 4 | Complete | Gate 1 contract compatibility, mock providers, bounded pipeline, classifier fix (#18), and documentation reconciliation completed | Frozen pipeline/CLI/evaluation integration for Gates 5-7 | [P4 status](status/PERSON4.md) |
+| P4 | Person 4 | In progress | Gate 1 compatibility plus a candidate real-owner scenario pipeline and five-command CLI (#77) | Resolve the P2 camera-drift blocker (#79), collect owner approvals, and close Gate 5 | [P4 status](status/PERSON4.md) |
 
 ## Integration gates
 
@@ -27,9 +27,9 @@ This is the integration snapshot. Detailed owner progress and next actions live 
 |---|---|---|
 | G1 — Contract compatibility | Complete | C-001–C-007 are approved/frozen; contract compatibility tests and deterministic Person 4 mocks already satisfy the Gate 1 exit criteria for the shared compatibility layer. Real P1/P2/P3 algorithm outputs remain required for Gates 2–5. |
 | G2 — Data and baseline | In progress | 189 dated local tests; deterministic generator, frozen golden pack (D-009 confirmed 2026-09-06), OCID conversion path, and verification entry point are merged; Windows/T4 handoff and the real-data OCID smoke test remain open |
-| G3 — Geometry | In progress | Person 2 geometry/differencing/occlusion/volume engine merged (#51, 28 tests); known-volume golden-pack and real-sensor OCID evidence still pending |
+| G3 — Geometry | In progress | Person 2 engine and fixture evidence exist, but P4 review found that the OCID-mini input is synthetic rather than real-sensor evidence and that persistent camera drift produces a false `REMOVAL` in full replay (#79) |
 | G4 — Tracking and rules | Complete | Deterministic matrix + serialized `PersonTrack`/`AlertEvent` evidence (`docs/gates/GATE-4.md`, #70) and the lazy optional pretrained adapter (#73) merged; live T4 smoke of the adapter and the real P2→P3 chain remain Gate 5/7 exercises |
-| G5 — Complete vertical pipeline | Blocked | Requires Gates 1–4 and Person 4 pipeline/CLI |
+| G5 — Complete vertical pipeline | In progress | Candidate P1→P2→P3→P4 deterministic scenario pipeline and all five CLI commands implemented in #77; 13 focused tests cover the required alert/no-alert cases. Formal closure waits on G2/G3 prerequisites, camera-drift fix #79, and owner approvals. |
 | G6 — Frozen evaluation | Blocked | Requires Gate 5 and frozen split/configuration |
 | G7 — Performance and release | Blocked | Requires Gate 6, target-T4 evidence, report, and release review |
 

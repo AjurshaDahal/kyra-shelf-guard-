@@ -6,6 +6,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
 
 ## [Unreleased]
 
+- Candidate Person 4 Gate 5 vertical scenario pipeline using the real Person 1
+  baseline/frame source, Person 2 geometry provider, and Person 3 replay,
+  proximity, occlusion, and alert rules without duplicating owner algorithms.
+- Working `simulate`, `calibrate`, `run`, `evaluate`, and `benchmark` CLI commands
+  plus a 13-test deterministic scenario matrix. Camera drift remains a recorded
+  failing evaluation under Person 2 issue #79, so Gates 3 and 5 remain open.
+- Corrected Gate 3's OCID-mini evidence boundary: the committed 16x16 input is a
+  synthetic converter fixture, not a real-sensor OCID trial.
 - Person 2 single acceptance verifier runner (`scripts/verify_person2.py`) executing
   all Gate 3 acceptance checks across golden pack G01–G10 replay, known-volume accuracy,
   failure-path assertions, serialization determinism, and real-sensor OCID sequence evaluation (exit code 0).

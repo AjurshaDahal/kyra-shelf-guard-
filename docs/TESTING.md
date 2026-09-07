@@ -176,6 +176,28 @@ validate repository consistency, not algorithm correctness.
 | Person 3 | Replay-track determinism; lazy optional model loading; mask alignment; proximity window; authorization suppression; deterministic alert rule |
 | Person 4 | Contract/mocks compatibility; bounded pipeline behavior; five CLI commands; frozen evaluation split; comparison report; clean-environment run |
 
+## Candidate Gate 5 deterministic CLI smoke
+
+Issue #77 adds a core-environment vertical slice for synthetic test scenarios.
+It invokes the real owner implementations and keeps inference separate from
+saved ground-truth labels:
+
+```powershell
+kyra simulate evidence/gate5-smoke --case suspicious-removal
+kyra calibrate evidence/gate5-smoke/scenario.json --output evidence/gate5-baseline.npz
+kyra run evidence/gate5-smoke/scenario.json --baseline evidence/gate5-baseline.npz
+kyra evaluate evidence/gate5-smoke/scenario.json --baseline evidence/gate5-baseline.npz
+kyra benchmark evidence/gate5-smoke/scenario.json --baseline evidence/gate5-baseline.npz --runs 5
+```
+
+Run `python -m pytest -q tests/test_vertical_pipeline.py` for the deterministic
+matrix: suspicious removal, removal without a person, person without removal,
+addition, authorized restocking, temporary occlusion followed by removal,
+outside-two-second association, duplicate suppression, invalid depth, no
+change, and camera drift. The camera-drift evaluation is intentionally asserted
+as a known failure until Person 2 issue #79 is resolved. This suite is synthetic
+software-path evidence; it is not camera, real-data, or target-T4 proof.
+
 Exact gate evidence and owners are listed in `docs/INTEGRATION_GATES.md`.
 
 ## Windows and T4 evidence
