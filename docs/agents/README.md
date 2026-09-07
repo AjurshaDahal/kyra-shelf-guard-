@@ -28,7 +28,7 @@ conflicts.
 | Task | Read next |
 |---|---|
 | Person 1 input, simulation, calibration, baseline, or data | [Person 1 Specification](../PERSON1_SPEC.md), [Person 1 Plan](../PERSON1_IMPLEMENTATION_PLAN.md), and [Dataset Rules](../DATASETS.md) |
-| Person 2 geometry or volume | [Architecture](../ARCHITECTURE.md), [Contracts](../CONTRACTS.md), Person 2 status, and nearby tests |
+| Person 2 geometry or volume | [Person 2 Specification](../PERSON2_SPEC.md), [Person 2 Plan](../PERSON2_IMPLEMENTATION_PLAN.md), [Architecture](../ARCHITECTURE.md), [Contracts](../CONTRACTS.md), Person 2 status, and nearby tests |
 | Person 3 tracking or alert rules | [Architecture](../ARCHITECTURE.md), [Contracts](../CONTRACTS.md), Person 3 status, and nearby tests |
 | Person 4 pipeline, CLI, evaluation, CI, or docs | [Integration Gates](../INTEGRATION_GATES.md), [Collaboration Workflow](../COLLABORATION_WORKFLOW.md), Person 4 status, and governance tests |
 | Shared format or public interface | [Contract Change Process](../CONTRACT_CHANGE_PROCESS.md), approved proposals, affected owner statuses, and compatibility tests |

@@ -8,6 +8,22 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
 
 ### Added
 
+- Person 2 formal specification (`docs/PERSON2_SPEC.md`) and phased implementation
+  plan (`docs/PERSON2_IMPLEMENTATION_PLAN.md`) grounded in research literature for
+  retail on-shelf availability, M3C2 error propagation ($3\sigma$), and TSDF occlusion safety.
+- Person 2 shelf-only registration, 3D unprojection/projection utilities, and
+  camera drift compensation module (`src/kyra/geometry/registration.py` and
+  `src/kyra/geometry/points.py`) with drift envelope checks and residual threshold rejection.
+- Person 2 signed depth differencing (`src/kyra/differencing/signed_diff.py`) with
+  per-pixel adaptive $3\sigma$ noise thresholding and safe unknown-depth handling.
+- Person 2 occlusion safety and shelf visibility monitoring (`src/kyra/occlusion/safety.py`)
+  with automatic confirmation suppression below 70% visibility.
+- Person 2 3D connected-component clustering (`src/kyra/geometry/clustering.py`) and
+  ray frustum metric volume estimation (`src/kyra/geometry/volume.py`).
+- Person 2 sliding-window temporal persistence tracker and baseline restocking hooks
+  (`src/kyra/geometry/temporal_state.py`).
+- Person 2 production `ShelfGeometryProvider` (`src/kyra/geometry/provider.py`) implementing
+  the shared `GeometryProvider` protocol with sub-2 ms p95 processing latency.
 - Person 1 lightweight deterministic RGB-D scenario generation with seeded
   object placement, all four approved shape families, lossless manifest 1.1
   assets, and offline same-seed byte/hash stability checks.
