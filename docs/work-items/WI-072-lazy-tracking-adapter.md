@@ -1,9 +1,9 @@
 # WI-072 — Lazy optional tracking adapter (YOLO + ByteTrack)
 
 - **Owner:** P3 (shared-surface coordination with P4)
-- **Status:** In review
+- **Status:** Complete
 - **Started:** 2026-09-09
-- **Completed:** N/A
+- **Completed:** 2026-09-09
 - **Requirements:** Gate 4 exit criterion "lazy optional pretrained adapter"; D-001/D-002 optional-path rules
 - **Integration gate:** Gate 4 (final exit-criterion component)
 
@@ -65,5 +65,5 @@ change-impact all green.
 ## Final links
 
 - Issue: https://github.com/DontHash/kyra-shelf-guard/issues/72
-- Pull request: pending
-- Commit: pending
+- Pull request: https://github.com/DontHash/kyra-shelf-guard/pull/73
+- Commit: `d22dbf6` (squash merge on `main`)

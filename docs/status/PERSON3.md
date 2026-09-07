@@ -36,7 +36,7 @@ Implemented and verified:
 
 Person 3 component implementation and deterministic evidence are complete.
 
-The remaining work is integration-level rather than a missing Person 3 component implementation.
+The remaining work is integration-level rather than a missing Person 3 component implementation. The lazy adapter is validated locally with a fake model; real pretrained T4 smoke validation remains pending (Gate 7).
 
 ## Blocked or pending
 
