@@ -1,7 +1,7 @@
 # Person 4 Status — Integration and Evaluation
 
 - **Status:** Complete
-- **Last updated:** 2026-09-06
+- **Last updated:** 2026-09-07
 
 ## Implemented
 
@@ -37,6 +37,17 @@ Resolved on 2026-09-06: shared summaries no longer present everlasting
 "161 tests … 2026-09-06" wording, `docs/TESTING.md` documents the dated-total
 rule, and the G2 gate row reflects the merged Person 1 work. A stale count
 must not be restated as a current total.
+
+## Issue #53 — dependency pins synchronized with Dependabot bumps
+
+Resolved on 2026-09-07: `pyproject.toml`, `requirements.lock`, and
+`requirements-gpu.lock` synchronized with Dependabot bumps #47/#48/#49
+(pydantic 2.13.5 core; torch 2.14.0 and ultralytics 8.4.138 optional
+tracking/midas). 189 tests passed with the synced core lock installed,
+including the byte-identical golden-pack regeneration audit. The dependency
+refresh logs in `docs/DEVELOPMENT.md`/`docs/TESTING.md` record the true
+validated pin run; the three Dependabot PRs were closed as superseded by
+work-item `docs/work-items/WI-053-integrate-dependency-bumps.md`.
 
 ## Issue #36 — dependency lock synchronization
 

@@ -33,6 +33,15 @@ Treat a dependency pin as a synchronized change: update `pyproject.toml` and eve
 
 ### Dependency refresh log
 
+- 2026-09-07: pydantic 2.13.4 -> 2.13.5 (core), torch 2.13.0 -> 2.14.0
+  (optional tracking/midas), and ultralytics 8.4.123 -> 8.4.138 (optional
+  tracking) pins integrated from Dependabot PRs #47/#48/#49 (issue #53).
+  True validation is the 2026-09-07 synchronized `requirements.lock`
+  installation: after `pip install -r requirements.lock && pip install -e .`,
+  the full suite of 189 tests passed locally on Python 3.12.7 with those
+  pins, including the byte-identical golden-pack regeneration audit. The
+  optional GPU bumps are recorded as published pins only; they remain
+  target-T4 smoke items for Gate 7, not an installed acceptance result.
 - 2026-09-06: numpy 2.4.6, pydantic 2.13.4, opencv-python-headless 5.0.0.93
   pins merged (Dependabot PRs #3/#4/#5). CI installs `requirements.lock`, so
   true pin validation is the 2026-09-06 `requirements.lock` synchronization

@@ -138,6 +138,14 @@ being treated as an installed GPU or target-T4 acceptance result.
 
 ### Dependency refresh log
 
+- 2026-09-07: pydantic 2.13.4 -> 2.13.5 (core), torch 2.13.0 -> 2.14.0
+  (optional tracking/midas), and ultralytics 8.4.123 -> 8.4.138 (optional
+  tracking) pins integrated from Dependabot PRs #47/#48/#49 (issue #53);
+  `requirements.lock` and `requirements-gpu.lock` synchronized. With the
+  synced core lock installed and the editable package, 189 tests passed on
+  2026-09-07 on Python 3.12.7, including the byte-identical golden-pack
+  regeneration audit. The optional GPU pins are published/advisory-fixed
+  pins only, not an installed GPU or target-T4 acceptance result.
 - 2026-09-06: numpy 2.4.6, pydantic 2.13.4, and opencv-python-headless
   5.0.0.93 pins merged (Dependabot PRs #3/#4/#5) and `requirements.lock`
   synchronized (issue #36). With the synced lock installed and the editable

@@ -13,16 +13,16 @@ authors = [{ name = "Kyra project team" }]
 dependencies = [
   "numpy==2.4.6",
   "opencv-python-headless==5.0.0.93",
-  "pydantic==2.13.4",
+  "pydantic==2.13.5",
 ]
 
 [project.optional-dependencies]
 geometry = ["open3d==0.19.0"]
 tracking = [
-  "torch==2.13.0",
-  "ultralytics==8.4.123",
+  "torch==2.14.0",
+  "ultralytics==8.4.138",
 ]
-midas = ["torch==2.13.0", "timm==1.0.19"]
+midas = ["torch==2.14.0", "timm==1.0.19"]
 simulation = ["blenderproc==2.8.0"]
 dev = [
   "pytest==9.0.3",

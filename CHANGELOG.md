@@ -126,6 +126,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
 - GitHub workflow actions now use current immutable release commits instead of deprecated Node 20 action versions.
 - Security-patched pins for Wheel 0.46.2, Setuptools 83.0.0, pytest 9.0.3,
   and optional Torch 2.13.0 in response to the first GitHub dependency scan.
+- Dependency pins synchronized with Dependabot bumps #47/#48/#49 (issue #53):
+  pydantic 2.13.4 -> 2.13.5 (core), torch 2.13.0 -> 2.14.0 (optional
+  tracking/midas), ultralytics 8.4.123 -> 8.4.138 (optional tracking);
+  `requirements.lock` and `requirements-gpu.lock` updated to match, and the
+  full 189-test suite passes with the synced core lock installed, including
+  the byte-identical golden-pack regeneration audit.
 
 ### Known gaps
 
