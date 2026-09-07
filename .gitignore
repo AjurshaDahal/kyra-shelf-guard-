@@ -52,3 +52,4 @@ output_demo*
 demo_occlusion*
 ocid-*/
 ocid_shelf*.json
+evaluation_results*.json

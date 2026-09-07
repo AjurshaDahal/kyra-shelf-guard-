@@ -48,8 +48,8 @@ scripts (`generate_golden_pack.py`, `convert_ocid.py`, `verify_person1.py`),
 the named Person 2 verification script (`verify_person2.py`), the named
 Person 3 evidence script (`generate_person3_gate4_evidence.py`),
 and the corresponding test names (`golden`, `midas`, `provenance` for Person 1;
-`geometry`, `differencing`, `occlusion`, `volume` for Person 2) classify under
-their respective owner and do not count as governance changes. Every other `scripts/` and
+`geometry`, `differencing`, `occlusion`, `volume` for Person 2; `evaluation` for Person 4) classify under
+their respective owner. Person 4 scripts include `evaluate_frozen_suite.py` for Gate 6 frozen evaluation. Every other `scripts/` and
 `.github/` change remains Person 4 governance and requires the governance
 companions. To add a future owner script, extend `PERSON1_SCRIPTS`,
 `PERSON2_SCRIPTS`, or `PERSON3_SCRIPTS` in `scripts/check_change_impact.py`

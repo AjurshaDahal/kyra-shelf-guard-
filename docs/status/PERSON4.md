@@ -32,7 +32,11 @@ The critical blocking regression (Issue #79 - Camera Drift) has been resolved
 by Person 2. The multi-frame `camera-drift` scenario correctly evaluates with
 zero events and zero alerts. Gate 2 (`docs/gates/GATE-2.md`), Gate 3 (`docs/gates/GATE-3.md`),
 and Gate 5 (`docs/gates/GATE-5.md`) are now formally Approved and Closed.
-Person 4 is now leading Gate 6 (Frozen Evaluation).
+
+Gate 6 (Frozen Evaluation) is completed and approved (`docs/gates/GATE-6.md`),
+with 420 trials executed without test-set tuning achieving 100% recall, 0% FPR,
+100% geometry accuracy, and 0% volume error on objects >= 0.5L.
+Person 4 is now leading Gate 7 (Performance and Release).
 
 WI-081 (Video Demo Command) added a `kyra demo` CLI subcommand and a `kyra.viz`
 annotation module to generate end-to-end MP4 inference videos.

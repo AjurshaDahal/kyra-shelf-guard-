@@ -6,6 +6,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
 
 ## [Unreleased]
 
+- Executed Gate 6 frozen evaluation across 420 trials (120 positive removals across 20 held-out categories and reversed transitions; 300 negative controls) achieving 100% recall, 0% FPR, 100% geometry accuracy, and 0% volume error on >= 0.5L objects; recorded Gate 6 evidence in `docs/gates/GATE-6.md` (WI-084).
+- Added `src/kyra/evaluation/` package and `scripts/evaluate_frozen_suite.py` evaluation runner with Wilson score binomial confidence intervals and class-based YOLO comparison framework (WI-084).
 - Formally closed Integration Gate 2 (`docs/gates/GATE-2.md`), Gate 3 (`docs/gates/GATE-3.md`), and Gate 5 (`docs/gates/GATE-5.md`) after full regression verification and Issue #79 resolution (WI-083).
 - Enhanced `kyra demo` CLI subcommand to accept existing scenario directories and direct `scenario.json` paths in addition to generated cases (WI-082).
 - Refined `ShelfGeometryProvider` to gracefully fall back to raw uncorrected depth when evaluating uncalibrated/tabletop sequences without fixed shelf geometry, and compare dominant volume when removal and addition candidate masks are both present (WI-082).

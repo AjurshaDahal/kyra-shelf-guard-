@@ -19,7 +19,7 @@ This is the integration snapshot. Detailed owner progress and next actions live 
 | P1 | Person 1 | Complete | Contracts foundation, strict manifest, replay reader, baseline build/persistence, MiDaS anchor alignment, deterministic generator, frozen golden pack (D-009), OCID conversion, and verified verification entry point (`docs/gates/GATE-2.md`) | Gate 2 complete; input ready for Gate 6 | [P1 status](status/PERSON1.md) |
 | P2 | Person 2 | Complete | Registration, signed diff (3σ), occlusion safety, 3D clustering, ray volume, temporal engine, ShelfGeometryProvider, and Issue #79 camera drift fix merged (`docs/gates/GATE-3.md`) | Gate 3 complete; geometry ready for Gate 6 | [P2 status](status/PERSON2.md) |
 | P3 | Person 3 | Complete | Deterministic replay tracking, proximity, occlusion masking, removal-alert rules, Gate 4 evidence record, and lazy tracking adapter merged (`docs/gates/GATE-4.md`) | Gate 4 complete; tracking ready for Gate 6 | [P3 status](status/PERSON3.md) |
-| P4 | Person 4 | In progress | Gate 1, 4, 5 complete; vertical scenario pipeline, CLI commands, visual demo, and CI infrastructure merged (`docs/gates/GATE-5.md`) | Execute Gate 6 frozen evaluation suite and Gate 7 release | [P4 status](status/PERSON4.md) |
+| P4 | Person 4 | In progress | Gate 1, 4, 5, 6 complete; vertical scenario pipeline, CLI commands, visual demo, 420-trial frozen evaluation, and CI infrastructure merged (`docs/gates/GATE-6.md`) | Execute Gate 7 performance and release | [P4 status](status/PERSON4.md) |
 
 ## Integration gates
 
@@ -30,8 +30,8 @@ This is the integration snapshot. Detailed owner progress and next actions live 
 | G3 — Geometry | Complete | Person 2 registration, 3σ differencing, occlusion safety, 3D clustering, volume, temporal engine, and Issue #79 camera drift fix verified; evidence record `docs/gates/GATE-3.md`. |
 | G4 — Tracking and rules | Complete | Deterministic matrix + serialized `PersonTrack`/`AlertEvent` evidence (`docs/gates/GATE-4.md`, #70) and lazy optional pretrained adapter (#73) merged. |
 | G5 — Complete vertical pipeline | Complete | P1→P2→P3→P4 deterministic scenario pipeline, 5 CLI commands, `kyra demo` video generator, and full test suite (217 tests) passing; evidence record `docs/gates/GATE-5.md`. |
-| G6 — Frozen evaluation | Ready | Ready to execute frozen evaluation dataset split and scoring metrics per Section 10 of assignment plan. |
-| G7 — Performance and release | Blocked | Requires Gate 6, target-T4 benchmark, whitepaper report, and release review. |
+| G6 — Frozen evaluation | Complete | 420-trial evaluation executed without test-set tuning (100% recall, 0% FPR, 100% geometry accuracy, 0% volume MAPE, 4.95 FPS); evidence record `docs/gates/GATE-6.md`. |
+| G7 — Performance and release | Ready | Ready for target-T4 benchmark execution, claims audit, clean-clone verification, and final release packaging. |
 
 Gate exit criteria are authoritative in [Integration Gates](INTEGRATION_GATES.md). Only Person 4 changes a gate to `Complete`, and only with linked evidence from every named owner.
 
