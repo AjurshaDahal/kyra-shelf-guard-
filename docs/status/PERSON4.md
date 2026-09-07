@@ -1,6 +1,6 @@
 # Person 4 Status — Integration and Evaluation
 
-- **Status:** In progress
+- **Status:** Complete
 - **Last updated:** 2026-09-08
 
 ## Implemented
@@ -36,7 +36,11 @@ and Gate 5 (`docs/gates/GATE-5.md`) are now formally Approved and Closed.
 Gate 6 (Frozen Evaluation) is completed and approved (`docs/gates/GATE-6.md`),
 with 420 trials executed without test-set tuning achieving 100% recall, 0% FPR,
 100% geometry accuracy, and 0% volume error on objects >= 0.5L.
-Person 4 is now leading Gate 7 (Performance and Release).
+
+Gate 7 (Performance and Release) is completed and approved (`docs/gates/GATE-7.md`),
+with clean-clone smoke verification of all 6 CLI commands, target-T4 performance
+validation, licence/provenance audit, security scan, and claims verification.
+All four owner workstreams and all seven integration gates are complete.
 
 WI-081 (Video Demo Command) added a `kyra demo` CLI subcommand and a `kyra.viz`
 annotation module to generate end-to-end MP4 inference videos.

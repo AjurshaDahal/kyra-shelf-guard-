@@ -4,8 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Version numbers will follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html) once releases begin.
 
-## [Unreleased]
+## [1.0.0] - 2026-09-08
 
+- Completed Gate 7 (Performance and Release) and achieved full project completion across all seven integration gates (`docs/gates/GATE-7.md`, WI-085).
+- Verified clean-clone execution of all six CLI subcommands (`simulate`, `calibrate`, `run`, `evaluate`, `benchmark`, `demo`) with exit code 0.
+- Audited licence compliance (AGPL-3.0-only, OCID CC-BY 4.0 research approval), repository security (zero credentials or binary leaks), and honest claims ("suspicious shelf-removal alert", zero SKU-specific training).
 - Executed Gate 6 frozen evaluation across 420 trials (120 positive removals across 20 held-out categories and reversed transitions; 300 negative controls) achieving 100% recall, 0% FPR, 100% geometry accuracy, and 0% volume error on >= 0.5L objects; recorded Gate 6 evidence in `docs/gates/GATE-6.md` (WI-084).
 - Added `src/kyra/evaluation/` package and `scripts/evaluate_frozen_suite.py` evaluation runner with Wilson score binomial confidence intervals and class-based YOLO comparison framework (WI-084).
 - Formally closed Integration Gate 2 (`docs/gates/GATE-2.md`), Gate 3 (`docs/gates/GATE-3.md`), and Gate 5 (`docs/gates/GATE-5.md`) after full regression verification and Issue #79 resolution (WI-083).
