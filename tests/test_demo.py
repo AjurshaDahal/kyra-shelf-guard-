@@ -23,3 +23,19 @@ def test_demo_command_creates_video(tmp_path: Path, capsys) -> None:
 
     assert video_path.exists()
     assert video_path.stat().st_size > 0
+
+
+def test_demo_command_on_existing_scenario(tmp_path: Path, capsys) -> None:
+    scenario_dir = tmp_path / "existing-scenario"
+    assert main(["simulate", str(scenario_dir), "--case", "suspicious-removal"]) == 0
+    capsys.readouterr()
+
+    # Pass existing directory directly to demo
+    video_path = tmp_path / "existing_demo.mp4"
+    assert main(["demo", str(scenario_dir), "--video", str(video_path)]) == 0
+
+    output = json.loads(capsys.readouterr().out)
+    assert output["command"] == "demo"
+    assert video_path.exists()
+    assert video_path.stat().st_size > 0
+

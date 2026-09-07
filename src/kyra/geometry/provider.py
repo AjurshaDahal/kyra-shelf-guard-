@@ -79,25 +79,30 @@ class ShelfGeometryProvider:
             # Step 1: Shelf registration and drift check
             reg_result = register_frame_to_baseline(frame, baseline, shelf_config)
             if reg_result.rejected:
-                # Frame rejected due to drift envelope or high residual
-                event = tracker.process_frame(
-                    frame_id=frame.frame_id,
-                    timestamp_ns=frame.timestamp_ns,
-                    change_type=ChangeType.UNKNOWN,
-                    cluster=None,
-                    volume_estimate=None,
-                    visible_shelf_fraction=0.0,
-                    is_occluded=True,
+                if reg_result.rejection_reason == "insufficient_fixed_geometry_points":
+                    # Unanchored dataset without fixed shelf reference;
+                    # fall back to uncorrected depth.
+                    working_depth = frame.depth_m
+                else:
+                    # Physical drift envelope or residual exceeded; reject frame.
+                    event = tracker.process_frame(
+                        frame_id=frame.frame_id,
+                        timestamp_ns=frame.timestamp_ns,
+                        change_type=ChangeType.UNKNOWN,
+                        cluster=None,
+                        volume_estimate=None,
+                        visible_shelf_fraction=0.0,
+                        is_occluded=True,
+                    )
+                    if event is not None:
+                        confirmed_events.append(event)
+                    continue
+            else:
+                working_depth = (
+                    reg_result.corrected_depth_m
+                    if reg_result.corrected_depth_m is not None
+                    else frame.depth_m
                 )
-                if event is not None:
-                    confirmed_events.append(event)
-                continue
-
-            working_depth = (
-                reg_result.corrected_depth_m
-                if reg_result.corrected_depth_m is not None
-                else frame.depth_m
-            )
 
             # Step 2: Occlusion safety
             occ_result = evaluate_occlusion_safety(
@@ -114,11 +119,6 @@ class ShelfGeometryProvider:
             )
 
             # Step 3b: Paired removal+addition drift detection (Issue #79).
-            # Camera drift shifts the image horizontally, creating a paired
-            # pattern: the object's old position exposes the wall (false
-            # removal) while its new position occludes the wall (addition).
-            # When both removal and addition pixel counts are significant and
-            # comparable, suppress the change as UNKNOWN drift artifact.
             _drift_suppressed = False
             if (
                 diff_result.removal_pixel_count > 0
@@ -128,7 +128,6 @@ class ShelfGeometryProvider:
                 _a = diff_result.addition_pixel_count
                 _ratio = min(_r, _a) / max(_r, _a) if max(_r, _a) > 0 else 0.0
                 if _ratio >= 0.3:
-                    # Comparable removal and addition — drift signature.
                     _drift_suppressed = True
 
             # Step 4: 3D clustering and metric volume
@@ -138,41 +137,60 @@ class ShelfGeometryProvider:
 
             if _drift_suppressed:
                 pass  # Suppress as drift artifact — treat as UNKNOWN
-            elif diff_result.removal_pixel_count > 0:
-                clusters = extract_3d_clusters(
-                    diff_result.removal_candidate_mask,
-                    working_depth,
-                    frame.intrinsics,
-                    frame.camera_to_shelf,
-                )
-                if clusters:
-                    best_cluster = clusters[0]
-                    vol_estimate = estimate_cluster_volume(
-                        best_cluster,
+            else:
+                best_removal_cluster = None
+                best_removal_vol = None
+                if diff_result.removal_pixel_count > 0:
+                    clusters = extract_3d_clusters(
+                        diff_result.removal_candidate_mask,
                         working_depth,
-                        baseline.baseline_depth_m,
                         frame.intrinsics,
-                        shelf_config,
-                        baseline_occupancy_grid=baseline.occupancy_grid,
+                        frame.camera_to_shelf,
                     )
+                    if clusters:
+                        best_removal_cluster = clusters[0]
+                        best_removal_vol = estimate_cluster_volume(
+                            best_removal_cluster,
+                            working_depth,
+                            baseline.baseline_depth_m,
+                            frame.intrinsics,
+                            shelf_config,
+                            baseline_occupancy_grid=baseline.occupancy_grid,
+                        )
+
+                best_add_cluster = None
+                best_add_vol = None
+                if diff_result.addition_pixel_count > 0:
+                    clusters = extract_3d_clusters(
+                        diff_result.addition_candidate_mask,
+                        working_depth,
+                        frame.intrinsics,
+                        frame.camera_to_shelf,
+                    )
+                    if clusters:
+                        best_add_cluster = clusters[0]
+                        best_add_vol = estimate_cluster_volume(
+                            best_add_cluster,
+                            working_depth,
+                            baseline.baseline_depth_m,
+                            frame.intrinsics,
+                            shelf_config,
+                            baseline_occupancy_grid=baseline.occupancy_grid,
+                        )
+
+                # Pick the dominant change type by volume
+                r_vol = best_removal_vol.volume_m3 if best_removal_vol else 0.0
+                a_vol = best_add_vol.volume_m3 if best_add_vol else 0.0
+                
+                if r_vol == 0.0 and a_vol == 0.0:
+                    change_type = ChangeType.UNKNOWN
+                elif r_vol >= a_vol:
+                    best_cluster = best_removal_cluster
+                    vol_estimate = best_removal_vol
                     change_type = ChangeType.REMOVAL
-            elif diff_result.addition_pixel_count > 0:
-                clusters = extract_3d_clusters(
-                    diff_result.addition_candidate_mask,
-                    working_depth,
-                    frame.intrinsics,
-                    frame.camera_to_shelf,
-                )
-                if clusters:
-                    best_cluster = clusters[0]
-                    vol_estimate = estimate_cluster_volume(
-                        best_cluster,
-                        working_depth,
-                        baseline.baseline_depth_m,
-                        frame.intrinsics,
-                        shelf_config,
-                        baseline_occupancy_grid=baseline.occupancy_grid,
-                    )
+                else:
+                    best_cluster = best_add_cluster
+                    vol_estimate = best_add_vol
                     change_type = ChangeType.ADDITION
 
             # Step 5: Temporal state confirmation

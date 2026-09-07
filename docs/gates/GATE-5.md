@@ -1,4 +1,4 @@
-# Gate 5 Evidence — Vertical Scenario Pipeline
+# Gate 5 Evidence - Vertical Scenario Pipeline
 
 - **Gate:** Gate 5 (Vertical Integration)
 - **Accountable owner:** Person 4 (Integration and Evaluation)

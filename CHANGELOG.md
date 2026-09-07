@@ -6,6 +6,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
 
 ## [Unreleased]
 
+- Enhanced `kyra demo` CLI subcommand to accept existing scenario directories and direct `scenario.json` paths in addition to generated cases (WI-082).
+- Refined `ShelfGeometryProvider` to gracefully fall back to raw uncorrected depth when evaluating uncalibrated/tabletop sequences without fixed shelf geometry, and compare dominant volume when removal and addition candidate masks are both present (WI-082).
+- Restored UTF-8 compliance in `docs/gates/GATE-5.md` to pass repository consistency and governance checks.
 - Candidate Person 4 Gate 5 vertical scenario pipeline using the real Person 1
   baseline/frame source, Person 2 geometry provider, and Person 3 replay,
   proximity, occlusion, and alert rules without duplicating owner algorithms.

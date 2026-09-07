@@ -318,11 +318,19 @@ def _benchmark(args: argparse.Namespace) -> dict[str, Any]:
 
 def _demo(args: argparse.Namespace) -> dict[str, Any]:
     from kyra.demo import run_demo_scenario
-    manifest_path = generate_example_scenario(
-        args.destination,
-        args.case,
-        seed=42,
-    )
+    
+    target = Path(args.destination)
+    if target.is_dir() and (target / "scenario.json").exists():
+        manifest_path = target / "scenario.json"
+    elif target.is_file() and target.name == "scenario.json":
+        manifest_path = target
+    else:
+        manifest_path = generate_example_scenario(
+            args.destination,
+            args.case,
+            seed=42,
+        )
+        
     video_path = args.video if args.video else Path(args.destination) / "demo.mp4"
     result = run_demo_scenario(manifest_path, video_path)
     result["command"] = "demo"

@@ -35,6 +35,8 @@ zero events and zero alerts. Gate 3 and Gate 5 are now unblocked.
 WI-081 (Video Demo Command) added a `kyra demo` CLI subcommand and a `kyra.viz`
 annotation module to generate end-to-end MP4 inference videos.
 
+WI-082 (Demo Input Flexibility & Encoding Fix) enhanced `kyra demo` to accept existing scenario directories and direct `scenario.json` paths, fixed UTF-8 encoding in `docs/gates/GATE-5.md`, and formalized unanchored geometry fallback.
+
 WI-010 (audience-specific documentation split) and the documentation
 reconciliation issues #15 and #18 are merged and closed.
 

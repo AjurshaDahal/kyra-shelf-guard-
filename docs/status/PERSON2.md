@@ -28,6 +28,7 @@
 
 - All four milestones (P2-01..P2-04) implemented and merged to `main` via pull request #51.
 - **Issue #79 (Camera Drift)** fixed in `src/kyra/geometry/provider.py` by adding paired removal+addition drift detection. Work-item record: `docs/work-items/WI-079-person2-camera-drift-fix.md`.
+- **WI-082 (Unanchored Registration Fallback & Dominant Volume)**: Refined `ShelfGeometryProvider` to gracefully fall back to raw depth when evaluating datasets without fixed shelf reference points (`insufficient_fixed_geometry_points`) while retaining strict drift/residual rejection when fixed reference points are present, and updated clustering to pick the dominant volume change. Work-item record: `docs/work-items/WI-082-demo-flexibility-and-unanchored-geometry.md`.
 - Gate 3 acceptance evidence completed and blocking regression (#79) resolved.
 
 ## Blocked or pending
