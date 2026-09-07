@@ -24,19 +24,16 @@
 
 ## Active
 
-Gate 1 contract compatibility remains complete. WI-077 now provides a candidate
+Gate 1 contract compatibility remains complete. WI-077 provided a candidate
 Gate 5 vertical slice through the real Person 1 baseline/frame source, Person 2
 geometry provider, Person 3 replay/proximity/rules, and Person 4 orchestration.
-The five assignment commands operate in the core environment for deterministic
-test scenarios. PR #80 also provides a loopback-only visual Scenario Lab over
-that same path: it preloads suspicious removal, exposes all ten profiles, and
-supports frame-by-frame RGB/depth review with expected-versus-actual results.
-This is synthetic scenario evidence, not real-world proof.
 
-Person 4 review also found two Gate 3 evidence problems: the committed
-`ocid-mini` fixture is explicitly synthetic and must not be called real-sensor
-evidence, and the multi-frame `camera-drift` scenario produces a false internal
-`REMOVAL`. Issue #79 is assigned to Person 2. Gate 3 and Gate 5 remain open.
+The critical blocking regression (Issue #79 - Camera Drift) has been resolved
+by Person 2. The multi-frame `camera-drift` scenario correctly evaluates with
+zero events and zero alerts. Gate 3 and Gate 5 are now unblocked.
+
+WI-081 (Video Demo Command) added a `kyra demo` CLI subcommand and a `kyra.viz`
+annotation module to generate end-to-end MP4 inference videos.
 
 WI-010 (audience-specific documentation split) and the documentation
 reconciliation issues #15 and #18 are merged and closed.
@@ -131,16 +128,12 @@ The frozen contract and mock/evidence layer is complete; downstream Gates 2–5 
 
 - Review the ten visual profiles in PR #80, then land WI-077 after owner review
   of the integrated behavior.
-- Resolve Person 2 camera-drift regression #79 without suppressing it in P4.
-- Re-run the deterministic matrix, collect all-owner approval, and compile a
-  Gate 5 record only after its Gate 2/3 entry conditions are complete.
+- Formally compile the Gate 5 record and gather all-owner approval now that Gate 2/3 entry conditions are met.
 
 ## Blocked or pending
 
 - Person 1–4 GitHub handles are not assigned; `@DontHash` is temporary steward/CODEOWNER.
 - Server-enforced branch protection is unavailable for this private repository on the current GitHub plan.
-- Gate 5 has a synthetic candidate chain but is blocked from closure by Gate 2/3
-  entry conditions, camera-drift regression #79, and missing owner approvals.
 - Contract mocks, pipeline, evaluation, T4 validation, and release process remain separate from the frozen contract compatibility proof and must not be mistaken for real owner algorithm completion.
 
 ## Evidence

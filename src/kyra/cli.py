@@ -316,6 +316,19 @@ def _benchmark(args: argparse.Namespace) -> dict[str, Any]:
     }
 
 
+def _demo(args: argparse.Namespace) -> dict[str, Any]:
+    from kyra.demo import run_demo_scenario
+    manifest_path = generate_example_scenario(
+        args.destination,
+        args.case,
+        seed=42,
+    )
+    video_path = args.video if args.video else Path(args.destination) / "demo.mp4"
+    result = run_demo_scenario(manifest_path, video_path)
+    result["command"] = "demo"
+    return result
+
+
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="kyra")
     subcommands = parser.add_subparsers(dest="command", required=True)
@@ -351,6 +364,13 @@ def _parser() -> argparse.ArgumentParser:
     benchmark.add_argument("--runs", type=int, default=5)
     benchmark.add_argument("--output", dest="report")
     benchmark.set_defaults(handler=_benchmark)
+
+    demo = subcommands.add_parser("demo", help="generate an annotated demo video")
+    demo.add_argument("destination")
+    demo.add_argument("--case", choices=SIMULATION_CASES, default="suspicious-removal")
+    demo.add_argument("--video", help="output video path")
+    demo.add_argument("--output", dest="report")
+    demo.set_defaults(handler=_demo)
 
     return parser
 

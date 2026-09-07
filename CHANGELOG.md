@@ -222,3 +222,4 @@ in `data-sources/provenance.json` updated while `pending_download` stays
   CLI remains unimplemented. The candidate pack's audit test uses a
   line-ending-canonical inventory comparison so a Windows checkout under
   `core.autocrlf=true` verifies identically.
+

@@ -113,12 +113,32 @@ class ShelfGeometryProvider:
                 person_occlusion_mask=person_mask,
             )
 
+            # Step 3b: Paired removal+addition drift detection (Issue #79).
+            # Camera drift shifts the image horizontally, creating a paired
+            # pattern: the object's old position exposes the wall (false
+            # removal) while its new position occludes the wall (addition).
+            # When both removal and addition pixel counts are significant and
+            # comparable, suppress the change as UNKNOWN drift artifact.
+            _drift_suppressed = False
+            if (
+                diff_result.removal_pixel_count > 0
+                and diff_result.addition_pixel_count > 0
+            ):
+                _r = diff_result.removal_pixel_count
+                _a = diff_result.addition_pixel_count
+                _ratio = min(_r, _a) / max(_r, _a) if max(_r, _a) > 0 else 0.0
+                if _ratio >= 0.3:
+                    # Comparable removal and addition — drift signature.
+                    _drift_suppressed = True
+
             # Step 4: 3D clustering and metric volume
             change_type = ChangeType.UNKNOWN
             best_cluster = None
             vol_estimate = None
 
-            if diff_result.removal_pixel_count > 0:
+            if _drift_suppressed:
+                pass  # Suppress as drift artifact — treat as UNKNOWN
+            elif diff_result.removal_pixel_count > 0:
                 clusters = extract_3d_clusters(
                     diff_result.removal_candidate_mask,
                     working_depth,

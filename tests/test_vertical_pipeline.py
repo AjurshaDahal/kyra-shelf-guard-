@@ -211,7 +211,7 @@ def test_temporary_occlusion_then_removal_alerts_once(
     assert evaluation["actual_alert_count"] == 1
 
 
-def test_camera_drift_reports_detection_regression_without_false_alert(
+def test_camera_drift_does_not_produce_false_removal(
     tmp_path: Path,
     capsys,
 ) -> None:
@@ -228,10 +228,10 @@ def test_camera_drift_reports_detection_regression_without_false_alert(
         )
     )
 
-    assert main(["evaluate", str(manifest_path)]) == 1
+    assert main(["evaluate", str(manifest_path)]) == 0
     evaluation = json.loads(capsys.readouterr().out)
 
-    assert evaluation["passed"] is False
+    assert evaluation["passed"] is True
     assert evaluation["expected_change_types"] == []
-    assert evaluation["actual_change_types"] == ["REMOVAL"]
+    assert evaluation["actual_change_types"] == []
     assert evaluation["actual_alert_count"] == 0

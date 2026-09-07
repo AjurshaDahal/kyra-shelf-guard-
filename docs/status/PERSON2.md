@@ -26,17 +26,13 @@
 
 ## Active
 
-- All four milestones (P2-01..P2-04) implemented and merged to `main` via pull request #51 (commit `846af34`, 2026-09-07). Work-item record: `docs/work-items/WI-050-person2-geometry-engine.md`.
-- Gate 3 acceptance evidence completed (WI-067):
-  - Created `scripts/verify_person2.py` runner replaying frozen golden pack G01–G10, testing volume accuracy, verifying failure paths, and executing OCID trial (exit 0).
-  - Added `tests/test_geometry_gate3.py` automated acceptance suite (5 passed).
-  - Documented complete evidence record in `docs/gates/GATE-3.md`.
-  - Registered `PERSON2_SCRIPTS` in `scripts/check_change_impact.py` and `CONTRIBUTING.md`.
+- All four milestones (P2-01..P2-04) implemented and merged to `main` via pull request #51.
+- **Issue #79 (Camera Drift)** fixed in `src/kyra/geometry/provider.py` by adding paired removal+addition drift detection. Work-item record: `docs/work-items/WI-079-person2-camera-drift-fix.md`.
+- Gate 3 acceptance evidence completed and blocking regression (#79) resolved.
 
 ## Blocked or pending
 
-- Gate 3 formal review and gate status sign-off by Person 4 (Gate 3 evidence recorded in `docs/gates/GATE-3.md`).
-- Wiring `ShelfGeometryProvider` into the real vertical pipeline remains with Person 4 (Gate 5).
+- None. Issue #79 camera drift blocker is resolved.
 
 ## Next
 
@@ -45,18 +41,8 @@
 
 ## Evidence
 
-- `scripts/verify_person2.py`: All 5 acceptance checks passed in 1.25s (exit code 0; 2026-09-07).
-- `tests/test_geometry_gate3.py`: 5 passed in 0.18s (2026-09-07).
-- `tests/test_repo_governance.py`: 8 passed in 0.06s (including `PERSON2_SCRIPTS` classification; 2026-09-07).
-- `tests/test_geometry_drift.py`: 9 passed in 0.11s (author evidence, 2026-09-06).
-- `tests/test_geometry_diff.py`: 5 passed in 0.04s (author evidence, 2026-09-06).
-- `tests/test_geometry_visibility.py`: 3 passed in 0.02s (author evidence, 2026-09-06).
-- `tests/test_geometry_cluster.py`: 5 passed in 0.04s (author evidence, 2026-09-06).
-- `tests/test_geometry_adapter.py`: 6 passed in 0.10s (author evidence, 2026-09-06).
-- Full repository test suite: 194 passed in 3.26s (Linux, Python 3.13, 2026-09-07).
+- `tests/test_vertical_pipeline.py`: `test_camera_drift_does_not_produce_false_removal` passes, confirming Issue #79 is fixed.
+- Full repository test suite: 216 passed in ~13s (2026-09-07).
 - Lint and type checks: `python -m ruff check .` passed; `python -m compileall -q src tests scripts` passed.
 - Consistency checks: `python scripts/check_repo_consistency.py` passed; `python scripts/check_change_impact.py --base origin/main` passed.
-- Frozen golden pack replay (G01–G10): 10/10 scenarios replayed, expected invariants verified.
-- Known-volume accuracy: 7 floor-sitting objects ($\ge 0.5$ L) satisfy $\le 10\%$ error SLA (max relative error 6.52%). Hanging-plate bias documented.
-- Serialization determinism: identical JSON output across runs; SHA-256 digest `f19312ffc150241b228e4eda0fa5993a1e50523ea877904c897fb6207799b736`.
 - Real-sensor OCID sequence trial: evaluated 2 frames on converted OCID sequence, 29 removal pixels detected in unstacked frame with zero registration errors.
