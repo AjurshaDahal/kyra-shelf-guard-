@@ -1,9 +1,9 @@
 # WI-069 — Gate 4 deterministic evidence generator and record
 
 - **Owner:** P3
-- **Status:** In review
+- **Status:** Complete
 - **Started:** 2026-09-09
-- **Completed:** N/A
+- **Completed:** 2026-09-09
 - **Requirements:** Gate 4 exit criteria (deterministic replay, masks, proximity, authorization, window, matrix, serialized evidence)
 - **Integration gate:** Gate 4 (evidence component; gate decision remains with Person 4)
 
@@ -68,5 +68,5 @@ twelve-file SHA-256 manifest identical across two runs).
 ## Final links
 
 - Issue: https://github.com/DontHash/kyra-shelf-guard/issues/69
-- Pull request: pending
-- Commit: pending
+- Pull request: https://github.com/DontHash/kyra-shelf-guard/pull/70
+- Commit: `0452c2e` (squash merge on `main`)

@@ -51,7 +51,7 @@ Gate 4 exit criteria are compiled in `docs/gates/GATE-4.md` (record under Person
 
 ## Evidence
 
-- Evidence generator: `scripts/generate_person3_gate4_evidence.py` (integrated via pull request #71, commit pending finalization).
+- Evidence generator: `scripts/generate_person3_gate4_evidence.py` (integrated via pull request #70, commit `0452c2e`).
 - Generated evidence directory: `evidence/person3-gate4/` (git-ignored by design; the reproducible generator is committed instead).
 - Evidence includes `person3-track-001.json`, `person3-alert-001.json`, `person3-gate4-matrix.json`, the deterministic scenario, and `SHA256SUMS.txt`.
 
