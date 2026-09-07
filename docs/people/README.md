@@ -28,7 +28,9 @@ This summary was checked against the detailed project record on 2026-09-07:
   work.
 - **Not built yet:** the five planned commands and the final evaluation tools.
 - **Not proven yet:** a complete run from camera input to alert, real-world
-  performance, and testing on the target T4 computer.
+  performance, and an independent teammate running the full handoff guide
+  (the committed test suite has been run on a Kaggle free-T4 GPU notebook on
+  2026-09-07, but that is not an end-to-end result).
 
 The current shared version passes 189 automated tests on Windows with Python
 3.12.7 (dated total, 2026-09-07). This is evidence for the existing building

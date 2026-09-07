@@ -57,7 +57,14 @@
   seven-check verifier, golden regeneration byte-identity, OCID smoke with
   tamper gate, baseline/volume, lint and consistency), a limitations section,
   and an independent-teammate sign-off block. The three blocking decisions
-  (D-009, P-003, G0.4) are consolidated under issue #40.
+  (D-009, P-003, G0.4) were resolved via issue #56 and closed issue #40.
+- P1-14 target-T4 leg executed on 2026-09-07 on the Kaggle free-T4 GPU
+  notebook (issue #64): report `docs/PERSON1_TEST_REPORT_T4_2026-09-07.md`
+  records 189 tests passed in 1.95s, `verify_person1.py` exit 0, byte-identical
+  golden-pack regeneration audit (116/116, re-verified locally), and the
+  optional GPU published-pin smoke (probe exit 0) on snapshot
+  `main` `65d3707`; limitations (runner-confirmed accelerator identity,
+  no independent sign-off) are recorded in the report.
 
 ## Active
 
@@ -78,15 +85,15 @@
 
 ## Blocked or pending
 
-- The target-T4 leg is assigned (D-015, 2026-09-07): run `notebooks/kyra_t4_validation.ipynb` on a Kaggle free-T4 GPU notebook and save `docs/PERSON1_TEST_REPORT_T4_<date>.md` in a reviewed PR. The run itself is open; the local RTX 2050 machine and the Windows candidate report are not T4 evidence.
-- The independent teammate handoff sign-off remains open; it requires a human teammate or instructor to run `docs/PERSON1_HANDOFF.md` and sign it (issue #57).
-- Real OCID download/conversion is unblocked (D-014, 2026-09-07) and remains to be performed at retrieval time with the subset and checksum recorded in `data-sources/provenance.json`.
+- The target-T4 leg was executed on 2026-09-07 on a Kaggle free-T4 GPU notebook (D-015) with the frozen `main` `65d3707` snapshot; the dated report is `docs/PERSON1_TEST_REPORT_T4_2026-09-07.md` (189 passed, verifier exit 0, golden pack byte-identical). The accelerator identity is runner-confirmed per the exported artifact's limits.
+- The independent teammate handoff sign-off remains open; it requires a human teammate or instructor to run `docs/PERSON1_HANDOFF.md` and sign it (issue #59).
+- Real OCID download/conversion is unblocked (D-014) and remains to be performed at retrieval time with the subset and checksum recorded in `data-sources/provenance.json`.
 
 ## Next
 
-- Execute the Kaggle free-T4 leg with the frozen pack checksums and record the dated report.
+- Have an independent teammate run the handoff guide and sign it (issue #59).
 - Download and convert the approved OCID subset once the exact scenes and checksum are recorded.
-- Have an independent teammate run the handoff guide and sign it (issue #57).
+- Coordinate with Persons 2-4 on Gate 2-5 detection evidence using the frozen golden pack.
 
 ## Evidence
 

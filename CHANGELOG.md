@@ -136,8 +136,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
   CC-BY 4.0 research use approved for tiny example publication with
   attribution), G0.4 resolved as D-015 (target-T4 runner = Kaggle free-T4
   GPU notebook via `notebooks/kyra_t4_validation.ipynb`); OCID licence state
-  in `data-sources/provenance.json` updated while `pending_download` stays
-  honest.
+in `data-sources/provenance.json` updated while `pending_download` stays
+   honest.
+- Target-T4 leg executed on 2026-09-07 on the Kaggle free-T4 GPU notebook
+  (issue #64): dated report `docs/PERSON1_TEST_REPORT_T4_2026-09-07.md` —
+  189 tests passed in 1.95s, seven-check verifier exit 0, golden-pack
+  regeneration audit byte-identical (116/116), optional GPU published-pin
+  smoke probe exit 0, on the frozen `main` `65d3707` snapshot; independent
+  handoff sign-off remains open (issue #59).
 
 ### Known gaps
 

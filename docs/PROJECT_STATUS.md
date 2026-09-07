@@ -8,7 +8,7 @@
 - **Latest verified local checks:** 189 tests passed on Python 3.12.7 on 2026-09-07 (dated total; see the owner status files and work-item records for per-change evidence)
 - **Latest verified hosted checks:** Core CI passed on Python 3.11 and 3.12 (latest main run for PR #51: 34094690600); dependency graph reports zero open alerts
 - **End-to-end status:** Not demonstrated
-- **Target T4 status:** Not run
+- **Target T4 status:** Suite, verifier, and golden-pack audit executed on a Kaggle free-T4 GPU notebook 2026-09-07 (D-015; report `docs/PERSON1_TEST_REPORT_T4_2026-09-07.md`); independent handoff sign-off pending (issue #59)
 
 This is the integration snapshot. Detailed owner progress and next actions live in the linked status files; per-change history lives in `docs/work-items/`.
 

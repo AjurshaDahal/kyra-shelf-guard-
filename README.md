@@ -10,8 +10,11 @@ what someone intended to do.
 Kyra is still in the foundation stage. Some building blocks work and the
 automated checks pass on the current shared version (189 tests on Windows with
 Python 3.12 on 2026-09-07), but the parts have not yet been joined into a
-complete system. There is no finished app or usable command-line tool yet,
-and the full project has not been tested on the target T4 computer.
+complete system. There is no finished app or usable command-line tool yet.
+The committed suite, verifier, and golden-pack audit have been run on a Kaggle
+free-T4 GPU notebook (report: `docs/PERSON1_TEST_REPORT_T4_2026-09-07.md`), but
+the full project has not been run end-to-end anywhere, and the independent
+handoff sign-off is still open.
 
 For a simple progress summary, read [Project Guide for Team Members](docs/people/README.md).
 
