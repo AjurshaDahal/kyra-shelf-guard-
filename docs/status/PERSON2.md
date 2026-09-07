@@ -1,7 +1,7 @@
 # Person 2 Status — Geometry and Change
 
-- **Status:** In progress
-- **Last updated:** 2026-09-07
+- **Status:** Complete
+- **Last updated:** 2026-09-08
 
 ## Implemented
 

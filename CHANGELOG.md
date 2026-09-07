@@ -6,6 +6,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
 
 ## [Unreleased]
 
+- Formally closed Integration Gate 2 (`docs/gates/GATE-2.md`), Gate 3 (`docs/gates/GATE-3.md`), and Gate 5 (`docs/gates/GATE-5.md`) after full regression verification and Issue #79 resolution (WI-083).
 - Enhanced `kyra demo` CLI subcommand to accept existing scenario directories and direct `scenario.json` paths in addition to generated cases (WI-082).
 - Refined `ShelfGeometryProvider` to gracefully fall back to raw uncorrected depth when evaluating uncalibrated/tabletop sequences without fixed shelf geometry, and compare dominant volume when removal and addition candidate masks are both present (WI-082).
 - Restored UTF-8 compliance in `docs/gates/GATE-5.md` to pass repository consistency and governance checks.

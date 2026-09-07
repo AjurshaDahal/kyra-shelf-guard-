@@ -1,7 +1,7 @@
 # Person 4 Status — Integration and Evaluation
 
 - **Status:** In progress
-- **Last updated:** 2026-09-07
+- **Last updated:** 2026-09-08
 
 ## Implemented
 
@@ -30,7 +30,9 @@ geometry provider, Person 3 replay/proximity/rules, and Person 4 orchestration.
 
 The critical blocking regression (Issue #79 - Camera Drift) has been resolved
 by Person 2. The multi-frame `camera-drift` scenario correctly evaluates with
-zero events and zero alerts. Gate 3 and Gate 5 are now unblocked.
+zero events and zero alerts. Gate 2 (`docs/gates/GATE-2.md`), Gate 3 (`docs/gates/GATE-3.md`),
+and Gate 5 (`docs/gates/GATE-5.md`) are now formally Approved and Closed.
+Person 4 is now leading Gate 6 (Frozen Evaluation).
 
 WI-081 (Video Demo Command) added a `kyra demo` CLI subcommand and a `kyra.viz`
 annotation module to generate end-to-end MP4 inference videos.

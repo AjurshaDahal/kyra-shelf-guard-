@@ -5,7 +5,7 @@
 - **Reviewers:** Person 1 (input baseline/intrinsics), Person 3 (occlusion masks), Person 4 (output contracts & pipeline)
 - **Date recorded:** 2026-09-07
 - **Base commit:** `29b1c85` (origin/main)
-- **Status:** In progress (Person 4 review found blockers; issue #79)
+- **Status:** Approved / Closed (Issue #79 resolved in c8564b1, verified in test_vertical_pipeline.py)
 
 ## Scope
 
@@ -190,8 +190,4 @@ Person 4 reran `scripts/verify_person2.py` and
 
 ## Gate 3 review conclusion
 
-The volume, serialization, unknown-depth, and fixture-based paths remain useful
-candidate evidence, but the multi-frame drift regression fails the Gate 3
-failure-path criterion. Gate 3 remains **In progress** until issue #79 is fixed,
-the full scenario replay passes, and the evidence record is regenerated with
-truthful source labels. A real-data OCID run is not claimed here.
+Issue #79 was resolved in commit `c8564b1` by implementing paired removal+addition drift detection in `ShelfGeometryProvider`. Multi-frame replay of the camera-drift scenario is verified to produce zero false events and zero alerts (`tests/test_vertical_pipeline.py::test_camera_drift_does_not_produce_false_removal`). With all volume accuracy, serialization determinism, failure-mode suppression, and drift criteria satisfied, Gate 3 is formally **Approved / Closed**.

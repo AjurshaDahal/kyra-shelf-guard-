@@ -1,7 +1,7 @@
 # Person 1 Status — Data and Baseline
 
-- **Status:** In progress
-- **Last updated:** 2026-09-06
+- **Status:** Complete
+- **Last updated:** 2026-09-08
 
 ## Implemented
 
