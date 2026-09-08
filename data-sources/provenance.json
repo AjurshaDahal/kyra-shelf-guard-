@@ -34,6 +34,62 @@
       "attribution": "Markus Suchi, Timothy Patten, David Fischinger, and Markus Vincze, EasyLabel: A Semi-Automatic Pixel-wise Object Annotation Tool for Creating Robotic RGB-D Datasets, ICRA 2019, pp. 6678-6684, doi:10.1109/ICRA.2019.8793917; OCID Version 1.0.0, TU Wien Research Data, doi:10.48436/pcbjd-4wa12."
     },
     {
+      "source_id": "ultralytics-yolo11n-v8.4.0",
+      "name": "Ultralytics YOLO11n pretrained detection weights",
+      "official_url": "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo11n.pt",
+      "terms_url": "https://github.com/ultralytics/ultralytics/blob/main/LICENSE",
+      "terms_notes": "External smoke-only model asset; not redistributed in this repository",
+      "retrieval_date": "2026-09-08",
+      "source_version": "assets release v8.4.0 / YOLO11n",
+      "downloaded_filename": "yolo11n.pt",
+      "downloaded_bytes": 5613764,
+      "published_checksum": null,
+      "published_checksum_algorithm": null,
+      "computed_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+      "status": "retrieved",
+      "licence_review_status": "not reviewed for redistribution; file remains outside Git",
+      "selected_subset": "single YOLO11n detection checkpoint",
+      "exclusions": [
+        {
+          "reason": "redistribution excluded",
+          "detail": "model weight remains outside Git and is used only for local smoke evidence"
+        }
+      ],
+      "conversion_command": null,
+      "converter_version": null,
+      "output_schema_version": null,
+      "local_path_hint": "<KYRA_DATA_ROOT>/model-smoke/ultralytics/yolo11n.pt",
+      "attribution": "Ultralytics YOLO11 official assets release"
+    },
+    {
+      "source_id": "ultralytics-bus-positive-control",
+      "name": "Ultralytics bus.jpg example image",
+      "official_url": "https://ultralytics.com/images/bus.jpg",
+      "terms_url": "https://github.com/ultralytics/assets",
+      "terms_notes": "External positive-control smoke input; not redistributed in this repository",
+      "retrieval_date": "2026-09-08",
+      "source_version": "retrieved 2026-09-08",
+      "downloaded_filename": "bus.jpg",
+      "downloaded_bytes": 137419,
+      "published_checksum": null,
+      "published_checksum_algorithm": null,
+      "computed_sha256": "c02019c4979c191eb739ddd944445ef408dad5679acab6fd520ef9d434bfbc63",
+      "status": "retrieved",
+      "licence_review_status": "not reviewed for redistribution; file remains outside Git",
+      "selected_subset": "single official image used twice for track-continuity smoke",
+      "exclusions": [
+        {
+          "reason": "redistribution excluded",
+          "detail": "sample image remains outside Git and is used only for local smoke evidence"
+        }
+      ],
+      "conversion_command": null,
+      "converter_version": null,
+      "output_schema_version": null,
+      "local_path_hint": "<KYRA_DATA_ROOT>/model-smoke/inputs/bus.jpg",
+      "attribution": "Ultralytics official example image"
+    },
+    {
       "source_id": "midas-v3-1-dpt-swinv2-tiny-256",
       "name": "MiDaS v3.1 DPT SwinV2 Tiny 256 pretrained model",
       "official_url": "https://github.com/isl-org/MiDaS",

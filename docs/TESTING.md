@@ -147,6 +147,11 @@ being treated as an installed GPU or target-T4 acceptance result.
 
 ### Dependency refresh log
 
+- 2026-09-08: real ByteTrack execution exposed the undeclared `lap` runtime
+  requirement. `lap==0.5.13` is now pinned in the tracking extra and GPU lock.
+  Focused adapter tests, the recorded-image CPU smoke, `pip check`, and the
+  246-test repository suite passed. A clean optional install and target-T4 run
+  remain separate validation work.
 - 2026-09-08: optional MiDaS inference pins `timm==0.6.13`, the upstream
   Python 3.11+ fix immediately after MiDaS v3.1's official 0.6.12 pin and
   retaining its SwinV2 checkpoint layout. Version 0.6.12 fails to import on

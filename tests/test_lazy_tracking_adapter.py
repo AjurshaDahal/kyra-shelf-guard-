@@ -43,6 +43,7 @@ def test_lazy_tracking_provider_reports_missing_optional_dependency(monkeypatch)
 
 def test_lazy_tracking_provider_converts_model_results(shelf_config, make_frame_packet):
     provider = LazyUltralyticsTrackingProvider()
+    captured_source = None
 
     class FakeTensor:
         def __init__(self, value):
@@ -63,6 +64,8 @@ def test_lazy_tracking_provider_converts_model_results(shelf_config, make_frame_
 
     class FakeModel:
         def track(self, **kwargs):
+            nonlocal captured_source
+            captured_source = kwargs["source"]
             assert kwargs["persist"] is True
             assert kwargs["classes"] == [0]
             assert kwargs["tracker"] == "bytetrack.yaml"
@@ -72,6 +75,7 @@ def test_lazy_tracking_provider_converts_model_results(shelf_config, make_frame_
     provider._model = FakeModel()
 
     frame_packet = make_frame_packet()
+    frame_packet.rgb[0, 0] = (10, 20, 30)
     tracks = provider.track([frame_packet], shelf_config)
 
     assert len(tracks) == 1
@@ -81,3 +85,5 @@ def test_lazy_tracking_provider_converts_model_results(shelf_config, make_frame_
     assert tracks[0].pose_keypoints_xyc.shape == (0, 3)
     assert tracks[0].position_m is None
     assert tracks[0].near_shelf is False
+    assert captured_source.flags.c_contiguous
+    assert captured_source[0, 0].tolist() == [30, 20, 10]

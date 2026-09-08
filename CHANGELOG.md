@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
 
 ## [1.0.0] - 2026-09-08
 
+- Added a recorded-image YOLO11n + ByteTrack smoke runner, corrected the
+  `FramePacket` RGB to Ultralytics BGR boundary, and pinned ByteTrack's `lap`
+  runtime dependency (issue #85). The CPU smoke and repository validation
+  passed; target-T4, latency, and accuracy validation remain out of scope.
 - Added a lazy, revision-pinned MiDaS v3.1 relative-depth adapter and aligned
   its optional timm dependency with the official v3.1 checkpoint environment;
   raw predictions remain explicitly non-metric until anchor calibration

@@ -98,3 +98,10 @@ the selected ARID-derived frames are not redistributed from this repository.
 ## Licence review gate
 
 The repository code is AGPL-3.0-only, but datasets, object assets, model weights, and generated output may have different conditions. Before public distribution, record whether each source permits the planned research use, derivative conversion, redistribution of tiny fixtures, and publication of examples. If the answer is unclear, exclude the source until the team receives clarification.
+# YOLO recorded-image smoke assets
+
+Issue #85 uses the official Ultralytics YOLO11n detection weights and official
+`bus.jpg` example only as external smoke inputs. Their URLs, byte counts, and
+SHA-256 values are recorded in `data-sources/provenance.json`; neither asset is
+redistributed in Git. The OCID frames are negative execution observations, not
+person-detection accuracy evidence, because OCID has no person annotations.

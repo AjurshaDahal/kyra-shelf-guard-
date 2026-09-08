@@ -50,6 +50,10 @@ Treat a dependency pin as a synchronized change: update `pyproject.toml` and eve
 
 ### Dependency refresh log
 
+- 2026-09-08: pinned `lap==0.5.13`, which Ultralytics ByteTrack otherwise
+  attempted to install at first execution. This is optional tracking-only;
+  the real recorded-image CPU smoke, local dependency check, and full repository
+  suite passed, while a clean optional install and target-T4 check remain open.
 - 2026-09-08: the optional MiDaS dependency changed from `timm==1.0.19` to
   `timm==0.6.13`. MiDaS v3.1 pins 0.6.12, but it fails its module import on
   Python 3.11+; upstream 0.6.13 carries that compatibility fix. The former

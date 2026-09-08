@@ -36,7 +36,14 @@ Implemented and verified:
 
 Person 3 component implementation and deterministic evidence are complete.
 
-The remaining work is integration-level rather than a missing Person 3 component implementation. The lazy adapter is validated locally with a fake model; real pretrained T4 smoke validation remains pending (Gate 7).
+Issue #85 is in review on branch `p3/85-yolo-recorded-smoke`. Real YOLO11n
+and ByteTrack CPU execution passed on an official positive-control image and
+four two-frame OCID samples. Four track IDs persisted across both repeated
+positive-control frames; OCID produced zero tracks. This is recorded-image
+smoke evidence only. The 246-test regression suite and governance checks pass;
+PR review and a target-T4 run remain pending.
+
+The remaining work is integration-level rather than a missing Person 3 component implementation. The lazy adapter is validated with fake-model unit tests and a real pretrained CPU smoke; target-T4 validation remains pending (Gate 7).
 
 ## Blocked or pending
 
@@ -89,3 +96,5 @@ Limitations:
 - the two-second association window is fixed by the current rule configuration
 - synthetic evidence is representative component evidence and is not production deployment validation
 - the Gate 4 matrix uses synthetic `VolumeChangeEvent` inputs; the real Person 2 -> Person 3 chain is validated at Gate 5
+- the real YOLO11n adapter emits empty pose keypoints, no metric person
+  position, and no shelf-proximity result; issue #85 does not close those gaps

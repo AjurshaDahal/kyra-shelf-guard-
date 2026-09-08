@@ -287,8 +287,11 @@ class LazyUltralyticsTrackingProvider:
         tracks: list[PersonTrack] = []
 
         for frame in frames:
+            # FramePacket uses RGB in memory (C-001), while Ultralytics treats
+            # NumPy image sources as OpenCV-style BGR.
+            source_bgr = np.ascontiguousarray(frame.rgb[..., ::-1])
             results = model.track(
-                source=frame.rgb,
+                source=source_bgr,
                 persist=True,
                 classes=[0],
                 conf=self.confidence,
