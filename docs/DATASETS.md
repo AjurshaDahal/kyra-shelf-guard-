@@ -32,6 +32,13 @@ D:\KyraData\
 
 Do not commit those folders. Only tiny deterministic fixtures intended for automated tests belong in `scenario-fixtures/` or `tests/fixtures/`.
 
+Optional model caches and generated model outputs follow the same rule. The
+MiDaS smoke uses `<KYRA_DATA_ROOT>/model-smoke/` for its revision-pinned code,
+checkpoint, relative-depth arrays, approximate two-anchor outputs, and hashed
+JSON report. The checkpoint is not redistributed by this repository. A
+successful model run is recorded separately from metric-depth accuracy,
+latency, live-camera, volume, or alert evidence.
+
 ## Provenance record
 
 The planned `data-sources/provenance.json` must record, for every source or selected subset:

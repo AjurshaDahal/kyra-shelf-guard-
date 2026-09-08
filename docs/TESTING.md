@@ -78,6 +78,15 @@ The pack must also cover envelopes or trays, cylinders, irregular shoes, and han
 - Accepted aligned output is marked approximate.
 - Approximate output is excluded from the primary metric-volume score unless calibration succeeds.
 
+The optional real-model smoke additionally requires `requirements-gpu.lock`.
+MiDaS v3.1 execution uses `timm==0.6.13`, the minimal Python 3.11+
+compatibility follow-up to its official 0.6.12 pin; an import or weight
+download alone is not execution evidence. Record the repository
+revision, checkpoint checksum, input checksum, execution device, and finite
+output statistics. Raw MiDaS output remains relative inverse depth and must not
+be presented as metric shelf geometry until it passes explicit anchor
+alignment.
+
 ### Provenance and conversion
 
 - Required source, licence, checksum, selection, exclusion, and conversion fields are present.
@@ -138,6 +147,12 @@ being treated as an installed GPU or target-T4 acceptance result.
 
 ### Dependency refresh log
 
+- 2026-09-08: optional MiDaS inference pins `timm==0.6.13`, the upstream
+  Python 3.11+ fix immediately after MiDaS v3.1's official 0.6.12 pin and
+  retaining its SwinV2 checkpoint layout. Version 0.6.12 fails to import on
+  Python 3.11+, while the previous 1.0.19 pin fails real state-dictionary
+  loading. This is compatibility evidence only, not GPU, latency, accuracy,
+  or end-to-end alert evidence.
 - 2026-09-07: pydantic 2.13.4 -> 2.13.5 (core), torch 2.13.0 -> 2.14.0
   (optional tracking/midas), and ultralytics 8.4.123 -> 8.4.138 (optional
   tracking) pins integrated from Dependabot PRs #47/#48/#49 (issue #53);

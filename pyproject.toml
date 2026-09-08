@@ -22,7 +22,7 @@ tracking = [
   "torch==2.14.0",
   "ultralytics==8.4.138",
 ]
-midas = ["torch==2.14.0", "timm==1.0.19"]
+midas = ["torch==2.14.0", "timm==0.6.13"]
 simulation = ["blenderproc==2.8.0"]
 dev = [
   "pytest==9.0.3",

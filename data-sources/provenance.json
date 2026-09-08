@@ -32,6 +32,38 @@
       "output_schema_version": "1.1",
       "local_path_hint": "<KYRA_DATA_ROOT>/ocid",
       "attribution": "Markus Suchi, Timothy Patten, David Fischinger, and Markus Vincze, EasyLabel: A Semi-Automatic Pixel-wise Object Annotation Tool for Creating Robotic RGB-D Datasets, ICRA 2019, pp. 6678-6684, doi:10.1109/ICRA.2019.8793917; OCID Version 1.0.0, TU Wien Research Data, doi:10.48436/pcbjd-4wa12."
+    },
+    {
+      "source_id": "midas-v3-1-dpt-swinv2-tiny-256",
+      "name": "MiDaS v3.1 DPT SwinV2 Tiny 256 pretrained model",
+      "official_url": "https://github.com/isl-org/MiDaS",
+      "terms_url": "https://github.com/isl-org/MiDaS/blob/1645b7e1675301fdfac03640738fe5a6531e17d6/LICENSE",
+      "terms_notes": "Official repository code is MIT licensed. The checkpoint is retained only in the external model cache and is not redistributed by this repository.",
+      "retrieval_date": "2026-09-08",
+      "source_version": "v3.1 repository commit 1645b7e1675301fdfac03640738fe5a6531e17d6",
+      "downloaded_filename": "dpt_swin2_tiny_256.pt",
+      "downloaded_bytes": 172162911,
+      "published_checksum": null,
+      "published_checksum_algorithm": null,
+      "computed_sha256": "0a859caa18be4bf9375e87dc6b684f6e83dc45b2dc13d8c8b89f6acb2a17a2c5",
+      "status": "retrieved",
+      "licence_review_status": "external-use-only — official repository MIT licence verified; checkpoint redistribution not part of this work item",
+      "selected_subset": "DPT_SwinV2_T_256 entrypoint with swin256_transform; first RGB frame from four selected OCID source sequences",
+      "exclusions": [
+        {
+          "reason": "scope",
+          "detail": "all other MiDaS model variants and checkpoints were excluded from this bounded smoke"
+        },
+        {
+          "reason": "redistribution guard",
+          "detail": "model code cache, checkpoint, generated arrays, and execution report remain outside Git"
+        }
+      ],
+      "conversion_command": "LazyMidasV31DepthEstimator(device='cpu').predict(frame.rgb); preserve raw relative inverse depth as float32 NumPy output",
+      "converter_version": "kyra.baseline.LazyMidasV31DepthEstimator at GitHub issue 84 working tree",
+      "output_schema_version": "external smoke report JSON plus NumPy float32 arrays",
+      "local_path_hint": "<KYRA_DATA_ROOT>/model-smoke/midas",
+      "attribution": "MiDaS v3.1, Intel Intelligent Systems Lab; model code loaded from the official revision-pinned repository."
     }
   ]
 }

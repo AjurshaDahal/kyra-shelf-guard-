@@ -37,6 +37,12 @@ Install only one heavy path when a task requires it:
 ```
 
 Do not add heavy packages to `requirements.lock`. Core replay and tests must stay lightweight.
+The optional MiDaS v3.1 path intentionally pins `timm==0.6.13`. MiDaS v3.1's
+official environment used 0.6.12, but that release cannot import on Python
+3.11+; upstream timm 0.6.13 is the minimal follow-up with the Python dataclass
+fix while preserving the checkpoint-compatible 0.6.x SwinV2 layout. Newer
+timm 1.x releases construct an incompatible layout for the published
+`DPT_SwinV2_T_256` checkpoint.
 
 ## Dependency security updates
 
@@ -44,6 +50,12 @@ Treat a dependency pin as a synchronized change: update `pyproject.toml` and eve
 
 ### Dependency refresh log
 
+- 2026-09-08: the optional MiDaS dependency changed from `timm==1.0.19` to
+  `timm==0.6.13`. MiDaS v3.1 pins 0.6.12, but it fails its module import on
+  Python 3.11+; upstream 0.6.13 carries that compatibility fix. The former
+  1.0.19 release imported but could not load the published
+  `DPT_SwinV2_T_256` state dictionary. This pin applies only to the optional
+  model environment; it does not add Torch or timm to the deterministic core.
 - 2026-09-07: pydantic 2.13.4 -> 2.13.5 (core), torch 2.13.0 -> 2.14.0
   (optional tracking/midas), and ultralytics 8.4.123 -> 8.4.138 (optional
   tracking) pins integrated from Dependabot PRs #47/#48/#49 (issue #53).

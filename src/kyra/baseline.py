@@ -3,10 +3,12 @@
 from __future__ import annotations
 
 import hashlib
+import importlib
 import json
 from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 import cv2
 import numpy as np
@@ -428,3 +430,108 @@ class MidasAnchorAligner:
         depth = np.zeros(inverse_metric.shape, dtype=np.float32)
         depth[valid] = (1.0 / inverse_metric[valid]).astype(np.float32)
         return depth
+
+
+class LazyMidasV31DepthEstimator:
+    """Run pinned MiDaS v3.1 relative-depth inference on demand.
+
+    The model code is pinned to the official ``v3_1`` tag commit. Model code
+    and weights are loaded only on the first prediction so the deterministic
+    core remains usable without Torch or network access. Predictions are
+    relative inverse depth, not metres; callers must use ``MidasAnchorAligner``
+    before passing them to metric geometry.
+    """
+
+    REPOSITORY_REVISION = "1645b7e1675301fdfac03640738fe5a6531e17d6"
+    REPOSITORY = f"isl-org/MiDaS:{REPOSITORY_REVISION}"
+    MODEL_TYPE = "DPT_SwinV2_T_256"
+    TRANSFORM_NAME = "swin256_transform"
+
+    def __init__(self, *, device: str | None = None) -> None:
+        self.requested_device = device
+        self.device: str | None = None
+        self._torch: Any | None = None
+        self._model: Any | None = None
+        self._transform: Any | None = None
+
+    @property
+    def loaded(self) -> bool:
+        """Whether the optional model and transform have been loaded."""
+        return self._model is not None
+
+    def _ensure_loaded(self) -> None:
+        if self.loaded:
+            return
+        try:
+            torch = importlib.import_module("torch")
+        except ImportError as exc:
+            raise RuntimeError(
+                "MiDaS inference requires the optional 'midas' dependencies"
+            ) from exc
+
+        device = self.requested_device
+        if device is None:
+            device = "cuda" if torch.cuda.is_available() else "cpu"
+        if device.startswith("cuda") and not torch.cuda.is_available():
+            raise RuntimeError(f"requested MiDaS device {device!r} is unavailable")
+
+        try:
+            transforms = torch.hub.load(
+                self.REPOSITORY,
+                "transforms",
+                trust_repo=True,
+            )
+            model = torch.hub.load(
+                self.REPOSITORY,
+                self.MODEL_TYPE,
+                trust_repo=True,
+            )
+        except Exception as exc:
+            raise RuntimeError(
+                "failed to load pinned MiDaS v3.1 model code or weights"
+            ) from exc
+
+        self._torch = torch
+        self._transform = getattr(transforms, self.TRANSFORM_NAME)
+        self._model = model.to(device).eval()
+        self.device = device
+
+    def predict(self, rgb: np.ndarray) -> np.ndarray:
+        """Return a two-dimensional float32 relative inverse-depth map."""
+        image = np.asarray(rgb)
+        if image.ndim != 3 or image.shape[2] != 3:
+            raise ValueError("MiDaS input must be an HxWx3 RGB image")
+        if image.dtype != np.uint8:
+            raise ValueError("MiDaS input must use uint8 RGB values")
+        if image.shape[0] < 2 or image.shape[1] < 2:
+            raise ValueError("MiDaS input must be at least 2x2 pixels")
+
+        self._ensure_loaded()
+        assert self._torch is not None
+        assert self._model is not None
+        assert self._transform is not None
+        assert self.device is not None
+
+        batch = self._transform(image).to(self.device)
+        with self._torch.no_grad():
+            prediction = self._model(batch)
+        if hasattr(prediction, "detach"):
+            prediction = prediction.detach()
+        if hasattr(prediction, "cpu"):
+            prediction = prediction.cpu()
+        if hasattr(prediction, "numpy"):
+            prediction = prediction.numpy()
+        relative = np.asarray(prediction, dtype=np.float32).squeeze()
+        if relative.ndim != 2:
+            raise RuntimeError(
+                f"MiDaS returned shape {relative.shape}; expected one depth map"
+            )
+        if not np.all(np.isfinite(relative)):
+            raise RuntimeError("MiDaS returned non-finite relative depth")
+        if relative.shape != image.shape[:2]:
+            relative = cv2.resize(
+                relative,
+                (image.shape[1], image.shape[0]),
+                interpolation=cv2.INTER_CUBIC,
+            ).astype(np.float32)
+        return np.ascontiguousarray(relative, dtype=np.float32)

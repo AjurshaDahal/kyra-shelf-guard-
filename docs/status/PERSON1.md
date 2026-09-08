@@ -65,6 +65,14 @@
   optional GPU published-pin smoke (probe exit 0) on snapshot
   `main` `65d3707`; limitations (runner-confirmed accelerator identity,
   no independent sign-off) are recorded in the report.
+- P1-15 real MiDaS adapter work completed locally (issue #84): lazy loading from the official
+  v3.1 repository commit, source-resolution finite float32 relative inverse
+  depth, clear optional-dependency/device failures, and the upstream-compatible
+  `timm==0.6.13` pin. Four independent OCID source sequences produced finite
+  480x640 float32 maps on CPU; the report is retained externally with hashes.
+  The two-anchor aligned maps are functional approximate-metric smokes, not an
+  independent accuracy test. This does not establish latency, live-camera
+  behavior, metric accuracy, volume accuracy, or an alert result.
 - P1-15 real OCID recorded-data smoke on 2026-09-08 (GitHub issue #81): the
   6,822,716,319-byte OCID 1.0.0 archive matched the publisher MD5 and the
   recorded local SHA-256. Four ARID20 tabletop sequences were converted in
@@ -74,6 +82,9 @@
 
 ## Active
 
+- P1-15 implementation and bounded four-sequence CPU smoke are complete on the
+  working branch under issue #84; pull-request review remains. Generated maps
+  and model weights remain outside Git.
 - P1-04 candidate golden pack merged via pull request #27 as `327a905`, and
   frozen on 2026-09-06 after the D-009 confirmation: `golden-pack.json`
   records `pack_status: frozen` and `decision_status: D-009-confirmed-2026-09-06`.
@@ -105,6 +116,19 @@
 
 ## Evidence
 
+- P1-15 real-model smoke on Windows/Python 3.12.7: four independent OCID source
+  sequences completed through `DPT_SwinV2_T_256` on CPU, each yielding finite,
+  contiguous 480x640 float32 relative inverse depth. External report:
+  `C:\KyraData\model-smoke\midas\midas_ocid_smoke_report.json`, SHA-256
+  `06259314dc4c585d2188b23d856b8e81af69604b97ab5e1b6f718246c0c7d27a`;
+  checkpoint SHA-256
+  `0a859caa18be4bf9375e87dc6b684f6e83dc45b2dc13d8c8b89f6acb2a17a2c5`.
+  Latency was not measured, and two-anchor approximate outputs are not accuracy
+  evidence.
+- P1-15 regression on 2026-09-08: 35 focused MiDaS/baseline/provenance
+  tests passed; the full suite passed 250 tests in 175.30s; Ruff,
+  byte-compilation, repository consistency, and change-impact validation
+  against `origin/main` passed.
 - Baseline commit `2b4dbba`.
 - Windows/Python 3.12.7: `python -m pytest` — 35 passed on 2026-08-24.
 - Windows/Python 3.12.7: `python -m ruff check .` — passed on 2026-08-24.

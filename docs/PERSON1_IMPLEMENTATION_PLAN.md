@@ -286,6 +286,10 @@ Person 1 is complete only when all of these are true:
 - Known objects of at least 0.5 L meet the 10% volume limit.
 - OCID source, checksum, licence, selection, conversion, and exclusions are documented.
 - MiDaS rejection and approximate-depth rules pass.
+- Optional real MiDaS inference uses revision-pinned v3.1 model code and the
+  upstream-compatible timm release, preserves raw relative inverse depth, and
+  records model/input checksums outside Git. This smoke is not metric-accuracy,
+  latency, live-camera, or alert evidence.
 - All Person 1 tests pass offline.
 - An independent teammate signs the handoff report.
 

@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
 
 ## [1.0.0] - 2026-09-08
 
+- Added a lazy, revision-pinned MiDaS v3.1 relative-depth adapter and aligned
+  its optional timm dependency with the official v3.1 checkpoint environment;
+  raw predictions remain explicitly non-metric until anchor calibration
+  (GitHub issue #84).
 - Made the repository test directory an explicit package so optional model
   dependencies cannot shadow helper imports with a site-packages `tests`
   package (GitHub issue #87).
