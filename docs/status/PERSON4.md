@@ -5,6 +5,10 @@
 
 ## Implemented
 
+- P4 test-environment compatibility fix (GitHub issue #87): `tests` is an
+  explicit local package, preventing optional model dependencies from
+  redirecting Gate 3 helper imports to a site-packages package with the same
+  name. This changes test collection only, not runtime detection behavior.
 - Foundation shared Python contracts and scenario schema exist.
 - Repository charter, ownership, contract/change control, per-owner status, work-item records, integration gates, agent instructions, GitHub templates, CI, and governance validation are established.
 - Private GitHub repository `DontHash/kyra-shelf-guard` is configured and Core CI has passed on Python 3.11 and 3.12.
