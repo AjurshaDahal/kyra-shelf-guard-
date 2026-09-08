@@ -10,8 +10,9 @@ Kyra separates replay/calibration, physical geometry, human context, and integra
 P1: scenario/data -> FramePacket + BaselineArtifact
                          |                |
                          v                v
-                 P3: tracks/masks    P2: registered,
-                         |            occlusion-safe 3D change
+              P3: YOLO boxes + RGB-D  P2: registered,
+                  -> localized tracks, occlusion-safe 3D change
+                     proximity/masks       |
                          |                |
                          |                v
                          +-------> VolumeChangeEvent
@@ -50,6 +51,7 @@ subpackages; assignment-named top-level packages are not created, and existing
 | `kyra.manifest` | Strict scenario JSON and canonical checksum | `ScenarioManifest`, load/write/checksum functions |
 | `kyra.io` | Replayable scenario input | `ScenarioFrameSource` / `FrameSource` |
 | `kyra.baseline` | Baseline build/persistence and anchor alignment | `BaselineBuilder`, save/load, `MidasAnchorAligner` |
+| `kyra.tracking.rgbd_localization` | Fail-closed metric localization of person boxes from aligned RGB-D | `localize_tracks_from_rgbd` |
 | `kyra.pipeline` | Deterministic real-owner scenario orchestration | `run_scenario` |
 | `kyra.cli` | Five assignment commands and reviewed scenario profiles | `kyra` / `main` |
 | `kyra.simulator` | Loopback-only visual replay of synthetic cases | `run_example_case`, local HTTP review UI |
@@ -80,6 +82,9 @@ The pipeline uses bounded queues/timeouts and explicit failure states. It passes
 
 - MiDaS is approximate and accepted only after metric shelf anchors pass; it never silently replaces metric depth.
 - Optional pretrained tracking provides observations, not intent or guilt.
+- Person-box localization uses robust inner-box median depth rather than
+  instance segmentation. Unknown or insufficient depth cannot assert shelf
+  proximity, and the box can still include background or carried objects.
 - Person-correlated removal is a suspicious event requiring review, not theft proof.
 - Synthetic fixtures test deterministic behavior; public data expands coverage; only a complete frozen run is end-to-end evidence.
 - Large artifacts remain outside Git with checksums, commands, provenance, and durable locations recorded.

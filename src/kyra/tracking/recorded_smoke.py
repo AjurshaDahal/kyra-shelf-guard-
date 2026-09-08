@@ -14,6 +14,7 @@ import numpy as np
 from kyra.adapters import LazyUltralyticsTrackingProvider
 from kyra.contracts import FramePacket, ShelfConfig, SourceType
 from kyra.io import ScenarioFrameSource
+from kyra.tracking.rgbd_localization import localize_tracks_from_rgbd
 
 
 def sha256_file(path: Path) -> str:
@@ -110,7 +111,11 @@ def run(args: argparse.Namespace) -> dict[str, object]:
     positive_packet_list, positive_shelf = positive_frames(positive_image)
     positive_provider = LazyUltralyticsTrackingProvider(model=str(model_path))
     positive_tracks = serialize_tracks(
-        positive_provider.track(positive_packet_list, positive_shelf)
+        localize_tracks_from_rgbd(
+            positive_provider.track(positive_packet_list, positive_shelf),
+            positive_packet_list,
+            positive_shelf,
+        )
     )
     continuity_ids = common_track_ids(positive_tracks)
 
@@ -119,7 +124,10 @@ def run(args: argparse.Namespace) -> dict[str, object]:
         source = ScenarioFrameSource(scenario_path)
         frames = list(source)[:2]
         provider = LazyUltralyticsTrackingProvider(model=str(model_path))
-        tracks = serialize_tracks(provider.track(frames, scenario_shelf(source)))
+        shelf = scenario_shelf(source)
+        tracks = serialize_tracks(
+            localize_tracks_from_rgbd(provider.track(frames, shelf), frames, shelf)
+        )
         scenario_results.append(
             {
                 "scenario_path": str(scenario_path),
@@ -170,10 +178,13 @@ def run(args: argparse.Namespace) -> dict[str, object]:
         "claims": [
             "The pinned pretrained detector and ByteTrack executed through Kyra's adapter.",
             "The positive control produced a person track ID present in two frames.",
+            "The positive-control tracks received metric positions and shelf-proximity state "
+            "from the constructed depth frames.",
         ],
         "limitations": [
             "The detector model is pretrained rather than trained or validated by this project.",
-            "The adapter emits empty pose keypoints and no metric position or shelf proximity.",
+            "The positive-control RGB is recorded, but its flat metric depth is constructed.",
+            "Person position uses median depth from the inner detection box, not segmentation.",
             "OCID contains no person annotations and cannot establish tracking accuracy.",
             "Repeated positive-control frames are a continuity smoke check, not a video benchmark.",
             "No live camera, target-T4, latency, alert, recall, false-positive, "

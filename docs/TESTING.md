@@ -193,7 +193,7 @@ validate repository consistency, not algorithm correctness.
 |---|---|
 | Person 1 | Malformed/valid replay; deterministic bytes; 30-frame baseline; persistence/checksum; MiDaS anchor failures; converter provenance; ten-pack loading |
 | Person 2 | Registration tolerance; signed addition/removal; unknown-depth and occlusion suppression; cluster persistence; known-volume error |
-| Person 3 | Replay-track determinism; lazy optional model loading; mask alignment; proximity window; authorization suppression; deterministic alert rule |
+| Person 3 | Replay-track determinism; lazy optional model loading; metric RGB-D localization fail-closed behavior; mask alignment; proximity window; authorization suppression; deterministic alert rule |
 | Person 4 | Contract/mocks compatibility; bounded pipeline behavior; five CLI commands; frozen evaluation split; comparison report; clean-environment run |
 
 ## Candidate Gate 5 deterministic CLI smoke
@@ -219,6 +219,27 @@ or alert. This suite is synthetic software-path evidence; it is not camera,
 real-data, or target-T4 proof.
 
 Exact gate evidence and owners are listed in `docs/INTEGRATION_GATES.md`.
+
+### Person 3 metric RGB-D person localization
+
+Issue #93 adds metric back-projection of pretrained person boxes from aligned
+RGB-D frames and applies the existing shelf-frame proximity logic:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest -q tests\test_tracking_rgbd_person.py
+```
+
+The focused tests cover shelf-frame transformation, inner-box depth sampling,
+unknown-depth suppression, proximity-history continuity, and timestamp
+matching. A real YOLO11n + ByteTrack CPU run is recorded outside Git at
+`C:\KyraData\model-smoke\yolo\yolo_bytetrack_rgbd_localization_report.json`
+(SHA-256
+`af43048f3e0ad16f9a73f969df7a570ec7a31e5ca1e297fd9b12a13825354de6`).
+Its positive RGB is recorded but its flat metric depth is constructed. The
+four OCID samples provide real RGB-D but contain no people and produced no
+tracks. This evidence therefore proves adapter execution and localization
+wiring, not real person-plus-shelf RGB-D accuracy, alert recall, or false
+positive rate.
 
 ### Gate 6 evaluation preparation
 

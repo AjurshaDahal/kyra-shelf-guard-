@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
 
 ## [1.0.0] - 2026-09-08
 
+- Added fail-closed metric RGB-D localization for pretrained person boxes,
+  including shelf-frame transformation and proximity history, and extended
+  recorded-image YOLO smoke evidence with constructed-depth localization
+  (issue #93). This is not real person-plus-shelf RGB-D validation.
 - Corrected the release and evaluation record: the 420 trials are generated
   regression fixtures, the class-based comparison was not empirically run,
   and the recorded T4 run covered the core suite rather than the complete

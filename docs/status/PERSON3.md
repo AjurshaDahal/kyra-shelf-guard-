@@ -1,7 +1,7 @@
 # Person 3 Status — Tracking, Proximity, and Alert Rules
 
-- **Status:** Complete
-- **Last updated:** 2026-09-09
+- **Status:** In progress
+- **Last updated:** 2026-09-08
 
 ## Implemented
 
@@ -31,34 +31,38 @@ Implemented and verified:
   YOLO + ByteTrack under `requirements-gpu.lock`; heavy dependencies are
   loaded only at first `track()` call, and a clear error is raised when the
   tracking extras are absent (deterministic core unaffected, D-001/D-002)
+- fail-closed metric RGB-D localization of pretrained person boxes, including
+  camera-to-shelf transformation and the existing proximity-history update
+  (issue #93)
 
 ## Active
 
-Person 3 component implementation and deterministic evidence are complete.
+Issue #85 merged through pull request #91. Real YOLO11n and ByteTrack CPU
+execution passed on an official positive-control image and four two-frame OCID
+samples. Issue #93 adds metric RGB-D localization, shelf-frame positioning,
+and proximity state to those detected boxes. Its focused tests pass and its
+external smoke report is checksum-identified below.
 
-Issue #85 is in review on branch `p3/85-yolo-recorded-smoke`. Real YOLO11n
-and ByteTrack CPU execution passed on an official positive-control image and
-four two-frame OCID samples. Four track IDs persisted across both repeated
-positive-control frames; OCID produced zero tracks. This is recorded-image
-smoke evidence only. The 246-test regression suite and governance checks pass;
-PR review and a target-T4 run remain pending.
-
-The remaining work is integration-level rather than a missing Person 3 component implementation. The lazy adapter is validated with fake-model unit tests and a real pretrained CPU smoke; target-T4 validation remains pending (Gate 7).
+Person 3 remains in progress because the positive localization smoke combines
+recorded RGB with constructed flat depth. OCID contributes real RGB-D but no
+people. A representative person-plus-shelf RGB-D sequence and the model-backed
+full pipeline integration in issue #94 remain pending.
 
 ## Blocked or pending
 
 Gate 4 exit criteria are compiled in `docs/gates/GATE-4.md` (record under Person 4 review). The following integration-level items remain outside the owner's deterministic evidence but are tracked:
 
-- live detector/tracker integration (the lazy adapter is implemented; end-to-end live use is exercised at Gate 5/7 with `requirements-gpu.lock` on the target environment)
-- upstream depth/3D position integration
+- model-backed detector/tracker use in the P4 prerecorded scenario runner
+- representative real person-plus-shelf RGB-D validation
 - upstream volume-change integration (real `VolumeChangeEvent` chain from Person 2's `ShelfGeometryProvider`, replacing the synthetic events used in evidence)
 - required cross-owner Gate 4 validation and approvals
 
 ## Next
 
-- Person 4 review of `docs/gates/GATE-4.md` and the gate status decision.
-- Re-run the Gate 4 evidence after live upstream integrations are available, and validate the real Person 2 -> Person 3 chain at Gate 5.
-- Coordinate with the relevant owners on the remaining integration-level items.
+- Merge issue #93, then complete Person 4 issue #94 so prerecorded scenarios
+  may use pretrained tracking without saved track annotations.
+- Acquire or record representative synchronized RGB-D shelf interactions before
+  making recall or false-positive claims.
 
 ## Evidence
 
@@ -78,6 +82,15 @@ Merged-tree verification (Windows, Python 3.12.7, requirements.lock pins):
 - Ruff, byte-compilation, repository-consistency, and change-impact checks passed
 - Evidence generator rerun produced an identical SHA-256 manifest (deterministic regeneration)
 
+Issue #93 evidence (Windows, Python 3.12.7, CPU):
+
+- focused metric localization tests: 6 passed
+- report: `C:\KyraData\model-smoke\yolo\yolo_bytetrack_rgbd_localization_report.json`
+- report SHA-256: `af43048f3e0ad16f9a73f969df7a570ec7a31e5ca1e297fd9b12a13825354de6`
+- recorded positive RGB: 8 localized tracks, IDs 1 through 4 persisted across
+  both repeated frames; constructed flat depth was used
+- four OCID RGB-D pairs: zero person tracks because OCID contains no people
+
 Configuration and contract versions:
 
 - runtime schema version: `1.0`
@@ -89,12 +102,16 @@ Configuration and contract versions:
 
 Limitations:
 
-- replay tracking uses deterministic scenario annotations rather than a live detector/tracker
-- metric person position is supplied by the scenario fixture; Person 3 does not estimate depth
+- the integrated pipeline still defaults to deterministic scenario annotations;
+  optional pretrained runner integration is tracked by issue #94
+- box localization uses inner-box median depth rather than instance
+  segmentation, so its metric position can include background or carried items
 - person occlusion is currently represented using track bounding boxes rather than instance segmentation
 - the removal alert is a human-review signal and does not establish theft, intent, or identity
 - the two-second association window is fixed by the current rule configuration
 - synthetic evidence is representative component evidence and is not production deployment validation
 - the Gate 4 matrix uses synthetic `VolumeChangeEvent` inputs; the real Person 2 -> Person 3 chain is validated at Gate 5
-- the real YOLO11n adapter emits empty pose keypoints, no metric person
-  position, and no shelf-proximity result; issue #85 does not close those gaps
+- the YOLO11n adapter emits empty pose keypoints; issue #93 adds metric position
+  and shelf proximity only when aligned depth has enough valid samples
+- the positive-control localization depth is constructed, while OCID has real
+  depth but no people; neither is representative end-to-end validation
