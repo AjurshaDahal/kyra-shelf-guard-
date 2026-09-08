@@ -16,7 +16,9 @@ licences, selections, exclusions, and conversion commands.
 5. Status values are honest: `pending_download`, `retrieved`,
    `converted`, or `excluded`. A blank required field is a schema failure.
 
-Current state: the OCID source is recorded as `pending_download`; the licence
-review is approved (D-014, 2026-09-07) but nothing has been downloaded yet.
-Conversion will start only after a team-confirmed subset and the source
-checksum are recorded here at retrieval time.
+Current state: the OCID 1.0.0 archive was verified on 2026-09-08 against the
+publisher's MD5 and a locally recorded SHA-256. Four ARID20 tabletop sequences
+were converted in forward and reverse order and all 8 manifests (168 frames)
+were replayed successfully. The archive, converted data, and detailed local
+verification report remain outside Git. Because the selected sequences contain
+ARID-derived objects, they are evidence inputs only and are not redistributed.

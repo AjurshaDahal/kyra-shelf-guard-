@@ -65,6 +65,12 @@
   optional GPU published-pin smoke (probe exit 0) on snapshot
   `main` `65d3707`; limitations (runner-confirmed accelerator identity,
   no independent sign-off) are recorded in the report.
+- P1-15 real OCID recorded-data smoke on 2026-09-08 (GitHub issue #81): the
+  6,822,716,319-byte OCID 1.0.0 archive matched the publisher MD5 and the
+  recorded local SHA-256. Four ARID20 tabletop sequences were converted in
+  forward and reverse order; all 8 manifests and 168 frames replayed through
+  `ScenarioFrameSource` with monotonic timestamps, matching image dimensions,
+  `float32` metric depth, and zero preserved as unknown.
 
 ## Active
 
@@ -87,12 +93,14 @@
 
 - The target-T4 leg was executed on 2026-09-07 on a Kaggle free-T4 GPU notebook (D-015) with the frozen `main` `65d3707` snapshot; the dated report is `docs/PERSON1_TEST_REPORT_T4_2026-09-07.md` (189 passed, verifier exit 0, golden pack byte-identical). The accelerator identity is runner-confirmed per the exported artifact's limits.
 - The independent teammate handoff sign-off remains open; it requires a human teammate or instructor to run `docs/PERSON1_HANDOFF.md` and sign it (issue #59).
-- Real OCID download/conversion is unblocked (D-014) and remains to be performed at retrieval time with the subset and checksum recorded in `data-sources/provenance.json`.
+- The selected OCID smoke is complete. Broader OCID coverage and any public
+  redistribution of ARID-derived images remain out of scope under D-014.
 
 ## Next
 
 - Have an independent teammate run the handoff guide and sign it (issue #59).
-- Download and convert the approved OCID subset once the exact scenes and checksum are recorded.
+- Use the recorded OCID subset for bounded model-execution checks without
+  treating replay success as detection accuracy.
 - Coordinate with Persons 2-4 on Gate 2-5 detection evidence using the frozen golden pack.
 
 ## Evidence
@@ -135,3 +143,8 @@
 - The P1-03/P1-04/P1-06/P1-07/P1-08/P1-09/P1-10 evidence is synthetic and
   local. It does not freeze D-009, prove target T4 portability, run downstream
   detection, close Gate 2, or establish real end-to-end behavior.
+- P1-15 local Windows/Python 3.12.7 recorded-data verification on 2026-09-08:
+  the publisher MD5 and local SHA-256 matched; 8 external manifests and all 168
+  frames replayed successfully. This validates source identity, conversion,
+  and reader compatibility only; it does not measure detection recall, false
+  positives, latency, live-camera behavior, or intent.

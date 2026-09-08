@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
 
 ## [1.0.0] - 2026-09-08
 
+- Verified the external OCID 1.0.0 archive against its published MD5 and a
+  local SHA-256, converted four ARID20 tabletop sequences in both directions,
+  and replayed all 8 manifests/168 frames while keeping the dataset and report
+  outside Git (GitHub issue #81).
 - Completed Gate 7 (Performance and Release) and achieved full project completion across all seven integration gates (`docs/gates/GATE-7.md`, WI-085).
 - Verified clean-clone execution of all six CLI subcommands (`simulate`, `calibrate`, `run`, `evaluate`, `benchmark`, `demo`) with exit code 0.
 - Audited licence compliance (AGPL-3.0-only, OCID CC-BY 4.0 research approval), repository security (zero credentials or binary leaks), and honest claims ("suspicious shelf-removal alert", zero SKU-specific training).

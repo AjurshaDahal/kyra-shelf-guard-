@@ -39,6 +39,12 @@ Per [docs/INTEGRATION_GATES.md](../INTEGRATION_GATES.md):
 ### 4. Provenance & Offline Converter
 - Provenance record (data-sources/provenance.json) conforms to schema with CC-BY 4.0 approval (D-014).
 - Offline converter (scripts/convert_ocid.py) parses OCID metadata strictly, converts depth to uint16 millimetres, handles addition/removal reversal, and enforces SHA-256 integrity.
+- On 2026-09-08, the OCID 1.0.0 archive matched its published MD5 and a local
+  SHA-256 identity record. Four ARID20 tabletop sequences were converted in
+  both directions; all 8 external manifests (168 frames) replayed through the
+  contract reader. This strengthens the already-closed converter evidence but
+  does not establish model accuracy, live-camera behavior, or redistribution
+  permission for ARID-derived imagery.
 
 ### 5. Verification Entry Point
 - Acceptance verifier (scripts/verify_person1.py) passes all 7 checks cleanly with exit code 0.

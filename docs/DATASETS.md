@@ -70,6 +70,24 @@ Compare the result with the publisher’s checksum when one exists. If no publis
 - Keep original provenance even when the converted sequence direction changes.
 - Reject unclear calibration, corrupted files, unsupported encoding, or licence uncertainty and record the reason.
 
+### Current selected OCID evidence (2026-09-08)
+
+- Verified OCID 1.0.0 archive: 6,822,716,319 bytes; publisher MD5
+  `aa0eff01f75104c40e4243e6f892a757`; local SHA-256
+  `01878149adf7eb330f99439ee9d15d6e2280a1aa3539b90e0b6dc3c7ba1fa29f`.
+- Selected `ARID20/table/{top,bottom}/seq0{1,2}`. Each 21-frame source sequence
+  was converted in forward and reverse order, yielding 8 external scenarios
+  and 168 replayed frames.
+- Every manifest was read through `ScenarioFrameSource`; timestamps were
+  monotonic, RGB/depth/mask dimensions agreed, in-memory depth was `float32`
+  metres, and invalid source depth remained zero/unknown.
+- The exact source-metadata and output-manifest SHA-256 values are retained in
+  `<KYRA_DATA_ROOT>/ocid/verification_summary.json` outside Git.
+
+This is recorded-data conversion and replay evidence. It is not a real shop,
+live-camera, theft-intent, model-accuracy, or production-readiness result, and
+the selected ARID-derived frames are not redistributed from this repository.
+
 ## Licence review gate
 
 The repository code is AGPL-3.0-only, but datasets, object assets, model weights, and generated output may have different conditions. Before public distribution, record whether each source permits the planned research use, derivative conversion, redistribution of tiny fixtures, and publication of examples. If the answer is unclear, exclude the source until the team receives clarification.

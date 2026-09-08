@@ -16,7 +16,7 @@ This is the integration snapshot. Detailed owner progress and next actions live 
 
 | ID | Owner | Status | Implemented truth | Next gate-bound outcome | Detail |
 |---|---|---|---|---|---|
-| P1 | Person 1 | Complete | Contracts foundation, strict manifest, replay reader, baseline build/persistence, MiDaS anchor alignment, deterministic generator, frozen golden pack (D-009), OCID conversion, and verified verification entry point (`docs/gates/GATE-2.md`) | Gate 2 complete; input ready for Gate 6 | [P1 status](status/PERSON1.md) |
+| P1 | Person 1 | Complete | Contracts foundation, strict manifest, replay reader, baseline build/persistence, MiDaS anchor alignment, deterministic generator, frozen golden pack (D-009), OCID converter, and a verified 8-scenario/168-frame real OCID replay (`docs/gates/GATE-2.md`) | Gate 2 complete; recorded OCID input available for bounded model checks | [P1 status](status/PERSON1.md) |
 | P2 | Person 2 | Complete | Registration, signed diff (3σ), occlusion safety, 3D clustering, ray volume, temporal engine, ShelfGeometryProvider, and Issue #79 camera drift fix merged (`docs/gates/GATE-3.md`) | Gate 3 complete; geometry ready for Gate 6 | [P2 status](status/PERSON2.md) |
 | P3 | Person 3 | Complete | Deterministic replay tracking, proximity, occlusion masking, removal-alert rules, Gate 4 evidence record, and lazy tracking adapter merged (`docs/gates/GATE-4.md`) | Gate 4 complete; tracking ready for Gate 6 | [P3 status](status/PERSON3.md) |
 | P4 | Person 4 | Complete | Gate 1 through 7 complete; vertical scenario pipeline, CLI commands, visual demo, 420-trial evaluation, and Gate 7 release verified (`docs/gates/GATE-7.md`) | All 4 workstreams complete; production ready | [P4 status](status/PERSON4.md) |
@@ -39,8 +39,9 @@ Gate exit criteria are authoritative in [Integration Gates](INTEGRATION_GATES.md
 
 - D-014 (OCID licence, approved 2026-09-07) and D-015 (target-T4 runner =
   Kaggle free-T4 GPU notebook `notebooks/kyra_t4_validation.ipynb`, approved
-  2026-09-07) resolved P-003 and P-004; OCID download/conversion and the T4
-  run itself remain open actions.
+  2026-09-07) resolved P-003 and P-004. The target-T4 run and the selected
+  real OCID download/conversion/replay are complete; wider public-data
+  evaluation remains separate from those smoke checks.
 - The independent Person 1 handoff sign-off remains the only open Phase 0
   item; it needs a human teammate or instructor, not a decision.
 - Person 1–4 GitHub handles and reviewer assignments are not yet known.

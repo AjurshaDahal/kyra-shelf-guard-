@@ -7,31 +7,31 @@
       "official_url": "https://www.acin.tuwien.ac.at/en/vision-for-robotics/software-tools/object-clutter-indoor-dataset/",
       "terms_url": "https://doi.org/10.48436/pcbjd-4wa12",
       "terms_notes": "CC-BY 4.0 International declared on the official TU Wien Research Data record; repository Terms of Use at https://researchdata.tuwien.at/tuw/terms-of-use accepted by the downloader per D-014",
-      "retrieval_date": null,
-      "source_version": "pending official release check at retrieval time",
-      "downloaded_filename": null,
-      "downloaded_bytes": null,
+      "retrieval_date": "2026-09-08",
+      "source_version": "1.0.0 (published 2019-05-20)",
+      "downloaded_filename": "OCID-dataset.tar.gz",
+      "downloaded_bytes": 6822716319,
       "published_checksum": "aa0eff01f75104c40e4243e6f892a757",
       "published_checksum_algorithm": "md5",
-      "computed_sha256": null,
-      "status": "pending_download",
+      "computed_sha256": "01878149adf7eb330f99439ee9d15d6e2280a1aa3539b90e0b6dc3c7ba1fa29f",
+      "status": "converted",
       "licence_review_status": "approved-2026-09-07 (D-014) — CC-BY 4.0 research use approved for tiny example publication with attribution; YCB/ARID-derived objects excluded from redistribution unless verified; archive stays outside Git",
-      "selected_subset": "planned: a small set of tabletop sequences with stable camera calibration and clean object changes; exact scenes recorded here at retrieval time",
+      "selected_subset": "ARID20/table/top/seq01, ARID20/table/top/seq02, ARID20/table/bottom/seq01, and ARID20/table/bottom/seq02; each converted in source order and reverse order as 21-frame scenarios (8 scenarios, 168 replayed frames total); output manifest SHA-256 values are recorded in <KYRA_DATA_ROOT>/ocid/verification_summary.json",
       "exclusions": [
         {
-          "reason": "not yet retrieved",
-          "detail": "no download has been performed; selection and exclusions are finalized when the official archive is reviewed"
+          "reason": "scope limit",
+          "detail": "all OCID sequences outside the four named 21-frame ARID20 tabletop sequences were excluded from this bounded recorded-data smoke run"
         },
         {
           "reason": "redistribution guard",
           "detail": "converted examples whose objects originate from the YCB/ARID sets are excluded from redistribution unless their object provenance is verified (D-014, 2026-09-07)"
         }
       ],
-      "conversion_command": "python scripts/convert_ocid.py <KYRA_DATA_ROOT>/ocid <converted-output> --shelf <shelf.json> --checksum <expected-sha256> [--reverse]",
+      "conversion_command": "python scripts/convert_ocid.py <KYRA_DATA_ROOT>/ocid/sequences/<sequence> <KYRA_DATA_ROOT>/ocid/converted/<scenario> --shelf <KYRA_DATA_ROOT>/ocid/shelf.json --checksum <source-metadata-sha256> [--reverse]",
       "converter_version": "kyra.ocid (in-repo module)",
       "output_schema_version": "1.1",
       "local_path_hint": "<KYRA_DATA_ROOT>/ocid",
-      "attribution": "OCID, Object Clutter Indoor Dataset, TU Wien ACIN. Verify and record the exact requested citation from the official dataset page at retrieval time."
+      "attribution": "Markus Suchi, Timothy Patten, David Fischinger, and Markus Vincze, EasyLabel: A Semi-Automatic Pixel-wise Object Annotation Tool for Creating Robotic RGB-D Datasets, ICRA 2019, pp. 6678-6684, doi:10.1109/ICRA.2019.8793917; OCID Version 1.0.0, TU Wien Research Data, doi:10.48436/pcbjd-4wa12."
     }
   ]
 }
