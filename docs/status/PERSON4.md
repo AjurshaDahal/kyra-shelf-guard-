@@ -1,6 +1,6 @@
 # Person 4 Status — Integration and Evaluation
 
-- **Status:** Complete
+- **Status:** In progress
 - **Last updated:** 2026-09-08
 
 ## Implemented
@@ -38,14 +38,16 @@ by Person 2. The multi-frame `camera-drift` scenario correctly evaluates with
 zero events and zero alerts. Gate 2 (`docs/gates/GATE-2.md`), Gate 3 (`docs/gates/GATE-3.md`),
 and Gate 5 (`docs/gates/GATE-5.md`) are now formally Approved and Closed.
 
-Gate 6 (Frozen Evaluation) is completed and approved (`docs/gates/GATE-6.md`),
-with 420 trials executed without test-set tuning achieving 100% recall, 0% FPR,
-100% geometry accuracy, and 0% volume error on objects >= 0.5L.
+Gate 6 has a 420-trial deterministic generated-fixture regression record. The
+runner generates every input, does not load OCID, and did not execute the
+class-based comparison. Gate 6 therefore remains in progress pending an
+independently frozen, representative dataset and real model-backed results.
 
-Gate 7 (Performance and Release) is completed and approved (`docs/gates/GATE-7.md`),
-with clean-clone smoke verification of all 6 CLI commands, target-T4 performance
-validation, licence/provenance audit, security scan, and claims verification.
-All four owner workstreams and all seven integration gates are complete.
+Gate 7 has partial release-preparation evidence: six local deterministic CLI
+smokes, licence/security review, and core-suite/golden-pack execution in a
+Kaggle T4 notebook. YOLO and MiDaS were not run together through the complete
+pipeline on that T4, target latency was not established, and independent
+release sign-off is absent. Gate 7 remains in progress.
 
 WI-081 (Video Demo Command) added a `kyra demo` CLI subcommand and a `kyra.viz`
 annotation module to generate end-to-end MP4 inference videos.
@@ -140,23 +142,27 @@ script, `7f2fd84`).
 The repository evidence satisfies the Gate 1 exit criteria for the shared contract-compatibility layer. This covers the frozen contract definitions, the compatibility tests, and the deterministic Person 4 mock coverage. It does not claim that Person 1, Person 2, or Person 3 have completed real algorithm implementations.
 
 The frozen contract and mock/evidence layer is complete, and the reviewed
-synthetic vertical slice is closed by Gate 5. Public-data validation, live
-tracking, frozen evaluation, and release validation remain open; none is
-blocked by a missing contract or mock layer.
+synthetic vertical slice satisfies Gate 5's deterministic replay scope.
+Representative public-data validation, model-backed tracking integration,
+frozen evaluation, and release validation remain open; none is blocked by a
+missing contract or mock layer.
 
 ## Next
 
-- Obtain owner approval for the prepared Gate 6 fixture contents and numeric
-  acceptance thresholds, then record the frozen evaluation configuration. Full
-  Section 10 acceptance also requires the specified 120-positive/300-negative
-  final datasets and their reproducibility evidence.
-- Gather the remaining public-data and live-tracking evidence before Gate 7.
+- Complete issue #93 so pretrained tracks receive metric RGB-D shelf positions
+  and can drive proximity logic without replay annotations.
+- Complete issue #94 so the prerecorded pipeline can select the pretrained
+  tracker and report localization/evidence boundaries.
+- Obtain representative people-plus-shelf-activity RGB-D recordings before
+  reporting Gate 6 recall/FPR or closing Gate 7.
 
 ## Blocked or pending
 
 - Person 1–4 GitHub handles are not assigned; `@DontHash` is temporary steward/CODEOWNER.
 - Server-enforced branch protection is unavailable for this private repository on the current GitHub plan.
-- Contract mocks, pipeline, evaluation, T4 validation, and release process remain separate from the frozen contract compatibility proof and must not be mistaken for real owner algorithm completion.
+- Contract mocks, generated evaluation, core T4 checks, and optional-model smoke
+  reports remain separate evidence scopes and must not be mistaken for a
+  representative model-backed release.
 
 ## Evidence
 
@@ -177,8 +183,8 @@ blocked by a missing contract or mock layer.
   change-impact validation passed.
 - WI-077 five-command smoke on Windows/Python 3.12.7: one synthetic removal,
   one linked alert, evaluation passed, five-run benchmark p50 28.1047 ms.
-- Camera-drift negative evidence: evaluation exited 1 with expected no change
-  but actual `REMOVAL`; zero alert events; tracked as #79.
+- Camera-drift regression evidence: expected and actual no change; zero alerts
+  after the Person 2 correction tracked by #79.
 - Work item `../work-items/WI-010-audience-documentation.md` tracks the audience-specific documentation route.
 - WI-010 verification on 2026-09-01: 83 tests passed; Ruff, compileall,
   repository consistency, change-impact, and diff checks passed on Python 3.12.7.

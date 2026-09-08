@@ -229,6 +229,11 @@ The prepared synthetic Gate 6 split is generated and validated with:
 .\.venv\Scripts\python.exe -m kyra.cli evaluate --split scenario-fixtures\gate6
 ```
 
+`scripts/evaluate_frozen_suite.py` likewise creates all 420 trials from the
+deterministic simulator. Its 20 category labels and 60 `reversed-ocid` profile
+names are generated metadata; the runner does not load OCID or another public
+dataset. Results from that runner are regression evidence only.
+
 The split contains ten multi-frame scenario profiles, each with 30 baseline
 frames and at least seven event-observation frames at 100 ms spacing. The
 split index and SHA-256 inventory are prepared for owner review. The evaluator

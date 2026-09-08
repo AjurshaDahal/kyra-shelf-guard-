@@ -64,8 +64,8 @@ That command opens the local **Kyra Scenario Lab** at
 `http://127.0.0.1:8765`. It preloads the suspicious-removal example and lets a
 reviewer play, pause, or step through RGB and depth frames, then run all ten
 cases one at a time. The screen compares saved expectations with actual
-pipeline events and alerts. The camera-drift case is intentionally red while
-issue #79 remains open.
+pipeline events and alerts. The camera-drift case is a passing regression case
+that must produce no event and no alert.
 
 The same path can be exercised one command at a time without the visual interface:
 
@@ -77,9 +77,8 @@ kyra evaluate evidence/quick-smoke/scenario.json --baseline evidence/baseline.np
 kyra benchmark evidence/quick-smoke/scenario.json --baseline evidence/baseline.npz
 ~~~
 
-Generated evidence stays outside Git. The `camera-drift` profile currently
-fails evaluation because the geometry stage emits a false removal; issue #79
-tracks that Gate 3/5 blocker.
+Generated evidence stays outside Git. The `camera-drift` profile verifies that
+camera motion is suppressed rather than reported as a shelf removal.
 
 ## Important limits
 

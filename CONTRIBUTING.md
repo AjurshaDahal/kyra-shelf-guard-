@@ -55,6 +55,10 @@ companions. To add a future owner script, extend `PERSON1_SCRIPTS`,
 `PERSON2_SCRIPTS`, or `PERSON3_SCRIPTS` in `scripts/check_change_impact.py`
 through a Person 4-reviewed change.
 
+Evaluation report generators must preserve the evidence boundary of their
+inputs. Generated fixtures, optional-model smoke checks, and core T4 checks
+must not be relabelled as representative real-data or full model-backed proof.
+
 ## Shared-contract changes
 
 Do not edit `src/kyra/contracts.py`, the public manifest schema, units, coordinate frames, event meanings, or compatibility policy as an implementation shortcut.

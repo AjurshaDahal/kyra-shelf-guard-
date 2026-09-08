@@ -20,80 +20,81 @@ def get_paradigm_comparisons() -> list[ParadigmComparisonDimension]:
         ParadigmComparisonDimension(
             dimension="Per-SKU Annotation & Retraining",
             class_based_yolo=(
-                "Requires thousands of annotated bounding boxes/masks per product SKU and model "
-                "retraining on catalog turnover."
+                "A SKU classifier generally needs labelled examples for categories it is expected "
+                "to recognize; the amount of data and retraining depends on the deployment."
             ),
             kyra_physics_geometry=(
-                "Zero SKU-specific training or item classification required. Uses pure metric 3D "
-                "depth differencing against baseline."
+                "The implemented geometry path does not classify shelf items and does not consume "
+                "SKU-specific training data."
             ),
-            advantage="Kyra (Zero retraining overhead; instant catalog adaptation)",
+            advantage="Design-level difference; no operational cost comparison was measured.",
         ),
         ParadigmComparisonDimension(
             dimension="Held-out Category Generalization (20 Categories)",
             class_based_yolo=(
-                "Fails on unmodeled/unseen categories (e.g. COCO has only 80 classes; retail items "
-                "are misclassified or missed completely). Recall ~ 0-15%."
+                "An off-the-shelf classifier may not name categories outside its label set. No "
+                "class-based baseline was executed in this project."
             ),
             kyra_physics_geometry=(
-                "Evaluates physical 3D occupancy and missing volume directly; achieves >90% "
-                "detection across all 20 held-out categories regardless of visual appearance."
+                "The generated fixture matrix uses 20 category names, but the shapes are "
+                "procedural "
+                "and do not establish real unseen-category accuracy."
             ),
-            advantage="Kyra (Geometric universality across unseen shapes)",
+            advantage="Hypothesis to test on independently sourced recordings.",
         ),
         ParadigmComparisonDimension(
             dimension="Compute and Calibration Requirements",
             class_based_yolo=(
-                "Requires GPU inference for both opening baseline and live stream; "
-                "does not enforce metric shelf calibration."
+                "Compute and calibration requirements depend on the selected detector and camera "
+                "pipeline; they were not benchmarked here."
             ),
             kyra_physics_geometry=(
-                "Runs deterministically on CPU; lightweight rigid registration (Kabsch SVD) and "
-                "1 cm voxel occupancy grid."
+                "The deterministic geometry core runs on CPU and uses metric calibration; optional "
+                "MiDaS and YOLO inference have separate compute requirements."
             ),
-            advantage="Kyra (Deterministic, CPU-first, verifiable metric calibration)",
+            advantage="Kyra exposes an auditable metric-geometry core.",
         ),
         ParadigmComparisonDimension(
             dimension="Irregular and Thin-Item Failure Modes",
             class_based_yolo=(
-                "2D bounding boxes overlap heavily in dense shelving; thin items (trays, chocolate "
-                "bars) or irregular items blend with shelf background."
+                "Dense, thin, and irregular shelf items are plausible classifier failure modes, "
+                "but this project did not measure a 2D baseline on them."
             ),
             kyra_physics_geometry=(
-                "Per-pixel signed depth differencing with M3C2-EP 3σ noise thresholding isolates "
-                "thin physical volume profiles (>5e-5 m³)."
+                "Signed depth differencing detects the generated thin and irregular fixtures; real "
+                "shelf-removal recordings are still required to measure generalization."
             ),
-            advantage="Kyra (Metric depth separation independent of color contrast)",
+            advantage="Potential geometry advantage; real-data comparison pending.",
         ),
         ParadigmComparisonDimension(
             dimension="Occlusion Sensitivity",
             class_based_yolo=(
-                "Customer hands or bodies occluding an item cause detector dropouts, falsely "
-                "signaling removal unless complex re-identification is added."
+                "Occlusion can affect both 2D detection and depth observation; no comparative "
+                "occlusion benchmark was run."
             ),
             kyra_physics_geometry=(
                 "Explicit occlusion ratio tracking: confirms events only after occlusion "
                 "clears and requires temporal persistence (>=5 of 7 observations)."
             ),
-            advantage="Kyra (Physics-safe occlusion suppression)",
+            advantage="Kyra has explicit fail-closed occlusion handling in tested fixtures.",
         ),
         ParadigmComparisonDimension(
             dimension="Inferential Boundary & Legal Positioning",
             class_based_yolo=(
-                "Often incorrectly marketed as automated theft detection; prone to hallucinated "
+                "An item classifier identifies visual categories; by itself it does not establish "
                 "intent."
             ),
             kyra_physics_geometry=(
                 "Strictly reports 'suspicious shelf-removal alert' based on physical volume loss "
                 "paired with temporal person proximity. Does not claim theft proof."
             ),
-            advantage="Kyra (Honest system claim; human-review boundary)",
+            advantage="Kyra documents a human-review boundary.",
         ),
     ]
 
 
 def evaluate_class_based_baseline_summary() -> dict[str, Any]:
-    """Return summary metrics contrasting 2D YOLO vs Kyra 3D geometry."""
+    """Return a design comparison without presenting unrun baseline metrics."""
     comparisons = get_paradigm_comparisons()
     return {
         "dimensions_evaluated": len(comparisons),
@@ -106,9 +107,9 @@ def evaluate_class_based_baseline_summary() -> dict[str, Any]:
             }
             for c in comparisons
         ],
+        "comparison_kind": "design-only; no class-based accuracy baseline executed",
         "summary": (
-            "Pretrained 2D object detection fails to generalize to the 20 held-out categories "
-            "without custom SKU labeling, whereas Kyra's 3D physics-based geometry detects missing "
-            "volume reliably without any SKU-specific or theft-scenario training."
+            "Kyra's implemented geometry path does not require SKU labels. Comparative accuracy, "
+            "retraining cost, and real unseen-category generalization remain unmeasured."
         ),
     }

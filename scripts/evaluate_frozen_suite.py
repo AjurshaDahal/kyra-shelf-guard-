@@ -14,7 +14,7 @@ from kyra.evaluation.runner import run_evaluation_suite
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Kyra Gate 6 Frozen Evaluation Runner")
+    parser = argparse.ArgumentParser(description="Kyra generated-fixture evaluation runner")
     parser.add_argument(
         "--max-trials",
         type=int,
@@ -30,7 +30,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--write-gate6",
         action="store_true",
-        help="Generate docs/gates/GATE-6.md report",
+        help="Generate the bounded docs/gates/GATE-6.md report",
     )
     args = parser.parse_args(argv)
 
@@ -40,7 +40,7 @@ def main(argv: list[str] | None = None) -> int:
         neg = [s for s in specs if not s.is_positive][: args.max_trials - len(pos)]
         specs = pos + neg
 
-    print(f"Executing Gate 6 frozen evaluation across {len(specs)} trials...")
+    print(f"Executing generated-fixture evaluation across {len(specs)} trials...")
     t0 = time.perf_counter()
 
     def progress(current: int, total: int, scenario_id: str) -> None:
@@ -53,7 +53,7 @@ def main(argv: list[str] | None = None) -> int:
     total_elapsed = time.perf_counter() - t0
 
     print("\n" + "=" * 72)
-    print("                 KYRA GATE 6 FROZEN EVALUATION REPORT                 ")
+    print("               KYRA GENERATED-FIXTURE EVALUATION REPORT               ")
     print("=" * 72)
     print(f"Total Trials Evaluated:       {metrics['total_trials']}")
     print(f"Positive Removal Trials:      {metrics['total_positive']}")
@@ -141,23 +141,21 @@ def _write_gate6_document(metrics: dict, elapsed_s: float) -> None:
 - **Accountable owner:** Person 4 (Integration and Evaluation)
 - **Reviewers:** Person 1 (data split), Person 2 (geometry accuracy), Person 3 (theft rules)
 - **Date recorded:** 2026-09-08
-- **Status:** Approved / Closed
+- **Status:** In progress; generated-fixture evidence only
 
 ## Scope
 
-This gate covers the frozen evaluation of the complete Kyra physics-based shelf-guard system
-against the quantitative SLA targets in Section 10 and the class-based comparison in Section 11
-of the project specification (`Four-Person_Physics-Based_Shelf_Removal_Detection_Plan.docx`).
-
-Testing was executed on the frozen dataset split without test-set tuning.
+This record covers a deterministic generated-fixture exercise of the current replay pipeline.
+It does not satisfy the assignment's staged real-use-case dataset requirement and does not
+measure a class-based baseline, pretrained inference, a live camera, or target-T4 latency.
 
 ## Dataset Split (Section 10.1)
 
 - **Total Trials:** {metrics['total_trials']}
-- **Frozen Positive Set (120 trials):**
-  - 60 synthetic scenarios across 20 held-out categories (3 variants each).
-  - 60 reversed transitions from unstacked object clutter pairs.
-- **Frozen Negative Set (300 challenge trials across 4 groups):**
+- **Generated Positive Set (120 trials):**
+  - 60 procedural scenarios carrying 20 category labels (3 variants each).
+  - 60 generated reverse-transition profiles whose names reference OCID; they do not load OCID.
+- **Generated Negative Set (300 challenge trials across 4 groups):**
   - 75 occlusion-only scenarios.
   - 75 nearby-person / no-removal scenarios.
   - 75 addition or authorized-restocking scenarios.
@@ -165,12 +163,12 @@ Testing was executed on the frozen dataset split without test-set tuning.
 
 ## Quantitative Results Against Assignment Targets (Section 10.2)
 
-| Metric | Target | Measured Result | 95% Confidence Interval | Gate 6 Status |
+| Metric | Assignment target | Generated-fixture result | 95% Confidence Interval | Interpretation |
 |---|---|---|---|---|
-| **Theft-Rule Recall** | > 92% (>= 111/120) | {r_cell} | {r_ci_str} | **PASS** |
-| **False-Positive Rate** | < 1.1% (<= 3/300) | {f_cell} | {fpr_ci_str} | **PASS** |
-| **Geometry Balanced Accuracy** | > 90% | **{geom_str}** | — | **PASS** |
-| **Volume Error (MAPE >= 0.5L)** | <= 10% | **{vol_str}** | — | **PASS** |
+| **Alert recall** | > 92% (>= 111/120) | {r_cell} | {r_ci_str} | Fixture regression only |
+| **False-alert rate** | < 1.1% (<= 3/300) | {f_cell} | {fpr_ci_str} | Fixture regression only |
+| **Geometry Balanced Accuracy** | > 90% | **{geom_str}** | — | Fixture regression only |
+| **Volume Error (MAPE >= 0.5L)** | <= 10% | **{vol_str}** | — | Fixture regression only |
 | **Latency (p50)** | — | **{metrics['latency_p50_ms']:.2f} ms** | — | Benchmarked |
 | **Latency (p95)** | — | **{metrics['latency_p95_ms']:.2f} ms** | — | Benchmarked |
 | **Throughput** | — | **{metrics['throughput_fps']:.2f} FPS** | — | Benchmarked |
@@ -185,9 +183,10 @@ Total evaluation runtime: {elapsed_s:.2f} seconds.
 
 ## Gate 6 Conclusion
 
-All quantitative criteria exceed assignment requirements with zero false alerts across
-300 challenge controls and high recall across all 20 held-out categories.
-Gate 6 is formally **Approved / Closed**.
+The generated fixture matrix is useful regression evidence, but its outcomes cannot be
+reported as assignment-level recall, false-positive rate, real category generalization, or
+production performance. Gate 6 remains **in progress** until an independently frozen,
+representative dataset and an actually executed comparison support those claims.
 """
     Path("docs/gates/GATE-6.md").write_text(doc, encoding="utf-8")
 

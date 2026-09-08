@@ -6,6 +6,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
 
 ## [1.0.0] - 2026-09-08
 
+- Corrected the release and evaluation record: the 420 trials are generated
+  regression fixtures, the class-based comparison was not empirically run,
+  and the recorded T4 run covered the core suite rather than the complete
+  model-backed pipeline. Gates 4, 6, and 7 therefore remain in progress
+  (issue #92).
 - Added a recorded-image YOLO11n + ByteTrack smoke runner, corrected the
   `FramePacket` RGB to Ultralytics BGR boundary, and pinned ByteTrack's `lap`
   runtime dependency (issue #85). The CPU smoke and repository validation
@@ -21,10 +26,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Ver
   local SHA-256, converted four ARID20 tabletop sequences in both directions,
   and replayed all 8 manifests/168 frames while keeping the dataset and report
   outside Git (GitHub issue #81).
-- Completed Gate 7 (Performance and Release) and achieved full project completion across all seven integration gates (`docs/gates/GATE-7.md`, WI-085).
+- Prepared partial Gate 7 evidence through core-suite execution on a Kaggle T4,
+  deterministic CLI smoke checks, and licence/security review; full
+  model-backed T4 execution and release sign-off remain open (WI-085).
 - Verified clean-clone execution of all six CLI subcommands (`simulate`, `calibrate`, `run`, `evaluate`, `benchmark`, `demo`) with exit code 0.
 - Audited licence compliance (AGPL-3.0-only, OCID CC-BY 4.0 research approval), repository security (zero credentials or binary leaks), and honest claims ("suspicious shelf-removal alert", zero SKU-specific training).
-- Executed Gate 6 frozen evaluation across 420 trials (120 positive removals across 20 held-out categories and reversed transitions; 300 negative controls) achieving 100% recall, 0% FPR, 100% geometry accuracy, and 0% volume error on >= 0.5L objects; recorded Gate 6 evidence in `docs/gates/GATE-6.md` (WI-084).
+- Executed a 420-trial generated-fixture regression matrix and recorded its
+  perfect in-fixture results. This is not an independently frozen real dataset,
+  real unseen-category evidence, or assignment-level recall/FPR proof (WI-084).
 - Added `src/kyra/evaluation/` package, `scripts/evaluate_frozen_suite.py` evaluation runner, multi-frame synthetic split evaluation in `kyra evaluate --split`, with Wilson score binomial confidence intervals and class-based YOLO comparison framework (WI-082, WI-084).
 - Formally closed Integration Gate 2 (`docs/gates/GATE-2.md`), Gate 3 (`docs/gates/GATE-3.md`), and Gate 5 (`docs/gates/GATE-5.md`) after full regression verification and Issue #79 resolution (WI-083).
 - Enhanced `kyra demo` CLI subcommand to accept existing scenario directories and direct `scenario.json` paths in addition to generated cases (WI-082).

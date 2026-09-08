@@ -1,66 +1,48 @@
-﻿# Gate 7 Evidence — Performance, Target-T4 Verification, and Release Sign-Off
+# Gate 7 Evidence — Performance and Release Preparation
 
 - **Gate:** Gate 7 (Performance and Release)
 - **Accountable owner:** Person 4 (Integration and Release)
-- **Sign-off:** Person 1 (Data & Baseline), Person 2 (Geometry), Person 3 (Tracking & Rules), Person 4 (Integration & Release)
 - **Date recorded:** 2026-09-08
-- **Status:** Approved / Closed
+- **Corrected:** 2026-09-08 under issue #92
+- **Status:** In progress; partial release evidence only
 
-## Scope
+## Verified evidence
 
-This gate provides final verification and release evidence for the Kyra physics-based shelf-guard prototype. It verifies:
-1. Target-T4 execution and latency benchmarking.
-2. Clean-clone execution of all assignment CLI subcommands.
-3. Provenance and open-source licence compliance.
-4. Security and secrets audit.
-5. Scientific and legal claims audit against assignment objectives.
-6. Release documentation and changelog agreement.
+- The committed core test suite, Person 1 verifier, and golden-pack audit ran in
+  a Kaggle free-T4 notebook. The detailed boundary and artifact limitation are
+  recorded in `docs/PERSON1_TEST_REPORT_T4_2026-09-07.md`.
+- Six deterministic CLI commands (`simulate`, `calibrate`, `run`, `evaluate`,
+  `benchmark`, and `demo`) completed in the recorded local smoke environment.
+- The golden pack was byte-identical across the recorded Windows and Linux/T4
+  checks.
+- The repository licence, external-data provenance policy, indexed-file secret
+  scan, and alert terminology were reviewed.
+- The deterministic CPU fixture runner recorded p50 191.85 ms and p95 286.52 ms.
 
-## Verification Environment
+## What the evidence does not establish
 
-- **Operating Systems:** Windows 11 (Host development) & Linux 6.12.90+ (Target T4 on Kaggle)
-- **Python Environment:** Python 3.12 (CPython) with locked dependencies (`requirements.lock`)
-- **Accelerator:** NVIDIA T4 GPU accelerator (Kaggle notebook environment, decision D-015)
-- **Core Dependencies:** numpy==2.4.6, opencv-python-headless==5.0.0.93, pydantic==2.13.5
+- YOLO and MiDaS were not executed together through the complete pipeline on
+  the T4.
+- The assignment's less-than-150-ms model-backed end-to-end latency target was
+  not measured or met by the recorded CPU fixture timing.
+- The T4 report does not contain representative people-plus-shelf-removal or
+  restocking recordings.
+- The optional tracking dependency pins do not prove GPU execution.
+- Independent owner/reviewer release sign-off is not recorded.
+- Gate 6 remains open, so the release cannot claim assignment-level accuracy,
+  generalization, or full production readiness.
 
-## Gate 7 Exit Criteria & Verifications
+## Remaining exit evidence
 
-### 1. Target-T4 Run & Reproducibility (D-015)
-- Executed on Kaggle free-T4 GPU notebook (`notebooks/kyra_t4_validation.ipynb`).
-- Golden scenario pack G01–G10 verified byte-identical between local Windows and T4 Linux environments (116/116 checksums match).
-- Report filed in `docs/PERSON1_TEST_REPORT_T4_2026-09-07.md`.
-- Lazy optional YOLO+ByteTrack tracking adapter verified on GPU pins (`requirements-gpu.lock`).
+1. Run the actual pretrained tracking/depth path with geometry and alert logic
+   on a T4 and retain stage plus end-to-end timings.
+2. Evaluate representative frozen RGB-D recordings and publish reproducible
+   failure analysis.
+3. Re-run clean-environment checks from the intended release revision.
+4. Obtain the required independent sign-offs and record the release revision.
 
-### 2. Five-Command CLI Smoke Verification
-All planned assignment CLI subcommands executed in a clean environment and passed with exit code 0:
-1. `kyra simulate <dest> --case suspicious-removal`: generated valid scenario and strict manifest 1.1.
-2. `kyra calibrate <manifest> --output <npz>`: fitted 30-frame baseline with valid calibration checksum.
-3. `kyra run <manifest> --baseline <npz>`: orchestrated real P1->P2->P3 pipeline and produced verified alert.
-4. `kyra evaluate <manifest> --baseline <npz>`: evaluated detected events against ground truth labels (passed: true).
-5. `kyra benchmark <manifest> --baseline <npz> --runs 3`: measured multi-run latencies (p50: ~28 ms).
-6. `kyra demo <dest> --video <mp4>`: synthesized frame-by-frame annotated inference video.
+## Gate 7 conclusion
 
-### 3. Latency & Resource Benchmarks
-- **End-to-End Pipeline Latency:** p50 = 191.85 ms, p95 = 286.52 ms.
-- **Stage 1 (Kabsch SVD Registration & Differencing):** ~12 ms / frame.
-- **Stage 2 (3D Clustering & Ray Frustum Volume):** ~16 ms / frame.
-- **Stage 3 (Tracking Proximity & Rule Engine):** < 1 ms / frame.
-- **Full Throughput:** ~4.95 FPS on pure CPU (sufficient for 2 Hz temporal confirmation sliding window).
-
-### 4. Licence and Provenance Review
-- `data-sources/provenance.json` reviewed: OCID CC-BY 4.0 research approval (D-014) verified.
-- Project license declared as AGPL-3.0-only in `pyproject.toml` for full compatibility with Ultralytics dependencies.
-- No copyrighted third-party binary models or raw bulk datasets committed to Git.
-
-### 5. Security and Secrets Audit
-- Git index scanned for `.env`, `.pem`, `.key`, credentials, or private tokens: **0 findings**.
-
-### 6. Claims and Terminology Audit (Assignment Section 12)
-- **Terminology:** System strictly outputs **"suspicious shelf-removal alert"**; zero instances of "theft proof", "theft detection", or "criminal intent" in production interfaces.
-- **Core Claim:** Physics-based 3D missing-volume detection requiring **no SKU-specific or theft-scenario training**.
-- **Human-Review Boundary:** All alerts are clearly documented as signals for human staff review.
-
-## Gate 7 Conclusion
-
-All seven integration gates (Gate 1 through Gate 7) are now complete. The repository satisfies all project charter deliverables, assignment specifications, and reproducible release standards.
-Gate 7 is formally **Approved / Closed**.
+The project has useful core portability and release-preparation evidence, but
+Gate 7 remains **in progress**. The current record does not support saying that
+all deliverables, target latency, or production readiness are complete.
