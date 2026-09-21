@@ -27,7 +27,7 @@ midas = ["torch==2.14.0", "timm==0.6.13"]
 simulation = ["blenderproc==2.8.0"]
 dev = [
   "pytest==9.0.3",
-  "pytest-cov==7.0.0",
+  "pytest-cov==7.1.0",
   "ruff==0.13.1",
 ]
 
